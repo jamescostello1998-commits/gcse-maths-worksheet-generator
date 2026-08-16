@@ -219,40 +219,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 3^x = 1/9.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 8√11 - 7√11 + 7√11, giving your answer in the form a√b.",
       "solution_steps": [
-        "Write the right-hand side as a power of 3: \\frac{1}{3²} = 3^-2",
-        "3^x = 3^-2",
-        "Since the bases match, the powers must be equal: x = -2",
-        "x = -2"
+        "Every term is a multiple of √11, so they are all like surds.",
+        "Combine the coefficients in order: 8 - 7 + 7 = 8.",
+        "= 8√11"
       ],
-      "final_answer": "-2",
-      "marks": 5,
+      "final_answer": "8√11",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write the right-hand side as a power of 3: \\frac{1}{3²} = 3^-2",
+          "description": "Every term is a multiple of √11, so they are all like surds.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3^x = 3^-2",
+          "description": "Combine the coefficients in order: 8 - 7 + 7 = 8.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since the bases match, the powers must be equal: x = -2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -2",
+          "description": "= 8√11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2 oe",
+          "description": "8√11 oe",
           "marks": 1
         }
       ],
@@ -303,135 +297,128 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_cubic_H",
-      "prompt": "Complete a table of values for y = -x^3 - x for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 7 × 3^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -x^3 - x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 30, 10, 2, 0, -2, -10, -30",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "Table of values for y = 7 × 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 7, 21, 63, 189, 567",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "Cubic curve: y = -x^3 - x",
+      "final_answer": "Exponential curve: y = 7 × 3^x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^3 - x:",
+          "description": "Table of values for y = 7 × 3^x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "x: 0, 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 30, 10, 2, 0, -2, -10, -30",
+          "description": "y: 7, 21, 63, 189, 567",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = -x^3 - x oe",
+          "description": "Exponential curve: y = 7 × 3^x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": -1,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 7,
+          "base": 3,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -32,
-          "y_max": 32,
+          "y_min": 0,
+          "y_max": 623.7,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": -1,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 7,
+          "base": 3,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -32,
-          "y_max": 32,
+          "y_min": 0,
+          "y_max": 623.7,
           "table_points": [
             [
-              -3,
-              30
-            ],
-            [
-              -2,
-              10
-            ],
-            [
-              -1,
-              2
-            ],
-            [
               0,
-              0
+              7
             ],
             [
               1,
-              -2
+              21
             ],
             [
               2,
-              -10
+              63
             ],
             [
               3,
-              -30
+              189
+            ],
+            [
+              4,
+              567
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "simultaneous_quadratic_H",
-      "prompt": "Solve the simultaneous equations: y = x^2 - 3x - 3 and y = -5x + 5",
+      "topic_id": "solving_inequalities_H",
+      "prompt": "Solve the inequality: -2(x - 9) > -1",
       "solution_steps": [
-        "Substitute y = -5x + 5 into y = x^2 - 3x - 3: -5x + 5 = x^2 - 3x - 3",
-        "Rearrange: x^2 + 2x - 8 = 0",
-        "Factorise: (x + 4)(x - 2) = 0",
-        "x = -4 or x = 2",
-        "When x = -4, y = 25. When x = 2, y = -5."
+        "Expand the bracket: -2(x - 9) > -1",
+        "-2x + 18 > -1",
+        "Subtract 18 from both sides:",
+        "-2x > -19",
+        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
+        "x < 19/2"
       ],
-      "final_answer": "(-4, 25) and (2, -5)",
+      "final_answer": "x < 19/2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = -5x + 5 into y = x^2 - 3x - 3: -5x + 5 = x^2 - 3x - 3",
+          "description": "Expand the bracket: -2(x - 9) > -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 + 2x - 8 = 0",
+          "description": "-2x + 18 > -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 4)(x - 2) = 0",
+          "description": "Subtract 18 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -4 or x = 2 When x = -4, y = 25. When x = 2, y = -5.",
+          "description": "-2x > -19 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x < 19/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-4, 25) and (2, -5) oe",
+          "description": "x < 19/2 oe",
           "marks": 1
         }
       ],
@@ -439,62 +426,53 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_H",
-      "prompt": "Draw the inequality/ies of -2 < x < 2 on a number line.",
+      "topic_id": "inequalities_region_H",
+      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
       "solution_steps": [
-        "Draw an open circle at -2 and an open circle at 2.",
-        "Shade the segment of the line between the two circles."
+        "The boundary line y = x - 1 is solid, and the shading lies on the lower side of it, giving y ≤ x - 1.",
+        "The boundary line y = \\frac{x}{2} + 2 is dashed, and the shading lies on the upper side of it, giving y > \\frac{x}{2} + 2."
       ],
-      "final_answer": "-2 < x < 2",
+      "final_answer": "y ≤ x - 1 and y > \\frac{x}{2} + 2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw an open circle at -2 and an open circle at 2.",
+          "description": "The boundary line y = x - 1 is solid, and the shading lies on the lower side of it, giving y ≤ x - 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the segment of the line between the two circles.",
+          "description": "The boundary line y = \\frac{x}{2} + 2 is dashed, and the shading lies on the upper side of it, giving y > \\frac{x}{2} + 2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2 < x < 2 oe",
+          "description": "y ≤ x - 1 and y > \\frac{x}{2} + 2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "number_line",
+        "kind": "inequality_region",
         "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
             {
-              "value": -2,
-              "closed": false
+              "m": 1.0,
+              "c": -1,
+              "op": "<="
             },
             {
-              "value": 2,
-              "closed": false
+              "m": 0.5,
+              "c": 2,
+              "op": ">"
             }
-          ],
-          "shade": "between"
+          ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "trial_and_improvement_H",
@@ -800,32 +778,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "graph_transformations_H",
-      "prompt": "The graph of y = f(x) undergoes a translation by vector (2, 0). Write down the equation of the transformed graph in terms of f(x).",
+      "topic_id": "arc_length_H",
+      "prompt": "Find the exact arc length of the following sector, in terms of π.",
       "solution_steps": [
-        "y = f(x - 2) corresponds to a translation by vector (2, 0)."
+        "Arc length = (θ ÷ 360) × 2 × π × r = (180 ÷ 360) × 2 × π × 3",
+        "= 3π cm"
       ],
-      "final_answer": "y = f(x - 2)",
-      "marks": 2,
+      "final_answer": "3π cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = f(x - 2) corresponds to a translation by vector (2, 0).",
+          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (180 ÷ 360) × 2 × π × 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 3π cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = f(x - 2) oe",
+          "description": "3π cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "graph_transformation",
+        "kind": "sector",
         "params": {
-          "transform": "translate_right",
-          "shift": 2,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(x - 2)"
+          "angle": 180,
+          "radius_label": "3 cm",
+          "angle_label": "180°"
         }
       },
       "solution_diagram": null
@@ -1056,16 +1039,6 @@
                 "Yellow",
                 "3/7"
               ]
-            ]
-          ],
-          "leaf_probs": [
-            [
-              "3/14",
-              "2/7"
-            ],
-            [
-              "2/7",
-              "3/14"
             ]
           ]
         }

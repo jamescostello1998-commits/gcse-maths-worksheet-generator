@@ -293,98 +293,97 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_quadratic_F",
-      "prompt": "Complete a table of values for y = -x^2 - x for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_distance_time_F",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 4 km away after 15 minutes. They stay at the shop until 20 minutes, then cycle straight back home at a constant speed, arriving home at 40 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
       "solution_steps": [
-        "Table of values for y = -x^2 - x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -6, -2, 0, 0, -2, -6, -12",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 15 minutes.",
+        "Stay at 4 km until 20 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 40 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 4 km out + 4 km back = 8 km"
       ],
-      "final_answer": "Quadratic curve: y = -x^2 - x",
+      "final_answer": "8 km",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^2 - x:",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 15 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Stay at 4 km until 20 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -6, -2, 0, 0, -2, -6, -12",
+          "description": "Return at a constant speed to 0 km, arriving home at 40 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 4 km out + 4 km back = 8 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = -x^2 - x oe",
+          "description": "8 km oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "quadratic",
-          "a": -1,
-          "b": -1,
-          "c": 0,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -13,
-          "y_max": 1,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "quadratic",
-          "a": -1,
-          "b": -1,
-          "c": 0,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -13,
-          "y_max": 1,
-          "table_points": [
-            [
-              -3,
-              -6
-            ],
-            [
-              -2,
-              -2
-            ],
-            [
-              -1,
-              0
-            ],
+          "points": [
             [
               0,
               0
             ],
             [
-              1,
-              -2
+              15,
+              4
             ],
             [
-              2,
-              -6
+              20,
+              4
             ],
             [
-              3,
-              -12
+              40,
+              0
             ]
-          ]
+          ],
+          "x_max": 45,
+          "y_max": 6,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              15,
+              4
+            ],
+            [
+              20,
+              4
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 6,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
         }
       }
     },
@@ -430,38 +429,58 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = x - 7 and passes through the point (-5, 1). Find the equation of the line.",
+      "topic_id": "distance_time_interpret_F",
+      "prompt": "The distance-time graph shows a delivery van's journey. Find the average speed for the whole journey, in km/h.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = 1.",
-        "Substitute (-5, 1) into y = 1x + c: 1 = 1×(-5) + c, so c = 6",
-        "Equation of the line: y = x + 6"
+        "Total distance = 20 km. Total time = 70 minutes = 7/6 hours.",
+        "Average speed = 20 ÷ 7/6 = 120/7 km/h"
       ],
-      "final_answer": "y = x + 6",
-      "marks": 4,
+      "final_answer": "120/7 km/h",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = 1.",
+          "description": "Total distance = 20 km. Total time = 70 minutes = 7/6 hours.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (-5, 1) into y = 1x + c: 1 = 1×(-5) + c, so c = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = x + 6",
+          "description": "Average speed = 20 ÷ 7/6 = 120/7 km/h",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = x + 6 oe",
+          "description": "120/7 km/h oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              15,
+              10
+            ],
+            [
+              30,
+              10
+            ],
+            [
+              70,
+              0
+            ]
+          ],
+          "x_max": 75,
+          "y_max": 12,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -506,28 +525,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_F",
-      "prompt": "The first 3 cube numbers are: 1, 8, 27. Find the 5th term of the sequence.",
+      "topic_id": "change_subject_F",
+      "prompt": "Make t the subject of the formula v = u + 12t.",
       "solution_steps": [
-        "These are the cube numbers: the nth term is given by n^3.",
-        "Term 5 = 5^3 = 125"
+        "v = u + 12t",
+        "Subtract u from both sides: v - u = 12t",
+        "Divide both sides by 12: t = \\frac{v - u}{12}"
       ],
-      "final_answer": "125",
-      "marks": 3,
+      "final_answer": "t = \\frac{v - u}{12}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "These are the cube numbers: the nth term is given by n^3.",
+          "description": "v = u + 12t",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 5 = 5^3 = 125",
+          "description": "Subtract u from both sides: v - u = 12t",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 12: t = \\frac{v - u}{12}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "125 oe",
+          "description": "t = \\frac{v - u}{12} oe",
           "marks": 1
         }
       ],
@@ -535,28 +560,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_term_to_term_rule_F",
-      "prompt": "Here are the first four terms of a sequence: 8, 4, 0, -4. Describe the term-to-term rule, and find the next term.",
+      "topic_id": "sequences_nth_term_F",
+      "prompt": "Here are the first four terms of a sequence: 4, 3, 2, 1.\nFind an expression for the nth term.",
       "solution_steps": [
-        "Term-to-term rule: subtract 4",
-        "Next term = -8"
+        "Common difference = -1",
+        "nth term = -1n + 5",
+        "nth term = -n + 5"
       ],
-      "final_answer": "Rule: subtract 4. Next term = -8",
-      "marks": 3,
+      "final_answer": "-n + 5",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Term-to-term rule: subtract 4",
+          "description": "Common difference = -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -8",
+          "description": "nth term = -1n + 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -n + 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rule: subtract 4. Next term = -8 oe",
+          "description": "-n + 5 oe",
           "marks": 1
         }
       ],
@@ -606,41 +637,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_F",
-      "prompt": "Expand and simplify: (3x + 2)(x + 8)",
+      "topic_id": "ratio_share_three_part_F",
+      "prompt": "Share 28 in the ratio 4:7:3.",
       "solution_steps": [
-        "First: 3x × 1x = 3x^2",
-        "Outer: 3x × 8 = 24x",
-        "Inner: 2 × 1x = 2x",
-        "Last: 2 × 8 = 16",
-        "Combine like terms: 3x^2 + 26x + 16"
+        "Total parts = 4 + 7 + 3 = 14",
+        "Value of one part = 28 ÷ 14 = 2",
+        "Share 1 = 4 × 2 = 8",
+        "Share 2 = 7 × 2 = 14",
+        "Share 3 = 3 × 2 = 6"
       ],
-      "final_answer": "3x^2 + 26x + 16",
+      "final_answer": "8 : 14 : 6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 3x × 1x = 3x^2",
+          "description": "Total parts = 4 + 7 + 3 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 3x × 8 = 24x",
+          "description": "Value of one part = 28 ÷ 14 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 2 × 1x = 2x",
+          "description": "Share 1 = 4 × 2 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 2 × 8 = 16 Combine like terms: 3x^2 + 26x + 16",
+          "description": "Share 2 = 7 × 2 = 14 Share 3 = 3 × 2 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3x^2 + 26x + 16 oe",
+          "description": "8 : 14 : 6 oe",
           "marks": 1
         }
       ],
@@ -677,28 +708,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_F",
-      "prompt": "Convert 2819 m to km.",
+      "topic_id": "density_F",
+      "prompt": "A piece of wood has a mass of 4807 kg and a volume of 20 m³. Find its density, correct to 2 decimal places.",
       "solution_steps": [
-        "1 km = 1000 m",
-        "2819 m = 2819 ÷ 1000 = 2.819 km"
+        "density = mass ÷ volume",
+        "density = 4807 ÷ 20 = 240.35 kg/m³ (2 d.p.)"
       ],
-      "final_answer": "2.819 km",
+      "final_answer": "240.35 kg/m³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "1 km = 1000 m",
+          "description": "density = mass ÷ volume",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2819 m = 2819 ÷ 1000 = 2.819 km",
+          "description": "density = 4807 ÷ 20 = 240.35 kg/m³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2.819 km oe",
+          "description": "240.35 kg/m³ oe",
           "marks": 1
         }
       ],
@@ -747,164 +778,179 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_of_amount_F",
-      "prompt": "Find 20% of 240.",
+      "topic_id": "area_rectangle_F",
+      "prompt": "Find the perimeter of the following rectangle.",
       "solution_steps": [
-        "Convert 20% to a fraction: 20/100",
-        "Multiply: 20/100 × 240 = 48"
+        "Perimeter = 2 × (length + width) = 2 × (3 + 12) = 30 cm"
       ],
-      "final_answer": "48",
-      "marks": 3,
+      "final_answer": "30 cm",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 20% to a fraction: 20/100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 20/100 × 240 = 48",
+          "description": "Perimeter = 2 × (length + width) = 2 × (3 + 12) = 30 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_F",
-      "prompt": "Share 28 in the ratio 4:7:3.",
-      "solution_steps": [
-        "Total parts = 4 + 7 + 3 = 14",
-        "Value of one part = 28 ÷ 14 = 2",
-        "Share 1 = 4 × 2 = 8",
-        "Share 2 = 7 × 2 = 14",
-        "Share 3 = 3 × 2 = 6"
-      ],
-      "final_answer": "8 : 14 : 6",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 4 + 7 + 3 = 14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 28 ÷ 14 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 4 × 2 = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 7 × 2 = 14 Share 3 = 3 × 2 = 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 : 14 : 6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cylinder_F",
-      "prompt": "Find the total surface area of the cylinder, correct to 2 decimal places.",
-      "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 2²) + (2 × π × 2 × 13)",
-        "= 188.50 cm² (2 d.p., using a calculator value of π)"
-      ],
-      "final_answer": "188.50 cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 2²) + (2 × π × 2 × 13)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 188.50 cm² (2 d.p., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "188.50 cm² oe",
+          "description": "30 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "rectangle",
         "params": {
-          "radius_label": "2 cm",
-          "height_label": "13 cm"
+          "width": 3,
+          "height": 12,
+          "width_label": "3 cm",
+          "height_label": "12 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SAS  B) SSS  C) RHS  D) ASA",
+      "topic_id": "trig_missing_side_F",
+      "prompt": "In the triangle shown, find the length of x, correct to 1 decimal place.",
       "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Angle-Side-Angle (ASA) pattern.",
-        "So the two triangles are congruent by Angle-Side-Angle (ASA)."
+        "We know the hypotenuse and want the adjacent, so use cos.",
+        "x = 13 × cos(24°) = 11.9 (1 d.p.)"
       ],
-      "final_answer": "D) ASA",
-      "marks": 1,
+      "final_answer": "11.9 cm",
+      "marks": 3,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "D) ASA (selecting the correct option)",
+          "code": "M1",
+          "description": "We know the hypotenuse and want the adjacent, so use cos.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 13 × cos(24°) = 11.9 (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11.9 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "trig_triangle",
         "params": {
-          "side_labels_1": [
+          "adjacent_label": "x cm",
+          "opposite_label": null,
+          "hyp_label": "13 cm",
+          "angle_label": "24°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "symmetry_rotational_F",
+      "prompt": "The diagram shows a square. State the order of rotational symmetry.",
+      "solution_steps": [
+        "Rotating the square about its centre, it looks exactly the same 4 times during a full 360° turn.",
+        "So the order of rotational symmetry is 4."
+      ],
+      "final_answer": "order 4",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rotating the square about its centre, it looks exactly the same 4 times during a full 360° turn.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the order of rotational symmetry is 4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "order 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
             [
-              0,
-              1,
-              "13 cm"
-            ]
-          ],
-          "side_labels_2": [
-            [
-              0,
-              1,
-              "13 cm"
-            ]
-          ],
-          "angle_labels_1": [
-            [
-              0,
-              "48°"
+              2.8284271247461903,
+              2.8284271247461903
             ],
             [
-              1,
-              "38°"
-            ]
-          ],
-          "angle_labels_2": [
-            [
-              0,
-              "48°"
+              -2.82842712474619,
+              2.8284271247461903
             ],
             [
-              1,
-              "38°"
+              -2.8284271247461907,
+              -2.82842712474619
+            ],
+            [
+              2.8284271247461894,
+              -2.8284271247461907
             ]
-          ]
+          ],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              2.8284271247461903,
+              2.8284271247461903
+            ],
+            [
+              -2.82842712474619,
+              2.8284271247461903
+            ],
+            [
+              -2.8284271247461907,
+              -2.82842712474619
+            ],
+            [
+              2.8284271247461894,
+              -2.8284271247461907
+            ]
+          ],
+          "rotation_centre": [
+            -2.220446049250313e-16,
+            0.0
+          ],
+          "rotation_order": 4
+        }
+      }
+    },
+    {
+      "topic_id": "area_parallelogram_F",
+      "prompt": "Find the area of the following parallelogram.",
+      "solution_steps": [
+        "Area = base × height = 12 × 10 = 120 cm²"
+      ],
+      "final_answer": "120 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = base × height = 12 × 10 = 120 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "120 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parallelogram",
+        "params": {
+          "base": 12,
+          "height": 10,
+          "base_label": "12 cm",
+          "height_label": "10 cm"
         }
       },
       "solution_diagram": null
@@ -986,7 +1032,8 @@
                 -2.5751903745502727
               ]
             }
-          ]
+          ],
+          "show_grid": false
         }
       },
       "solution_diagram": {
@@ -1041,6 +1088,7 @@
               ]
             }
           ],
+          "show_grid": false,
           "circle": null,
           "segment": {
             "p1": [
@@ -1057,166 +1105,40 @@
       }
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 80 cm and 84 cm. Find the length of x.",
+      "topic_id": "pythagoras_hypotenuse_decimal_F",
+      "prompt": "A right-angled triangle has sides 7 cm and 19 cm. Find the length of x, correct to 1 decimal place.",
       "solution_steps": [
-        "c² = a² + b² = 80² + 84² = 6400 + 7056 = 13456",
-        "c = √13456 = 116"
+        "c² = a² + b² = 7² + 19² = 49 + 361 = 410",
+        "c = √410 ≈ 20.2 cm (1 d.p.)"
       ],
-      "final_answer": "116 cm",
+      "final_answer": "20.2 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 80² + 84² = 6400 + 7056 = 13456",
+          "description": "c² = a² + b² = 7² + 19² = 49 + 361 = 410",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √13456 = 116",
+          "description": "c = √410 ≈ 20.2 cm (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "116 cm oe",
+          "description": "20.2 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "80 cm",
-          "leg2_label": "84 cm",
+          "leg1_label": "7 cm",
+          "leg2_label": "19 cm",
           "hyp_label": "x"
         }
       },
       "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_complete_F",
-      "prompt": "Enlarge shape A by scale factor 2, centre (-2, 8).",
-      "solution_steps": [
-        "The centre of enlargement is (-2, 8) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (-3, 2) is a displacement of (-1, -6) from the centre, so it maps to (-2, 8) + 2 × (-1, -6) = (-4, -4).",
-        "Repeat for every vertex. The image, shape B, has vertices (-4, -4), (4, -4), (2, 4), (-6, 2)."
-      ],
-      "final_answer": "Image (shape B): (-4, -4), (4, -4), (2, 4), (-6, 2)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (-2, 8) and the scale factor is 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (-3, 2) is a displacement of (-1, -6) from the centre, so it maps to (-2, 8) + 2 × (-1, -6) = (-4, -4).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex. The image, shape B, has vertices (-4, -4), (4, -4), (2, 4), (-6, 2).",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Image (shape B): (-4, -4), (4, -4), (2, 4), (-6, 2) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              2
-            ],
-            [
-              1,
-              2
-            ],
-            [
-              0,
-              6
-            ],
-            [
-              -4,
-              5
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A"
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              2
-            ],
-            [
-              1,
-              2
-            ],
-            [
-              0,
-              6
-            ],
-            [
-              -4,
-              5
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "image_vertices": [
-            [
-              -4,
-              -4
-            ],
-            [
-              4,
-              -4
-            ],
-            [
-              2,
-              4
-            ],
-            [
-              -6,
-              2
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "image_shape_label": "B"
-        }
-      }
     },
     {
       "topic_id": "sample_space_diagrams_F",
@@ -1382,32 +1304,186 @@
       }
     },
     {
-      "topic_id": "fractions_equivalent_F",
-      "prompt": "1/6 = \\frac{9}{?}. Find the missing number.",
+      "topic_id": "two_way_tables_F",
+      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "Find the scale factor between the numerators: 9 ÷ 1 = 9",
-        "Multiply the denominator by the same scale factor: 6 × 9 = 54"
+        "'Boys' / 'Cats': using the 'Boys' row total: 14 - 7 = 7",
+        "'Girls' / 'Dogs': using the 'Girls' row total: 19 - 5 = 14"
       ],
-      "final_answer": "54",
+      "final_answer": "'Boys' / 'Cats' = 7; 'Girls' / 'Dogs' = 14",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the scale factor between the numerators: 9 ÷ 1 = 9",
+          "description": "'Boys' / 'Cats': using the 'Boys' row total: 14 - 7 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the denominator by the same scale factor: 6 × 9 = 54",
+          "description": "'Girls' / 'Dogs': using the 'Girls' row total: 19 - 5 = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "54 oe",
+          "description": "'Boys' / 'Cats' = 7; 'Girls' / 'Dogs' = 14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "",
+              "7",
+              "14"
+            ],
+            [
+              "5",
+              "",
+              "19"
+            ],
+            [
+              "12",
+              "21",
+              "33"
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "7",
+              "7",
+              "14"
+            ],
+            [
+              "5",
+              "14",
+              "19"
+            ],
+            [
+              "12",
+              "21",
+              "33"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "sampling_methods_F",
+      "prompt": "A school has 248 students: Year 11: 115, Year 9: 133. A stratified sample of 64 students is taken. How many students from Year 9 should be in the sample?",
+      "solution_steps": [
+        "Year 9 makes up 133 out of 248 students.",
+        "Sample size needed = (133 ÷ 248) × 64",
+        "= 34 students (rounded to the nearest whole number)"
+      ],
+      "final_answer": "34",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Year 9 makes up 133 out of 248 students.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Sample size needed = (133 ÷ 248) × 64",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 34 students (rounded to the nearest whole number)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "34 oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SAS  B) SSS  C) RHS  D) ASA",
+      "solution_steps": [
+        "Look at which measurements are marked equal on both triangles - here they match the Angle-Side-Angle (ASA) pattern.",
+        "So the two triangles are congruent by Angle-Side-Angle (ASA)."
+      ],
+      "final_answer": "D) ASA",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "D) ASA (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "13 cm"
+            ]
+          ],
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "13 cm"
+            ]
+          ],
+          "angle_labels_1": [
+            [
+              0,
+              "48°"
+            ],
+            [
+              1,
+              "38°"
+            ]
+          ],
+          "angle_labels_2": [
+            [
+              0,
+              "48°"
+            ],
+            [
+              1,
+              "38°"
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

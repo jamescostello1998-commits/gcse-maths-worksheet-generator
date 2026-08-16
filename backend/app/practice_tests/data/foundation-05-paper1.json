@@ -287,12 +287,11 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step_F",
-      "prompt": "Solve: 3x + 2 + 4x + 6 = 64",
+      "topic_id": "linear_two_step_F",
+      "prompt": "Solve: 7x + 5 = 61",
       "solution_steps": [
-        "Collect like terms: 3x + 4x = 7x, 2 + 6 = 8",
-        "7x + 8 = 64",
-        "Subtract 8 from both sides:",
+        "7x + 5 = 61",
+        "Subtract 5 from both sides:",
         "7x = 56",
         "Divide both sides by 7:",
         "x = 8"
@@ -302,22 +301,22 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 3x + 4x = 7x, 2 + 6 = 8",
+          "description": "7x + 5 = 61",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7x + 8 = 64",
+          "description": "Subtract 5 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8 from both sides:",
+          "description": "7x = 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7x = 56 Divide both sides by 7: x = 8",
+          "description": "Divide both sides by 7: x = 8",
           "marks": 1
         },
         {
@@ -330,33 +329,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_F",
-      "prompt": "Here are the first 4 terms of a sequence: 11, 17, 23, 29. Find the next term.",
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = -x + 4 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "This is an arithmetic sequence: it goes up (or down) by the same amount, 6, each time.",
-        "Next term = 29 + 6 = 35"
+        "Table of values for y = -x + 4:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 7, 6, 5, 4, 3, 2, 1",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "35",
-      "marks": 3,
+      "final_answer": "Straight line: y = -x + 4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 6, each time.",
+          "description": "Table of values for y = -x + 4:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = 29 + 6 = 35",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 7, 6, 5, 4, 3, 2, 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "35 oe",
+          "description": "Straight line: y = -x + 4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -1,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -1,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 8,
+          "table_points": [
+            [
+              -3,
+              7
+            ],
+            [
+              -2,
+              6
+            ],
+            [
+              -1,
+              5
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "expand_single_bracket_F",
@@ -423,34 +487,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 4x = 32",
+      "topic_id": "collect_like_terms_F",
+      "prompt": "Fully simplify 5a + 7a - 6b + 5b + 3a",
       "solution_steps": [
-        "4x = 32",
-        "Divide both sides by 4:",
-        "x = 8"
+        "Start with the expression: 5a + 7a - 6b + 5b + 3a.",
+        "Like terms have exactly the same letter part, so group the a terms, and separately the b terms together, keeping the + or - sign in front of each term.",
+        "Add the coefficients within each group (a term with no number in front counts as 1).",
+        "This simplifies to 15a - b."
       ],
-      "final_answer": "8",
-      "marks": 4,
+      "final_answer": "15a - b",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x = 32",
+          "description": "Start with the expression: 5a + 7a - 6b + 5b + 3a.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 4:",
+          "description": "Like terms have exactly the same letter part, so group the a terms, and separately the b terms together, keeping the + or - sign in front of each term.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 8",
+          "description": "Add the coefficients within each group (a term with no number in front counts as 1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This simplifies to 15a - b.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "15a - b oe",
           "marks": 1
         }
       ],
@@ -671,36 +741,51 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_circle_F",
-      "prompt": "Find the circumference of the following circle, correct to 2 decimal places.",
+      "topic_id": "area_semicircle_compound_F",
+      "prompt": "Find the total area of the following compound shape, correct to 3 significant figures.",
       "solution_steps": [
-        "Circumference = 2 × π × r = 2 × π × 6",
-        "= 37.70 cm (2 d.p., using a calculator value of π)"
+        "Area of rectangle = 6 × 15 = 90 cm²",
+        "Radius of semicircle = 6 ÷ 2 = 3 cm",
+        "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
+        "Total area = 90 + (9/2)π ≈ 104 cm² (3 s.f.)"
       ],
-      "final_answer": "37.70 cm",
-      "marks": 3,
+      "final_answer": "104 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Circumference = 2 × π × r = 2 × π × 6",
+          "description": "Area of rectangle = 6 × 15 = 90 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 37.70 cm (2 d.p., using a calculator value of π)",
+          "description": "Radius of semicircle = 6 ÷ 2 = 3 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 90 + (9/2)π ≈ 104 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "37.70 cm oe",
+          "description": "104 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "circle",
+        "kind": "rectangle_semicircle",
         "params": {
-          "radius": 6,
-          "label": "6 cm"
+          "width": 6,
+          "height": 15,
+          "radius": 3,
+          "width_label": "6 cm",
+          "height_label": "15 cm"
         }
       },
       "solution_diagram": null
@@ -735,28 +820,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape A in the line x = -1.",
+      "topic_id": "transform_reflect_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "Reflect each vertex of shape A in the line x = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "The image, shape B, has vertices (-4, 1), (-7, 1), (-4, 3)."
+        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+        "Comparing corresponding vertices shows the mirror line is y = -2."
       ],
-      "final_answer": "Image (shape B): (-4, 1), (-7, 1), (-4, 3)",
+      "final_answer": "Reflection in the line y = -2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex of shape A in the line x = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The image, shape B, has vertices (-4, 1), (-7, 1), (-4, 3).",
+          "description": "Comparing corresponding vertices shows the mirror line is y = -2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (-4, 1), (-7, 1), (-4, 3) oe",
+          "description": "Reflection in the line y = -2 oe",
           "marks": 1
         }
       ],
@@ -787,57 +872,18 @@
             ""
           ],
           "original_shape_label": "A",
-          "mirror_line": {
-            "type": "vertical",
-            "x": -1,
-            "label": "x = -1"
-          }
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "image_vertices": [
             [
               2,
-              1
+              -5
             ],
             [
               5,
-              1
+              -5
             ],
             [
               2,
-              3
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "mirror_line": {
-            "type": "vertical",
-            "x": -1,
-            "label": "x = -1"
-          },
-          "image_vertices": [
-            [
-              -4,
-              1
-            ],
-            [
-              -7,
-              1
-            ],
-            [
-              -4,
-              3
+              -7
             ]
           ],
           "image_labels": [
@@ -845,9 +891,11 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "forming_equations_F",
@@ -893,116 +941,100 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder_F",
-      "prompt": "Find the volume of the cylinder, correct to 2 decimal places.",
+      "topic_id": "symmetry_lines_F",
+      "prompt": "The diagram shows a rectangle. How many lines of symmetry does it have?",
       "solution_steps": [
-        "Volume = π × r² × h = π × 12² × 19",
-        "= 8595.40 cm³ (2 d.p., using a calculator value of π)"
+        "A rectangle has 2 lines of symmetry.",
+        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
       ],
-      "final_answer": "8595.40 cm³",
+      "final_answer": "2 lines of symmetry",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = π × r² × h = π × 12² × 19",
+          "description": "A rectangle has 2 lines of symmetry.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 8595.40 cm³ (2 d.p., using a calculator value of π)",
+          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8595.40 cm³ oe",
+          "description": "2 lines of symmetry oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "symmetry_shape",
         "params": {
-          "radius_label": "12 cm",
-          "height_label": "19 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_independent_F",
-      "prompt": "A bag contains 8 red and 2 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
-      "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 4/5, P(green) = 1/5.",
-        "P(both red) = 4/5 × 4/5 = 16/25",
-        "P(both green) = 1/5 × 1/5 = 1/25",
-        "P(same colour) = 16/25 + 1/25 = 17/25"
-      ],
-      "final_answer": "17/25",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 4/5, P(green) = 1/5.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both red) = 4/5 × 4/5 = 16/25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both green) = 1/5 × 1/5 = 1/25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(same colour) = 16/25 + 1/25 = 17/25",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "17/25 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
+          "vertices": [
             [
-              "Red",
-              "4/5"
+              0,
+              0
             ],
             [
-              "Green",
-              "1/5"
+              6,
+              0
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              0,
+              4
             ]
           ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "4/5"
-              ],
-              [
-                "Green",
-                "1/5"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "4/5"
-              ],
-              [
-                "Green",
-                "1/5"
-              ]
-            ]
-          ]
+          "blank": true
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "symmetry_lines": [
+            {
+              "p1": [
+                3,
+                -1
+              ],
+              "p2": [
+                3,
+                5
+              ]
+            },
+            {
+              "p1": [
+                -1,
+                2
+              ],
+              "p2": [
+                7,
+                2
+              ]
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "probability_listing_outcomes_F",

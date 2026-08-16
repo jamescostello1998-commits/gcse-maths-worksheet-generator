@@ -329,34 +329,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_F",
-      "prompt": "Make x the subject of the formula y = 4x + 20.",
+      "topic_id": "cross_multiplication_F",
+      "prompt": "Solve the following equation.\n\\frac{x}{12} = \\frac{6}{8}",
       "solution_steps": [
-        "y = 4x + 20",
-        "Subtract 20 from both sides: y - 20 = 4x",
-        "Divide both sides by 4: x = \\frac{y - 20}{4}"
+        "Cross-multiply: x × 8 = 12 × 6",
+        "x = 9"
       ],
-      "final_answer": "x = \\frac{y - 20}{4}",
-      "marks": 4,
+      "final_answer": "x = 9",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = 4x + 20",
+          "description": "Cross-multiply: x × 8 = 12 × 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 20 from both sides: y - 20 = 4x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 4: x = \\frac{y - 20}{4}",
+          "description": "x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = \\frac{y - 20}{4} oe",
+          "description": "x = 9 oe",
           "marks": 1
         }
       ],
@@ -448,68 +442,153 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = 2x - 6 and passes through the point (6, -6). Find the equation of the line.",
+      "topic_id": "distance_time_interpret_F",
+      "prompt": "The distance-time graph shows a delivery van's journey. Find its speed during the outbound leg of the journey, in km/h.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = 2.",
-        "Substitute (6, -6) into y = 2x + c: -6 = 2×(6) + c, so c = -18",
-        "Equation of the line: y = 2x - 18"
+        "Outbound: 5 km in 20 minutes = 5 km in 1/3 hours",
+        "Speed = distance ÷ time = 5 ÷ 1/3 = 15 km/h"
       ],
-      "final_answer": "y = 2x - 18",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (6, -6) into y = 2x + c: -6 = 2×(6) + c, so c = -18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 2x - 18",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = 2x - 18 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "special_sequences_F",
-      "prompt": "The first 4 cube numbers are: 1, 8, 27, 64. Find the 7th term of the sequence.",
-      "solution_steps": [
-        "These are the cube numbers: the nth term is given by n^3.",
-        "Term 7 = 7^3 = 343"
-      ],
-      "final_answer": "343",
+      "final_answer": "15 km/h",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "These are the cube numbers: the nth term is given by n^3.",
+          "description": "Outbound: 5 km in 20 minutes = 5 km in 1/3 hours",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 7 = 7^3 = 343",
+          "description": "Speed = distance ÷ time = 5 ÷ 1/3 = 15 km/h",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "343 oe",
+          "description": "15 km/h oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              35,
+              5
+            ],
+            [
+              55,
+              0
+            ]
+          ],
+          "x_max": 60,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      },
       "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = x - 6 for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x - 6:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -9, -8, -7, -6, -5, -4, -3",
+        "Plot each (x, y) point and join them with a single ruled straight line."
+      ],
+      "final_answer": "Straight line: y = x - 6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x - 6:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -9, -8, -7, -6, -5, -4, -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Straight line: y = x - 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": 1,
+          "c": -6,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -10,
+          "y_max": -2,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": 1,
+          "c": -6,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -10,
+          "y_max": -2,
+          "table_points": [
+            [
+              -3,
+              -9
+            ],
+            [
+              -2,
+              -8
+            ],
+            [
+              -1,
+              -7
+            ],
+            [
+              0,
+              -6
+            ],
+            [
+              1,
+              -5
+            ],
+            [
+              2,
+              -4
+            ],
+            [
+              3,
+              -3
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "density_F",
@@ -669,139 +748,138 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 22° and 30°. Find x.",
+      "topic_id": "angles_polygon_interior_F",
+      "prompt": "A regular polygon has 9 sides. Find the size of one interior angle.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 22 + 30 = 52"
+        "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°",
+        "This is a regular polygon, so each interior angle = 1260 ÷ 9 = 140°"
       ],
-      "final_answer": "52",
+      "final_answer": "140°",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "description": "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 22 + 30 = 52",
+          "description": "This is a regular polygon, so each interior angle = 1260 ÷ 9 = 140°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "52 oe",
+          "description": "140° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "exterior_triangle",
+        "kind": "polygon",
         "params": {
-          "interior1_label": "22°",
-          "interior2_label": "30°",
-          "exterior_label": "x",
-          "interior1_value": 22,
-          "shape_variant": 0
+          "n_sides": 9,
+          "marked_angle_label": "?"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_F",
-      "prompt": "A price of £240 increases by 10%, then decreases by 25%. Find the final price.",
+      "topic_id": "area_triangle_F",
+      "prompt": "A triangle has base 13 cm and height 4 cm. Find its area.",
       "solution_steps": [
-        "After the first change: 240 × 1.10 = 264",
-        "After the second change: 264 × 0.75 = 198"
+        "Area = (1/2) × base × height = (1/2) × 13 × 4 = 26 cm²"
       ],
-      "final_answer": "£198",
-      "marks": 3,
+      "final_answer": "26 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 240 × 1.10 = 264",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 264 × 0.75 = 198",
+          "description": "Area = (1/2) × base × height = (1/2) × 13 × 4 = 26 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£198 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_triangle_F",
-      "prompt": "A triangle has angles 45°, 91°, and x°. Find x.",
-      "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (45 + 91) = 180 - 136 = 44"
-      ],
-      "final_answer": "44",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 180 - (45 + 91) = 180 - 136 = 44",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "44 oe",
+          "description": "26 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "triangle_area",
         "params": {
-          "angle_labels": [
-            "45°",
-            "91°",
-            "x"
-          ]
+          "base": 13,
+          "height": 4,
+          "base_label": "13 cm",
+          "height_label": "4 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_F",
-      "prompt": "\\vec{a} = \\colvec{6}{2} and \\vec{b} = \\colvec{2}{-4}. Find 4\\vec{a} - 4\\vec{b}.",
+      "topic_id": "angles_parallel_lines_F",
+      "prompt": "A line crosses two parallel lines. The angle 59° and the angle x° are corresponding angles. Find x.",
       "solution_steps": [
-        "\\vec{a} = \\colvec{6}{2}, \\vec{b} = \\colvec{2}{-4}",
-        "4\\vec{a} = \\colvec{24}{8} and 4\\vec{b} = \\colvec{8}{-16}",
-        "4\\vec{a} - 4\\vec{b} = \\colvec{16}{24}"
+        "Corresponding angles are equal.",
+        "x = 59"
       ],
-      "final_answer": "\\colvec{16}{24}",
+      "final_answer": "59",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Corresponding angles are equal.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 59",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "59 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parallel_lines",
+        "params": {
+          "known_label": "59°",
+          "unknown_label": "x",
+          "relation": "corresponding",
+          "known_value": 59,
+          "x_frac": 0.44
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "properties_3d_shapes_F",
+      "prompt": "How many faces does a sphere have?",
+      "solution_steps": [
+        "A face is a flat or curved surface on the outside of a 3D shape.",
+        "A sphere has 1 face (the curved surface), 0 edges, and 0 vertices - there are no flat surfaces, corners, or edges anywhere on a sphere.",
+        "So a sphere has 1 faces."
+      ],
+      "final_answer": "1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{6}{2}, \\vec{b} = \\colvec{2}{-4}",
+          "description": "A face is a flat or curved surface on the outside of a 3D shape.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4\\vec{a} = \\colvec{24}{8} and 4\\vec{b} = \\colvec{8}{-16}",
+          "description": "A sphere has 1 face (the curved surface), 0 edges, and 0 vertices - there are no flat surfaces, corners, or edges anywhere on a sphere.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4\\vec{a} - 4\\vec{b} = \\colvec{16}{24}",
+          "description": "So a sphere has 1 faces.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{16}{24} oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -1001,32 +1079,54 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "relative_frequency_F",
-      "prompt": "A coin is tested 80 times, and it lands on heads 54 times. Use this relative frequency to estimate how many times this would happen in 200 trials.",
+      "topic_id": "probability_and_or_rule_F",
+      "prompt": "A fair die is rolled (P(rolling a 2) = 1/6) and a coin is flipped (P(heads) = 1/2). These two events are independent. Find P(rolling a 2 and heads).",
       "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 54/80 = 27/40",
-        "Estimated number of times in 200 trials = 27/40 × 200 = 135"
+        "P(rolling a 2) = 1/6",
+        "P(heads) = 1/2",
+        "These are independent events, so P(rolling a 2 and heads) = P(rolling a 2) × P(heads) = 1/6 × 1/2 = 1/12"
       ],
-      "final_answer": "135",
-      "marks": 3,
+      "final_answer": "1/12",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 54/80 = 27/40",
+          "description": "P(rolling a 2) = 1/6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Estimated number of times in 200 trials = 27/40 × 200 = 135",
+          "description": "P(heads) = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "These are independent events, so P(rolling a 2 and heads) = P(rolling a 2) × P(heads) = 1/6 × 1/2 = 1/12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "135 oe",
+          "description": "1/12 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "event_pair",
+        "params": {
+          "event_a": {
+            "kind": "dice",
+            "values": [
+              2
+            ],
+            "highlight": [
+              0
+            ]
+          },
+          "event_b": {
+            "kind": "coin"
+          }
+        }
+      },
       "solution_diagram": null
     }
   ]

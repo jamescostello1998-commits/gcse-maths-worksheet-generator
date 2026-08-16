@@ -164,41 +164,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_F",
-      "prompt": "Expand and simplify: (2x + 1)(4x + 6)",
+      "topic_id": "negative_indices_F",
+      "prompt": "Simplify 4^-4 ÷ 4^-2, giving your answer as a single power of 4.",
       "solution_steps": [
-        "First: 2x × 4x = 8x^2",
-        "Outer: 2x × 6 = 12x",
-        "Inner: 1 × 4x = 4x",
-        "Last: 1 × 6 = 6",
-        "Combine like terms: 8x^2 + 16x + 6"
+        "Subtract the powers: -4 - (-2) = -2",
+        "4^-4 ÷ 4^-2 = 4^-2"
       ],
-      "final_answer": "8x^2 + 16x + 6",
-      "marks": 5,
+      "final_answer": "4^-2",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 2x × 4x = 8x^2",
+          "description": "Subtract the powers: -4 - (-2) = -2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 2x × 6 = 12x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Inner: 1 × 4x = 4x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 1 × 6 = 6 Combine like terms: 8x^2 + 16x + 6",
+          "description": "4^-4 ÷ 4^-2 = 4^-2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8x^2 + 16x + 6 oe",
+          "description": "4^-2 oe",
           "marks": 1
         }
       ],
@@ -247,33 +234,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_sf_F",
-      "prompt": "Round 318.108 to 1 significant figure.",
+      "topic_id": "nets_3d_shapes_F",
+      "prompt": "Describe the net of a cuboid.",
       "solution_steps": [
-        "Identify the first 1 significant figure of 318.108.",
-        "318.108 rounded to 1 significant figure = 300"
+        "Imagine unfolding a cuboid flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cuboid's net is made up of: 6 rectangles (3 congruent pairs).",
+        "So the answer is: 6 rectangles (3 congruent pairs)."
       ],
-      "final_answer": "300",
-      "marks": 3,
+      "final_answer": "6 rectangles (3 congruent pairs)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Identify the first 1 significant figure of 318.108.",
+          "description": "Imagine unfolding a cuboid flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "318.108 rounded to 1 significant figure = 300",
+          "description": "A cuboid's net is made up of: 6 rectangles (3 congruent pairs).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the answer is: 6 rectangles (3 congruent pairs).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "300 oe",
+          "description": "6 rectangles (3 congruent pairs) oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "net",
+        "params": {
+          "shape": "cuboid"
+        }
+      }
     },
     {
       "topic_id": "factorise_common_factor_F",
@@ -305,41 +303,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_F",
-      "prompt": "Solve: 5x = 3x + 2",
+      "topic_id": "linear_multi_step_F",
+      "prompt": "Solve: 3x + 4 + 2x + 6 = 60",
       "solution_steps": [
-        "5x = 3x + 2",
-        "Subtract 3x from both sides:",
-        "2x = 2",
-        "Divide both sides by 2:",
-        "x = 1"
+        "Collect like terms: 3x + 2x = 5x, 4 + 6 = 10",
+        "5x + 10 = 60",
+        "Subtract 10 from both sides:",
+        "5x = 50",
+        "Divide both sides by 5:",
+        "x = 10"
       ],
-      "final_answer": "1",
+      "final_answer": "10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x = 3x + 2",
+          "description": "Collect like terms: 3x + 2x = 5x, 4 + 6 = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 3x from both sides:",
+          "description": "5x + 10 = 60",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x = 2",
+          "description": "Subtract 10 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2: x = 1",
+          "description": "5x = 50 Divide both sides by 5: x = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -488,69 +487,122 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term_F",
-      "prompt": "Here are the first four terms of a sequence: 8, 11, 14, 17.\nFind an expression for the nth term.",
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = x + 1 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Common difference = 3",
-        "nth term = 3n + 5",
-        "nth term = 3n + 5"
+        "Table of values for y = x + 1:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -2, -1, 0, 1, 2, 3, 4",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "3n + 5",
-      "marks": 4,
+      "final_answer": "Straight line: y = x + 1",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = 3",
+          "description": "Table of values for y = x + 1:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 3n + 5",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 3n + 5",
+          "description": "y: -2, -1, 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3n + 5 oe",
+          "description": "Straight line: y = x + 1 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": 1,
+          "c": 1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -3,
+          "y_max": 5,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": 1,
+          "c": 1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -3,
+          "y_max": 5,
+          "table_points": [
+            [
+              -3,
+              -2
+            ],
+            [
+              -2,
+              -1
+            ],
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        }
+      }
     },
     {
-      "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: -8(-6x - 7)",
+      "topic_id": "simple_interest_F",
+      "prompt": "£1400 is invested at a simple interest rate of 4% per year for 2 years. Find the interest earned.",
       "solution_steps": [
-        "Multiply -8 by -6x: 48x",
-        "Multiply -8 by -7: 56",
-        "Combine: 48x + 56"
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 1400 × 4 × 2 ÷ 100 = £112"
       ],
-      "final_answer": "48x + 56",
-      "marks": 4,
+      "final_answer": "£112",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -8 by -6x: 48x",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -8 by -7: 56",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: 48x + 56",
+          "description": "I = 1400 × 4 × 2 ÷ 100 = £112",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48x + 56 oe",
+          "description": "£112 oe",
           "marks": 1
         }
       ],
@@ -674,37 +726,86 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_F",
-      "prompt": "A piece of wood has a volume of 40 cm³ and a density of 12 g/cm³. Find its mass.",
+      "topic_id": "construction_perpendicular_bisector_F",
+      "prompt": "Construct a perpendicular bisector of the points PZ using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "mass = density × volume",
-        "mass = 12 × 40 = 480 g"
+        "Open the compasses to a radius more than half of 13 cm (more than half the length of PZ).",
+        "With the compass point on P, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on Z and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of PZ."
       ],
-      "final_answer": "480 g",
-      "marks": 3,
+      "final_answer": "A straight line through the two arc intersections, crossing PZ at its midpoint at a right angle.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "mass = density × volume",
+          "description": "Open the compasses to a radius more than half of 13 cm (more than half the length of PZ).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "mass = 12 × 40 = 480 g",
+          "description": "With the compass point on P, draw an arc above and below the line.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Without changing the compass radius, place the point on Z and draw two more arcs, crossing the first two.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of PZ.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "480 g oe",
+          "description": "A straight line through the two arc intersections, crossing PZ at its midpoint at a right angle. oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -7.8,
+          "x_max": 20.8,
+          "y_min": -7.8,
+          "y_max": 7.8,
+          "points": [
+            {
+              "xy": [
+                0.0,
+                0.0
+              ],
+              "label": "P"
+            },
+            {
+              "xy": [
+                13.0,
+                0.0
+              ],
+              "label": "Z"
+            }
+          ],
+          "given_lines": [
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                13.0,
+                0.0
+              ]
+            }
+          ],
+          "show_grid": false
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "volume_surface_area_triangular_prism_F",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 16 cm and 30 cm (hypotenuse 34 cm), and length 12 cm. Find its surface area.",
+      "prompt": "Here is a triangular prism. Find its surface area.",
       "solution_steps": [
         "Area of the two triangular ends = 2 × (1/2) × 16 × 30 = 480 cm²",
         "Perimeter of the triangular cross-section = 16 + 30 + 34 = 80 cm",
@@ -745,34 +846,35 @@
         "params": {
           "base_label": "16 cm",
           "triangle_height_label": "30 cm",
-          "length_label": "12 cm"
+          "length_label": "12 cm",
+          "hyp_label": "34 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "map_scale_drawings_F",
-      "prompt": "A map has a scale of 1 : 50000. The distance between two towns on the map is 12 cm. Find the real-life distance between the towns, in m.",
+      "topic_id": "bearings_back_bearing_F",
+      "prompt": "The bearing of Y from P is 184°. Find the bearing of P from Y.",
       "solution_steps": [
-        "The scale 1 : 50000 means 1 cm on the map represents 50000 cm in real life, which is 500 m.",
-        "Real-life distance = 12 × 500 = 6000 m"
+        "The bearing of one point from another, and the bearing back the other way, always differ by exactly 180° - the two north lines point the same way, but you're now facing the opposite direction along the same line.",
+        "Since 184° is 180° or more, subtract 180°: 184 - 180 = 4"
       ],
-      "final_answer": "6000 m",
+      "final_answer": "004°",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The scale 1 : 50000 means 1 cm on the map represents 50000 cm in real life, which is 500 m.",
+          "description": "The bearing of one point from another, and the bearing back the other way, always differ by exactly 180° - the two north lines point the same way, but you're now facing the opposite direction along the same line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Real-life distance = 12 × 500 = 6000 m",
+          "description": "Since 184° is 180° or more, subtract 180°: 184 - 180 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6000 m oe",
+          "description": "004° oe",
           "marks": 1
         }
       ],
@@ -826,158 +928,93 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_F",
-      "prompt": "Enlarge shape A by scale factor 2, centre (8, 3).",
+      "topic_id": "two_way_tables_F",
+      "prompt": "The two-way table shows the number of boys and girls who prefer football or tennis. Find the missing values.",
       "solution_steps": [
-        "The centre of enlargement is (8, 3) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (2, -1) is a displacement of (-6, -4) from the centre, so it maps to (8, 3) + 2 × (-6, -4) = (-4, -5).",
-        "Repeat for every vertex. The image, shape B, has vertices (-4, -5), (4, -5), (4, -1), (0, -1), (0, 5), (-4, 5)."
+        "'Boys' / 'Football': using the 'Football' column total: 32 - 13 = 19",
+        "'Boys' / 'Tennis': using the 'Tennis' column total: 20 - 6 = 14"
       ],
-      "final_answer": "Image (shape B): (-4, -5), (4, -5), (4, -1), (0, -1), (0, 5), (-4, 5)",
-      "marks": 4,
+      "final_answer": "'Boys' / 'Football' = 19; 'Boys' / 'Tennis' = 14",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (8, 3) and the scale factor is 2.",
+          "description": "'Boys' / 'Football': using the 'Football' column total: 32 - 13 = 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (2, -1) is a displacement of (-6, -4) from the centre, so it maps to (8, 3) + 2 × (-6, -4) = (-4, -5).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex. The image, shape B, has vertices (-4, -5), (4, -5), (4, -1), (0, -1), (0, 5), (-4, 5).",
+          "description": "'Boys' / 'Tennis': using the 'Tennis' column total: 20 - 6 = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (-4, -5), (4, -5), (4, -1), (0, -1), (0, 5), (-4, 5) oe",
+          "description": "'Boys' / 'Football' = 19; 'Boys' / 'Tennis' = 14 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "grid_transformation",
+        "kind": "two_way_table",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Football",
+            "Tennis",
+            "Total"
+          ],
+          "cells": [
             [
-              2,
-              -1
+              "",
+              "",
+              "33"
             ],
             [
-              6,
-              -1
+              "13",
+              "6",
+              "19"
             ],
             [
-              6,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              4
-            ],
-            [
-              2,
-              4
+              "32",
+              "20",
+              "52"
             ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A"
+          ]
         }
       },
       "solution_diagram": {
-        "kind": "grid_transformation",
+        "kind": "two_way_table",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Football",
+            "Tennis",
+            "Total"
+          ],
+          "cells": [
             [
-              2,
-              -1
+              "19",
+              "14",
+              "33"
             ],
             [
-              6,
-              -1
+              "13",
+              "6",
+              "19"
             ],
             [
-              6,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              4
-            ],
-            [
-              2,
-              4
+              "32",
+              "20",
+              "52"
             ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "image_vertices": [
-            [
-              -4,
-              -5
-            ],
-            [
-              4,
-              -5
-            ],
-            [
-              4,
-              -1
-            ],
-            [
-              0,
-              -1
-            ],
-            [
-              0,
-              5
-            ],
-            [
-              -4,
-              5
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "image_shape_label": "B"
+          ]
         }
       }
     },
@@ -1047,50 +1084,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_listing_outcomes_F",
-      "prompt": "A 3-sided spinner (labelled 1, 2, 3) and a 4-sided spinner (labelled 1, 2, 3, 4) are both spun. List all the possible outcomes.",
-      "solution_steps": [
-        "There are 3 possible outcomes for the first event and 4 for the second, so there are 3 × 4 = 12 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34"
-      ],
-      "final_answer": "11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "There are 3 possible outcomes for the first event and 4 for the second, so there are 3 × 4 = 12 possible combined outcomes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "spinner_pair",
-        "params": {
-          "sectors_a": [
-            "1",
-            "2",
-            "3"
-          ],
-          "sectors_b": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
       "topic_id": "stats_median_F",
       "prompt": "Find the median of this data set: 18, 28, 27, 28, 18.",
       "solution_steps": [
@@ -1107,6 +1100,35 @@
         {
           "code": "A1",
           "description": "27 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "1/3 = \\frac{?}{27}. Find the missing number.",
+      "solution_steps": [
+        "Find the scale factor between the denominators: 27 ÷ 3 = 9",
+        "Multiply the numerator by the same scale factor: 1 × 9 = 9"
+      ],
+      "final_answer": "9",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the scale factor between the denominators: 27 ÷ 3 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the numerator by the same scale factor: 1 × 9 = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9 oe",
           "marks": 1
         }
       ],

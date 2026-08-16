@@ -676,40 +676,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 143 in the ratio 8:3.",
+      "topic_id": "midpoint_of_segment_F",
+      "prompt": "Find the midpoint of the line segment joining A(5, 6) and B(-5, 1).",
       "solution_steps": [
-        "Total parts = 8 + 3 = 11",
-        "Value of one part = 143 ÷ 11 = 13",
-        "Share 1 = 8 × 13 = 104",
-        "Share 2 = 3 × 13 = 39"
+        "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
+        "x-coordinate of midpoint: (5 + -5)/2 = 0",
+        "y-coordinate of midpoint: (6 + 1)/2 = 3.5",
+        "Midpoint = (0, 3.5)"
       ],
-      "final_answer": "104 : 39",
+      "final_answer": "(0, 3.5)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 8 + 3 = 11",
+          "description": "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 143 ÷ 11 = 13",
+          "description": "x-coordinate of midpoint: (5 + -5)/2 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 8 × 13 = 104",
+          "description": "y-coordinate of midpoint: (6 + 1)/2 = 3.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 3 × 13 = 39",
+          "description": "Midpoint = (0, 3.5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "104 : 39 oe",
+          "description": "(0, 3.5) oe",
           "marks": 1
         }
       ],
@@ -717,28 +717,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape A in the line y = -1.",
+      "topic_id": "transform_reflect_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "Reflect each vertex of shape A in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "The image, shape B, has vertices (0, -5), (3, -5), (0, -7)."
+        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+        "Comparing corresponding vertices shows the mirror line is y = -2."
       ],
-      "final_answer": "Image (shape B): (0, -5), (3, -5), (0, -7)",
+      "final_answer": "Reflection in the line y = -2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex of shape A in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The image, shape B, has vertices (0, -5), (3, -5), (0, -7).",
+          "description": "Comparing corresponding vertices shows the mirror line is y = -2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (0, -5), (3, -5), (0, -7) oe",
+          "description": "Reflection in the line y = -2 oe",
           "marks": 1
         }
       ],
@@ -751,16 +751,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              3
+              2,
+              0
             ],
             [
-              3,
-              3
+              5,
+              0
             ],
             [
-              0,
-              5
+              2,
+              2
             ]
           ],
           "original_labels": [
@@ -769,57 +769,18 @@
             ""
           ],
           "original_shape_label": "A",
-          "mirror_line": {
-            "type": "horizontal",
-            "y": -1,
-            "label": "y = -1"
-          }
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              3
-            ],
-            [
-              3,
-              3
-            ],
-            [
-              0,
-              5
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "mirror_line": {
-            "type": "horizontal",
-            "y": -1,
-            "label": "y = -1"
-          },
           "image_vertices": [
             [
-              0,
-              -5
+              2,
+              -4
             ],
             [
-              3,
-              -5
+              5,
+              -4
             ],
             [
-              0,
-              -7
+              2,
+              -6
             ]
           ],
           "image_labels": [
@@ -827,9 +788,11 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "plans_and_elevations_F",
@@ -894,37 +857,37 @@
       }
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 44 cm and 240 cm. Find the length of x.",
+      "topic_id": "pythagoras_shorter_leg_F",
+      "prompt": "A right-angled triangle has hypotenuse 20 cm and one side 12 cm. Find the length of x.",
       "solution_steps": [
-        "c² = a² + b² = 44² + 240² = 1936 + 57600 = 59536",
-        "c = √59536 = 244"
+        "b² = c² - a² = 20² - 12² = 400 - 144 = 256",
+        "b = √256 = 16"
       ],
-      "final_answer": "244 cm",
+      "final_answer": "16 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 44² + 240² = 1936 + 57600 = 59536",
+          "description": "b² = c² - a² = 20² - 12² = 400 - 144 = 256",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √59536 = 244",
+          "description": "b = √256 = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "244 cm oe",
+          "description": "16 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "44 cm",
-          "leg2_label": "240 cm",
-          "hyp_label": "x"
+          "leg1_label": "12 cm",
+          "leg2_label": "x",
+          "hyp_label": "20 cm"
         }
       },
       "solution_diagram": null
@@ -974,108 +937,155 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_and_or_rule_F",
-      "prompt": "A coin is flipped (P(heads) = 1/2) and a fair die is rolled (P(rolling a 1) = 1/6). These two events are independent. Find P(heads and rolling a 1).",
+      "topic_id": "probability_expectation_F",
+      "prompt": "The probability that a particular bus is late is 3/12. The bus runs 180 times. On how many occasions would you expect it to be late?",
       "solution_steps": [
-        "P(heads) = 1/2",
-        "P(rolling a 1) = 1/6",
-        "These are independent events, so P(heads and rolling a 1) = P(heads) × P(rolling a 1) = 1/2 × 1/6 = 1/12"
+        "Expected number of times = probability × number of trials = 3/12 × 180",
+        "= 45"
       ],
-      "final_answer": "1/12",
-      "marks": 4,
+      "final_answer": "45",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(heads) = 1/2",
+          "description": "Expected number of times = probability × number of trials = 3/12 × 180",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(rolling a 1) = 1/6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These are independent events, so P(heads and rolling a 1) = P(heads) × P(rolling a 1) = 1/2 × 1/6 = 1/12",
+          "description": "= 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/12 oe",
+          "description": "45 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation_F",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 4, 7, 10}, B = {3, 4, 10}. List the elements that are in A but not in B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {2, 4, 7, 10}",
+        "B = {3, 4, 10}",
+        "Check each element of ξ in turn to see whether it are in A but not in B.",
+        "Elements that are in A but not in B: {2, 7}"
+      ],
+      "final_answer": "{2, 7}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {2, 4, 7, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {3, 4, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {2, 7}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{2, 7} oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "event_pair",
+        "kind": "venn_diagram",
         "params": {
-          "event_a": {
-            "kind": "coin"
-          },
-          "event_b": {
-            "kind": "dice",
-            "values": [
-              1
-            ],
-            "highlight": [
-              0
-            ]
-          }
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ"
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_reverse_mean_F",
-      "prompt": "The mean of three numbers is 10. Two of the numbers are 5, 14. Find the missing number.",
-      "solution_steps": [
-        "Total of all 3 numbers = mean × count = 10 × 3 = 30",
-        "Sum of the known numbers = 5 + 14 = 19",
-        "Missing number = 30 - 19 = 11"
-      ],
-      "final_answer": "11",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total of all 3 numbers = mean × count = 10 × 3 = 30",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Sum of the known numbers = 5 + 14 = 19",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing number = 30 - 19 = 11",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11 oe",
-          "marks": 1
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "2, 7",
+            "b_only": "3",
+            "both": "4, 10",
+            "neither": "1, 5, 6, 8, 9"
+          }
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "fractions_equivalent_F",
-      "prompt": "Which of the following fractions is equivalent to 1/5? A) 4/19, B) 4/20, C) 4/21, D) 3/20",
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) ASA  B) SSS  C) SAS  D) RHS",
       "solution_steps": [
-        "Cross-multiply 1/5 against each option: a candidate p/q is equivalent only if 1 × q = p × 5.",
-        "Only option B) 4/20 works: 1 × 20 = 4 × 5 = 20."
+        "Look at which measurements are marked equal on both triangles - here they match the Side-Side-Side (SSS) pattern.",
+        "So the two triangles are congruent by Side-Side-Side (SSS)."
       ],
-      "final_answer": "B) 4/20",
+      "final_answer": "B) SSS",
       "marks": 1,
       "mark_scheme": [
         {
           "code": "B1",
-          "description": "B) 4/20 (selecting the correct option)",
+          "description": "B) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "9 cm"
+            ],
+            [
+              0,
+              2,
+              "8 cm"
+            ],
+            [
+              1,
+              2,
+              "11 cm"
+            ]
+          ],
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "9 cm"
+            ],
+            [
+              0,
+              2,
+              "8 cm"
+            ],
+            [
+              1,
+              2,
+              "11 cm"
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

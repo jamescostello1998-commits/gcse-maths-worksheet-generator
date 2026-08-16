@@ -7,40 +7,28 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "hcf_lcm_by_prime_factors_H",
-      "prompt": "Using prime factorisation, find the LCM of 184 and 21.",
+      "topic_id": "powers_H",
+      "prompt": "Evaluate 36^(1/2).",
       "solution_steps": [
-        "184 = 2^3 × 23",
-        "21 = 3 × 7",
-        "LCM: take the highest power of each prime",
-        "LCM = 3864"
+        "36^(1/2) means the square root of 36.",
+        "36^(1/2) = 6"
       ],
-      "final_answer": "3864",
-      "marks": 5,
+      "final_answer": "6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "184 = 2^3 × 23",
+          "description": "36^(1/2) means the square root of 36.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "21 = 3 × 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "LCM: take the highest power of each prime",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "LCM = 3864",
+          "description": "36^(1/2) = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3864 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -48,34 +36,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A rectangle has length 19 cm and width 25 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "topic_id": "stats_interquartile_range_H",
+      "prompt": "Find the interquartile range (IQR) of this data set: 20, 36, 24, 20, 37, 15, 12, 18.",
       "solution_steps": [
-        "Length: 19 cm (to the nearest cm) gives 18.5 ≤ length < 19.5",
-        "Width: 25 cm (to the nearest cm) gives 24.5 ≤ width < 25.5",
-        "For the lower bound of the area, use the lower bound of each measurement: 18.5 × 24.5 = 453.25 cm²"
+        "Sort the data: 12, 15, 18, 20, 20, 24, 36, 37.",
+        "Split into a lower half [12, 15, 18, 20] and an upper half [20, 24, 36, 37] (excluding the overall middle value when 8 is odd).",
+        "Q1 = median of the lower half = 16.50",
+        "Q3 = median of the upper half = 30",
+        "Interquartile range = Q3 - Q1 = 30 - 16.50 = 13.50"
       ],
-      "final_answer": "453.25 cm²",
-      "marks": 4,
+      "final_answer": "13.50",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Length: 19 cm (to the nearest cm) gives 18.5 ≤ length < 19.5",
+          "description": "Sort the data: 12, 15, 18, 20, 20, 24, 36, 37.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Width: 25 cm (to the nearest cm) gives 24.5 ≤ width < 25.5",
+          "description": "Split into a lower half [12, 15, 18, 20] and an upper half [20, 24, 36, 37] (excluding the overall middle value when 8 is odd).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For the lower bound of the area, use the lower bound of each measurement: 18.5 × 24.5 = 453.25 cm²",
+          "description": "Q1 = median of the lower half = 16.50",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Q3 = median of the upper half = 30 Interquartile range = Q3 - Q1 = 30 - 16.50 = 13.50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "453.25 cm² oe",
+          "description": "13.50 oe",
           "marks": 1
         }
       ],
@@ -223,42 +218,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_formula_H",
-      "prompt": "Solve 2x^2 - 6x + 2 = 0, giving your answer in the form x = (-b ± k√m)/2a, fully simplified.",
+      "topic_id": "standard_form_add_subtract_H",
+      "prompt": "Work out (4 × 10^3) - (5 × 10^1). Give your answer in standard form.",
       "solution_steps": [
-        "x = (-b ± √(b^2 - 4ac)) / 2a",
-        "a = 2, b = -6, c = 2",
-        "x = \\frac{6 ± √(-6^2 - 4×2×2)}{4}",
-        "x = \\frac{6 ± √20}{4}",
-        "√20 = √(2^2 × 5) = 2√5",
-        "x = \\frac{6 ± 2√5}{4} = \\frac{3 ± √5}{2} (dividing numerator and denominator by 2)"
+        "Write both numbers with the same power of 10: 4×10^3 = 400×10^1, 5×10^1 = 5×10^1",
+        "Subtract the coefficients: 400 - 5 = 395",
+        "Write in standard form: 395 × 10^1 = 3.95 × 10^3"
       ],
-      "final_answer": "x = \\frac{3 ± √5}{2}",
-      "marks": 5,
+      "final_answer": "3.95 × 10^3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
+          "description": "Write both numbers with the same power of 10: 4×10^3 = 400×10^1, 5×10^1 = 5×10^1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 2, b = -6, c = 2",
+          "description": "Subtract the coefficients: 400 - 5 = 395",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = \\frac{6 ± √(-6^2 - 4×2×2)}{4}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = \\frac{6 ± √20}{4} √20 = √(2^2 × 5) = 2√5 x = \\frac{6 ± 2√5}{4} = \\frac{3 ± √5}{2} (dividing numerator and denominator by 2)",
+          "description": "Write in standard form: 395 × 10^1 = 3.95 × 10^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = \\frac{3 ± √5}{2} oe",
+          "description": "3.95 × 10^3 oe",
           "marks": 1
         }
       ],
@@ -266,52 +253,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret_H",
-      "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
+      "topic_id": "distance_between_points_H",
+      "prompt": "Find the length of the line segment joining A(8, 8) and B(2, -7). Give your answer as a surd in its simplest form.",
       "solution_steps": [
-        "Deceleration = change in velocity ÷ time = 10 ÷ 12 = 5/6 m/s^2"
+        "The distance between two points is found with Pythagoras: the square root of ((horizontal gap)^2 + (vertical gap)^2).",
+        "Horizontal gap: 2 - (8) = -6. Vertical gap: -7 - (8) = -15.",
+        "Distance = √((-6)^2 + (-15)^2) = √261",
+        "Simplify the surd: √261 = √(3^2 × 29) = 3√29"
       ],
-      "final_answer": "5/6 m/s^2",
-      "marks": 2,
+      "final_answer": "3√29",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Deceleration = change in velocity ÷ time = 10 ÷ 12 = 5/6 m/s^2",
+          "description": "The distance between two points is found with Pythagoras: the square root of ((horizontal gap)^2 + (vertical gap)^2).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Horizontal gap: 2 - (8) = -6. Vertical gap: -7 - (8) = -15.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = √((-6)^2 + (-15)^2) = √261",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify the surd: √261 = √(3^2 × 29) = 3√29",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/6 m/s^2 oe",
+          "description": "3√29 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              8,
-              10
-            ],
-            [
-              23,
-              10
-            ],
-            [
-              35,
-              0
-            ]
-          ],
-          "x_max": 40,
-          "y_max": 15,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -356,34 +335,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "turning_point_of_graph_H",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 10x - 15.",
+      "topic_id": "solve_quadratic_completing_square_H",
+      "prompt": "Solve x^2 + 10x + 19 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "Complete the square: x^2 + 10x - 15 = (x + 5)^2 - 40",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (-5, -40)"
+        "Half the coefficient of x: 10 ÷ 2 = 5",
+        "Complete the square: x^2 + 10x + 19 = (x + 5)^2 - 6",
+        "Set (x + 5)^2 - 6 = 0, so (x + 5)^2 = 6",
+        "(x + 5) = ±√6",
+        "x = -5 + √6 or x = -5 - √6"
       ],
-      "final_answer": "(-5, -40)",
-      "marks": 4,
+      "final_answer": "x = -5 + √6 or x = -5 - √6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 + 10x - 15 = (x + 5)^2 - 40",
+          "description": "Half the coefficient of x: 10 ÷ 2 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "description": "Complete the square: x^2 + 10x + 19 = (x + 5)^2 - 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Turning point = (-5, -40)",
+          "description": "Set (x + 5)^2 - 6 = 0, so (x + 5)^2 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 5) = ±√6 x = -5 + √6 or x = -5 - √6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-5, -40) oe",
+          "description": "x = -5 + √6 or x = -5 - √6 oe",
           "marks": 1
         }
       ],
@@ -544,6 +530,134 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "expand_double_brackets_H",
+      "prompt": "Expand and simplify: (6x + 1)(6x + 6)",
+      "solution_steps": [
+        "First: 6x × 6x = 36x^2",
+        "Outer: 6x × 6 = 36x",
+        "Inner: 1 × 6x = 6x",
+        "Last: 1 × 6 = 6",
+        "Combine like terms: 36x^2 + 42x + 6"
+      ],
+      "final_answer": "36x^2 + 42x + 6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 6x × 6x = 36x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 6x × 6 = 36x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 1 × 6x = 6x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 1 × 6 = 6 Combine like terms: 36x^2 + 42x + 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "36x^2 + 42x + 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_H",
+      "prompt": "p : q : r = 3 : 5 : 8.\nr - p = 10.\nFind p, q and r, and their total.",
+      "solution_steps": [
+        "Difference in parts = 8 - 3 = 5 parts",
+        "Value of one part = 10 ÷ 5 = 2",
+        "p = 3 × 2 = 6",
+        "q = 5 × 2 = 10",
+        "r = 8 × 2 = 16",
+        "p + q + r = 6 + 10 + 16 = 32"
+      ],
+      "final_answer": "p = 6, q = 10, r = 16 (total 32)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 8 - 3 = 5 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 10 ÷ 5 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "p = 3 × 2 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "q = 5 × 2 = 10 r = 8 × 2 = 16 p + q + r = 6 + 10 + 16 = 32",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "p = 6, q = 10, r = 16 (total 32) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_H",
+      "prompt": "Shape A and Shape B are similar. The area of shape B is 27 cm². Find the area of shape A.",
+      "solution_steps": [
+        "Linear scale factor = 3 ÷ 5 = 3/5",
+        "Area scale factor = (3/5)^2 = 9/25",
+        "Area of A = 27 ÷ 9/25 = 75 cm²"
+      ],
+      "final_answer": "75 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear scale factor = 3 ÷ 5 = 3/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area scale factor = (3/5)^2 = 9/25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of A = 27 ÷ 9/25 = 75 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "75 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "shape_kind": "right_triangle",
+          "orientation": "tr",
+          "a_width_label": "5 cm",
+          "b_width_label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
       "topic_id": "mixed_percentages_H",
       "prompt": "Find 20% of 140.",
       "solution_steps": [
@@ -614,132 +728,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion_H",
-      "prompt": "y is directly proportional to x^2. When x = 2, y = 16. Find the value of y when x = 6.",
-      "solution_steps": [
-        "y = kx^2",
-        "16 = k × 2^2 = k × 4",
-        "k = 16 ÷ 4 = 4",
-        "y = 4 × 6^2 = 4 × 36 = 144"
-      ],
-      "final_answer": "144",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = kx^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "16 = k × 2^2 = k × 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "k = 16 ÷ 4 = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = 4 × 6^2 = 4 × 36 = 144",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "144 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_H",
-      "prompt": "Share 35 in the ratio 2:4:1.",
-      "solution_steps": [
-        "Total parts = 2 + 4 + 1 = 7",
-        "Value of one part = 35 ÷ 7 = 5",
-        "Share 1 = 2 × 5 = 10",
-        "Share 2 = 4 × 5 = 20",
-        "Share 3 = 1 × 5 = 5"
-      ],
-      "final_answer": "10 : 20 : 5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 2 + 4 + 1 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 35 ÷ 7 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 2 × 5 = 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 4 × 5 = 20 Share 3 = 1 × 5 = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10 : 20 : 5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_missing_angle_H",
-      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
-      "solution_steps": [
-        "Use tan, since we know two of the three sides.",
-        "tan(x) = 5 ÷ 35",
-        "x = tan^-1(5 ÷ 35) = 8.1° (1 d.p.)"
-      ],
-      "final_answer": "8.1°",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Use tan, since we know two of the three sides.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "tan(x) = 5 ÷ 35",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = tan^-1(5 ÷ 35) = 8.1° (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8.1° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": "35 cm",
-          "opposite_label": "5 cm",
-          "hyp_label": null,
-          "angle_label": "x°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
       "topic_id": "bearings_cosine_rule_H",
       "prompt": "A ship sails from port A on a bearing of 031° for 12 km to point B. It then changes course and sails on a bearing of 354° for 27 km to point C. Find the direct distance from A to C, correct to 2 decimal places.",
       "solution_steps": [
@@ -791,41 +779,6 @@
           "leg1_label": "12 km",
           "leg2_label": "27 km",
           "unknown_label": "x km"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cylinder_H",
-      "prompt": "Find the exact volume of the cylinder, in terms of π.",
-      "solution_steps": [
-        "Volume = π × r² × h = π × 7² × 4",
-        "= 196π cm³"
-      ],
-      "final_answer": "196π cm³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Volume = π × r² × h = π × 7² × 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 196π cm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "196π cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cylinder",
-        "params": {
-          "radius_label": "7 cm",
-          "height_label": "4 cm"
         }
       },
       "solution_diagram": null
@@ -909,71 +862,84 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice_H",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 3.",
+      "topic_id": "area_semicircle_compound_H",
+      "prompt": "Find the total area of the following compound shape, giving your answer in terms of π.",
       "solution_steps": [
-        "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
-        "P(at least one 3) = 1 - 25/36 = 11/36"
+        "Area of rectangle = 8 × 11 = 88 cm²",
+        "Radius of semicircle = 8 ÷ 2 = 4 cm",
+        "Area of semicircle = (1/2) × π × 4² = 8π cm²",
+        "Total area = 88 + 8π cm² (exact form)"
       ],
-      "final_answer": "11/36",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(at least one 3) = 1 - 25/36 = 11/36",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11/36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_dependent_H",
-      "prompt": "A bag contains 4 red and 3 blue counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
-      "solution_steps": [
-        "After the first counter is picked (without replacement), there are 6 counters left.",
-        "P(red then red) = 4/7 × 1/2 = 2/7",
-        "P(red then blue) = 4/7 × 1/2 = 2/7",
-        "P(blue then red) = 3/7 × 2/3 = 2/7",
-        "P(blue then blue) = 3/7 × 1/3 = 1/7",
-        "P(the first counter is blue and the second counter is blue) = 1/7"
-      ],
-      "final_answer": "1/7",
+      "final_answer": "(88 + 8π) cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 6 counters left.",
+          "description": "Area of rectangle = 8 × 11 = 88 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then red) = 4/7 × 1/2 = 2/7",
+          "description": "Radius of semicircle = 8 ÷ 2 = 4 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then blue) = 4/7 × 1/2 = 2/7",
+          "description": "Area of semicircle = (1/2) × π × 4² = 8π cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(blue then red) = 3/7 × 2/3 = 2/7 P(blue then blue) = 3/7 × 1/3 = 1/7 P(the first counter is blue and the second counter is blue) = 1/7",
+          "description": "Total area = 88 + 8π cm² (exact form)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/7 oe",
+          "description": "(88 + 8π) cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "rectangle_semicircle",
+        "params": {
+          "width": 8,
+          "height": 11,
+          "radius": 4,
+          "width_label": "8 cm",
+          "height_label": "11 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_conditional_H",
+      "prompt": "A bag contains 4 purple and 7 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
+      "solution_steps": [
+        "P(both purple) = 4/11 × 3/10 = 6/55",
+        "P(both green) = 7/11 × 6/10 = 21/55",
+        "P(both same colour) = 6/55 + 21/55 = 27/55"
+      ],
+      "final_answer": "27/55",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(both purple) = 4/11 × 3/10 = 6/55",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both green) = 7/11 × 6/10 = 21/55",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both same colour) = 6/55 + 21/55 = 27/55",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27/55 oe",
           "marks": 1
         }
       ],
@@ -982,83 +948,117 @@
         "params": {
           "stage1": [
             [
-              "Red",
-              "4/7"
+              "Purple",
+              ""
             ],
             [
-              "Blue",
-              "3/7"
+              "Green",
+              ""
             ]
           ],
           "stage2": [
             [
               [
-                "Red",
-                "1/2"
+                "Purple",
+                ""
               ],
               [
-                "Blue",
-                "1/2"
+                "Green",
+                ""
               ]
             ],
             [
               [
-                "Red",
-                "2/3"
+                "Purple",
+                ""
               ],
               [
-                "Blue",
-                "1/3"
+                "Green",
+                ""
               ]
-            ]
-          ],
-          "leaf_probs": [
-            [
-              "2/7",
-              "2/7"
-            ],
-            [
-              "2/7",
-              "1/7"
             ]
           ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Purple",
+              "4/11"
+            ],
+            [
+              "Green",
+              "7/11"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Purple",
+                "3/10"
+              ],
+              [
+                "Green",
+                "7/10"
+              ]
+            ],
+            [
+              [
+                "Purple",
+                "4/10"
+              ],
+              [
+                "Green",
+                "6/10"
+              ]
+            ]
+          ]
+        }
+      }
     },
     {
-      "topic_id": "algebraic_inverse_proportion_H",
-      "prompt": "y is inversely proportional to x^2. When x = 4, y = 108. Find the value of y when x = 6.",
+      "topic_id": "trig_missing_angle_H",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "y = k ÷ x^2",
-        "k = y × x^2 = 108 × 4^2 = 108 × 16 = 1728",
-        "y = k ÷ x^2 = 1728 ÷ 6^2 = 1728 ÷ 36 = 48"
+        "Use tan, since we know two of the three sides.",
+        "tan(x) = 5 ÷ 35",
+        "x = tan^-1(5 ÷ 35) = 8.1° (1 d.p.)"
       ],
-      "final_answer": "48",
+      "final_answer": "8.1°",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = k ÷ x^2",
+          "description": "Use tan, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = y × x^2 = 108 × 4^2 = 108 × 16 = 1728",
+          "description": "tan(x) = 5 ÷ 35",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = k ÷ x^2 = 1728 ÷ 6^2 = 1728 ÷ 36 = 48",
+          "description": "x = tan^-1(5 ÷ 35) = 8.1° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 oe",
+          "description": "8.1° oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "35 cm",
+          "opposite_label": "5 cm",
+          "hyp_label": null,
+          "angle_label": "x°"
+        }
+      },
       "solution_diagram": null
     }
   ]

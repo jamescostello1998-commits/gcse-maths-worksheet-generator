@@ -7,28 +7,40 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "prime_factors_H",
-      "prompt": "Write 168 as a product of its prime factors, giving your answer in index form.",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
+      "prompt": "Using prime factorisation, find the LCM of 82 and 171.",
       "solution_steps": [
-        "Divide 168 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 3 × 7",
-        "Write repeated factors using index notation: 168 = 2^3 × 3 × 7"
+        "82 = 2 × 41",
+        "171 = 3^2 × 19",
+        "LCM: take the highest power of each prime",
+        "LCM = 14022"
       ],
-      "final_answer": "2^3 × 3 × 7",
-      "marks": 3,
+      "final_answer": "14022",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 168 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 3 × 7",
+          "description": "82 = 2 × 41",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 168 = 2^3 × 3 × 7",
+          "description": "171 = 3^2 × 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM: take the highest power of each prime",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM = 14022",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2^3 × 3 × 7 oe",
+          "description": "14022 oe",
           "marks": 1
         }
       ],
@@ -106,6 +118,70 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "roots_H",
+      "prompt": "Simplify √216, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 216: 6^2 × 6 = 216",
+        "√216 = √(6^2 × 6) = 6√6"
+      ],
+      "final_answer": "6√6",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 216: 6^2 × 6 = 216",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√216 = √(6^2 × 6) = 6√6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6√6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 2√10 - 3√10 + 4√10, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Every term is a multiple of √10, so they are all like surds.",
+        "Combine the coefficients in order: 2 - 3 + 4 = 3.",
+        "= 3√10"
+      ],
+      "final_answer": "3√10",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every term is a multiple of √10, so they are all like surds.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the coefficients in order: 2 - 3 + 4 = 3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 3√10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "indices_common_base_equations_H",
       "prompt": "Solve 25^x = 625.",
       "solution_steps": [
@@ -147,217 +223,70 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_H",
-      "prompt": "Simplify √216, giving your answer in the form a√b.",
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 6 × 2^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Find the largest square factor of 216: 6^2 × 6 = 216",
-        "√216 = √(6^2 × 6) = 6√6"
+        "Table of values for y = 6 × 2^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 6, 12, 24, 48, 96",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "6√6",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the largest square factor of 216: 6^2 × 6 = 216",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√216 = √(6^2 × 6) = 6√6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6√6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Evaluate √12 ÷ √3, giving your answer as an integer.",
-      "solution_steps": [
-        "√12 ÷ √3 = √(12/3) = √4",
-        "√4 = 2"
-      ],
-      "final_answer": "2",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "√12 ÷ √3 = √(12/3) = √4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√4 = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simplifying_indices_challenging_H",
-      "prompt": "Fully simplify 4^(3/2) × 4^-1, giving your answer as a fraction where necessary.",
-      "solution_steps": [
-        "4^(1/2) is the square root of 4, which is 2, so 4^(3/2) = 2^3",
-        "4^-1 = \\frac{1}{4¹} = \\frac{1}{2²}",
-        "4^(3/2) × 4^-1 = 2^3 × \\frac{1}{2²} = 2^(3-2) = 2^1",
-        "2^1 = 2"
-      ],
-      "final_answer": "2",
+      "final_answer": "Exponential curve: y = 6 × 2^x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4^(1/2) is the square root of 4, which is 2, so 4^(3/2) = 2^3",
+          "description": "Table of values for y = 6 × 2^x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4^-1 = \\frac{1}{4¹} = \\frac{1}{2²}",
+          "description": "x: 0, 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4^(3/2) × 4^-1 = 2^3 × \\frac{1}{2²} = 2^(3-2) = 2^1",
+          "description": "y: 6, 12, 24, 48, 96",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2^1 = 2",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_missing_side_H",
-      "prompt": "In the triangle shown, find the length of x, correct to 1 decimal place.",
-      "solution_steps": [
-        "We know the opposite and want the hypotenuse, so use sin.",
-        "x = 4 ÷ sin(14°) = 16.5 (1 d.p.)"
-      ],
-      "final_answer": "16.5 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "We know the opposite and want the hypotenuse, so use sin.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 4 ÷ sin(14°) = 16.5 (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "16.5 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": null,
-          "opposite_label": "4 cm",
-          "hyp_label": "x cm",
-          "angle_label": "14°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_reciprocal_H",
-      "prompt": "Complete a table of values for y = \\frac{12}{x} for x = -4 to 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = \\frac{12}{x}:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -3, -4, -6, -12, 12, 6, 4, 3",
-        "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table.",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
-      ],
-      "final_answer": "Reciprocal curve: y = \\frac{12}{x}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = \\frac{12}{x}:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -3, -4, -6, -12, 12, 6, 4, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table. Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Reciprocal curve: y = \\frac{12}{x} oe",
+          "description": "Exponential curve: y = 6 × 2^x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": 12,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 6,
+          "base": 2,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -14,
-          "y_max": 14,
+          "y_min": 0,
+          "y_max": 105.6,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": 12,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 6,
+          "base": 2,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -14,
-          "y_max": 14,
+          "y_min": 0,
+          "y_max": 105.6,
           "table_points": [
             [
-              -4,
-              -3
-            ],
-            [
-              -3,
-              -4
-            ],
-            [
-              -2,
-              -6
-            ],
-            [
-              -1,
-              -12
+              0,
+              6
             ],
             [
               1,
@@ -365,19 +294,50 @@
             ],
             [
               2,
-              6
+              24
             ],
             [
               3,
-              4
+              48
             ],
             [
               4,
-              3
+              96
             ]
           ]
         }
       }
+    },
+    {
+      "topic_id": "graph_transformations_H",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = -f(x). Describe this transformation fully.",
+      "solution_steps": [
+        "y = -f(x) corresponds to a reflection in the x-axis."
+      ],
+      "final_answer": "Reflection in the x-axis",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = -f(x) corresponds to a reflection in the x-axis.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reflection in the x-axis oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "reflect_x",
+          "shift": 0,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = -f(x)"
+        }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "perpendicular_lines_equation_H",
@@ -412,6 +372,61 @@
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (49 + 25) × 10 = 370 m"
+      ],
+      "final_answer": "370 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (49 + 25) × 10 = 370 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "370 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              10
+            ],
+            [
+              37,
+              10
+            ],
+            [
+              49,
+              0
+            ]
+          ],
+          "x_max": 54,
+          "y_max": 15,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -541,112 +556,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "graph_transformations_H",
-      "prompt": "The graph of y = f(x) is transformed to give the graph of y = -f(x). Describe this transformation fully.",
+      "topic_id": "distance_between_points_H",
+      "prompt": "Find the length of the line segment joining A(5, 3) and B(-3, 5). Give your answer as a surd in its simplest form.",
       "solution_steps": [
-        "y = -f(x) corresponds to a reflection in the x-axis."
+        "The distance between two points is found with Pythagoras: the square root of ((horizontal gap)^2 + (vertical gap)^2).",
+        "Horizontal gap: -3 - (5) = -8. Vertical gap: 5 - (3) = 2.",
+        "Distance = √((-8)^2 + (2)^2) = √68",
+        "Simplify the surd: √68 = √(2^2 × 17) = 2√17"
       ],
-      "final_answer": "Reflection in the x-axis",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = -f(x) corresponds to a reflection in the x-axis.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Reflection in the x-axis oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "graph_transformation",
-        "params": {
-          "transform": "reflect_x",
-          "shift": 0,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = -f(x)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "quadratic_inequalities_H",
-      "prompt": "Solve the inequality: x^2 + 4x + 3 ≤ 0",
-      "solution_steps": [
-        "Factorise: x^2 + 4x + 3 = (x + 1)(x + 3)",
-        "The critical values are x = -3 and x = -1.",
-        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
-        "Answer: -3 ≤ x ≤ -1"
-      ],
-      "final_answer": "-3 ≤ x ≤ -1",
+      "final_answer": "2√17",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: x^2 + 4x + 3 = (x + 1)(x + 3)",
+          "description": "The distance between two points is found with Pythagoras: the square root of ((horizontal gap)^2 + (vertical gap)^2).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = -3 and x = -1.",
+          "description": "Horizontal gap: -3 - (5) = -8. Vertical gap: 5 - (3) = 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+          "description": "Distance = √((-8)^2 + (2)^2) = √68",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer: -3 ≤ x ≤ -1",
+          "description": "Simplify the surd: √68 = √(2^2 × 17) = 2√17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-3 ≤ x ≤ -1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_combine_H",
-      "prompt": "Given that a:b = 8:5 and b:c = 1:5, find a:b:c in its simplest form.",
-      "solution_steps": [
-        "Scale a:b = 8:5 by 1 so b = 5: a:b = 8:5",
-        "Scale b:c = 1:5 by 5 so b = 5: b:c = 5:25",
-        "Combine: a:b:c = 8:5:25",
-        "Simplify by dividing by 1: a:b:c = 8:5:25"
-      ],
-      "final_answer": "8 : 5 : 25",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale a:b = 8:5 by 1 so b = 5: a:b = 8:5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Scale b:c = 1:5 by 5 so b = 5: b:c = 5:25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: a:b:c = 8:5:25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify by dividing by 1: a:b:c = 8:5:25",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 : 5 : 25 oe",
+          "description": "2√17 oe",
           "marks": 1
         }
       ],
@@ -689,6 +632,89 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "ratio_share_three_part_H",
+      "prompt": "Share 36 in the ratio 3:2:4.",
+      "solution_steps": [
+        "Total parts = 3 + 2 + 4 = 9",
+        "Value of one part = 36 ÷ 9 = 4",
+        "Share 1 = 3 × 4 = 12",
+        "Share 2 = 2 × 4 = 8",
+        "Share 3 = 4 × 4 = 16"
+      ],
+      "final_answer": "12 : 8 : 16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total parts = 3 + 2 + 4 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 36 ÷ 9 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 3 × 4 = 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 2 × 4 = 8 Share 3 = 4 × 4 = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 : 8 : 16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_direct_proportion_H",
+      "prompt": "y is directly proportional to x^3. When x = 9, y = 4374. Find the value of y when x = 6.",
+      "solution_steps": [
+        "y = kx^3",
+        "4374 = k × 9^3 = k × 729",
+        "k = 4374 ÷ 729 = 6",
+        "y = 6 × 6^3 = 6 × 216 = 1296"
+      ],
+      "final_answer": "1296",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = kx^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4374 = k × 9^3 = k × 729",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 4374 ÷ 729 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 6 × 6^3 = 6 × 216 = 1296",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1296 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "unit_conversions_H",
       "prompt": "Convert 1876 mm² to cm².",
       "solution_steps": [
@@ -718,37 +744,58 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator_H",
-      "prompt": "Using a calculator, decrease £476.25 by 6.4%. Give your answer to 2 decimal places.",
+      "topic_id": "area_semicircle_compound_H",
+      "prompt": "Find the total area of the following compound shape, giving your answer in terms of π.",
       "solution_steps": [
-        "Convert 6.4% to a multiplier: 0.936",
-        "Multiply: £476.25 × 0.936 = £445.77 (calculator, 2 d.p.)"
+        "Area of rectangle = 12 × 19 = 228 cm²",
+        "Radius of semicircle = 12 ÷ 2 = 6 cm",
+        "Area of semicircle = (1/2) × π × 6² = 18π cm²",
+        "Total area = 228 + 18π cm² (exact form)"
       ],
-      "final_answer": "£445.77",
-      "marks": 3,
+      "final_answer": "(228 + 18π) cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 6.4% to a multiplier: 0.936",
+          "description": "Area of rectangle = 12 × 19 = 228 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £476.25 × 0.936 = £445.77 (calculator, 2 d.p.)",
+          "description": "Radius of semicircle = 12 ÷ 2 = 6 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of semicircle = (1/2) × π × 6² = 18π cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 228 + 18π cm² (exact form)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£445.77 oe",
+          "description": "(228 + 18π) cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle_semicircle",
+        "params": {
+          "width": 12,
+          "height": 19,
+          "radius": 6,
+          "width_label": "12 cm",
+          "height_label": "19 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "frustum_volume_surface_area_H",
-      "prompt": "A frustum is formed from a cone with a bottom radius of 14 cm and a top radius of 7 cm, and a vertical height of 14 cm. Find its volume, correct to 3 significant figures.",
+      "prompt": "Here is a frustum. Find its volume, correct to 3 significant figures.",
       "solution_steps": [
         "Full cone height H = R × h ÷ (R - r) = 14 × 14 ÷ (14 - 7) = 28.00 cm (similar triangles)",
         "Big cone volume = (1/3) × π × R² × H, small cone volume = (1/3) × π × r² × (H - h)",
@@ -795,36 +842,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_sphere_H",
-      "prompt": "A hemisphere has radius 7 cm. Find its volume, correct to 3 significant figures.",
+      "topic_id": "volume_surface_area_pyramid_H",
+      "prompt": "Here is a square-based pyramid. Find its total surface area, correct to 1 decimal place.",
       "solution_steps": [
-        "V = (2/3) × π × r³ = (2/3) × π × 7³",
-        "= 718 cm³ (3 s.f.)"
+        "Slant height l = √(height² + (base ÷ 2)²) = √(15² + (15 ÷ 2)²) ≈ 16.8 cm",
+        "Surface area = base² + 2 × base × l = 15² + 2 × 15 × 16.8",
+        "= 728.1 cm² (1 d.p.)"
       ],
-      "final_answer": "718 cm³",
-      "marks": 3,
+      "final_answer": "728.1 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "V = (2/3) × π × r³ = (2/3) × π × 7³",
+          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(15² + (15 ÷ 2)²) ≈ 16.8 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 718 cm³ (3 s.f.)",
+          "description": "Surface area = base² + 2 × base × l = 15² + 2 × 15 × 16.8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 728.1 cm² (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "718 cm³ oe",
+          "description": "728.1 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sphere",
+        "kind": "pyramid",
         "params": {
-          "radius_label": "7 cm",
-          "hemisphere": true
+          "base_label": "15 cm",
+          "height_label": "15 cm"
         }
       },
       "solution_diagram": null
@@ -923,87 +976,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_3d_H",
-      "prompt": "A cuboid has length 7 cm, width 4 cm and height 14 cm. Find the angle between the diagonal ag (from one corner to the opposite corner) and the base of the cuboid, correct to 1 decimal place.",
+      "topic_id": "tree_diagram_mixed_H",
+      "prompt": "A bag contains 4 green and 7 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is yellow and the second counter is green.",
       "solution_steps": [
-        "First find the diagonal across the base: base diagonal = √(l² + w²) = √(7² + 4²) = 8.062 cm - this is the projection of ag onto the base.",
-        "The angle between ag and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 14 ÷ 8.062.",
-        "angle = tan^-1(14 ÷ 8.062) = 60.1° (1 d.p.)"
+        "After the first counter is picked (without replacement), there are 10 counters left.",
+        "P(green then green) = 4/11 × 3/10 = 6/55",
+        "P(green then yellow) = 4/11 × 7/10 = 14/55",
+        "P(yellow then green) = 7/11 × 2/5 = 14/55",
+        "P(yellow then yellow) = 7/11 × 3/5 = 21/55",
+        "P(the first counter is yellow and the second counter is green) = 14/55"
       ],
-      "final_answer": "60.1°",
-      "marks": 4,
+      "final_answer": "14/55",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First find the diagonal across the base: base diagonal = √(l² + w²) = √(7² + 4²) = 8.062 cm - this is the projection of ag onto the base.",
+          "description": "After the first counter is picked (without replacement), there are 10 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The angle between ag and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 14 ÷ 8.062.",
+          "description": "P(green then green) = 4/11 × 3/10 = 6/55",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle = tan^-1(14 ÷ 8.062) = 60.1° (1 d.p.)",
+          "description": "P(green then yellow) = 4/11 × 7/10 = 14/55",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(yellow then green) = 7/11 × 2/5 = 14/55 P(yellow then yellow) = 7/11 × 3/5 = 21/55 P(the first counter is yellow and the second counter is green) = 14/55",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "60.1° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "length_label": "7 cm",
-          "width_label": "4 cm",
-          "height_label": "14 cm",
-          "show_diagonal": true,
-          "vertex_labels": [
-            "a",
-            "b",
-            "c",
-            "d",
-            "e",
-            "f",
-            "g",
-            "h"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_conditional_H",
-      "prompt": "A bag contains 4 purple and 5 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
-      "solution_steps": [
-        "P(both purple) = 4/9 × 3/8 = 1/6",
-        "P(both blue) = 5/9 × 4/8 = 5/18",
-        "P(both same colour) = 1/6 + 5/18 = 4/9"
-      ],
-      "final_answer": "4/9",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "P(both purple) = 4/9 × 3/8 = 1/6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both blue) = 5/9 × 4/8 = 5/18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both same colour) = 1/6 + 5/18 = 4/9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4/9 oe",
+          "description": "14/55 oe",
           "marks": 1
         }
       ],
@@ -1012,75 +1020,39 @@
         "params": {
           "stage1": [
             [
-              "Purple",
-              ""
+              "Green",
+              "4/11"
             ],
             [
-              "Blue",
-              ""
+              "Yellow",
+              "7/11"
             ]
           ],
           "stage2": [
             [
               [
-                "Purple",
-                ""
+                "Green",
+                "3/10"
               ],
               [
-                "Blue",
-                ""
+                "Yellow",
+                "7/10"
               ]
             ],
             [
               [
-                "Purple",
-                ""
+                "Green",
+                "2/5"
               ],
               [
-                "Blue",
-                ""
+                "Yellow",
+                "3/5"
               ]
             ]
           ]
         }
       },
-      "solution_diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Purple",
-              "4/9"
-            ],
-            [
-              "Blue",
-              "5/9"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Purple",
-                "3/8"
-              ],
-              [
-                "Blue",
-                "5/8"
-              ]
-            ],
-            [
-              [
-                "Purple",
-                "4/8"
-              ],
-              [
-                "Blue",
-                "4/8"
-              ]
-            ]
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "product_rule_counting_H",
@@ -1103,61 +1075,6 @@
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "velocity_time_interpret_H",
-      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
-      "solution_steps": [
-        "Total distance = total area under the graph (a trapezium)",
-        "Distance = ½ × (49 + 25) × 10 = 370 m"
-      ],
-      "final_answer": "370 m",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total distance = total area under the graph (a trapezium)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Distance = ½ × (49 + 25) × 10 = 370 m",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "370 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              12,
-              10
-            ],
-            [
-              37,
-              10
-            ],
-            [
-              49,
-              0
-            ]
-          ],
-          "x_max": 54,
-          "y_max": 15,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
       "solution_diagram": null
     }
   ]

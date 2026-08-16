@@ -42,40 +42,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 9^(x+1) = 81^(2x).",
+      "topic_id": "roots_H",
+      "prompt": "Fully simplify √125, giving your answer in the form a√b.",
       "solution_steps": [
-        "Write both sides as powers of 3: 9 = 3^2 and 81 = 3^4",
-        "9^(x+1) = 81^(2x) becomes 3^(2(x+1)) = 3^(4×2x), i.e. 3^(2x+2) = 3^(8x)",
-        "Since the bases match, the powers must be equal: 2x + 2 = 8x",
-        "Rearranging: -6x = -2, so x = -2/-6 = 1/3"
+        "Find the largest square factor of 125: 5^2 × 5 = 125",
+        "√125 = √(5^2 × 5) = 5√5"
       ],
-      "final_answer": "1/3",
-      "marks": 5,
+      "final_answer": "5√5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 3: 9 = 3^2 and 81 = 3^4",
+          "description": "Find the largest square factor of 125: 5^2 × 5 = 125",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9^(x+1) = 81^(2x) becomes 3^(2(x+1)) = 3^(4×2x), i.e. 3^(2x+2) = 3^(8x)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x + 2 = 8x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearranging: -6x = -2, so x = -2/-6 = 1/3",
+          "description": "√125 = √(5^2 × 5) = 5√5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/3 oe",
+          "description": "5√5 oe",
           "marks": 1
         }
       ],
@@ -188,41 +176,116 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_surds_H",
-      "prompt": "Expand and simplify (2 + √11)^2, giving your answer in the form p + q√11.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 8√3 + 6√3, giving your answer in the form a√b.",
       "solution_steps": [
-        "(2 + √11)^2 = (2 + √11)(2 + √11)",
-        "Expand: 4 +4√11 +4√11 + 11",
-        "Combine the whole-number terms: 4 + 11 = 15",
-        "Combine the √11 terms: +4√11 +4√11 = +4√11",
-        "(2 + √11)^2 = 15 + 4√11"
+        "Both terms are multiples of √3, so they are 'like surds' and can be combined.",
+        "Combine the whole-number coefficients: 8 + 6 = 14.",
+        "= 14√3"
       ],
-      "final_answer": "15 + 4√11",
-      "marks": 5,
+      "final_answer": "14√3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "(2 + √11)^2 = (2 + √11)(2 + √11)",
+          "description": "Both terms are multiples of √3, so they are 'like surds' and can be combined.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand: 4 +4√11 +4√11 + 11",
+          "description": "Combine the whole-number coefficients: 8 + 6 = 14.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine the whole-number terms: 4 + 11 = 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine the √11 terms: +4√11 +4√11 = +4√11 (2 + √11)^2 = 15 + 4√11",
+          "description": "= 14√3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 + 4√11 oe",
+          "description": "14√3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "hcf_lcm_by_prime_factors_H",
+      "prompt": "Using prime factorisation, find the LCM of 175 and 110.",
+      "solution_steps": [
+        "175 = 5^2 × 7",
+        "110 = 2 × 5 × 11",
+        "LCM: take the highest power of each prime",
+        "LCM = 3850"
+      ],
+      "final_answer": "3850",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "175 = 5^2 × 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "110 = 2 × 5 × 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM: take the highest power of each prime",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM = 3850",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3850 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_H",
+      "prompt": "a = \\frac{v - u}{t}. Find the value of a when u = 36, v = 40 and t = 2.",
+      "solution_steps": [
+        "a = \\frac{v - u}{t}",
+        "a = \\frac{40 - 36}{2}",
+        "a = 4/2",
+        "a = 2"
+      ],
+      "final_answer": "a = 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "a = \\frac{v - u}{t}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = \\frac{40 - 36}{2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 4/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "a = 2 oe",
           "marks": 1
         }
       ],
@@ -258,83 +321,6 @@
         {
           "code": "A1",
           "description": "x = -5 or x = 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "change_subject_factorise_H",
-      "prompt": "Make x the subject of the formula sx + 10x = 23.",
-      "solution_steps": [
-        "sx + 10x = 23",
-        "Factorise the left-hand side: x(s + 10) = 23",
-        "Divide both sides by (s + 10): x = \\frac{23}{s + 10}"
-      ],
-      "final_answer": "x = \\frac{23}{s + 10}",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "sx + 10x = 23",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise the left-hand side: x(s + 10) = 23",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by (s + 10): x = \\frac{23}{s + 10}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = \\frac{23}{s + 10} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_fractions_multiply_divide_H",
-      "prompt": "Simplify \\frac{x^2 - 49}{x + 6} ÷ \\frac{x - 7}{x + 6}, giving your answer in its simplest form.",
-      "solution_steps": [
-        "Factorise the difference of two squares: x^2 - 49 = (x - 7)(x + 7)",
-        "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{x - 7}{x + 6} becomes × \\frac{x + 6}{x - 7}",
-        "\\frac{(x - 7)(x + 7)}{x + 6} × \\frac{x + 6}{x - 7}",
-        "Cancel the common factors x + 6 and x - 7:",
-        "= x + 7"
-      ],
-      "final_answer": "x + 7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Factorise the difference of two squares: x^2 - 49 = (x - 7)(x + 7)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{x - 7}{x + 6} becomes × \\frac{x + 6}{x - 7}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{(x - 7)(x + 7)}{x + 6} × \\frac{x + 6}{x - 7}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Cancel the common factors x + 6 and x - 7: = x + 7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x + 7 oe",
           "marks": 1
         }
       ],
@@ -387,34 +373,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_inverse_proportion_H",
-      "prompt": "y is inversely proportional to x. When x = 3, y = 6. Find the value of y when x = 2.",
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object has a final velocity (v) of 3 m/s after a constant acceleration (a) of -2 m/s^2 over a displacement (s) of 175 m. Find its initial velocity (u). Give your answer correct to 1 decimal place.",
       "solution_steps": [
-        "y = k ÷ x",
-        "k = y × x = 6 × 3 = 6 × 3 = 18",
-        "y = k ÷ x = 18 ÷ 2 = 18 ÷ 2 = 9"
+        "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
+        "v^2 = u^2 + 2as",
+        "Rearrange to make u^2 the subject: u^2 = v^2 - 2as",
+        "Substitute v = 3, a = -2, s = 175: u^2 = 3^2 - 2 × -2 × 175 = 9 - -700 = 709",
+        "u = √709 = 26.6 m/s (taking the positive root, since speed cannot be negative)"
       ],
-      "final_answer": "9",
-      "marks": 4,
+      "final_answer": "26.6 m/s (taking the positive root)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = k ÷ x",
+          "description": "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = y × x = 6 × 3 = 6 × 3 = 18",
+          "description": "v^2 = u^2 + 2as",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = k ÷ x = 18 ÷ 2 = 18 ÷ 2 = 9",
+          "description": "Rearrange to make u^2 the subject: u^2 = v^2 - 2as",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute v = 3, a = -2, s = 175: u^2 = 3^2 - 2 × -2 × 175 = 9 - -700 = 709 u = √709 = 26.6 m/s (taking the positive root, since speed cannot be negative)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "26.6 m/s (taking the positive root) oe",
           "marks": 1
         }
       ],
@@ -505,6 +498,82 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "circle_equation_H",
+      "prompt": "A circle has centre (0, 0) and radius 20. Write down the equation of the circle.",
+      "solution_steps": [
+        "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
+        "Here r = 20, so r^2 = 400."
+      ],
+      "final_answer": "x^2 + y^2 = 400",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Here r = 20, so r^2 = 400.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x^2 + y^2 = 400 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -21,
+          "x_max": 21,
+          "y_min": -21,
+          "y_max": 21,
+          "points": [],
+          "given_lines": [],
+          "circle": {
+            "centre": [
+              0,
+              0
+            ],
+            "radius": 20
+          },
+          "segment": null
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator_H",
+      "prompt": "Using a calculator, decrease £765.35 by 9.75%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 9.75% to a multiplier: 0.9025",
+        "Multiply: £765.35 × 0.9025 = £690.73 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£690.73",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 9.75% to a multiplier: 0.9025",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £765.35 × 0.9025 = £690.73 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£690.73 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "ratio_difference_H",
       "prompt": "s : t : u = 6 : 9 : 5.\nt - u = 56.\nFind s, t and u.",
       "solution_steps": [
@@ -540,76 +609,6 @@
         {
           "code": "A1",
           "description": "s = 84, t = 126, u = 70 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_increase_decrease_calculator_H",
-      "prompt": "Using a calculator, decrease £765.35 by 9.75%. Give your answer to 2 decimal places.",
-      "solution_steps": [
-        "Convert 9.75% to a multiplier: 0.9025",
-        "Multiply: £765.35 × 0.9025 = £690.73 (calculator, 2 d.p.)"
-      ],
-      "final_answer": "£690.73",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 9.75% to a multiplier: 0.9025",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: £765.35 × 0.9025 = £690.73 (calculator, 2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£690.73 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_combine_H",
-      "prompt": "Given that a:b = 2:5 and b:c = 6:7, find a:b:c in its simplest form.",
-      "solution_steps": [
-        "Scale a:b = 2:5 by 6 so b = 30: a:b = 12:30",
-        "Scale b:c = 6:7 by 5 so b = 30: b:c = 30:35",
-        "Combine: a:b:c = 12:30:35",
-        "Simplify by dividing by 1: a:b:c = 12:30:35"
-      ],
-      "final_answer": "12 : 30 : 35",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale a:b = 2:5 by 6 so b = 30: a:b = 12:30",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Scale b:c = 6:7 by 5 so b = 30: b:c = 30:35",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: a:b:c = 12:30:35",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify by dividing by 1: a:b:c = 12:30:35",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 : 30 : 35 oe",
           "marks": 1
         }
       ],
@@ -658,60 +657,50 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_H",
-      "prompt": "An exterior angle of a triangle is 109°. The two remote interior angles are 57° and (4x - 20)°. Find x.",
+      "topic_id": "ratio_share_three_part_H",
+      "prompt": "Share 20 in the ratio 1:6:3.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "4x - 20 = 52",
-        "Add 20 to both sides:",
-        "4x = 72",
-        "Divide both sides by 4:",
-        "x = 18"
+        "Total parts = 1 + 6 + 3 = 10",
+        "Value of one part = 20 ÷ 10 = 2",
+        "Share 1 = 1 × 2 = 2",
+        "Share 2 = 6 × 2 = 12",
+        "Share 3 = 3 × 2 = 6"
       ],
-      "final_answer": "18",
+      "final_answer": "2 : 12 : 6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "description": "Total parts = 1 + 6 + 3 = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x - 20 = 52",
+          "description": "Value of one part = 20 ÷ 10 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 20 to both sides:",
+          "description": "Share 1 = 1 × 2 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x = 72 Divide both sides by 4: x = 18",
+          "description": "Share 2 = 6 × 2 = 12 Share 3 = 3 × 2 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "2 : 12 : 6 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "exterior_triangle",
-        "params": {
-          "interior1_label": "57°",
-          "interior2_label": "(4x - 20)°",
-          "exterior_label": "109°",
-          "interior1_value": 57,
-          "shape_variant": 1
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "volume_surface_area_pyramid_H",
-      "prompt": "A square-based pyramid has a base of side 7 cm and a perpendicular height of 6 cm. Find its total surface area, correct to 1 decimal place.",
+      "prompt": "Here is a square-based pyramid. Find its total surface area, correct to 1 decimal place.",
       "solution_steps": [
         "Slant height l = √(height² + (base ÷ 2)²) = √(6² + (7 ÷ 2)²) ≈ 6.9 cm",
         "Surface area = base² + 2 × base × l = 7² + 2 × 7 × 6.9",
@@ -836,88 +825,89 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_mixed_H",
-      "prompt": "A bag contains 6 yellow and 7 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "topic_id": "congruent_triangle_proof_H",
+      "prompt": "ABCD is a parallelogram with AB parallel to DC. Its diagonals AC and BD cross at O. Prove that the two triangles are congruent.",
       "solution_steps": [
-        "After the first counter is picked (without replacement), there are 12 counters left.",
-        "P(yellow then yellow) = 6/13 × 5/12 = 5/26",
-        "P(yellow then red) = 6/13 × 7/12 = 7/26",
-        "P(red then yellow) = 7/13 × 1/2 = 7/26",
-        "P(red then red) = 7/13 × 1/2 = 7/26",
-        "P(both counters are the same colour) = 6/13"
+        "angle OAB = angle OCD (alternate angles, AB parallel to DC)",
+        "AB = CD (opposite sides of a parallelogram)",
+        "angle OBA = angle ODC (alternate angles, AB parallel to DC)",
+        "By Angle-Side-Angle (ASA), the triangles are congruent.",
+        "Since triangles OAB and OCD are congruent, OA = OC and OB = OD - the diagonals of a parallelogram bisect each other."
       ],
-      "final_answer": "6/13",
+      "final_answer": "Triangles are congruent (ASA).",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 12 counters left.",
+          "description": "angle OAB = angle OCD (alternate angles, AB parallel to DC)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then yellow) = 6/13 × 5/12 = 5/26",
+          "description": "AB = CD (opposite sides of a parallelogram)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then red) = 6/13 × 7/12 = 7/26",
+          "description": "angle OBA = angle ODC (alternate angles, AB parallel to DC)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then yellow) = 7/13 × 1/2 = 7/26 P(red then red) = 7/13 × 1/2 = 7/26 P(both counters are the same colour) = 6/13",
+          "description": "By Angle-Side-Angle (ASA), the triangles are congruent. Since triangles OAB and OCD are congruent, OA = OC and OB = OD - the diagonals of a parallelogram bisect each other.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6/13 oe",
+          "description": "Triangles are congruent (ASA). oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "tree_diagram",
+        "kind": "two_triangle_congruence",
         "params": {
-          "stage1": [
+          "labels_1": [
+            "A",
+            "B",
+            "O"
+          ],
+          "labels_2": [
+            "C",
+            "D",
+            "O"
+          ],
+          "ticks_1": [
             [
-              "Yellow",
-              "6/13"
-            ],
-            [
-              "Red",
-              "7/13"
+              0,
+              1,
+              1
             ]
           ],
-          "stage2": [
+          "ticks_2": [
             [
-              [
-                "Yellow",
-                "5/12"
-              ],
-              [
-                "Red",
-                "7/12"
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                "1/2"
-              ],
-              [
-                "Red",
-                "1/2"
-              ]
+              0,
+              1,
+              1
             ]
           ],
-          "leaf_probs": [
+          "arcs_1": [
             [
-              "5/26",
-              "7/26"
+              0,
+              1
             ],
             [
-              "7/26",
-              "7/26"
+              1,
+              2
+            ]
+          ],
+          "arcs_2": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
             ]
           ]
         }
@@ -925,27 +915,70 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting_H",
-      "prompt": "A shop sells 5 different shirts, 3 different pairs of trousers and 3 different pairs of shoes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "set_notation_H",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, A = {2, 3, 6, 7, 11, 12}, B = {1, 2, 4, 7, 9, 10}. List the elements of A ∩ B'.",
       "solution_steps": [
-        "Total combinations = 5 × 3 × 3 = 45"
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}",
+        "A = {2, 3, 6, 7, 11, 12}",
+        "B = {1, 2, 4, 7, 9, 10}",
+        "A ∩ B' means elements in A but not in B.",
+        "A ∩ B' = {3, 6, 11, 12}"
       ],
-      "final_answer": "45",
-      "marks": 2,
+      "final_answer": "{3, 6, 11, 12}",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 5 × 3 × 3 = 45",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {2, 3, 6, 7, 11, 12}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {1, 2, 4, 7, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∩ B' means elements in A but not in B. A ∩ B' = {3, 6, 11, 12}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "45 oe",
+          "description": "{3, 6, 11, 12} oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ"
+        }
+      },
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "3, 6, 11, 12",
+            "b_only": "1, 4, 9, 10",
+            "both": "2, 7",
+            "neither": "5, 8"
+          }
+        }
+      }
     }
   ]
 }

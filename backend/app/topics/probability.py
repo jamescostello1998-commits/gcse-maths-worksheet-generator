@@ -492,7 +492,10 @@ def _build_listing_outcomes(rng: random.Random):
     elif scenario == "two_coins":
         diagram = DiagramSpec(kind="coin", params={"count": 2})
     elif scenario in ("coin_spinner3", "coin_spinner4"):
-        diagram = DiagramSpec(kind="spinner", params={"sectors": vals_b})
+        diagram = DiagramSpec(
+            kind="event_pair",
+            params={"event_a": {"kind": "coin"}, "event_b": {"kind": "spinner", "sectors": vals_b}},
+        )
     else:  # two_spinner3, spinner3_spinner4
         diagram = DiagramSpec(kind="spinner_pair", params={"sectors_a": vals_a, "sectors_b": vals_b})
 

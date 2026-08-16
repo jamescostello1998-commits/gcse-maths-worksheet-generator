@@ -257,58 +257,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "distance_time_interpret_F",
-      "prompt": "The distance-time graph shows a delivery van's journey. Find the total distance travelled.",
+      "topic_id": "midpoint_of_segment_F",
+      "prompt": "Find the midpoint of the line segment joining A(7, 0) and B(4, 0).",
       "solution_steps": [
-        "Distance out = 12 km. Distance back = 12 km.",
-        "Total distance travelled = 12 + 12 = 24 km"
+        "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
+        "x-coordinate of midpoint: (7 + 4)/2 = 5.5",
+        "y-coordinate of midpoint: (0 + 0)/2 = 0",
+        "Midpoint = (5.5, 0)"
       ],
-      "final_answer": "24 km",
-      "marks": 3,
+      "final_answer": "(5.5, 0)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance out = 12 km. Distance back = 12 km.",
+          "description": "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total distance travelled = 12 + 12 = 24 km",
+          "description": "x-coordinate of midpoint: (7 + 4)/2 = 5.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y-coordinate of midpoint: (0 + 0)/2 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Midpoint = (5.5, 0)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 km oe",
+          "description": "(5.5, 0) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              20,
-              12
-            ],
-            [
-              40,
-              12
-            ],
-            [
-              50,
-              0
-            ]
-          ],
-          "x_max": 55,
-          "y_max": 14,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -347,34 +333,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 4x = 36",
+      "topic_id": "collect_like_terms_F",
+      "prompt": "Fully simplify 6x - 7x - 3 + 8x + 4",
       "solution_steps": [
-        "4x = 36",
-        "Divide both sides by 4:",
-        "x = 9"
+        "Start with the expression: 6x - 7x - 3 + 8x + 4.",
+        "Like terms have exactly the same letter part, so group the x terms, and separately the number terms together, keeping the + or - sign in front of each term.",
+        "Add the coefficients within each group (a term with no number in front counts as 1).",
+        "This simplifies to 7x + 1."
       ],
-      "final_answer": "9",
-      "marks": 4,
+      "final_answer": "7x + 1",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x = 36",
+          "description": "Start with the expression: 6x - 7x - 3 + 8x + 4.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 4:",
+          "description": "Like terms have exactly the same letter part, so group the x terms, and separately the number terms together, keeping the + or - sign in front of each term.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 9",
+          "description": "Add the coefficients within each group (a term with no number in front counts as 1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This simplifies to 7x + 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "7x + 1 oe",
           "marks": 1
         }
       ],
@@ -382,42 +374,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step_F",
-      "prompt": "Solve: 3x + 13 + 3x - 2 = 53",
+      "topic_id": "linear_two_step_F",
+      "prompt": "Solve: 8x + 5 = 13",
       "solution_steps": [
-        "Collect like terms: 3x + 3x = 6x, 13 - 2 = 11",
-        "6x + 11 = 53",
-        "Subtract 11 from both sides:",
-        "6x = 42",
-        "Divide both sides by 6:",
-        "x = 7"
+        "8x + 5 = 13",
+        "Subtract 5 from both sides:",
+        "8x = 8",
+        "Divide both sides by 8:",
+        "x = 1"
       ],
-      "final_answer": "7",
+      "final_answer": "1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 3x + 3x = 6x, 13 - 2 = 11",
+          "description": "8x + 5 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x + 11 = 53",
+          "description": "Subtract 5 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 11 from both sides:",
+          "description": "8x = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x = 42 Divide both sides by 6: x = 7",
+          "description": "Divide both sides by 8: x = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -467,34 +458,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph_F",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = -4x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{12 - 0}{2 - -2} = 3",
-        "Using y = mx + c with the point (-2, 0): 0 = 3×(-2) + c, so c = 6",
-        "Equation of the line: y = 3x + 6"
+        "Table of values for y = -4x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 12, 8, 4, 0, -4, -8, -12",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "y = 3x + 6",
-      "marks": 4,
+      "final_answer": "Straight line: y = -4x",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = \\frac{12 - 0}{2 - -2} = 3",
+          "description": "Table of values for y = -4x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using y = mx + c with the point (-2, 0): 0 = 3×(-2) + c, so c = 6",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = 3x + 6",
+          "description": "y: 12, 8, 4, 0, -4, -8, -12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 3x + 6 oe",
+          "description": "Straight line: y = -4x oe",
           "marks": 1
         }
       ],
@@ -502,15 +499,57 @@
         "kind": "function_graph",
         "params": {
           "kind": "linear",
-          "m": 3,
-          "c": 6,
-          "x_min": -3,
-          "x_max": 3,
-          "y_min": -4,
-          "y_max": 16
+          "m": -4,
+          "c": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -13,
+          "y_max": 13,
+          "blank": true
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -4,
+          "c": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -13,
+          "y_max": 13,
+          "table_points": [
+            [
+              -3,
+              12
+            ],
+            [
+              -2,
+              8
+            ],
+            [
+              -1,
+              4
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -4
+            ],
+            [
+              2,
+              -8
+            ],
+            [
+              3,
+              -12
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "sequences_nth_term_F",
@@ -548,83 +587,67 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_common_coefficient_F",
-      "prompt": "Solve the simultaneous equations: 5x + 4y = 9 and x + 4y = -11",
+      "topic_id": "ratio_shape_similar_F",
+      "prompt": "Shape A and Shape B are similar. Find the length of side y.",
       "solution_steps": [
-        "5x + 4y = 9  (1)",
-        "x + 4y = -11  (2)",
-        "Subtract the equations to eliminate y: 4x = 20, so x = 5",
-        "Substitute x = 5 into (1): 4y = -16, so y = -4"
+        "Scale factor = 15 ÷ 12 = 5/4",
+        "Corresponding length = 8 × 5/4 = 10"
       ],
-      "final_answer": "x = 5, y = -4",
-      "marks": 5,
+      "final_answer": "10 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 4y = 9  (1)",
+          "description": "Scale factor = 15 ÷ 12 = 5/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x + 4y = -11  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the equations to eliminate y: 4x = 20, so x = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute x = 5 into (1): 4y = -16, so y = -4",
+          "description": "Corresponding length = 8 × 5/4 = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 5, y = -4 oe",
+          "description": "10 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "shape_kind": "parallelogram",
+          "orientation": "right",
+          "a_width_label": "12 cm",
+          "a_height_label": "8 cm",
+          "b_width_label": "15 cm",
+          "b_height_label": "y"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys_F",
-      "prompt": "A shop sells orange juice in different sizes: A: £4.80 for 250ml; B: £43.20 for 1.5L; C: £3.60 for 750ml. Which option is the better value for money? Show your working.",
+      "topic_id": "simple_interest_F",
+      "prompt": "£4000 is invested at a simple interest rate of 3% per year for 1 years. Find the interest earned.",
       "solution_steps": [
-        "Work out the price per 100ml for each option:",
-        "A: £4.80 ÷ 250 × 100 = 192.00p per 100ml",
-        "B: 1.5L = 1500ml",
-        "B: £43.20 ÷ 1500 × 100 = 288.00p per 100ml",
-        "C: £3.60 ÷ 750 × 100 = 48.00p per 100ml",
-        "The lowest price per 100ml is C at 48.00p per 100ml, so C is the best value."
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 4000 × 3 × 1 ÷ 100 = £120"
       ],
-      "final_answer": "C (£3.60 for 750ml)",
-      "marks": 5,
+      "final_answer": "£120",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100ml for each option:",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £4.80 ÷ 250 × 100 = 192.00p per 100ml",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B: 1.5L = 1500ml",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B: £43.20 ÷ 1500 × 100 = 288.00p per 100ml C: £3.60 ÷ 750 × 100 = 48.00p per 100ml The lowest price per 100ml is C at 48.00p per 100ml, so C is the best value.",
+          "description": "I = 4000 × 3 × 1 ÷ 100 = £120",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "C (£3.60 for 750ml) oe",
+          "description": "£120 oe",
           "marks": 1
         }
       ],
@@ -661,28 +684,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inverse_proportion_noncalculator_F",
-      "prompt": "It takes 5 machines 8 hours to complete a production run. Working at the same rate, how long would it take 2 machines?",
+      "topic_id": "sdt_mixed_F",
+      "prompt": "A delivery van travels 4536 m at an average speed of 18 m/s. Find how long the journey takes.",
       "solution_steps": [
-        "Constant = 5 × 8 = 40",
-        "Time for 2 machines = 40 ÷ 2 = 20"
+        "time = distance ÷ speed",
+        "time = 4536 ÷ 18 = 252 seconds"
       ],
-      "final_answer": "20 hours",
+      "final_answer": "252 seconds",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 5 × 8 = 40",
+          "description": "time = distance ÷ speed",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 2 machines = 40 ÷ 2 = 20",
+          "description": "time = 4536 ÷ 18 = 252 seconds",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 hours oe",
+          "description": "252 seconds oe",
           "marks": 1
         }
       ],
@@ -712,35 +735,6 @@
         {
           "code": "A1",
           "description": "£280 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sdt_mixed_F",
-      "prompt": "A delivery van travels 4536 m at an average speed of 18 m/s. Find how long the journey takes.",
-      "solution_steps": [
-        "time = distance ÷ speed",
-        "time = 4536 ÷ 18 = 252 seconds"
-      ],
-      "final_answer": "252 seconds",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "time = distance ÷ speed",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "time = 4536 ÷ 18 = 252 seconds",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "252 seconds oe",
           "marks": 1
         }
       ],
@@ -859,8 +853,96 @@
       }
     },
     {
+      "topic_id": "transform_enlarge_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "solution_steps": [
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For mapping shape A onto shape B, the lines meet at (-4, -7) and the scale factor works out as 3/2."
+      ],
+      "final_answer": "Enlargement, scale factor 3/2, centre (-4, -7)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For mapping shape A onto shape B, the lines meet at (-4, -7) and the scale factor works out as 3/2.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Enlargement, scale factor 3/2, centre (-4, -7) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -4,
+              -7
+            ],
+            [
+              0,
+              -7
+            ],
+            [
+              0,
+              -5
+            ],
+            [
+              -4,
+              -3
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "image_vertices": [
+            [
+              -4,
+              -7
+            ],
+            [
+              2,
+              -7
+            ],
+            [
+              2,
+              -4
+            ],
+            [
+              -4,
+              -1
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B",
+          "image_same_color": true
+        }
+      },
+      "solution_diagram": null
+    },
+    {
       "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 6 cm, width 9 cm and height 4 cm. Find its volume.",
+      "prompt": "Here is a cuboid. Find its volume.",
       "solution_steps": [
         "Volume = length × width × height = 6 × 9 × 4 = 216 cm³"
       ],
@@ -884,49 +966,6 @@
           "width_label": "9 cm",
           "height_label": "4 cm",
           "length_label": "6 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_missing_angle_F",
-      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
-      "solution_steps": [
-        "Use tan, since we know two of the three sides.",
-        "tan(x) = 5 ÷ 10",
-        "x = tan^-1(5 ÷ 10) = 26.6° (1 d.p.)"
-      ],
-      "final_answer": "26.6°",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Use tan, since we know two of the three sides.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "tan(x) = 5 ÷ 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = tan^-1(5 ÷ 10) = 26.6° (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "26.6° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": "10 cm",
-          "opposite_label": "5 cm",
-          "hyp_label": null,
-          "angle_label": "x°"
         }
       },
       "solution_diagram": null
@@ -991,261 +1030,241 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_F",
-      "prompt": "A triangle has angles 67°, 51°, and x°. Find x.",
+      "topic_id": "vectors_arithmetic_F",
+      "prompt": "\\vec{a} = \\colvec{3}{-8} and \\vec{b} = \\colvec{5}{5}. Find 3\\vec{a} - 4\\vec{b}.",
       "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (67 + 51) = 180 - 118 = 62"
+        "\\vec{a} = \\colvec{3}{-8}, \\vec{b} = \\colvec{5}{5}",
+        "3\\vec{a} = \\colvec{9}{-24} and 4\\vec{b} = \\colvec{20}{20}",
+        "3\\vec{a} - 4\\vec{b} = \\colvec{-11}{-44}"
       ],
-      "final_answer": "62",
-      "marks": 3,
+      "final_answer": "\\colvec{-11}{-44}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "\\vec{a} = \\colvec{3}{-8}, \\vec{b} = \\colvec{5}{5}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (67 + 51) = 180 - 118 = 62",
+          "description": "3\\vec{a} = \\colvec{9}{-24} and 4\\vec{b} = \\colvec{20}{20}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3\\vec{a} - 4\\vec{b} = \\colvec{-11}{-44}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "62 oe",
+          "description": "\\colvec{-11}{-44} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_parallel_lines_F",
+      "prompt": "A line crosses two parallel lines. The angle 126° and the angle x° are alternate angles. Find x.",
+      "solution_steps": [
+        "Alternate angles are equal.",
+        "x = 126"
+      ],
+      "final_answer": "126",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Alternate angles are equal.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 126",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "126 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "parallel_lines",
         "params": {
-          "angle_labels": [
-            "67°",
-            "51°",
-            "x"
+          "known_label": "126°",
+          "unknown_label": "x",
+          "relation": "alternate",
+          "known_value": 126,
+          "x_frac": 0.32
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_independent_F",
+      "prompt": "A bag contains 2 blue and 7 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "solution_steps": [
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 2/9, P(red) = 7/9.",
+        "P(both blue) = 2/9 × 2/9 = 4/81",
+        "P(both red) = 7/9 × 7/9 = 49/81",
+        "P(same colour) = 4/81 + 49/81 = 53/81"
+      ],
+      "final_answer": "53/81",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 2/9, P(red) = 7/9.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both blue) = 2/9 × 2/9 = 4/81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both red) = 7/9 × 7/9 = 49/81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(same colour) = 4/81 + 49/81 = 53/81",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "53/81 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "2/9"
+            ],
+            [
+              "Red",
+              "7/9"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "2/9"
+              ],
+              [
+                "Red",
+                "7/9"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "2/9"
+              ],
+              [
+                "Red",
+                "7/9"
+              ]
+            ]
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 22 cm and 120 cm. Find the length of x.",
+      "topic_id": "two_way_tables_F",
+      "prompt": "The two-way table shows the number of boys and girls who prefer bus or walk. Find the missing values.",
       "solution_steps": [
-        "c² = a² + b² = 22² + 120² = 484 + 14400 = 14884",
-        "c = √14884 = 122"
+        "'Boys' / 'Bus': using the 'Bus' column total: 29 - 14 = 15",
+        "'Boys' / 'Walk': using the 'Walk' column total: 39 - 20 = 19"
       ],
-      "final_answer": "122 cm",
+      "final_answer": "'Boys' / 'Bus' = 15; 'Boys' / 'Walk' = 19",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 22² + 120² = 484 + 14400 = 14884",
+          "description": "'Boys' / 'Bus': using the 'Bus' column total: 29 - 14 = 15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √14884 = 122",
+          "description": "'Boys' / 'Walk': using the 'Walk' column total: 39 - 20 = 19",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "122 cm oe",
+          "description": "'Boys' / 'Bus' = 15; 'Boys' / 'Walk' = 19 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "two_way_table",
         "params": {
-          "leg1_label": "22 cm",
-          "leg2_label": "120 cm",
-          "hyp_label": "x"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sample_space_diagrams_F",
-      "prompt": "Two fair spinners, one numbered 1 to 6 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is 36.",
-      "solution_steps": [
-        "The sample space diagram shows every possible product of the two spinners.",
-        "Number of favourable outcomes (the product is 36) = 1",
-        "Total number of equally likely outcomes = 36",
-        "P(the product is 36) = 1/36"
-      ],
-      "final_answer": "1/36",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The sample space diagram shows every possible product of the two spinners.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Number of favourable outcomes (the product is 36) = 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total number of equally likely outcomes = 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(the product is 36) = 1/36",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sample_space_diagram",
-        "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
           ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
+          "col_labels": [
+            "Bus",
+            "Walk",
+            "Total"
           ],
           "cells": [
             [
               "",
               "",
-              "",
-              "",
-              "",
-              ""
+              "34"
             ],
             [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
+              "14",
+              "20",
+              "34"
             ],
             [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
+              "29",
+              "39",
+              "68"
             ]
           ]
         }
       },
       "solution_diagram": {
-        "kind": "sample_space_diagram",
+        "kind": "two_way_table",
         "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
           ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
+          "col_labels": [
+            "Bus",
+            "Walk",
+            "Total"
           ],
           "cells": [
             [
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "6"
-            ],
-            [
-              "2",
-              "4",
-              "6",
-              "8",
-              "10",
-              "12"
-            ],
-            [
-              "3",
-              "6",
-              "9",
-              "12",
               "15",
-              "18"
+              "19",
+              "34"
             ],
             [
-              "4",
-              "8",
-              "12",
-              "16",
+              "14",
               "20",
-              "24"
+              "34"
             ],
             [
-              "5",
-              "10",
-              "15",
-              "20",
-              "25",
-              "30"
-            ],
-            [
-              "6",
-              "12",
-              "18",
-              "24",
-              "30",
-              "36"
-            ]
-          ],
-          "highlight": [
-            [
-              5,
-              5
+              "29",
+              "39",
+              "68"
             ]
           ]
         }

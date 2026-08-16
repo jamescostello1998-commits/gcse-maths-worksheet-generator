@@ -7,34 +7,40 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "powers_H",
-      "prompt": "Work out 4^(3/2).",
+      "topic_id": "simplifying_indices_challenging_H",
+      "prompt": "Fully simplify (3^2 × 3^-1)^2, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "4^(3/2) = (4^(1/2))^3",
-        "4^(1/2) = 2",
-        "2^3 = 8"
+        "Add the powers inside the bracket first: 2 + -1 = 1",
+        "(3^2 × 3^-1)^2 = (3^1)^2",
+        "Multiply the powers: 1 × 2 = 2",
+        "(3^1)^2 = 3^2 = 9"
       ],
-      "final_answer": "8",
-      "marks": 4,
+      "final_answer": "9",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4^(3/2) = (4^(1/2))^3",
+          "description": "Add the powers inside the bracket first: 2 + -1 = 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4^(1/2) = 2",
+          "description": "(3^2 × 3^-1)^2 = (3^1)^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2^3 = 8",
+          "description": "Multiply the powers: 1 × 2 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(3^1)^2 = 3^2 = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -42,41 +48,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_surds_H",
-      "prompt": "Expand and simplify (6 + √7)^2, giving your answer in the form p + q√7.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 4√2 + 3√2 + 5√2, giving your answer in the form a√b.",
       "solution_steps": [
-        "(6 + √7)^2 = (6 + √7)(6 + √7)",
-        "Expand: 36 +12√7 +12√7 + 7",
-        "Combine the whole-number terms: 36 + 7 = 43",
-        "Combine the √7 terms: +12√7 +12√7 = +12√7",
-        "(6 + √7)^2 = 43 + 12√7"
+        "Every term is a multiple of √2, so they are all like surds.",
+        "Combine the coefficients in order: 4 + 3 + 5 = 12.",
+        "= 12√2"
       ],
-      "final_answer": "43 + 12√7",
-      "marks": 5,
+      "final_answer": "12√2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "(6 + √7)^2 = (6 + √7)(6 + √7)",
+          "description": "Every term is a multiple of √2, so they are all like surds.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand: 36 +12√7 +12√7 + 7",
+          "description": "Combine the coefficients in order: 4 + 3 + 5 = 12.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine the whole-number terms: 36 + 7 = 43",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine the √7 terms: +12√7 +12√7 = +12√7 (6 + √7)^2 = 43 + 12√7",
+          "description": "= 12√2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "43 + 12√7 oe",
+          "description": "12√2 oe",
           "marks": 1
         }
       ],
@@ -316,77 +315,78 @@
       }
     },
     {
-      "topic_id": "area_sector_H",
-      "prompt": "Find the exact area of the following sector, in terms of π.",
+      "topic_id": "algebraic_indices_H",
+      "prompt": "Simplify 6x × 5x^5",
       "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (180 ÷ 360) × π × 4²",
-        "= 8π cm²"
+        "Multiplying powers of the same base: add the exponents (this still works when an exponent is negative or zero), and multiply the coefficients.",
+        "6x × 5x^5 = (6×5) x^(1+(5))",
+        "= 30x^6"
       ],
-      "final_answer": "8π cm²",
-      "marks": 3,
+      "final_answer": "30x^6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (180 ÷ 360) × π × 4²",
+          "description": "Multiplying powers of the same base: add the exponents (this still works when an exponent is negative or zero), and multiply the coefficients.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 8π cm²",
+          "description": "6x × 5x^5 = (6×5) x^(1+(5))",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 30x^6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8π cm² oe",
+          "description": "30x^6 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 180,
-          "radius_label": "4 cm",
-          "angle_label": "180°"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic_H",
-      "prompt": "Solve the simultaneous equations: y = x^2 + 4x + 1 and y = 5x + 3",
+      "topic_id": "solving_inequalities_H",
+      "prompt": "Solve the inequality: 5x + 6 > 6x + 3",
       "solution_steps": [
-        "Substitute y = 5x + 3 into y = x^2 + 4x + 1: 5x + 3 = x^2 + 4x + 1",
-        "Rearrange: x^2 - x - 2 = 0",
-        "Factorise: (x - 2)(x + 1) = 0",
-        "x = 2 or x = -1",
-        "When x = 2, y = 13. When x = -1, y = -2."
+        "5x + 6 > 6x + 3",
+        "Subtract 6x from both sides:",
+        "-x + 6 > 3",
+        "Subtract 6 from both sides:",
+        "-x > -3",
+        "Divide both sides by -1 (dividing by a negative number reverses the inequality sign):",
+        "x < 3"
       ],
-      "final_answer": "(2, 13) and (-1, -2)",
+      "final_answer": "x < 3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = 5x + 3 into y = x^2 + 4x + 1: 5x + 3 = x^2 + 4x + 1",
+          "description": "5x + 6 > 6x + 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 - x - 2 = 0",
+          "description": "Subtract 6x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 2)(x + 1) = 0",
+          "description": "-x + 6 > 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 2 or x = -1 When x = 2, y = 13. When x = -1, y = -2.",
+          "description": "Subtract 6 from both sides: -x > -3 Divide both sides by -1 (dividing by a negative number reverses the inequality sign): x < 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(2, 13) and (-1, -2) oe",
+          "description": "x < 3 oe",
           "marks": 1
         }
       ],
@@ -577,34 +577,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term_H",
-      "prompt": "Here are the first four terms of a quadratic sequence: 5, 11, 21, 35.\nFind an expression for the nth term.",
+      "topic_id": "special_sequences_H",
+      "prompt": "The first 4 terms of a geometric sequence are: 3, 9, 27, 81. Find the 6th term of the sequence.",
       "solution_steps": [
-        "First differences: 6, 10, 14",
-        "Second difference is constant: 4, so the coefficient of n^2 is 4 ÷ 2 = 2",
-        "nth term = 2n^2 + 3"
+        "Common ratio r = 3 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 3 × (3)^5",
+        "Term 6 = 729"
       ],
-      "final_answer": "2n^2 + 3",
+      "final_answer": "729",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: 6, 10, 14",
+          "description": "Common ratio r = 3 (divide any term by the term before it).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: 4, so the coefficient of n^2 is 4 ÷ 2 = 2",
+          "description": "nth term = a × r^(n - 1) = 3 × (3)^5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 2n^2 + 3",
+          "description": "Term 6 = 729",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2n^2 + 3 oe",
+          "description": "729 oe",
           "marks": 1
         }
       ],
@@ -1127,28 +1127,22 @@
       }
     },
     {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Calculate √54 × √6, giving your answer as an integer.",
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 5 different fonts, 2 different colours and 5 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "√54 × √6 = √(54 × 6) = √324",
-        "√324 = 18"
+        "Total combinations = 5 × 2 × 5 = 50"
       ],
-      "final_answer": "18",
-      "marks": 3,
+      "final_answer": "50",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√54 × √6 = √(54 × 6) = √324",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√324 = 18",
+          "description": "Total combinations = 5 × 2 × 5 = 50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "50 oe",
           "marks": 1
         }
       ],

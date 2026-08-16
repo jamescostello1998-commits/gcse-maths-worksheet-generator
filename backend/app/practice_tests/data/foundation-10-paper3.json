@@ -94,22 +94,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide_F",
-      "prompt": "Work out 5 × (-8).",
+      "topic_id": "best_buys_noncalculator_F",
+      "prompt": "A shop sells ground coffee in different sizes: A: £7.20 for 900g; B: £2.80 for 200g; C: £8.00 for 500g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "5 × (-8) = -40"
+        "Work out the price per 100g for each option:",
+        "A: £7.20 ÷ 900 × 100 = 80p per 100g",
+        "B: £2.80 ÷ 200 × 100 = 140p per 100g",
+        "C: £8.00 ÷ 500 × 100 = 160p per 100g",
+        "The lowest price per 100g is A at 80p per 100g, so A is the best value."
       ],
-      "final_answer": "-40",
-      "marks": 2,
+      "final_answer": "A (£7.20 for 900g)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5 × (-8) = -40",
+          "description": "Work out the price per 100g for each option:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A: £7.20 ÷ 900 × 100 = 80p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £2.80 ÷ 200 × 100 = 140p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "C: £8.00 ÷ 500 × 100 = 160p per 100g The lowest price per 100g is A at 80p per 100g, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-40 oe",
+          "description": "A (£7.20 for 900g) oe",
           "marks": 1
         }
       ],
@@ -280,33 +299,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_F",
-      "prompt": "The first 4 triangular numbers are: 1, 3, 6, 10. Find the next term in the sequence.",
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = -2x + 4 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "These are the triangular numbers: the nth term is given by \\frac{n(n + 1)}{2}.",
-        "Term 5 = \\frac{5(5 + 1)}{2} = 30/2 = 15"
+        "Table of values for y = -2x + 4:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 10, 8, 6, 4, 2, 0, -2",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "15",
-      "marks": 3,
+      "final_answer": "Straight line: y = -2x + 4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "These are the triangular numbers: the nth term is given by \\frac{n(n + 1)}{2}.",
+          "description": "Table of values for y = -2x + 4:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 5 = \\frac{5(5 + 1)}{2} = 30/2 = 15",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 10, 8, 6, 4, 2, 0, -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "Straight line: y = -2x + 4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -2,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -3,
+          "y_max": 11,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -2,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -3,
+          "y_max": 11,
+          "table_points": [
+            [
+              -3,
+              10
+            ],
+            [
+              -2,
+              8
+            ],
+            [
+              -1,
+              6
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              -2
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "satisfying_inequalities_F",
@@ -352,112 +436,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 3x = 9",
+      "topic_id": "collect_like_terms_F",
+      "prompt": "Fully simplify 5x + 6x^2 - x + 2x^2 - 1",
       "solution_steps": [
-        "3x = 9",
-        "Divide both sides by 3:",
-        "x = 3"
+        "Start with the expression: 5x + 6x^2 - x + 2x^2 - 1.",
+        "Like terms have exactly the same letter part, so group the x^2 terms, the x terms, and any number terms together, keeping the + or - sign in front of each term.",
+        "Add the coefficients within each group (a term with no number in front counts as 1).",
+        "This simplifies to 8x^2 + 4x - 1."
       ],
-      "final_answer": "3",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "3x = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 3:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_F",
-      "prompt": "Simplify 6x^8 ÷ 3x^4",
-      "solution_steps": [
-        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
-        "6x^8 ÷ 3x^4 = (6÷3) x^(8-4)",
-        "= 2x^4"
-      ],
-      "final_answer": "2x^4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x^8 ÷ 3x^4 = (6÷3) x^(8-4)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2x^4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2x^4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_both_sides_F",
-      "prompt": "Solve: 5x + 3 = 4x + 7",
-      "solution_steps": [
-        "5x + 3 = 4x + 7",
-        "Subtract 4x from both sides:",
-        "x + 3 = 7",
-        "Subtract 3 from both sides:",
-        "x = 4",
-        "x = 4"
-      ],
-      "final_answer": "4",
+      "final_answer": "8x^2 + 4x - 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 3 = 4x + 7",
+          "description": "Start with the expression: 5x + 6x^2 - x + 2x^2 - 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 4x from both sides:",
+          "description": "Like terms have exactly the same letter part, so group the x^2 terms, the x terms, and any number terms together, keeping the + or - sign in front of each term.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x + 3 = 7",
+          "description": "Add the coefficients within each group (a term with no number in front counts as 1).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 3 from both sides: x = 4 x = 4",
+          "description": "This simplifies to 8x^2 + 4x - 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "8x^2 + 4x - 1 oe",
           "marks": 1
         }
       ],
@@ -465,74 +477,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph_F",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "topic_id": "functions_evaluate_F",
+      "prompt": "f(x) = -5x + 10. Find f(0).",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{8 - 0}{1 - -1} = 4",
-        "Using y = mx + c with the point (-1, 0): 0 = 4×(-1) + c, so c = 4",
-        "Equation of the line: y = 4x + 4"
+        "f(0) = -5×(0) + 10",
+        "f(0) = 10"
       ],
-      "final_answer": "y = 4x + 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Gradient = rise/run = \\frac{8 - 0}{1 - -1} = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using y = mx + c with the point (-1, 0): 0 = 4×(-1) + c, so c = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 4x + 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = 4x + 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 4,
-          "c": 4,
-          "x_min": -2,
-          "x_max": 2,
-          "y_min": -5,
-          "y_max": 13
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_1_to_n_F",
-      "prompt": "Write the ratio 6:8 in the form \\plain{n}:1.",
-      "solution_steps": [
-        "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
-        "6 ÷ 8 ≈ 0.75, 8 ÷ 8 = 1"
-      ],
-      "final_answer": "0.75 : 1 (to 2 d.p.)",
+      "final_answer": "10",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
+          "description": "f(0) = -5×(0) + 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6 ÷ 8 ≈ 0.75, 8 ÷ 8 = 1",
+          "description": "f(0) = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.75 : 1 (to 2 d.p.) oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -540,16 +506,129 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys_noncalculator_F",
-      "prompt": "A shop sells ground coffee in different sizes: A: £7.20 for 900g; B: £2.80 for 200g; C: £8.00 for 500g. Which option is the better value for money? Show your working.",
+      "topic_id": "linear_multi_step_F",
+      "prompt": "Solve: 2x + 4 + 5x - 7 = 81",
+      "solution_steps": [
+        "Collect like terms: 2x + 5x = 7x, 4 - 7 = -3",
+        "7x - 3 = 81",
+        "Add 3 to both sides:",
+        "7x = 84",
+        "Divide both sides by 7:",
+        "x = 12"
+      ],
+      "final_answer": "12",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Collect like terms: 2x + 5x = 7x, 4 - 7 = -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "7x - 3 = 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 3 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "7x = 84 Divide both sides by 7: x = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density_F",
+      "prompt": "A block of alloy has a mass of 7659 kg and a density of 97 kg/m³. Find its volume, correct to 2 decimal places.",
+      "solution_steps": [
+        "volume = mass ÷ density",
+        "volume = 7659 ÷ 97 = 78.96 m³ (2 d.p.)"
+      ],
+      "final_answer": "78.96 m³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "volume = mass ÷ density",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "volume = 7659 ÷ 97 = 78.96 m³ (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "78.96 m³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_share_three_part_F",
+      "prompt": "Share 32 in the ratio 6:8:2.",
+      "solution_steps": [
+        "Total parts = 6 + 8 + 2 = 16",
+        "Value of one part = 32 ÷ 16 = 2",
+        "Share 1 = 6 × 2 = 12",
+        "Share 2 = 8 × 2 = 16",
+        "Share 3 = 2 × 2 = 4"
+      ],
+      "final_answer": "12 : 16 : 4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total parts = 6 + 8 + 2 = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 32 ÷ 16 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 6 × 2 = 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 8 × 2 = 16 Share 3 = 2 × 2 = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 : 16 : 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys_F",
+      "prompt": "A shop sells ground coffee in different sizes: A: £6.16 for 275g; B: £2.32 for 100g. Which option is the better value for money? Show your working.",
       "solution_steps": [
         "Work out the price per 100g for each option:",
-        "A: £7.20 ÷ 900 × 100 = 80p per 100g",
-        "B: £2.80 ÷ 200 × 100 = 140p per 100g",
-        "C: £8.00 ÷ 500 × 100 = 160p per 100g",
-        "The lowest price per 100g is A at 80p per 100g, so A is the best value."
+        "A: £6.16 ÷ 275 × 100 = 224.00p per 100g",
+        "B: £2.32 ÷ 100 × 100 = 232.00p per 100g",
+        "The lowest price per 100g is A at 224.00p per 100g, so A is the best value."
       ],
-      "final_answer": "A (£7.20 for 900g)",
+      "final_answer": "A (£6.16 for 275g)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -559,22 +638,22 @@
         },
         {
           "code": "M1",
-          "description": "A: £7.20 ÷ 900 × 100 = 80p per 100g",
+          "description": "A: £6.16 ÷ 275 × 100 = 224.00p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £2.80 ÷ 200 × 100 = 140p per 100g",
+          "description": "B: £2.32 ÷ 100 × 100 = 232.00p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "C: £8.00 ÷ 500 × 100 = 160p per 100g The lowest price per 100g is A at 80p per 100g, so A is the best value.",
+          "description": "The lowest price per 100g is A at 224.00p per 100g, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A (£7.20 for 900g) oe",
+          "description": "A (£6.16 for 275g) oe",
           "marks": 1
         }
       ],
@@ -611,75 +690,77 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 170 in the ratio 6:4.",
+      "topic_id": "trig_missing_angle_F",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "Total parts = 6 + 4 = 10",
-        "Value of one part = 170 ÷ 10 = 17",
-        "Share 1 = 6 × 17 = 102",
-        "Share 2 = 4 × 17 = 68"
+        "Use cos, since we know two of the three sides.",
+        "cos(x) = 7 ÷ 12",
+        "x = cos^-1(7 ÷ 12) = 54.3° (1 d.p.)"
       ],
-      "final_answer": "102 : 68",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 6 + 4 = 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 170 ÷ 10 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 6 × 17 = 102",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 4 × 17 = 68",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "102 : 68 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "vectors_arithmetic_F",
-      "prompt": "\\vec{a} = \\colvec{-8}{1} and \\vec{b} = \\colvec{0}{-3}. Find 4\\vec{a} - 2\\vec{b}.",
-      "solution_steps": [
-        "\\vec{a} = \\colvec{-8}{1}, \\vec{b} = \\colvec{0}{-3}",
-        "4\\vec{a} = \\colvec{-32}{4} and 2\\vec{b} = \\colvec{0}{-6}",
-        "4\\vec{a} - 2\\vec{b} = \\colvec{-32}{10}"
-      ],
-      "final_answer": "\\colvec{-32}{10}",
+      "final_answer": "54.3°",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{-8}{1}, \\vec{b} = \\colvec{0}{-3}",
+          "description": "Use cos, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4\\vec{a} = \\colvec{-32}{4} and 2\\vec{b} = \\colvec{0}{-6}",
+          "description": "cos(x) = 7 ÷ 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4\\vec{a} - 2\\vec{b} = \\colvec{-32}{10}",
+          "description": "x = cos^-1(7 ÷ 12) = 54.3° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{-32}{10} oe",
+          "description": "54.3° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "7 cm",
+          "opposite_label": null,
+          "hyp_label": "12 cm",
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "properties_3d_shapes_F",
+      "prompt": "How many vertices does a hexagonal prism have?",
+      "solution_steps": [
+        "A vertex is a corner point where edges meet.",
+        "A hexagonal prism has 8 faces (2 hexagonal ends + 6 rectangular sides), 18 edges, and 12 vertices (corners).",
+        "So a hexagonal prism has 12 vertices."
+      ],
+      "final_answer": "12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A vertex is a corner point where edges meet.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A hexagonal prism has 8 faces (2 hexagonal ends + 6 rectangular sides), 18 edges, and 12 vertices (corners).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So a hexagonal prism has 12 vertices.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
           "marks": 1
         }
       ],
@@ -718,22 +799,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_lines_F",
-      "prompt": "The diagram shows an irregular pentagon. How many lines of symmetry does it have?",
+      "topic_id": "symmetry_rotational_F",
+      "prompt": "The diagram shows a regular pentagon. State the order of rotational symmetry.",
       "solution_steps": [
-        "An irregular pentagon (of this kind) has no lines of symmetry - no mirror line maps it back onto itself."
+        "Rotating the regular pentagon about its centre, it looks exactly the same 5 times during a full 360° turn.",
+        "So the order of rotational symmetry is 5."
       ],
-      "final_answer": "0 lines of symmetry",
-      "marks": 2,
+      "final_answer": "order 5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "An irregular pentagon (of this kind) has no lines of symmetry - no mirror line maps it back onto itself.",
+          "description": "Rotating the regular pentagon about its centre, it looks exactly the same 5 times during a full 360° turn.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the order of rotational symmetry is 5.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0 lines of symmetry oe",
+          "description": "order 5 oe",
           "marks": 1
         }
       ],
@@ -742,24 +829,24 @@
         "params": {
           "vertices": [
             [
-              0,
-              0
+              2.4492935982947064e-16,
+              4.0
             ],
             [
-              5,
-              0
+              -3.804226065180614,
+              1.23606797749979
             ],
             [
-              6,
-              3
+              -2.351141009169893,
+              -3.2360679774997894
             ],
             [
-              2,
-              5
+              2.3511410091698917,
+              -3.2360679774997902
             ],
             [
-              -2,
-              2
+              3.8042260651806146,
+              1.2360679774997887
             ]
           ],
           "blank": true
@@ -770,53 +857,57 @@
         "params": {
           "vertices": [
             [
-              0,
-              0
+              2.4492935982947064e-16,
+              4.0
             ],
             [
-              5,
-              0
+              -3.804226065180614,
+              1.23606797749979
             ],
             [
-              6,
-              3
+              -2.351141009169893,
+              -3.2360679774997894
             ],
             [
-              2,
-              5
+              2.3511410091698917,
+              -3.2360679774997902
             ],
             [
-              -2,
-              2
+              3.8042260651806146,
+              1.2360679774997887
             ]
           ],
-          "symmetry_lines": []
+          "rotation_centre": [
+            -1.2864981197413091e-16,
+            -1.7763568394002506e-16
+          ],
+          "rotation_order": 5
         }
       }
     },
     {
-      "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape A in the line y = 2.",
+      "topic_id": "transform_rotate_complete_F",
+      "prompt": "Rotate shape A 90° anticlockwise about the centre (1, -1).",
       "solution_steps": [
-        "Reflect each vertex of shape A in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "The image, shape B, has vertices (1, 6), (4, 6), (1, 4)."
+        "Rotate each vertex of shape A 90° anticlockwise about the centre (1, -1): every point stays the same distance from the centre and turns through the same angle.",
+        "The image, shape B, has vertices (-2, -4), (-2, 1), (-4, 1), (-4, -1), (-6, -1), (-6, -4)."
       ],
-      "final_answer": "Image (shape B): (1, 6), (4, 6), (1, 4)",
+      "final_answer": "Image (shape B): (-2, -4), (-2, 1), (-4, 1), (-4, -1), (-6, -1), (-6, -4)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex of shape A in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Rotate each vertex of shape A 90° anticlockwise about the centre (1, -1): every point stays the same distance from the centre and turns through the same angle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The image, shape B, has vertices (1, 6), (4, 6), (1, 4).",
+          "description": "The image, shape B, has vertices (-2, -4), (-2, 1), (-4, 1), (-4, -1), (-6, -1), (-6, -4).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (1, 6), (4, 6), (1, 4) oe",
+          "description": "Image (shape B): (-2, -4), (-2, 1), (-4, 1), (-4, -1), (-6, -1), (-6, -4) oe",
           "marks": 1
         }
       ],
@@ -829,29 +920,39 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              -2
+              -2,
+              2
             ],
             [
-              4,
-              -2
+              3,
+              2
+            ],
+            [
+              3,
+              4
             ],
             [
               1,
-              0
+              4
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              -2,
+              6
             ]
           ],
           "original_labels": [
             "",
             "",
+            "",
+            "",
+            "",
             ""
           ],
-          "original_shape_label": "A",
-          "mirror_line": {
-            "type": "horizontal",
-            "y": 2,
-            "label": "y = 2"
-          }
+          "original_shape_label": "A"
         }
       },
       "solution_diagram": {
@@ -863,44 +964,69 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              -2
+              -2,
+              2
             ],
             [
-              4,
-              -2
+              3,
+              2
+            ],
+            [
+              3,
+              4
             ],
             [
               1,
-              0
+              4
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              -2,
+              6
             ]
           ],
           "original_labels": [
             "",
             "",
+            "",
+            "",
+            "",
             ""
           ],
           "original_shape_label": "A",
-          "mirror_line": {
-            "type": "horizontal",
-            "y": 2,
-            "label": "y = 2"
-          },
           "image_vertices": [
             [
-              1,
-              6
+              -2,
+              -4
             ],
             [
-              4,
-              6
+              -2,
+              1
             ],
             [
-              1,
-              4
+              -4,
+              1
+            ],
+            [
+              -4,
+              -1
+            ],
+            [
+              -6,
+              -1
+            ],
+            [
+              -6,
+              -4
             ]
           ],
           "image_labels": [
+            "",
+            "",
+            "",
             "",
             "",
             ""
@@ -910,106 +1036,143 @@
       }
     },
     {
-      "topic_id": "volume_surface_area_triangular_prism_F",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 10 cm and 24 cm (hypotenuse 26 cm), and length 10 cm. Find its volume.",
+      "topic_id": "set_listing_F",
+      "prompt": "List the elements of the set A = { x : x is even, 3 ≤ x ≤ 19 }.",
       "solution_steps": [
-        "Cross-section area = (1/2) × 10 × 24 = 120 cm²",
-        "Volume = cross-section area × length = 120 × 10 = 1200 cm³"
+        "Read the set-builder rule: it means 'the set of all x such that x is even, 3 ≤ x ≤ 19'.",
+        "Go through the candidates in order and keep only the ones that fit the description.",
+        "Written out in a list (roster form): {4, 6, 8, 10, 12, 14, 16, 18}"
       ],
-      "final_answer": "1200 cm³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Cross-section area = (1/2) × 10 × 24 = 120 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Volume = cross-section area × length = 120 × 10 = 1200 cm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1200 cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangular_prism",
-        "params": {
-          "base_label": "10 cm",
-          "triangle_height_label": "24 cm",
-          "length_label": "10 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_drawing_F",
-      "prompt": "A bag contains 7 green and 8 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is green and the second counter is green.",
-      "solution_steps": [
-        "Draw two branches from the start: P(green) = 7/15, P(blue) = 8/15.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(green then green) = 7/15 × 7/15 = 49/225"
-      ],
-      "final_answer": "49/225",
+      "final_answer": "{4, 6, 8, 10, 12, 14, 16, 18}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(green) = 7/15, P(blue) = 8/15.",
+          "description": "Read the set-builder rule: it means 'the set of all x such that x is even, 3 ≤ x ≤ 19'.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "description": "Go through the candidates in order and keep only the ones that fit the description.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(green then green) = 7/15 × 7/15 = 49/225",
+          "description": "Written out in a list (roster form): {4, 6, 8, 10, 12, 14, 16, 18}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "49/225 oe",
+          "description": "{4, 6, 8, 10, 12, 14, 16, 18} oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "frequency_tree_F",
+      "prompt": "250 people were surveyed. 9/10 of the 250 people do not own a pet; the rest own a pet. Of the 25 who own a pet, 7 are under 18. Of the 225 who do not own a pet, 107 are under 18. Complete the frequency tree, then work out the number of the 250 people who own a pet and are under 18.",
+      "solution_steps": [
+        "Of the 250 people: number who do not own a pet = 9/10 × 250 = 225, so number who own a pet = 250 - 225 = 25",
+        "Of the 25 who own a pet: 7 who are under 18 is given directly, so number who are 18 or over = 25 - 7 = 18",
+        "Of the 225 who do not own a pet: 107 who are under 18 is given directly, so number who are 18 or over = 225 - 107 = 118"
+      ],
+      "final_answer": "7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Of the 250 people: number who do not own a pet = 9/10 × 250 = 225, so number who own a pet = 250 - 225 = 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Of the 25 who own a pet: 7 who are under 18 is given directly, so number who are 18 or over = 25 - 7 = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Of the 225 who do not own a pet: 107 who are under 18 is given directly, so number who are 18 or over = 225 - 107 = 118",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "frequency_tree",
         "params": {
+          "root": "250",
           "stage1": [
             [
-              "Green",
-              "7/15"
+              "Pet",
+              ""
             ],
             [
-              "Blue",
-              "8/15"
+              "No pet",
+              ""
             ]
           ],
           "stage2": [
             [
               [
-                "Green",
-                "7/15"
+                "Under 18",
+                ""
               ],
               [
-                "Blue",
-                "8/15"
+                "18 or over",
+                ""
               ]
             ],
             [
               [
-                "Green",
-                "7/15"
+                "Under 18",
+                ""
               ],
               [
-                "Blue",
-                "8/15"
+                "18 or over",
+                ""
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "frequency_tree",
+        "params": {
+          "root": "250",
+          "stage1": [
+            [
+              "Pet",
+              "25"
+            ],
+            [
+              "No pet",
+              "225"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Under 18",
+                "7"
+              ],
+              [
+                "18 or over",
+                "18"
+              ]
+            ],
+            [
+              [
+                "Under 18",
+                "107"
+              ],
+              [
+                "18 or over",
+                "118"
               ]
             ]
           ]
@@ -1017,147 +1180,71 @@
       }
     },
     {
-      "topic_id": "probability_single_event_F",
-      "prompt": "A bag contains 8 yellow, 6 blue, 8 purple counters. A counter is picked at random. Find the probability that it is purple.",
+      "topic_id": "stats_mean_F",
+      "prompt": "Find the mean of this data set: 12, 2, 15, 11, 20, 23, 3.",
       "solution_steps": [
-        "Total counters = 22",
-        "Number of purple counters = 8",
-        "P(purple) = 8/22 = 4/11"
+        "Mean = sum ÷ count = (12 + 2 + 15 + 11 + 20 + 23 + 3) ÷ 7 = 86 ÷ 7 = 86/7"
       ],
-      "final_answer": "4/11",
-      "marks": 4,
+      "final_answer": "86/7",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total counters = 22",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Number of purple counters = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(purple) = 8/22 = 4/11",
+          "description": "Mean = sum ÷ count = (12 + 2 + 15 + 11 + 20 + 23 + 3) ÷ 7 = 86 ÷ 7 = 86/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "bag_of_counters",
-        "params": {
-          "counts": {
-            "yellow": 8,
-            "blue": 6,
-            "purple": 8
-          }
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "composite_bar_chart_F",
-      "prompt": "The composite bar chart shows the number of sales split by 2023 and 2024. Find the difference between 2023 and 2024 for Jan.",
-      "solution_steps": [
-        "2023: 6, 2024: 7.",
-        "Difference = 1."
-      ],
-      "final_answer": "1",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "2023: 6, 2024: 7.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Difference = 1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "bar_chart",
-        "params": {
-          "categories": [
-            "Jan",
-            "Feb",
-            "Mar"
-          ],
-          "series": [
-            [
-              6,
-              7
-            ],
-            [
-              4,
-              12
-            ],
-            [
-              9,
-              13
-            ]
-          ],
-          "series_labels": [
-            "2023",
-            "2024"
-          ],
-          "y_label": "Frequency"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_F",
-      "prompt": "I think of a number, multiply it by 9 and add 12. The result is 57. Form an equation and solve it to find the number.",
-      "solution_steps": [
-        "Let the number be x.",
-        "9x + 12 = 57",
-        "Subtract 12 from both sides:",
-        "9x = 45",
-        "Divide both sides by 9:",
-        "x = 5"
-      ],
-      "final_answer": "5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let the number be x.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "9x + 12 = 57",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 12 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "9x = 45 Divide both sides by 9: x = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5 oe",
+          "description": "86/7 oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pie_chart_interpret_F",
+      "prompt": "The pie chart shows the favourite subject of 36 people. What percentage chose Science?",
+      "solution_steps": [
+        "Science accounts for 4 out of 36.",
+        "4/36 × 100 = 11.1%."
+      ],
+      "final_answer": "11.1%",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Science accounts for 4 out of 36.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4/36 × 100 = 11.1%.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11.1% oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "pie_chart",
+        "params": {
+          "categories": [
+            "Maths",
+            "English",
+            "Science",
+            "Art"
+          ],
+          "values": [
+            6,
+            11,
+            4,
+            15
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

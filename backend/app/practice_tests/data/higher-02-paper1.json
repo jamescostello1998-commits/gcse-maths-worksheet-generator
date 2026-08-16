@@ -7,40 +7,34 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "hcf_lcm_by_prime_factors_H",
-      "prompt": "Using prime factorisation, find the LCM of 49 and 198.",
+      "topic_id": "powers_H",
+      "prompt": "Evaluate 16^(3/2).",
       "solution_steps": [
-        "49 = 7^2",
-        "198 = 2 × 3^2 × 11",
-        "LCM: take the highest power of each prime",
-        "LCM = 9702"
+        "16^(3/2) = (16^(1/2))^3",
+        "16^(1/2) = 4",
+        "4^3 = 64"
       ],
-      "final_answer": "9702",
-      "marks": 5,
+      "final_answer": "64",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "49 = 7^2",
+          "description": "16^(3/2) = (16^(1/2))^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "198 = 2 × 3^2 × 11",
+          "description": "16^(1/2) = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "LCM: take the highest power of each prime",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "LCM = 9702",
+          "description": "4^3 = 64",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9702 oe",
+          "description": "64 oe",
           "marks": 1
         }
       ],
@@ -112,34 +106,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Fully simplify √14 × √12, giving your answer in the form a√b.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 2√5 + 5√5 + 7√5, giving your answer in the form a√b.",
       "solution_steps": [
-        "√14 × √12 = √(14 × 12) = √168",
-        "Find the largest square factor of 168: 2^2 × 42 = 168",
-        "√168 = √(2^2 × 42) = 2√42"
+        "Every term is a multiple of √5, so they are all like surds.",
+        "Combine the coefficients in order: 2 + 5 + 7 = 14.",
+        "= 14√5"
       ],
-      "final_answer": "2√42",
+      "final_answer": "14√5",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√14 × √12 = √(14 × 12) = √168",
+          "description": "Every term is a multiple of √5, so they are all like surds.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the largest square factor of 168: 2^2 × 42 = 168",
+          "description": "Combine the coefficients in order: 2 + 5 + 7 = 14.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√168 = √(2^2 × 42) = 2√42",
+          "description": "= 14√5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2√42 oe",
+          "description": "14√5 oe",
           "marks": 1
         }
       ],
@@ -252,86 +246,88 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential_H",
-      "prompt": "Complete a table of values for y = 2 × 2^x for x = 0 to 4, then plot the graph.",
+      "topic_id": "trig_graph_H",
+      "prompt": "Complete a table of values for y = sin(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 2 × 2^x:",
-        "x: 0, 1, 2, 3, 4",
-        "y: 2, 4, 8, 16, 32",
-        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+        "Table of values for y = sin(x°):",
+        "x: 0, 90, 180, 270, 360",
+        "y: 0, 1, 0, -1, 0",
+        "Plot each (x, y) point and join them with a single smooth curve - y = sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
       ],
-      "final_answer": "Exponential curve: y = 2 × 2^x",
+      "final_answer": "y = sin(x°)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 2 × 2^x:",
+          "description": "Table of values for y = sin(x°):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: 0, 1, 2, 3, 4",
+          "description": "x: 0, 90, 180, 270, 360",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 2, 4, 8, 16, 32",
+          "description": "y: 0, 1, 0, -1, 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Exponential curve: y = 2 × 2^x oe",
+          "description": "y = sin(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "exponential",
-          "a": 2,
-          "base": 2,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 35.2,
+          "kind": "trigonometric",
+          "fn": "sin",
+          "sign": 1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "exponential",
-          "a": 2,
-          "base": 2,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 35.2,
+          "kind": "trigonometric",
+          "fn": "sin",
+          "sign": 1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
           "table_points": [
             [
               0,
-              2
+              0
             ],
             [
-              1,
-              4
+              90,
+              1
             ],
             [
-              2,
-              8
+              180,
+              0
             ],
             [
-              3,
-              16
+              270,
+              -1
             ],
             [
-              4,
-              32
+              360,
+              0
             ]
           ]
         }
@@ -418,34 +414,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term_H",
-      "prompt": "Here are the first four terms of a quadratic sequence: -16, -25, -36, -49.\nFind an expression for the nth term.",
+      "topic_id": "special_sequences_H",
+      "prompt": "The first 3 terms of a geometric sequence are: 2, 6, 18. Find the 5th term of the sequence.",
       "solution_steps": [
-        "First differences: -9, -11, -13",
-        "Second difference is constant: -2, so the coefficient of n^2 is -2 ÷ 2 = -1",
-        "nth term = -n^2 - 6n - 9"
+        "Common ratio r = 3 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 2 × (3)^4",
+        "Term 5 = 162"
       ],
-      "final_answer": "-n^2 - 6n - 9",
+      "final_answer": "162",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: -9, -11, -13",
+          "description": "Common ratio r = 3 (divide any term by the term before it).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: -2, so the coefficient of n^2 is -2 ÷ 2 = -1",
+          "description": "nth term = a × r^(n - 1) = 2 × (3)^4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -n^2 - 6n - 9",
+          "description": "Term 5 = 162",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-n^2 - 6n - 9 oe",
+          "description": "162 oe",
           "marks": 1
         }
       ],
@@ -453,41 +449,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic_H",
-      "prompt": "Solve the simultaneous equations: y = x^2 - 4x - 5 and y = -11x - 15",
+      "topic_id": "solving_inequalities_H",
+      "prompt": "Solve the inequality: -6(x - 7) ≤ -12",
       "solution_steps": [
-        "Substitute y = -11x - 15 into y = x^2 - 4x - 5: -11x - 15 = x^2 - 4x - 5",
-        "Rearrange: x^2 + 7x + 10 = 0",
-        "Factorise: (x + 5)(x + 2) = 0",
-        "x = -5 or x = -2",
-        "When x = -5, y = 40. When x = -2, y = 7."
+        "Expand the bracket: -6(x - 7) ≤ -12",
+        "-6x + 42 ≤ -12",
+        "Subtract 42 from both sides:",
+        "-6x ≤ -54",
+        "Divide both sides by -6 (dividing by a negative number reverses the inequality sign):",
+        "x ≥ 9"
       ],
-      "final_answer": "(-5, 40) and (-2, 7)",
+      "final_answer": "x ≥ 9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = -11x - 15 into y = x^2 - 4x - 5: -11x - 15 = x^2 - 4x - 5",
+          "description": "Expand the bracket: -6(x - 7) ≤ -12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 + 7x + 10 = 0",
+          "description": "-6x + 42 ≤ -12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 5)(x + 2) = 0",
+          "description": "Subtract 42 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -5 or x = -2 When x = -5, y = 40. When x = -2, y = 7.",
+          "description": "-6x ≤ -54 Divide both sides by -6 (dividing by a negative number reverses the inequality sign): x ≥ 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-5, 40) and (-2, 7) oe",
+          "description": "x ≥ 9 oe",
           "marks": 1
         }
       ],
@@ -495,109 +492,140 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_region_H",
-      "prompt": "On the grid, shade the region that satisfies both y ≥ -x + 1 and y ≤ 2x.",
+      "topic_id": "algebraic_proof_H",
+      "prompt": "Prove algebraically that the difference between the squares of two integers that differ by 4 is always a multiple of 8.",
       "solution_steps": [
-        "Draw the line y = -x + 1 (solid - the line itself is included in the region).",
-        "Draw the line y = 2x (solid - the line itself is included in the region).",
-        "Shade the region where both y ≥ -x + 1 and y ≤ 2x are true at the same time."
+        "Let two integers that differ by 4 be n and n + 4.",
+        "Write the given expression algebraically: (n + 4)^2 - n^2.",
+        "Expand and simplify: (n + 4)^2 - n^2 = 8n + 16.",
+        "Factorise/rearrange to expose the structure: 8n + 16 = 8(n + 2).",
+        "Since 8n + 16 factorises exactly to 8(n + 2), the difference is always 8 times a whole number, so it is always a multiple of 8."
       ],
-      "final_answer": "y ≥ -x + 1 and y ≤ 2x",
-      "marks": 4,
+      "final_answer": "Proven: (n + 4)^2 - n^2 = 8(n + 2), always a multiple of 8.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line y = -x + 1 (solid - the line itself is included in the region).",
+          "description": "Let two integers that differ by 4 be n and n + 4.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw the line y = 2x (solid - the line itself is included in the region).",
+          "description": "Write the given expression algebraically: (n + 4)^2 - n^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the region where both y ≥ -x + 1 and y ≤ 2x are true at the same time.",
+          "description": "Expand and simplify: (n + 4)^2 - n^2 = 8n + 16.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: 8n + 16 = 8(n + 2). Since 8n + 16 factorises exactly to 8(n + 2), the difference is always 8 times a whole number, so it is always a multiple of 8.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y ≥ -x + 1 and y ≤ 2x oe",
+          "description": "Proven: (n + 4)^2 - n^2 = 8(n + 2), always a multiple of 8. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic_H",
+      "prompt": "Complete a table of values for y = x^3 + 3x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^3 + 3x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -36, -14, -4, 0, 4, 14, 36",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = x^3 + 3x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x^3 + 3x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -36, -14, -4, 0, 4, 14, 36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = x^3 + 3x oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "inequality_region",
+        "kind": "function_graph",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
+          "kind": "cubic",
+          "a": 1,
+          "b": 3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "inequality_region",
+        "kind": "function_graph",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "lines": [
-            {
-              "m": -1.0,
-              "c": 1,
-              "op": ">="
-            },
-            {
-              "m": 2.0,
-              "c": 0,
-              "op": "<="
-            }
+          "kind": "cubic",
+          "a": 1,
+          "b": 3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "table_points": [
+            [
+              -3,
+              -36
+            ],
+            [
+              -2,
+              -14
+            ],
+            [
+              -1,
+              -4
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              14
+            ],
+            [
+              3,
+              36
+            ]
           ]
         }
       }
-    },
-    {
-      "topic_id": "kinematics_suvat_H",
-      "prompt": "An object's velocity changes from 5 m/s (u) to 30 m/s (v) over a displacement (s) of 63 m at a constant acceleration. Find this acceleration (a). Give your answer correct to 1 decimal place.",
-      "solution_steps": [
-        "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
-        "v^2 = u^2 + 2as",
-        "Rearrange to make a the subject: a = \\frac{v^2 - u^2}{2s}",
-        "Substitute u = 5, v = 30, s = 63: a = \\frac{30^2 - 5^2}{2 × 63} = \\frac{900 - 25}{126} = 6.9"
-      ],
-      "final_answer": "6.9 m/s^2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "v^2 = u^2 + 2as",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange to make a the subject: a = \\frac{v^2 - u^2}{2s}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute u = 5, v = 30, s = 63: a = \\frac{30^2 - 5^2}{2 × 63} = \\frac{900 - 25}{126} = 6.9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6.9 m/s^2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
     },
     {
       "topic_id": "compound_percentage_H",
@@ -828,7 +856,7 @@
     },
     {
       "topic_id": "area_semicircle_compound_H",
-      "prompt": "A shape is made from a rectangle 8 cm by 11 cm with a semicircle of diameter 8 cm attached to one side. Find the total area, giving your answer in terms of π.",
+      "prompt": "Find the total area of the following compound shape, giving your answer in terms of π.",
       "solution_steps": [
         "Area of rectangle = 8 × 11 = 88 cm²",
         "Radius of semicircle = 8 ÷ 2 = 4 cm",

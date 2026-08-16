@@ -90,6 +90,41 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 2√7 + 3√7 - 3√7, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Every term is a multiple of √7, so they are all like surds.",
+        "Combine the coefficients in order: 2 + 3 - 3 = 2.",
+        "= 2√7"
+      ],
+      "final_answer": "2√7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every term is a multiple of √7, so they are all like surds.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the coefficients in order: 2 + 3 - 3 = 2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 2√7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2√7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "roots_H",
       "prompt": "Fully simplify √44, giving your answer in the form a√b.",
       "solution_steps": [
@@ -112,47 +147,6 @@
         {
           "code": "A1",
           "description": "2√11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 2^(2x) = 1/16.",
-      "solution_steps": [
-        "Write the right-hand side as a power of 2: \\frac{1}{2⁴} = 2^-4",
-        "2^(2x) = 2^-4",
-        "Since the bases match, the powers must be equal: 2x = -4",
-        "x = -4/2 = -2"
-      ],
-      "final_answer": "-2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write the right-hand side as a power of 2: \\frac{1}{2⁴} = 2^-4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2^(2x) = 2^-4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x = -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -4/2 = -2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-2 oe",
           "marks": 1
         }
       ],
@@ -238,42 +232,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets_H",
-      "prompt": "Solve: 6(3x - 7) = 102",
+      "topic_id": "fractional_equations_H",
+      "prompt": "Solve the following equation.\n\\frac{x - 7}{2} + \\frac{x - 1}{3} = 0",
       "solution_steps": [
-        "Expand the bracket: 6(3x - 7) = 18x - 42",
-        "18x - 42 = 102",
-        "Add 42 to both sides:",
-        "18x = 144",
-        "Divide both sides by 18:",
-        "x = 8"
+        "Multiply every term by the LCM of 2 and 3, which is 6:",
+        "5x - 23 = 0",
+        "Add 23 to both sides:",
+        "5x = 23",
+        "Divide both sides by 5:",
+        "x = 23/5"
       ],
-      "final_answer": "8",
+      "final_answer": "x = 23/5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 6(3x - 7) = 18x - 42",
+          "description": "Multiply every term by the LCM of 2 and 3, which is 6:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "18x - 42 = 102",
+          "description": "5x - 23 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 42 to both sides:",
+          "description": "Add 23 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "18x = 144 Divide both sides by 18: x = 8",
+          "description": "5x = 23 Divide both sides by 5: x = 23/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "x = 23/5 oe",
           "marks": 1
         }
       ],
@@ -357,41 +351,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_H",
-      "prompt": "Simplify (3x^-3)^4",
-      "solution_steps": [
-        "Raising a power to another power: multiply the exponents (this still works when the inner exponent is negative or zero), and raise the coefficient to that power too.",
-        "(3x^-3)^4 = 3^4 x^(-3×4)",
-        "= 81x^-12"
-      ],
-      "final_answer": "81x^-12",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Raising a power to another power: multiply the exponents (this still works when the inner exponent is negative or zero), and raise the coefficient to that power too.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(3x^-3)^4 = 3^4 x^(-3×4)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 81x^-12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "81x^-12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "turning_point_of_graph_H",
       "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 14x + 1.",
       "solution_steps": [
@@ -420,6 +379,41 @@
         {
           "code": "A1",
           "description": "(-7, -48) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_indices_H",
+      "prompt": "Simplify (3x^-3)^4",
+      "solution_steps": [
+        "Raising a power to another power: multiply the exponents (this still works when the inner exponent is negative or zero), and raise the coefficient to that power too.",
+        "(3x^-3)^4 = 3^4 x^(-3×4)",
+        "= 81x^-12"
+      ],
+      "final_answer": "81x^-12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Raising a power to another power: multiply the exponents (this still works when the inner exponent is negative or zero), and raise the coefficient to that power too.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(3x^-3)^4 = 3^4 x^(-3×4)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 81x^-12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "81x^-12 oe",
           "marks": 1
         }
       ],
@@ -472,101 +466,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal_H",
-      "prompt": "Complete a table of values for y = \\frac{36}{x} for x = -4 to 4, then plot the graph.",
+      "topic_id": "perpendicular_lines_equation_H",
+      "prompt": "A line is perpendicular to y = -3x + 5 and passes through the point (-1, 8). Find the equation of the line.",
       "solution_steps": [
-        "Table of values for y = \\frac{36}{x}:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -9, -12, -18, -36, 36, 18, 12, 9",
-        "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table.",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
+        "Substitute (-1, 8) into y = 1/3x + c: 8 = 1/3×(-1) + c, so c = 25/3",
+        "Equation of the line: y = 1/3x + 25/3"
       ],
-      "final_answer": "Reciprocal curve: y = \\frac{36}{x}",
-      "marks": 5,
+      "final_answer": "y = 1/3x + 25/3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = \\frac{36}{x}:",
+          "description": "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "Substitute (-1, 8) into y = 1/3x + c: 8 = 1/3×(-1) + c, so c = 25/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -9, -12, -18, -36, 36, 18, 12, 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table. Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "Equation of the line: y = 1/3x + 25/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = \\frac{36}{x} oe",
+          "description": "y = 1/3x + 25/3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 36,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 36,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
-          "table_points": [
-            [
-              -4,
-              -9
-            ],
-            [
-              -3,
-              -12
-            ],
-            [
-              -2,
-              -18
-            ],
-            [
-              -1,
-              -36
-            ],
-            [
-              1,
-              36
-            ],
-            [
-              2,
-              18
-            ],
-            [
-              3,
-              12
-            ],
-            [
-              4,
-              9
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "density_H",
@@ -860,23 +792,23 @@
     },
     {
       "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 5 cm of A AND closer to A than to B.",
+      "prompt": "Shade the region containing points that are both within 2 cm of Y AND closer to line YX than to line YZ.",
       "solution_steps": [
-        "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
-        "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
+        "The boundary for 'within 2 cm of Y' is a circle, centre Y, radius 2 cm - the region is inside this circle.",
+        "The boundary for 'closer to line YX than to line YZ' is the bisector of angle XYZ - the region is on the X side of it.",
         "The required region is where these two conditions overlap."
       ],
-      "final_answer": "The region inside the circle of radius 5 cm centred on A, and on the A side of the perpendicular bisector of AB.",
+      "final_answer": "The region inside the circle of radius 2 cm centred on Y, and on the X side of the bisector of angle XYZ.",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
+          "description": "The boundary for 'within 2 cm of Y' is a circle, centre Y, radius 2 cm - the region is inside this circle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
+          "description": "The boundary for 'closer to line YX than to line YZ' is the bisector of angle XYZ - the region is on the X side of it.",
           "marks": 1
         },
         {
@@ -886,51 +818,59 @@
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 5 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
+          "description": "The region inside the circle of radius 2 cm centred on Y, and on the X side of the bisector of angle XYZ. oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -3.0,
-          "x_max": 9.0,
-          "y_min": -6.0,
-          "y_max": 6.0,
+          "x_min": -5.689520903947508,
+          "x_max": 3.0,
+          "y_min": -5.938441702975689,
+          "y_max": 3.9389262614623664,
           "points": [
             {
               "xy": [
-                3,
-                0
+                0.0,
+                0.0
               ],
-              "label": "A"
+              "label": "Y"
             },
             {
               "xy": [
-                -2,
-                -2
+                -4.045084971874736,
+                2.9389262614623664
               ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                3,
-                0
-              ],
-              "radius": 5
+              "label": "X"
             },
             {
-              "type": "segment",
+              "xy": [
+                0.7821723252011534,
+                -4.938441702975689
+              ],
+              "label": "Z"
+            }
+          ],
+          "given_lines": [
+            {
               "p1": [
-                4.956688116249245,
-                -12.141720290623113
+                0.0,
+                0.0
               ],
               "p2": [
-                -3.9566881162492447,
-                10.141720290623113
+                -4.045084971874736,
+                2.9389262614623664
+              ]
+            },
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                0.7821723252011534,
+                -4.938441702975689
               ]
             }
           ]
@@ -939,44 +879,73 @@
       "solution_diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -3.0,
-          "x_max": 9.0,
-          "y_min": -6.0,
-          "y_max": 6.0,
+          "x_min": -5.689520903947508,
+          "x_max": 3.0,
+          "y_min": -5.938441702975689,
+          "y_max": 3.9389262614623664,
           "points": [
             {
               "xy": [
-                3,
-                0
+                0.0,
+                0.0
               ],
-              "label": "A"
+              "label": "Y"
             },
             {
               "xy": [
-                -2,
-                -2
+                -4.045084971874736,
+                2.9389262614623664
               ],
-              "label": "B"
+              "label": "X"
+            },
+            {
+              "xy": [
+                0.7821723252011534,
+                -4.938441702975689
+              ],
+              "label": "Z"
+            }
+          ],
+          "given_lines": [
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                -4.045084971874736,
+                2.9389262614623664
+              ]
+            },
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                0.7821723252011534,
+                -4.938441702975689
+              ]
             }
           ],
           "boundaries": [
             {
               "type": "circle",
               "centre": [
-                3,
-                0
+                0.0,
+                0.0
               ],
-              "radius": 5
+              "radius": 2
             },
             {
               "type": "segment",
               "p1": [
-                4.956688116249245,
-                -12.141720290623113
+                0.0,
+                0.0
               ],
               "p2": [
-                -3.9566881162492447,
-                10.141720290623113
+                -4.689520903947508,
+                -2.8737421059377177
               ]
             }
           ],
@@ -984,21 +953,33 @@
             {
               "type": "disk",
               "centre": [
-                3,
-                0
+                0.0,
+                0.0
               ],
-              "radius": 5,
+              "radius": 2,
               "inside": true
             },
             {
-              "type": "half_plane",
-              "closer_to": [
-                3,
-                0
+              "type": "closer_to_line",
+              "line_a": [
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.045084971874736,
+                  2.9389262614623664
+                ]
               ],
-              "than": [
-                -2,
-                -2
+              "line_b": [
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.7821723252011534,
+                  -4.938441702975689
+                ]
               ]
             }
           ]
@@ -1130,16 +1111,6 @@
                 "2/9"
               ]
             ]
-          ],
-          "leaf_probs": [
-            [
-              "7/15",
-              "7/30"
-            ],
-            [
-              "7/30",
-              "1/15"
-            ]
           ]
         }
       },
@@ -1251,6 +1222,37 @@
           ]
         }
       }
+    },
+    {
+      "topic_id": "graph_transformations_H",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(x) + 4. Describe this transformation fully.",
+      "solution_steps": [
+        "y = f(x) + 4 corresponds to a translation by vector (0, 4)."
+      ],
+      "final_answer": "Translation by vector (0, 4)",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(x) + 4 corresponds to a translation by vector (0, 4).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Translation by vector (0, 4) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "translate_up",
+          "shift": 4,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x) + 4"
+        }
+      },
+      "solution_diagram": null
     }
   ]
 }

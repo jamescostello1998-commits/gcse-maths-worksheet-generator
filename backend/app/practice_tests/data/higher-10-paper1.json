@@ -7,6 +7,41 @@
   "calculator_allowed": true,
   "questions": [
     {
+      "topic_id": "surds_multiply_divide_H",
+      "prompt": "Simplify √2772 ÷ √7, giving your answer in the form a√b.",
+      "solution_steps": [
+        "√2772 ÷ √7 = √(2772/7) = √396",
+        "Find the largest square factor of 396: 6^2 × 11 = 396",
+        "√396 = √(6^2 × 11) = 6√11"
+      ],
+      "final_answer": "6√11",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√2772 ÷ √7 = √(2772/7) = √396",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 396: 6^2 × 11 = 396",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√396 = √(6^2 × 11) = 6√11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6√11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "roots_H",
       "prompt": "Simplify √56, giving your answer in the form a√b.",
       "solution_steps": [
@@ -36,75 +71,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 25^(x+2) = 5^(3x).",
+      "topic_id": "bounds_calculation_H",
+      "prompt": "A car travels 295 km (to the nearest km) in 19 hours (to the nearest hour). Calculate the lower bound for the average speed of the car, to 1 decimal place.",
       "solution_steps": [
-        "Write both sides as powers of 5: 25 = 5^2 and 5 = 5^1",
-        "25^(x+2) = 5^(3x) becomes 5^(2(x+2)) = 5^(3x), i.e. 5^(2x+4) = 5^(3x)",
-        "Since the bases match, the powers must be equal: 2x + 4 = 3x",
-        "Rearranging: -1x = -4, so x = -4/-1 = 4"
+        "Distance: 295 km (to the nearest km) gives 294.5 ≤ distance < 295.5",
+        "Time: 19 hours (to the nearest hour) gives 18.5 ≤ time < 19.5",
+        "For the lower bound of the speed, divide the lower bound of distance by the upper bound of time: 294.5 ÷ 19.5 = 589/39 ≈ 15.1 km/h"
       ],
-      "final_answer": "4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both sides as powers of 5: 25 = 5^2 and 5 = 5^1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "25^(x+2) = 5^(3x) becomes 5^(2(x+2)) = 5^(3x), i.e. 5^(2x+4) = 5^(3x)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x + 4 = 3x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearranging: -1x = -4, so x = -4/-1 = 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "error_interval_H",
-      "prompt": "A number, x, is 68400 rounded to 3 significant figures. Write down the error interval for x.",
-      "solution_steps": [
-        "The last significant figure of 68400 has a place value of 100, so x can be up to half of that above or below 68400.",
-        "Lower bound: 68400 - 50 = 68350",
-        "Upper bound: 68400 + 50 = 68450"
-      ],
-      "final_answer": "68350 ≤ x < 68450",
+      "final_answer": "15.1 km/h (to 1 d.p.)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The last significant figure of 68400 has a place value of 100, so x can be up to half of that above or below 68400.",
+          "description": "Distance: 295 km (to the nearest km) gives 294.5 ≤ distance < 295.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lower bound: 68400 - 50 = 68350",
+          "description": "Time: 19 hours (to the nearest hour) gives 18.5 ≤ time < 19.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Upper bound: 68400 + 50 = 68450",
+          "description": "For the lower bound of the speed, divide the lower bound of distance by the upper bound of time: 294.5 ÷ 19.5 = 589/39 ≈ 15.1 km/h",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "68350 ≤ x < 68450 oe",
+          "description": "15.1 km/h (to 1 d.p.) oe",
           "marks": 1
         }
       ],
@@ -112,28 +106,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "powers_H",
-      "prompt": "Evaluate 3^0.",
+      "topic_id": "standard_form_add_subtract_H",
+      "prompt": "Work out (1 × 10^7) + (8 × 10^6). Give your answer in standard form.",
       "solution_steps": [
-        "Any nonzero number raised to the power 0 equals 1.",
-        "3^0 = 1"
+        "Write both numbers with the same power of 10: 1×10^7 = 10×10^6, 8×10^6 = 8×10^6",
+        "Add the coefficients: 10 + 8 = 18",
+        "Write in standard form: 18 × 10^6 = 1.8 × 10^7"
       ],
-      "final_answer": "1",
-      "marks": 3,
+      "final_answer": "1.8 × 10^7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Any nonzero number raised to the power 0 equals 1.",
+          "description": "Write both numbers with the same power of 10: 1×10^7 = 10×10^6, 8×10^6 = 8×10^6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3^0 = 1",
+          "description": "Add the coefficients: 10 + 8 = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 18 × 10^6 = 1.8 × 10^7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "1.8 × 10^7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging_H",
+      "prompt": "Fully simplify 125^(1/3) × 125^-2, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "125^(1/3) is the cube root of 125, which is 5, so 125^(1/3) = 5^1",
+        "125^-2 = \\frac{1}{125²} = \\frac{1}{5⁶}",
+        "125^(1/3) × 125^-2 = 5^1 × \\frac{1}{5⁶} = 5^(1-6) = 5^-5",
+        "5^-5 = 1/3125"
+      ],
+      "final_answer": "1/3125",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "125^(1/3) is the cube root of 125, which is 5, so 125^(1/3) = 5^1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "125^-2 = \\frac{1}{125²} = \\frac{1}{5⁶}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "125^(1/3) × 125^-2 = 5^1 × \\frac{1}{5⁶} = 5^(1-6) = 5^-5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^-5 = 1/3125",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/3125 oe",
           "marks": 1
         }
       ],
@@ -250,211 +291,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "kinematics_suvat_H",
-      "prompt": "An object starts with an initial velocity (u) of 22 m/s and has a constant acceleration (a) of 10 m/s^2 over a displacement (s) of 38 m. Find its final velocity (v). Give your answer correct to 1 decimal place.",
-      "solution_steps": [
-        "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
-        "v^2 = u^2 + 2as",
-        "Substitute u = 22, a = 10, s = 38: v^2 = 22^2 + 2 × 10 × 38 = 484 + 760 = 1244",
-        "v = √1244 = 35.3 m/s (taking the positive root, since speed cannot be negative)"
-      ],
-      "final_answer": "35.3 m/s (taking the positive root)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "v^2 = u^2 + 2as",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute u = 22, a = 10, s = 38: v^2 = 22^2 + 2 × 10 × 38 = 484 + 760 = 1244",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "v = √1244 = 35.3 m/s (taking the positive root, since speed cannot be negative)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "35.3 m/s (taking the positive root) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "completing_the_square_H",
-      "prompt": "Write x^2 + 8x - 5 in the form (x + p)^2 + q.",
-      "solution_steps": [
-        "Half the coefficient of x: 8 ÷ 2 = 4",
-        "(x + 4)^2 = x^2 + 8x + 16",
-        "x^2 + 8x - 5 = (x + 4)^2 + (-5 - 16) = (x + 4)^2 - 21"
-      ],
-      "final_answer": "(x + 4)^2 - 21",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Half the coefficient of x: 8 ÷ 2 = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(x + 4)^2 = x^2 + 8x + 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x^2 + 8x - 5 = (x + 4)^2 + (-5 - 16) = (x + 4)^2 - 21",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(x + 4)^2 - 21 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "solve_quadratic_factorising_H",
-      "prompt": "Solve x^2 - 7x - 18 = 0 by factorising.",
-      "solution_steps": [
-        "Find two numbers that multiply to -18 and add to -7: 2 and -9",
-        "Factorise: (x + 2)(x - 9) = 0",
-        "Either x + 2 = 0 or x + -9 = 0",
-        "x = -2 or x = 9"
-      ],
-      "final_answer": "x = -2 or x = 9",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to -18 and add to -7: 2 and -9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x + 2)(x - 9) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 2 = 0 or x + -9 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -2 or x = 9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -2 or x = 9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_graph_H",
-      "prompt": "Complete a table of values for y = -cos(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = -cos(x°):",
-        "x: 0, 90, 180, 270, 360",
-        "y: -1, 0, 1, 0, -1",
-        "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
-      ],
-      "final_answer": "y = -cos(x°)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = -cos(x°):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: 0, 90, 180, 270, 360",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -1, 0, 1, 0, -1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = -cos(x°) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": -1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": -1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "table_points": [
-            [
-              0,
-              -1
-            ],
-            [
-              90,
-              0
-            ],
-            [
-              180,
-              1
-            ],
-            [
-              270,
-              0
-            ],
-            [
-              360,
-              -1
-            ]
-          ]
-        }
-      }
-    },
-    {
       "topic_id": "plot_cubic_H",
       "prompt": "Complete a table of values for y = x^3 - 3x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
@@ -549,34 +385,34 @@
       }
     },
     {
-      "topic_id": "perpendicular_lines_equation_H",
-      "prompt": "A line is perpendicular to y = 3x + 8 and passes through the point (1, 2). Find the equation of the line.",
+      "topic_id": "turning_point_of_graph_H",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 10x + 8.",
       "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × 3 = -1, so m = -1/3",
-        "Substitute (1, 2) into y = -1/3x + c: 2 = -1/3×(1) + c, so c = 7/3",
-        "Equation of the line: y = -1/3x + 7/3"
+        "Complete the square: x^2 - 10x + 8 = (x - 5)^2 - 17",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (5, -17)"
       ],
-      "final_answer": "y = -1/3x + 7/3",
+      "final_answer": "(5, -17)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × 3 = -1, so m = -1/3",
+          "description": "Complete the square: x^2 - 10x + 8 = (x - 5)^2 - 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (1, 2) into y = -1/3x + c: 2 = -1/3×(1) + c, so c = 7/3",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = -1/3x + 7/3",
+          "description": "Turning point = (5, -17)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -1/3x + 7/3 oe",
+          "description": "(5, -17) oe",
           "marks": 1
         }
       ],
@@ -584,40 +420,259 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion_H",
-      "prompt": "y is directly proportional to x^3. When x = 3, y = 135. Find the value of y when x = 7.",
+      "topic_id": "algebraic_indices_H",
+      "prompt": "Simplify 2x^(8/3) × 3x^(1/3)",
       "solution_steps": [
-        "y = kx^3",
-        "135 = k × 3^3 = k × 27",
-        "k = 135 ÷ 27 = 5",
-        "y = 5 × 7^3 = 5 × 343 = 1715"
+        "Multiplying powers of the same base: add the exponents, even when they're fractions.",
+        "2x^(8/3) × 3x^(1/3) = (2×3) x^(\\frac{8}{3}+\\frac{1}{3})",
+        "= 6x^3"
       ],
-      "final_answer": "1715",
-      "marks": 5,
+      "final_answer": "6x^3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = kx^3",
+          "description": "Multiplying powers of the same base: add the exponents, even when they're fractions.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "135 = k × 3^3 = k × 27",
+          "description": "2x^(8/3) × 3x^(1/3) = (2×3) x^(\\frac{8}{3}+\\frac{1}{3})",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = 135 ÷ 27 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = 5 × 7^3 = 5 × 343 = 1715",
+          "description": "= 6x^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1715 oe",
+          "description": "6x^3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal_H",
+      "prompt": "Complete a table of values for y = -\\frac{36}{x} for x = -4 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -\\frac{36}{x}:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: 9, 12, 18, 36, -36, -18, -12, -9",
+        "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table.",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = -\\frac{36}{x}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -\\frac{36}{x}:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 9, 12, 18, 36, -36, -18, -12, -9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table. Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = -\\frac{36}{x} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": -36,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": -36,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "table_points": [
+            [
+              -4,
+              9
+            ],
+            [
+              -3,
+              12
+            ],
+            [
+              -2,
+              18
+            ],
+            [
+              -1,
+              36
+            ],
+            [
+              1,
+              -36
+            ],
+            [
+              2,
+              -18
+            ],
+            [
+              3,
+              -12
+            ],
+            [
+              4,
+              -9
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "special_sequences_H",
+      "prompt": "The first 4 terms of a Fibonacci-type sequence are: 10, 2, 12, 14. Each term (from the 3rd onwards) is found by adding the two terms before it. Find the next term of the sequence.",
+      "solution_steps": [
+        "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+        "12 + 14 = 26"
+      ],
+      "final_answer": "26",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12 + 14 = 26",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "26 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find the distance travelled while the car travels at constant velocity.",
+      "solution_steps": [
+        "Distance = area under the graph = base × height (a rectangle)",
+        "Distance = 25 × 12 = 300 m"
+      ],
+      "final_answer": "300 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Distance = area under the graph = base × height (a rectangle)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = 25 × 12 = 300 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "300 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              33,
+              12
+            ],
+            [
+              43,
+              0
+            ]
+          ],
+          "x_max": 48,
+          "y_max": 17,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solving_inequalities_H",
+      "prompt": "Solve the inequality: 4x + 2 < 7x - 5",
+      "solution_steps": [
+        "4x + 2 < 7x - 5",
+        "Subtract 7x from both sides:",
+        "-3x + 2 < -5",
+        "Subtract 2 from both sides:",
+        "-3x < -7",
+        "Divide both sides by -3 (dividing by a negative number reverses the inequality sign):",
+        "x > 7/3"
+      ],
+      "final_answer": "x > 7/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "4x + 2 < 7x - 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 7x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-3x + 2 < -5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 2 from both sides: -3x < -7 Divide both sides by -3 (dividing by a negative number reverses the inequality sign): x > 7/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x > 7/3 oe",
           "marks": 1
         }
       ],
@@ -754,68 +809,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_around_point_H",
-      "prompt": "The angles 92°, 83°, 133° and (5x - 23)° are angles around a point. Find x.",
+      "topic_id": "compound_percentage_H",
+      "prompt": "A price of £132 decreases by 30%, then decreases by 15%. Find the final price.",
       "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "5x - 23 = 52",
-        "Add 23 to both sides:",
-        "5x = 75",
-        "Divide both sides by 5:",
-        "x = 15"
+        "After the first change: 132 × 0.70 = 92.40",
+        "After the second change: 92.40 × 0.85 = 78.54"
       ],
-      "final_answer": "15",
-      "marks": 5,
+      "final_answer": "£78.54",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles around a point sum to 360°.",
+          "description": "After the first change: 132 × 0.70 = 92.40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x - 23 = 52",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 23 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x = 75 Divide both sides by 5: x = 15",
+          "description": "After the second change: 92.40 × 0.85 = 78.54",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "£78.54 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            92,
-            83,
-            133,
-            52
-          ],
-          "labels": [
-            "92°",
-            "83°",
-            "133°",
-            "(5x - 23)°"
-          ],
-          "around_point": true
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "volume_surface_area_pyramid_H",
-      "prompt": "A square-based pyramid has a base of side 12 cm and a perpendicular height of 18 cm. Find its total surface area, correct to 3 significant figures.",
+      "prompt": "Here is a square-based pyramid. Find its total surface area, correct to 3 significant figures.",
       "solution_steps": [
         "Slant height l = √(height² + (base ÷ 2)²) = √(18² + (12 ÷ 2)²) ≈ 19.0 cm",
         "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.0",
@@ -891,23 +915,23 @@
     },
     {
       "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 4 cm of B AND closer to B than to A.",
+      "prompt": "Shade the region containing points that are both within 6 cm of A AND closer to A than to B.",
       "solution_steps": [
-        "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
-        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+        "The boundary for 'within 6 cm of A' is a circle, centre A, radius 6 cm - the region is inside this circle.",
+        "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
         "The required region is where these two conditions overlap."
       ],
-      "final_answer": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "final_answer": "The region inside the circle of radius 6 cm centred on A, and on the A side of the perpendicular bisector of AB.",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
+          "description": "The boundary for 'within 6 cm of A' is a circle, centre A, radius 6 cm - the region is inside this circle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+          "description": "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
           "marks": 1
         },
         {
@@ -917,97 +941,78 @@
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "description": "The region inside the circle of radius 6 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -9.0,
-          "x_max": 1.0,
-          "y_min": -9.0,
-          "y_max": 1.0,
+          "x_min": -7.0,
+          "x_max": 7.0,
+          "y_min": -11.0,
+          "y_max": 4.0,
           "points": [
             {
               "xy": [
-                -4,
-                0
+                0,
+                -4
               ],
               "label": "A"
             },
             {
               "xy": [
                 -4,
-                -4
+                3
               ],
               "label": "B"
             }
           ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -4,
-                -4
-              ],
-              "radius": 4
-            },
-            {
-              "type": "segment",
-              "p1": [
-                6.0,
-                -2.0
-              ],
-              "p2": [
-                -14.0,
-                -2.0
-              ]
-            }
-          ]
+          "given_lines": []
         }
       },
       "solution_diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -9.0,
-          "x_max": 1.0,
-          "y_min": -9.0,
-          "y_max": 1.0,
+          "x_min": -7.0,
+          "x_max": 7.0,
+          "y_min": -11.0,
+          "y_max": 4.0,
           "points": [
             {
               "xy": [
-                -4,
-                0
+                0,
+                -4
               ],
               "label": "A"
             },
             {
               "xy": [
                 -4,
-                -4
+                3
               ],
               "label": "B"
             }
           ],
+          "given_lines": [],
           "boundaries": [
             {
               "type": "circle",
               "centre": [
-                -4,
+                0,
                 -4
               ],
-              "radius": 4
+              "radius": 6
             },
             {
               "type": "segment",
               "p1": [
-                6.0,
-                -2.0
+                -15.02364713186689,
+                -7.942084075352508
               ],
               "p2": [
-                -14.0,
-                -2.0
+                11.02364713186689,
+                6.942084075352508
               ]
             }
           ],
@@ -1015,21 +1020,21 @@
             {
               "type": "disk",
               "centre": [
-                -4,
+                0,
                 -4
               ],
-              "radius": 4,
+              "radius": 6,
               "inside": true
             },
             {
               "type": "half_plane",
               "closer_to": [
-                -4,
+                0,
                 -4
               ],
               "than": [
                 -4,
-                0
+                3
               ]
             }
           ]
@@ -1037,96 +1042,176 @@
       }
     },
     {
-      "topic_id": "venn_diagram_notation_H",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}. The Venn diagram shows sets A and B. List the elements of A ∩ B'.",
+      "topic_id": "transform_rotate_describe_H",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
-        "A = {2, 5, 6}, B = {2, 3, 4, 6}",
-        "A ∩ B' means the elements in A but not in B.",
-        "A ∩ B' = {5}"
+        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+        "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (-2, 4)."
       ],
-      "final_answer": "{5}",
-      "marks": 5,
+      "final_answer": "Rotation 90° clockwise about (-2, 4)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
+          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {2, 5, 6}, B = {2, 3, 4, 6}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A ∩ B' means the elements in A but not in B.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A ∩ B' = {5}",
+          "description": "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (-2, 4).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{5} oe",
+          "description": "Rotation 90° clockwise about (-2, 4) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "venn_diagram",
+        "kind": "grid_transformation",
         "params": {
-          "labels": [
-            "A",
-            "B"
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              1,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              0,
+              5
+            ]
           ],
-          "universal_label": "S",
-          "region_text": {
-            "a_only": "5",
-            "b_only": "3, 4",
-            "both": "2, 6",
-            "neither": "1, 7, 8"
-          }
+          "original_labels": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "image_vertices": [
+            [
+              -4,
+              1
+            ],
+            [
+              -4,
+              -3
+            ],
+            [
+              0,
+              -2
+            ],
+            [
+              -1,
+              2
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B",
+          "image_same_color": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_rearrange_H",
-      "prompt": "a = \\frac{v - u}{t}. Make u the subject of the formula, then find the value of u when v = 33, a = -1 and t = 8.",
+      "topic_id": "angles_around_point_H",
+      "prompt": "The angles 92°, 83°, 133° and (5x - 23)° are angles around a point. Find x.",
       "solution_steps": [
-        "a = \\frac{v - u}{t}",
-        "Rearrange to make u the subject: u = v - at",
-        "Substitute v = 33, a = -1 and t = 8: u = 33 - -1 × 8",
-        "u = 41"
+        "Angles around a point sum to 360°.",
+        "5x - 23 = 52",
+        "Add 23 to both sides:",
+        "5x = 75",
+        "Divide both sides by 5:",
+        "x = 15"
       ],
-      "final_answer": "u = 41",
+      "final_answer": "15",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "a = \\frac{v - u}{t}",
+          "description": "Angles around a point sum to 360°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange to make u the subject: u = v - at",
+          "description": "5x - 23 = 52",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute v = 33, a = -1 and t = 8: u = 33 - -1 × 8",
+          "description": "Add 23 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "u = 41",
+          "description": "5x = 75 Divide both sides by 5: x = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "u = 41 oe",
+          "description": "15 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            92,
+            83,
+            133,
+            52
+          ],
+          "labels": [
+            "92°",
+            "83°",
+            "133°",
+            "(5x - 23)°"
+          ],
+          "around_point": true
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_combined_dice_H",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 1.",
+      "solution_steps": [
+        "P(first die is 1) = 1/6, P(second die is 1) = 1/6",
+        "Independent events multiply: P(both 1) = 1/6 × 1/6 = 1/36"
+      ],
+      "final_answer": "1/36",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(first die is 1) = 1/6, P(second die is 1) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Independent events multiply: P(both 1) = 1/6 × 1/6 = 1/36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/36 oe",
           "marks": 1
         }
       ],

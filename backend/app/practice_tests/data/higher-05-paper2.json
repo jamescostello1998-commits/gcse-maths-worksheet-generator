@@ -7,40 +7,34 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "decimals_recurring_to_fraction_H",
-      "prompt": "Write \\recur{0.}{538461} as a fraction in its simplest form.",
+      "topic_id": "standard_form_multiply_divide_H",
+      "prompt": "Work out (4 × 10^6) × (4 × 10^-3). Give your answer in standard form.",
       "solution_steps": [
-        "Let x = \\recur{0.}{538461}",
-        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
-        "This gives x = 538461/999999",
-        "Simplify: 7/13"
+        "Multiply the mantissas: 4 × 4 = 16",
+        "Add the powers of 10: 6 + -3 = 3",
+        "Renormalize so the mantissa is between 1 and 10: 1.6 × 10^4"
       ],
-      "final_answer": "7/13",
-      "marks": 5,
+      "final_answer": "1.6 × 10^4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{538461}",
+          "description": "Multiply the mantissas: 4 × 4 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "description": "Add the powers of 10: 6 + -3 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "This gives x = 538461/999999",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 7/13",
+          "description": "Renormalize so the mantissa is between 1 and 10: 1.6 × 10^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/13 oe",
+          "description": "1.6 × 10^4 oe",
           "marks": 1
         }
       ],
@@ -159,34 +153,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A car travels 233 km (to the nearest km) in 20 hours (to the nearest hour). Calculate the lower bound for the average speed of the car, to 1 decimal place.",
+      "topic_id": "prime_factors_H",
+      "prompt": "Write 806 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Distance: 233 km (to the nearest km) gives 232.5 ≤ distance < 233.5",
-        "Time: 20 hours (to the nearest hour) gives 19.5 ≤ time < 20.5",
-        "For the lower bound of the speed, divide the lower bound of distance by the upper bound of time: 232.5 ÷ 20.5 = 465/41 ≈ 11.3 km/h"
+        "Divide 806 repeatedly by the smallest prime that fits: 2 × 13 × 31",
+        "Write repeated factors using index notation: 806 = 2 × 13 × 31"
       ],
-      "final_answer": "11.3 km/h (to 1 d.p.)",
-      "marks": 4,
+      "final_answer": "2 × 13 × 31",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance: 233 km (to the nearest km) gives 232.5 ≤ distance < 233.5",
+          "description": "Divide 806 repeatedly by the smallest prime that fits: 2 × 13 × 31",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time: 20 hours (to the nearest hour) gives 19.5 ≤ time < 20.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For the lower bound of the speed, divide the lower bound of distance by the upper bound of time: 232.5 ÷ 20.5 = 465/41 ≈ 11.3 km/h",
+          "description": "Write repeated factors using index notation: 806 = 2 × 13 × 31",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11.3 km/h (to 1 d.p.) oe",
+          "description": "2 × 13 × 31 oe",
           "marks": 1
         }
       ],
@@ -235,34 +223,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_H",
-      "prompt": "Simplify x^(5/3) × 2x^(1/3)",
+      "topic_id": "error_interval_H",
+      "prompt": "A number, x, is 40 rounded to 1 significant figure. Write down the error interval for x.",
       "solution_steps": [
-        "Multiplying powers of the same base: add the exponents, even when they're fractions.",
-        "x^(5/3) × 2x^(1/3) = (1×2) x^(\\frac{5}{3}+\\frac{1}{3})",
-        "= 2x^2"
+        "The last significant figure of 40 has a place value of 10, so x can be up to half of that above or below 40.",
+        "Lower bound: 40 - 5 = 35",
+        "Upper bound: 40 + 5 = 45"
       ],
-      "final_answer": "2x^2",
+      "final_answer": "35 ≤ x < 45",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents, even when they're fractions.",
+          "description": "The last significant figure of 40 has a place value of 10, so x can be up to half of that above or below 40.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x^(5/3) × 2x^(1/3) = (1×2) x^(\\frac{5}{3}+\\frac{1}{3})",
+          "description": "Lower bound: 40 - 5 = 35",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 2x^2",
+          "description": "Upper bound: 40 + 5 = 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2x^2 oe",
+          "description": "35 ≤ x < 45 oe",
           "marks": 1
         }
       ],
@@ -321,43 +309,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_H",
-      "prompt": "Solve the inequality: 5x - 4 ≤ 7x",
+      "topic_id": "quadratic_inequalities_H",
+      "prompt": "Solve the inequality: x^2 + 8x - 9 > 0",
       "solution_steps": [
-        "5x - 4 ≤ 7x",
-        "Subtract 7x from both sides:",
-        "-2x - 4 ≤ 0",
-        "Add 4 to both sides:",
-        "-2x ≤ 4",
-        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
-        "x ≥ -2"
+        "Factorise: x^2 + 8x - 9 = (x - 1)(x + 9)",
+        "The critical values are x = -9 and x = 1.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+        "Answer: x < -9 or x > 1"
       ],
-      "final_answer": "x ≥ -2",
+      "final_answer": "x < -9 or x > 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x - 4 ≤ 7x",
+          "description": "Factorise: x^2 + 8x - 9 = (x - 1)(x + 9)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 7x from both sides:",
+          "description": "The critical values are x = -9 and x = 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-2x - 4 ≤ 0",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 4 to both sides: -2x ≤ 4 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x ≥ -2",
+          "description": "Answer: x < -9 or x > 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≥ -2 oe",
+          "description": "x < -9 or x > 1 oe",
           "marks": 1
         }
       ],
@@ -365,42 +350,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_different_coefficient_H",
-      "prompt": "Solve the simultaneous equations: 2x + 2y = -2 and 4x + 5y = -7",
+      "topic_id": "simultaneous_quadratic_H",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 3x - 4 and y = 9x - 9",
       "solution_steps": [
-        "2x + 2y = -2  (1)",
-        "4x + 5y = -7  (2)",
-        "(1) × 5: 10x + 10y = -10  (3)",
-        "(2) × 2: 8x + 10y = -14  (4)",
-        "(3) - (4): 2x = 4, so x = 2",
-        "Substitute x = 2 into (1): 2y = -6, so y = -3"
+        "Substitute y = 9x - 9 into y = x^2 + 3x - 4: 9x - 9 = x^2 + 3x - 4",
+        "Rearrange: x^2 - 6x + 5 = 0",
+        "Factorise: (x - 5)(x - 1) = 0",
+        "x = 5 or x = 1",
+        "When x = 5, y = 36. When x = 1, y = 0."
       ],
-      "final_answer": "x = 2, y = -3",
+      "final_answer": "(5, 36) and (1, 0)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2x + 2y = -2  (1)",
+          "description": "Substitute y = 9x - 9 into y = x^2 + 3x - 4: 9x - 9 = x^2 + 3x - 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 5y = -7  (2)",
+          "description": "Rearrange: x^2 - 6x + 5 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(1) × 5: 10x + 10y = -10  (3)",
+          "description": "Factorise: (x - 5)(x - 1) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2) × 2: 8x + 10y = -14  (4) (3) - (4): 2x = 4, so x = 2 Substitute x = 2 into (1): 2y = -6, so y = -3",
+          "description": "x = 5 or x = 1 When x = 5, y = 36. When x = 1, y = 0.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 2, y = -3 oe",
+          "description": "(5, 36) and (1, 0) oe",
           "marks": 1
         }
       ],
@@ -543,41 +527,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic_H",
-      "prompt": "Solve the simultaneous equations: y = x^2 + 3x - 4 and y = 9x - 9",
+      "topic_id": "solving_inequalities_H",
+      "prompt": "Solve the inequality: 5x - 4 ≤ 7x",
       "solution_steps": [
-        "Substitute y = 9x - 9 into y = x^2 + 3x - 4: 9x - 9 = x^2 + 3x - 4",
-        "Rearrange: x^2 - 6x + 5 = 0",
-        "Factorise: (x - 5)(x - 1) = 0",
-        "x = 5 or x = 1",
-        "When x = 5, y = 36. When x = 1, y = 0."
+        "5x - 4 ≤ 7x",
+        "Subtract 7x from both sides:",
+        "-2x - 4 ≤ 0",
+        "Add 4 to both sides:",
+        "-2x ≤ 4",
+        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
+        "x ≥ -2"
       ],
-      "final_answer": "(5, 36) and (1, 0)",
+      "final_answer": "x ≥ -2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = 9x - 9 into y = x^2 + 3x - 4: 9x - 9 = x^2 + 3x - 4",
+          "description": "5x - 4 ≤ 7x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 - 6x + 5 = 0",
+          "description": "Subtract 7x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 5)(x - 1) = 0",
+          "description": "-2x - 4 ≤ 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 5 or x = 1 When x = 5, y = 36. When x = 1, y = 0.",
+          "description": "Add 4 to both sides: -2x ≤ 4 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x ≥ -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(5, 36) and (1, 0) oe",
+          "description": "x ≥ -2 oe",
           "marks": 1
         }
       ],
@@ -696,44 +682,36 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_H",
-      "prompt": "Shape A and Shape B are similar. The volume of shape A is 1 cm^3. Find the volume of shape B.",
+      "topic_id": "area_circle_H",
+      "prompt": "Find the area of the following circle, in terms of π.",
       "solution_steps": [
-        "Linear scale factor = 6 ÷ 2 = 3",
-        "Volume scale factor = (3)^3 = 27",
-        "Volume of B = 1 × 27 = 27 cm^3"
+        "Area = π × r² = π × 8² = 64π cm²",
+        "≈ 201 cm² (3 s.f.)"
       ],
-      "final_answer": "27 cm^3",
-      "marks": 4,
+      "final_answer": "64π cm² (≈ 201 cm²)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear scale factor = 6 ÷ 2 = 3",
+          "description": "Area = π × r² = π × 8² = 64π cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume scale factor = (3)^3 = 27",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Volume of B = 1 × 27 = 27 cm^3",
+          "description": "≈ 201 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27 cm^3 oe",
+          "description": "64π cm² (≈ 201 cm²) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_similar_rectangles",
+        "kind": "circle",
         "params": {
-          "shape_kind": "rectangle",
-          "orientation": "br",
-          "a_width_label": "2 cm",
-          "b_width_label": "6 cm"
+          "radius": 8,
+          "label": "8 cm"
         }
       },
       "solution_diagram": null
@@ -1014,111 +992,109 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional_H",
-      "prompt": "A bag contains 6 red and 5 yellow counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
+      "topic_id": "venn_diagram_algebra_H",
+      "prompt": "The Venn diagram shows the number of elements in each region of sets A and B, given in terms of x. There are 67 elements in total. Find the value of x, and hence find the probability that a randomly chosen element is in A.",
       "solution_steps": [
-        "P(both red) = 6/11 × 5/10 = 3/11",
-        "P(both yellow) = 5/11 × 4/10 = 2/11",
-        "P(both same colour) = 3/11 + 2/11 = 5/11"
+        "a_only + b_only + both + neither = total: (2x) + (2x) + (x + 2) + 20 = 67",
+        "Collecting like terms: 5x + 22 = 67",
+        "x = 9",
+        "Substituting x = 9: A only = 18, B only = 18, both = 11, neither = 20",
+        "The probability that a randomly chosen element is in A = 29/67"
       ],
-      "final_answer": "5/11",
-      "marks": 4,
+      "final_answer": "29/67",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(both red) = 6/11 × 5/10 = 3/11",
+          "description": "a_only + b_only + both + neither = total: (2x) + (2x) + (x + 2) + 20 = 67",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both yellow) = 5/11 × 4/10 = 2/11",
+          "description": "Collecting like terms: 5x + 22 = 67",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both same colour) = 3/11 + 2/11 = 5/11",
+          "description": "x = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substituting x = 9: A only = 18, B only = 18, both = 11, neither = 20 The probability that a randomly chosen element is in A = 29/67",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/11 oe",
+          "description": "29/67 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "tree_diagram",
+        "kind": "venn_diagram",
         "params": {
-          "stage1": [
-            [
-              "Red",
-              ""
-            ],
-            [
-              "Yellow",
-              ""
-            ]
+          "labels": [
+            "A",
+            "B"
           ],
-          "stage2": [
-            [
-              [
-                "Red",
-                ""
-              ],
-              [
-                "Yellow",
-                ""
-              ]
-            ],
-            [
-              [
-                "Red",
-                ""
-              ],
-              [
-                "Yellow",
-                ""
-              ]
-            ]
-          ]
+          "region_text": {
+            "a_only": "2x",
+            "b_only": "2x",
+            "both": "x + 2",
+            "neither": "20"
+          }
         }
       },
-      "solution_diagram": {
-        "kind": "tree_diagram",
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find its acceleration during the first phase.",
+      "solution_steps": [
+        "Acceleration = change in velocity ÷ time = 15 ÷ 5 = 3 m/s^2"
+      ],
+      "final_answer": "3 m/s^2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Acceleration = change in velocity ÷ time = 15 ÷ 5 = 3 m/s^2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 m/s^2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
         "params": {
-          "stage1": [
+          "points": [
             [
-              "Red",
-              "6/11"
+              0,
+              0
             ],
             [
-              "Yellow",
-              "5/11"
+              5,
+              15
+            ],
+            [
+              20,
+              15
+            ],
+            [
+              30,
+              0
             ]
           ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "5/10"
-              ],
-              [
-                "Yellow",
-                "5/10"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "6/10"
-              ],
-              [
-                "Yellow",
-                "4/10"
-              ]
-            ]
-          ]
+          "x_max": 35,
+          "y_max": 20,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
         }
-      }
+      },
+      "solution_diagram": null
     }
   ]
 }

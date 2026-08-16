@@ -343,20 +343,20 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line_F",
-      "prompt": "Complete a table of values for y = 3x for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_quadratic_F",
+      "prompt": "Complete a table of values for y = -x^2 + x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 3x:",
+        "Table of values for y = -x^2 + x:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -9, -6, -3, 0, 3, 6, 9",
-        "Plot each (x, y) point and join them with a single ruled straight line."
+        "y: -12, -6, -2, 0, 0, -2, -6",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Straight line: y = 3x",
+      "final_answer": "Quadratic curve: y = -x^2 + x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 3x:",
+          "description": "Table of values for y = -x^2 + x:",
           "marks": 1
         },
         {
@@ -366,47 +366,49 @@
         },
         {
           "code": "M1",
-          "description": "y: -9, -6, -3, 0, 3, 6, 9",
+          "description": "y: -12, -6, -2, 0, 0, -2, -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = 3x oe",
+          "description": "Quadratic curve: y = -x^2 + x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "linear",
-          "m": 3,
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
           "c": 0,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -10,
-          "y_max": 10,
+          "y_min": -13,
+          "y_max": 1,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "linear",
-          "m": 3,
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
           "c": 0,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -10,
-          "y_max": 10,
+          "y_min": -13,
+          "y_max": 1,
           "table_points": [
             [
               -3,
-              -9
+              -12
             ],
             [
               -2,
@@ -414,7 +416,7 @@
             ],
             [
               -1,
-              -3
+              -2
             ],
             [
               0,
@@ -422,15 +424,15 @@
             ],
             [
               1,
-              3
+              0
             ],
             [
               2,
-              6
+              -2
             ],
             [
               3,
-              9
+              -6
             ]
           ]
         }
@@ -471,6 +473,35 @@
         {
           "code": "A1",
           "description": "x > 10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_next_term_F",
+      "prompt": "Find the next term in the sequence: -6, -10, -14, -18, ...",
+      "solution_steps": [
+        "Subtract 4 each time.",
+        "Next term = -18 - 4 = -22"
+      ],
+      "final_answer": "-22",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Subtract 4 each time.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Next term = -18 - 4 = -22",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-22 oe",
           "marks": 1
         }
       ],
@@ -519,35 +550,6 @@
           "shade": "right"
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sequences_next_term_F",
-      "prompt": "Find the next term in the sequence: -6, -10, -14, -18, ...",
-      "solution_steps": [
-        "Subtract 4 each time.",
-        "Next term = -18 - 4 = -22"
-      ],
-      "final_answer": "-22",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Subtract 4 each time.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Next term = -18 - 4 = -22",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-22 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -621,41 +623,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_no_coefficient_F",
-      "prompt": "Expand and simplify: (x + 8)(x + 1)",
+      "topic_id": "expand_double_brackets_F",
+      "prompt": "Expand and simplify: (x + 5)(x + 5)",
       "solution_steps": [
-        "First: x × x = x^2",
-        "Outer: x × 1 = 1x",
-        "Inner: 8 × x = 8x",
-        "Last: 8 × 1 = 8",
-        "Combine like terms: x^2 + 9x + 8"
+        "First: 1x × 1x = 1x^2",
+        "Outer: 1x × 5 = 5x",
+        "Inner: 5 × 1x = 5x",
+        "Last: 5 × 5 = 25",
+        "Combine like terms: x^2 + 10x + 25"
       ],
-      "final_answer": "x^2 + 9x + 8",
+      "final_answer": "x^2 + 10x + 25",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: x × x = x^2",
+          "description": "First: 1x × 1x = 1x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: x × 1 = 1x",
+          "description": "Outer: 1x × 5 = 5x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 8 × x = 8x",
+          "description": "Inner: 5 × 1x = 5x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 8 × 1 = 8 Combine like terms: x^2 + 9x + 8",
+          "description": "Last: 5 × 5 = 25 Combine like terms: x^2 + 10x + 25",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x^2 + 9x + 8 oe",
+          "description": "x^2 + 10x + 25 oe",
           "marks": 1
         }
       ],
@@ -878,7 +880,7 @@
     },
     {
       "topic_id": "construction_triangle_F",
-      "prompt": "Triangle IDG has ID = 13 cm, DG = 4 cm, and IG = 12 cm. Describe, step by step, how to construct triangle IDG using only a ruler and a pair of compasses.",
+      "prompt": "Triangle IDG has ID = 13 cm, DG = 4 cm, and IG = 12 cm. Construct triangle IDG using only a ruler and a pair of compasses.",
       "solution_steps": [
         "Draw the line segment ID = 13 cm using a ruler.",
         "Open the compasses to 12 cm. With the point on I, draw an arc above the line.",
@@ -914,32 +916,45 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_c_label": "13 cm",
+          "side_a_label": "4 cm",
+          "side_b_label": "12 cm",
+          "show_vertices": true,
+          "vertex_labels": [
+            "I",
+            "D",
+            "G"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_complete_F",
-      "prompt": "Translate shape A by the vector \\colvec{5}{0}.",
+      "topic_id": "transform_translate_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "Translate every vertex of shape A by the vector \\colvec{5}{0}: move each point 5 squares right and 0 squares up.",
-        "The image, shape B, has vertices (2, 3), (7, 3), (3, 7)."
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, -3), with the matching vertex of shape B, (-4, -5), gives the vector \\colvec{-6}{-2}.",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
-      "final_answer": "Image (shape B): (2, 3), (7, 3), (3, 7)",
+      "final_answer": "Translation by the vector \\colvec{-6}{-2}",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Translate every vertex of shape A by the vector \\colvec{5}{0}: move each point 5 squares right and 0 squares up.",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, -3), with the matching vertex of shape B, (-4, -5), gives the vector \\colvec{-6}{-2}.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The image, shape B, has vertices (2, 3), (7, 3), (3, 7).",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (2, 3), (7, 3), (3, 7) oe",
+          "description": "Translation by the vector \\colvec{-6}{-2} oe",
           "marks": 1
         }
       ],
@@ -952,45 +967,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -3,
-              3
-            ],
-            [
               2,
-              3
+              -3
             ],
             [
-              -2,
-              7
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A"
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              3
+              7,
+              -3
             ],
             [
-              2,
-              3
-            ],
-            [
-              -2,
-              7
+              3,
+              1
             ]
           ],
           "original_labels": [
@@ -1001,16 +987,16 @@
           "original_shape_label": "A",
           "image_vertices": [
             [
-              2,
-              3
+              -4,
+              -5
             ],
             [
-              7,
-              3
+              1,
+              -5
             ],
             [
-              3,
-              7
+              -3,
+              -1
             ]
           ],
           "image_labels": [
@@ -1018,9 +1004,11 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "area_subtract_compound_F",

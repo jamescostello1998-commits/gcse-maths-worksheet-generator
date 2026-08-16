@@ -257,40 +257,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets_F",
-      "prompt": "Solve: 2(2x) = 4",
+      "topic_id": "linear_both_sides_F",
+      "prompt": "Solve: 3x + 7 = 4x + 5",
       "solution_steps": [
-        "Expand the bracket: 2(2x) = 4x",
-        "4x = 4",
-        "Divide both sides by 4:",
-        "x = 1"
+        "3x + 7 = 4x + 5",
+        "Subtract 4x from both sides:",
+        "-x + 7 = 5",
+        "Subtract 7 from both sides:",
+        "-x = -2",
+        "Divide both sides by -1:",
+        "x = 2"
       ],
-      "final_answer": "1",
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 2(2x) = 4x",
+          "description": "3x + 7 = 4x + 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x = 4",
+          "description": "Subtract 4x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 4:",
+          "description": "-x + 7 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 1",
+          "description": "Subtract 7 from both sides: -x = -2 Divide both sides by -1: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -368,34 +371,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 7x = 77",
+      "topic_id": "collect_like_terms_F",
+      "prompt": "Fully simplify -8 - 6x + 2 - 3x - 2",
       "solution_steps": [
-        "7x = 77",
-        "Divide both sides by 7:",
-        "x = 11"
+        "Start with the expression: -8 - 6x + 2 - 3x - 2.",
+        "Like terms have exactly the same letter part, so group the x terms, and separately the number terms together, keeping the + or - sign in front of each term.",
+        "Add the coefficients within each group (a term with no number in front counts as 1).",
+        "This simplifies to -9x - 8."
       ],
-      "final_answer": "11",
-      "marks": 4,
+      "final_answer": "-9x - 8",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "7x = 77",
+          "description": "Start with the expression: -8 - 6x + 2 - 3x - 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 7:",
+          "description": "Like terms have exactly the same letter part, so group the x terms, and separately the number terms together, keeping the + or - sign in front of each term.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 11",
+          "description": "Add the coefficients within each group (a term with no number in front counts as 1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This simplifies to -9x - 8.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11 oe",
+          "description": "-9x - 8 oe",
           "marks": 1
         }
       ],
@@ -403,28 +412,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_term_to_term_rule_F",
-      "prompt": "Here are the first four terms of a sequence: 4, 1, -2, -5. Describe the term-to-term rule, and find the next term.",
+      "topic_id": "special_sequences_F",
+      "prompt": "The first 3 square numbers are: 1, 4, 9. Find the next term in the sequence.",
       "solution_steps": [
-        "Term-to-term rule: subtract 3",
-        "Next term = -8"
+        "These are the square numbers: the nth term is given by n^2.",
+        "Term 4 = 4^2 = 16"
       ],
-      "final_answer": "Rule: subtract 3. Next term = -8",
+      "final_answer": "16",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Term-to-term rule: subtract 3",
+          "description": "These are the square numbers: the nth term is given by n^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -8",
+          "description": "Term 4 = 4^2 = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rule: subtract 3. Next term = -8 oe",
+          "description": "16 oe",
           "marks": 1
         }
       ],
@@ -707,76 +716,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_no_coefficient_F",
-      "prompt": "Expand and simplify: (x + 1)(x + 5)",
+      "topic_id": "volume_surface_area_cylinder_F",
+      "prompt": "Here is a cylinder. Find its total surface area, correct to 1 decimal place.",
       "solution_steps": [
-        "First: x × x = x^2",
-        "Outer: x × 5 = 5x",
-        "Inner: 1 × x = 1x",
-        "Last: 1 × 5 = 5",
-        "Combine like terms: x^2 + 6x + 5"
+        "Surface area = 2πr² + 2πrh = (2 × π × 3²) + (2 × π × 3 × 3)",
+        "= 113.1 cm² (1 d.p., using a calculator value of π)"
       ],
-      "final_answer": "x^2 + 6x + 5",
-      "marks": 5,
+      "final_answer": "113.1 cm²",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: x × x = x^2",
+          "description": "Surface area = 2πr² + 2πrh = (2 × π × 3²) + (2 × π × 3 × 3)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: x × 5 = 5x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Inner: 1 × x = 1x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 1 × 5 = 5 Combine like terms: x^2 + 6x + 5",
+          "description": "= 113.1 cm² (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x^2 + 6x + 5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "properties_3d_shapes_diagram_F",
-      "prompt": "How many edges does the cylinder shown have?",
-      "solution_steps": [
-        "An edge is a line where two faces meet.",
-        "By GCSE convention, a cylinder has 3 faces (2 flat circular faces + 1 curved surface), 2 edges (where the curved surface meets each circular face), and 0 vertices (there are no sharp corners).",
-        "So a cylinder has 2 edges."
-      ],
-      "final_answer": "2",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "An edge is a line where two faces meet.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "By GCSE convention, a cylinder has 3 faces (2 flat circular faces + 1 curved surface), 2 edges (where the curved surface meets each circular face), and 0 vertices (there are no sharp corners).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So a cylinder has 2 edges.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 oe",
+          "description": "113.1 cm² oe",
           "marks": 1
         }
       ],
@@ -784,210 +745,362 @@
         "kind": "cylinder",
         "params": {
           "radius_label": "3 cm",
-          "height_label": "8 cm"
+          "height_label": "3 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_decimal_F",
-      "prompt": "A right-angled triangle has sides 19 cm and 16 cm. Find the length of x, correct to 1 decimal place.",
+      "topic_id": "nets_3d_shapes_F",
+      "prompt": "What 2D shapes make up the net of a cube?",
       "solution_steps": [
-        "c² = a² + b² = 19² + 16² = 361 + 256 = 617",
-        "c = √617 ≈ 24.8 cm (1 d.p.)"
+        "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cube's net is made up of: 6 squares.",
+        "So the answer is: 6 squares."
       ],
-      "final_answer": "24.8 cm",
-      "marks": 3,
+      "final_answer": "6 squares",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 19² + 16² = 361 + 256 = 617",
+          "description": "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √617 ≈ 24.8 cm (1 d.p.)",
+          "description": "A cube's net is made up of: 6 squares.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the answer is: 6 squares.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24.8 cm oe",
+          "description": "6 squares oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": {
+        "kind": "net",
+        "params": {
+          "shape": "cube"
+        }
+      }
+    },
+    {
+      "topic_id": "pythagoras_shorter_leg_F",
+      "prompt": "A right-angled triangle has hypotenuse 75 cm and one side 21 cm. Find the length of x.",
+      "solution_steps": [
+        "b² = c² - a² = 75² - 21² = 5625 - 441 = 5184",
+        "b = √5184 = 72"
+      ],
+      "final_answer": "72 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "b² = c² - a² = 75² - 21² = 5625 - 441 = 5184",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = √5184 = 72",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "72 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "19 cm",
-          "leg2_label": "16 cm",
-          "hyp_label": "x"
+          "leg1_label": "21 cm",
+          "leg2_label": "x",
+          "hyp_label": "75 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_complement_F",
-      "prompt": "A bag contains 2 green, 3 purple, 6 red, 5 blue counters. A counter is picked at random. Find the probability that it is NOT green.",
+      "topic_id": "area_semicircle_compound_F",
+      "prompt": "Find the total area of the following compound shape, correct to 2 decimal places.",
       "solution_steps": [
-        "P(green) = 2/16 = 1/8",
-        "P(not green) = 1 - 1/8 = 7/8"
+        "Area of rectangle = 6 × 10 = 60 cm²",
+        "Radius of semicircle = 6 ÷ 2 = 3 cm",
+        "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
+        "Total area = 60 + (9/2)π ≈ 74.14 cm² (2 d.p.)"
       ],
-      "final_answer": "7/8",
-      "marks": 3,
+      "final_answer": "74.14 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(green) = 2/16 = 1/8",
+          "description": "Area of rectangle = 6 × 10 = 60 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(not green) = 1 - 1/8 = 7/8",
+          "description": "Radius of semicircle = 6 ÷ 2 = 3 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 60 + (9/2)π ≈ 74.14 cm² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/8 oe",
+          "description": "74.14 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "rectangle_semicircle",
         "params": {
-          "counts": {
-            "green": 2,
-            "purple": 3,
-            "red": 6,
-            "blue": 5
-          }
+          "width": 6,
+          "height": 10,
+          "radius": 3,
+          "width_label": "6 cm",
+          "height_label": "10 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_shading_F",
-      "prompt": "Shade the region that represents the elements in M but not in N.",
+      "topic_id": "sample_space_diagrams_F",
+      "prompt": "Two fair spinners, one numbered 1 to 6 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the sum of the two spinners, and use it to find the probability that the sum is even.",
       "solution_steps": [
-        "The Venn diagram has two circles, M and N, inside a rectangle representing everything being considered.",
-        "'Shade the region that represents the elements in M but not in N.' tells you which of the four regions (in M only, in N only, in both, or in neither) needs shading.",
-        "The region inside M only (not in N)."
+        "The sample space diagram shows every possible sum of the two spinners.",
+        "Number of favourable outcomes (the sum is even) = 12",
+        "Total number of equally likely outcomes = 24",
+        "P(the sum is even) = 1/2"
       ],
-      "final_answer": "The region inside M only (not in N).",
-      "marks": 4,
+      "final_answer": "1/2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The Venn diagram has two circles, M and N, inside a rectangle representing everything being considered.",
+          "description": "The sample space diagram shows every possible sum of the two spinners.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Shade the region that represents the elements in M but not in N.' tells you which of the four regions (in M only, in N only, in both, or in neither) needs shading.",
+          "description": "Number of favourable outcomes (the sum is even) = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The region inside M only (not in N).",
+          "description": "Total number of equally likely outcomes = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the sum is even) = 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The region inside M only (not in N). oe",
+          "description": "1/2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "venn_diagram",
+        "kind": "sample_space_diagram",
         "params": {
-          "labels": [
-            "M",
-            "N"
+          "row_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ]
           ]
         }
       },
       "solution_diagram": {
-        "kind": "venn_diagram",
+        "kind": "sample_space_diagram",
         "params": {
-          "labels": [
-            "M",
-            "N"
+          "row_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
           ],
-          "shade": [
-            "a_only"
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            [
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            [
+              "4",
+              "5",
+              "6",
+              "7"
+            ],
+            [
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            [
+              "6",
+              "7",
+              "8",
+              "9"
+            ],
+            [
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          ],
+          "highlight": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              3
+            ]
           ]
         }
       }
     },
     {
-      "topic_id": "tree_diagram_drawing_F",
-      "prompt": "A bag contains 4 red and 8 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is red.",
+      "topic_id": "stats_median_F",
+      "prompt": "Find the median of this data set: 30, 10, 8, 10, 17, 21, 6.",
       "solution_steps": [
-        "Draw two branches from the start: P(red) = 1/3, P(green) = 2/3.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(red then red) = 1/3 × 1/3 = 1/9"
+        "Sort the data: 6, 8, 10, 10, 17, 21, 30. The middle value is 10."
       ],
-      "final_answer": "1/9",
-      "marks": 4,
+      "final_answer": "10",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(red) = 1/3, P(green) = 2/3.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(red then red) = 1/3 × 1/3 = 1/9",
+          "description": "Sort the data: 6, 8, 10, 10, 17, 21, 30. The middle value is 10.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/9 oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "1/3"
-            ],
-            [
-              "Green",
-              "2/3"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "1/3"
-              ],
-              [
-                "Green",
-                "2/3"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "1/3"
-              ],
-              [
-                "Green",
-                "2/3"
-              ]
-            ]
-          ]
-        }
-      }
+      "solution_diagram": null
     }
   ]
 }

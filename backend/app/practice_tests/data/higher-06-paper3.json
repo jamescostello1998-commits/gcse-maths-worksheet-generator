@@ -7,41 +7,6 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "standard_form_add_subtract_H",
-      "prompt": "Work out (2 × 10^7) + (2 × 10^5). Give your answer in standard form.",
-      "solution_steps": [
-        "Write both numbers with the same power of 10: 2×10^7 = 200×10^5, 2×10^5 = 2×10^5",
-        "Add the coefficients: 200 + 2 = 202",
-        "Write in standard form: 202 × 10^5 = 2.02 × 10^7"
-      ],
-      "final_answer": "2.02 × 10^7",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both numbers with the same power of 10: 2×10^7 = 200×10^5, 2×10^5 = 2×10^5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add the coefficients: 200 + 2 = 202",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write in standard form: 202 × 10^5 = 2.02 × 10^7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2.02 × 10^7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "error_interval_H",
       "prompt": "A number, x, is 25100 rounded to 3 significant figures. Write down the error interval for x.",
       "solution_steps": [
@@ -70,6 +35,41 @@
         {
           "code": "A1",
           "description": "25050 ≤ x < 25150 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_add_subtract_H",
+      "prompt": "Work out (2 × 10^7) + (2 × 10^5). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 2×10^7 = 200×10^5, 2×10^5 = 2×10^5",
+        "Add the coefficients: 200 + 2 = 202",
+        "Write in standard form: 202 × 10^5 = 2.02 × 10^7"
+      ],
+      "final_answer": "2.02 × 10^7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 2×10^7 = 200×10^5, 2×10^5 = 2×10^5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the coefficients: 200 + 2 = 202",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 202 × 10^5 = 2.02 × 10^7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2.02 × 10^7 oe",
           "marks": 1
         }
       ],
@@ -112,63 +112,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A car travels 93 km (to the nearest km) in 9 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
+      "topic_id": "prime_factors_H",
+      "prompt": "Write 567 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Distance: 93 km (to the nearest km) gives 92.5 ≤ distance < 93.5",
-        "Time: 9 hours (to the nearest hour) gives 8.5 ≤ time < 9.5",
-        "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 93.5 ÷ 8.5 = 11 ≈ 11 km/h"
+        "Divide 567 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 3 × 7",
+        "Write repeated factors using index notation: 567 = 3^4 × 7"
       ],
-      "final_answer": "11 km/h (to 1 d.p.)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Distance: 93 km (to the nearest km) gives 92.5 ≤ distance < 93.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Time: 9 hours (to the nearest hour) gives 8.5 ≤ time < 9.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 93.5 ÷ 8.5 = 11 ≈ 11 km/h",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11 km/h (to 1 d.p.) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "roots_H",
-      "prompt": "Simplify √20, giving your answer in the form a√b.",
-      "solution_steps": [
-        "Find the largest square factor of 20: 2^2 × 5 = 20",
-        "√20 = √(2^2 × 5) = 2√5"
-      ],
-      "final_answer": "2√5",
+      "final_answer": "3^4 × 7",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 20: 2^2 × 5 = 20",
+          "description": "Divide 567 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 3 × 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√20 = √(2^2 × 5) = 2√5",
+          "description": "Write repeated factors using index notation: 567 = 3^4 × 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2√5 oe",
+          "description": "3^4 × 7 oe",
           "marks": 1
         }
       ],
@@ -176,34 +141,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_two_digit_H",
-      "prompt": "Write \\recur{0.}{30} as a fraction in its simplest form.",
+      "topic_id": "surds_multiply_divide_H",
+      "prompt": "Calculate √252 ÷ √7, giving your answer as an integer.",
       "solution_steps": [
-        "Let x = \\recur{0.}{30}, so 100x = 30.3030... (two digits repeat, so multiply by 100 to shift a full block)",
-        "Subtract: 100x - x = 30 - 0, so 99x = 30",
-        "x = 30/99 = 10/33"
+        "√252 ÷ √7 = √(252/7) = √36",
+        "√36 = 6"
       ],
-      "final_answer": "10/33",
-      "marks": 4,
+      "final_answer": "6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{30}, so 100x = 30.3030... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "√252 ÷ √7 = √(252/7) = √36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 100x - x = 30 - 0, so 99x = 30",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 30/99 = 10/33",
+          "description": "√36 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10/33 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -245,6 +204,35 @@
         {
           "code": "A1",
           "description": "4/13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_multiply_divide_H",
+      "prompt": "Work out (9 × 10^-2) ÷ (8 × 10^0). Give your answer in standard form.",
+      "solution_steps": [
+        "Divide the mantissas: 9 ÷ 8 = 1.125",
+        "Subtract the powers of 10: -2 - 0 = -2"
+      ],
+      "final_answer": "1.125 × 10^-2",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide the mantissas: 9 ÷ 8 = 1.125",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the powers of 10: -2 - 0 = -2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1.125 × 10^-2 oe",
           "marks": 1
         }
       ],
@@ -300,41 +288,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic_H",
-      "prompt": "Solve the simultaneous equations: y = x^2 - 4x and y = -6x + 24",
+      "topic_id": "solving_inequalities_H",
+      "prompt": "Solve the inequality: 4x + 5 ≥ 10x - 10",
       "solution_steps": [
-        "Substitute y = -6x + 24 into y = x^2 - 4x: -6x + 24 = x^2 - 4x",
-        "Rearrange: x^2 + 2x - 24 = 0",
-        "Factorise: (x - 4)(x + 6) = 0",
-        "x = 4 or x = -6",
-        "When x = 4, y = 0. When x = -6, y = 60."
+        "4x + 5 ≥ 10x - 10",
+        "Subtract 10x from both sides:",
+        "-6x + 5 ≥ -10",
+        "Subtract 5 from both sides:",
+        "-6x ≥ -15",
+        "Divide both sides by -6 (dividing by a negative number reverses the inequality sign):",
+        "x ≤ 5/2"
       ],
-      "final_answer": "(4, 0) and (-6, 60)",
+      "final_answer": "x ≤ 5/2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = -6x + 24 into y = x^2 - 4x: -6x + 24 = x^2 - 4x",
+          "description": "4x + 5 ≥ 10x - 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 + 2x - 24 = 0",
+          "description": "Subtract 10x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 4)(x + 6) = 0",
+          "description": "-6x + 5 ≥ -10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 4 or x = -6 When x = 4, y = 0. When x = -6, y = 60.",
+          "description": "Subtract 5 from both sides: -6x ≥ -15 Divide both sides by -6 (dividing by a negative number reverses the inequality sign): x ≤ 5/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(4, 0) and (-6, 60) oe",
+          "description": "x ≤ 5/2 oe",
           "marks": 1
         }
       ],
@@ -428,38 +418,52 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "perpendicular_lines_equation_H",
-      "prompt": "A line is perpendicular to y = -2x + 7 and passes through the point (-3, -4). Find the equation of the line.",
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find its acceleration during the first phase.",
       "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × -2 = -1, so m = 1/2",
-        "Substitute (-3, -4) into y = 1/2x + c: -4 = 1/2×(-3) + c, so c = -5/2",
-        "Equation of the line: y = 1/2x - 5/2"
+        "Acceleration = change in velocity ÷ time = 15 ÷ 5 = 3 m/s^2"
       ],
-      "final_answer": "y = 1/2x - 5/2",
-      "marks": 4,
+      "final_answer": "3 m/s^2",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × -2 = -1, so m = 1/2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (-3, -4) into y = 1/2x + c: -4 = 1/2×(-3) + c, so c = -5/2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 1/2x - 5/2",
+          "description": "Acceleration = change in velocity ÷ time = 15 ÷ 5 = 3 m/s^2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 1/2x - 5/2 oe",
+          "description": "3 m/s^2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              15
+            ],
+            [
+              30,
+              15
+            ],
+            [
+              38,
+              0
+            ]
+          ],
+          "x_max": 43,
+          "y_max": 20,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -541,40 +545,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine_H",
-      "prompt": "Given that a:b = 9:7 and b:c = 1:5, find a:b:c in its simplest form.",
+      "topic_id": "solve_quadratic_completing_square_H",
+      "prompt": "Solve x^2 - 6x - 45 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "Scale a:b = 9:7 by 1 so b = 7: a:b = 9:7",
-        "Scale b:c = 1:5 by 7 so b = 7: b:c = 7:35",
-        "Combine: a:b:c = 9:7:35",
-        "Simplify by dividing by 1: a:b:c = 9:7:35"
+        "Half the coefficient of x: -6 ÷ 2 = -3",
+        "Complete the square: x^2 - 6x - 45 = (x - 3)^2 - 54",
+        "Set (x - 3)^2 - 54 = 0, so (x - 3)^2 = 54",
+        "(x - 3) = ±√54 = ±3√6",
+        "x = 3 + 3√6 or x = 3 - 3√6"
       ],
-      "final_answer": "9 : 7 : 35",
+      "final_answer": "x = 3 + 3√6 or x = 3 - 3√6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale a:b = 9:7 by 1 so b = 7: a:b = 9:7",
+          "description": "Half the coefficient of x: -6 ÷ 2 = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Scale b:c = 1:5 by 7 so b = 7: b:c = 7:35",
+          "description": "Complete the square: x^2 - 6x - 45 = (x - 3)^2 - 54",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: a:b:c = 9:7:35",
+          "description": "Set (x - 3)^2 - 54 = 0, so (x - 3)^2 = 54",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify by dividing by 1: a:b:c = 9:7:35",
+          "description": "(x - 3) = ±√54 = ±3√6 x = 3 + 3√6 or x = 3 - 3√6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 : 7 : 35 oe",
+          "description": "x = 3 + 3√6 or x = 3 - 3√6 oe",
           "marks": 1
         }
       ],
@@ -689,34 +694,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_H",
-      "prompt": "\\vec{a} = \\colvec{-3}{-9} and \\vec{b} = \\colvec{-11}{11}. Find -1\\vec{a} + (-4\\vec{b}).",
+      "topic_id": "algebraic_direct_proportion_H",
+      "prompt": "y is directly proportional to x^2. When x = 2, y = 40. Find the value of y when x = 4.",
       "solution_steps": [
-        "\\vec{a} = \\colvec{-3}{-9}, \\vec{b} = \\colvec{-11}{11}",
-        "-1\\vec{a} = \\colvec{3}{9} and -4\\vec{b} = \\colvec{44}{-44}",
-        "-1\\vec{a} + (-4\\vec{b}) = \\colvec{47}{-35}"
+        "y = kx^2",
+        "40 = k × 2^2 = k × 4",
+        "k = 40 ÷ 4 = 10",
+        "y = 10 × 4^2 = 10 × 16 = 160"
       ],
-      "final_answer": "\\colvec{47}{-35}",
-      "marks": 4,
+      "final_answer": "160",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{-3}{-9}, \\vec{b} = \\colvec{-11}{11}",
+          "description": "y = kx^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-1\\vec{a} = \\colvec{3}{9} and -4\\vec{b} = \\colvec{44}{-44}",
+          "description": "40 = k × 2^2 = k × 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-1\\vec{a} + (-4\\vec{b}) = \\colvec{47}{-35}",
+          "description": "k = 40 ÷ 4 = 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 10 × 4^2 = 10 × 16 = 160",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{47}{-35} oe",
+          "description": "160 oe",
           "marks": 1
         }
       ],
@@ -775,53 +786,47 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "cosine_rule_H",
-      "prompt": "In triangle ABC, side a = 9 cm, side b = 15 cm, and side c = 16 cm. Find angle A, correct to 1 decimal place.",
+      "topic_id": "triangle_area_sine_rule_H",
+      "prompt": "Triangle ABC has side a = 25 cm, side b = 9 cm, and the angle between them, angle C = 105°. Find the area of the triangle, correct to 3 significant figures.",
       "solution_steps": [
-        "Use the cosine rule: cos(A) = (b² + c² - a²) ÷ (2bc)",
-        "cos(A) = (15² + 16² - 9²) ÷ (2×15×16) = 0.8333",
-        "A = cos^-1(0.8333) = 33.6° (1 d.p.)"
+        "Use Area = (1/2) × a × b × sin(C)",
+        "Area = 0.5 × 25 × 9 × sin(105°) = 109 cm² (3 s.f.)"
       ],
-      "final_answer": "33.6°",
-      "marks": 4,
+      "final_answer": "109 cm²",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use the cosine rule: cos(A) = (b² + c² - a²) ÷ (2bc)",
+          "description": "Use Area = (1/2) × a × b × sin(C)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "cos(A) = (15² + 16² - 9²) ÷ (2×15×16) = 0.8333",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = cos^-1(0.8333) = 33.6° (1 d.p.)",
+          "description": "Area = 0.5 × 25 × 9 × sin(105°) = 109 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "33.6° oe",
+          "description": "109 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "general_triangle",
         "params": {
-          "side_a_label": "9 cm",
-          "side_b_label": "15 cm",
-          "side_c_label": "16 cm",
-          "angle_A_label": "x°",
+          "side_a_label": "25 cm",
+          "side_b_label": "9 cm",
+          "side_c_label": null,
+          "angle_A_label": null,
           "angle_B_label": null,
-          "angle_C_label": null
+          "angle_C_label": "105°"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "area_semicircle_compound_H",
-      "prompt": "A shape is made from a rectangle 8 cm by 6 cm with a semicircle of diameter 8 cm attached to one side. Find the total area, giving your answer in terms of π.",
+      "prompt": "Find the total area of the following compound shape, giving your answer in terms of π.",
       "solution_steps": [
         "Area of rectangle = 8 × 6 = 48 cm²",
         "Radius of semicircle = 8 ÷ 2 = 4 cm",
@@ -865,6 +870,59 @@
           "radius": 4,
           "width_label": "8 cm",
           "height_label": "6 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_3d_H",
+      "prompt": "Find the length of ag, correct to 1 decimal place.",
+      "solution_steps": [
+        "First find the diagonal across the base: base diagonal² = l² + w² = 8² + 14² = 260.",
+        "Then apply Pythagoras again using the height: ag² = base diagonal² + h² = 260 + 6² = 296.",
+        "ag = √296 = 17.2 cm (1 d.p.)"
+      ],
+      "final_answer": "17.2 cm",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First find the diagonal across the base: base diagonal² = l² + w² = 8² + 14² = 260.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Then apply Pythagoras again using the height: ag² = base diagonal² + h² = 260 + 6² = 296.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "ag = √296 = 17.2 cm (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "17.2 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "length_label": "8 cm",
+          "width_label": "14 cm",
+          "height_label": "6 cm",
+          "show_diagonal": true,
+          "vertex_labels": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h"
+          ]
         }
       },
       "solution_diagram": null
@@ -942,16 +1000,6 @@
                 "Yellow",
                 "2/9"
               ]
-            ]
-          ],
-          "leaf_probs": [
-            [
-              "7/15",
-              "7/30"
-            ],
-            [
-              "7/30",
-              "1/15"
             ]
           ]
         }

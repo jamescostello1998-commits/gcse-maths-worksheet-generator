@@ -7,28 +7,34 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Work out √44 × √11, giving your answer as an integer.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 9√2 - 5√2 - 7√2, giving your answer in the form a√b.",
       "solution_steps": [
-        "√44 × √11 = √(44 × 11) = √484",
-        "√484 = 22"
+        "Every term is a multiple of √2, so they are all like surds.",
+        "Combine the coefficients in order: 9 - 5 - 7 = -3.",
+        "= -3√2"
       ],
-      "final_answer": "22",
-      "marks": 3,
+      "final_answer": "-3√2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√44 × √11 = √(44 × 11) = √484",
+          "description": "Every term is a multiple of √2, so they are all like surds.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√484 = 22",
+          "description": "Combine the coefficients in order: 9 - 5 - 7 = -3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= -3√2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "22 oe",
+          "description": "-3√2 oe",
           "marks": 1
         }
       ],
@@ -106,40 +112,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 125^x = 625.",
+      "topic_id": "roots_H",
+      "prompt": "Simplify √40, giving your answer in the form a√b.",
       "solution_steps": [
-        "Write both sides as powers of 5: 125 = 5^3 and 625 = 5^4",
-        "125^x = 625 becomes (5^3)^x = 5^4, i.e. 5^(3x) = 5^4",
-        "Since the bases match, the powers must be equal: 3x = 4",
-        "x = 4/3"
+        "Find the largest square factor of 40: 2^2 × 10 = 40",
+        "√40 = √(2^2 × 10) = 2√10"
       ],
-      "final_answer": "4/3",
-      "marks": 5,
+      "final_answer": "2√10",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 5: 125 = 5^3 and 625 = 5^4",
+          "description": "Find the largest square factor of 40: 2^2 × 10 = 40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "125^x = 625 becomes (5^3)^x = 5^4, i.e. 5^(3x) = 5^4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 3x = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 4/3",
+          "description": "√40 = √(2^2 × 10) = 2√10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/3 oe",
+          "description": "2√10 oe",
           "marks": 1
         }
       ],
@@ -272,40 +266,195 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_rearrange_H",
-      "prompt": "v^2 = u^2 + 2as. Make s the subject of the formula, then find the value of s when v = 10, u = 8 and a = 9.",
+      "topic_id": "expand_double_brackets_H",
+      "prompt": "Expand and simplify: (2x - 4)(4x + 4)",
       "solution_steps": [
-        "v^2 = u^2 + 2as",
-        "Rearrange to make s the subject: s = \\frac{v^2 - u^2}{2a}",
-        "Substitute v = 10, u = 8 and a = 9: s = \\frac{10^2 - 8^2}{2 × 9}",
-        "s = 36/18 = 2"
+        "First: 2x × 4x = 8x^2",
+        "Outer: 2x × 4 = 8x",
+        "Inner: -4 × 4x = -16x",
+        "Last: -4 × 4 = -16",
+        "Combine like terms: 8x^2 - 8x - 16"
       ],
-      "final_answer": "s = 2",
+      "final_answer": "8x^2 - 8x - 16",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "v^2 = u^2 + 2as",
+          "description": "First: 2x × 4x = 8x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange to make s the subject: s = \\frac{v^2 - u^2}{2a}",
+          "description": "Outer: 2x × 4 = 8x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute v = 10, u = 8 and a = 9: s = \\frac{10^2 - 8^2}{2 × 9}",
+          "description": "Inner: -4 × 4x = -16x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "s = 36/18 = 2",
+          "description": "Last: -4 × 4 = -16 Combine like terms: 8x^2 - 8x - 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "s = 2 oe",
+          "description": "8x^2 - 8x - 16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "iteration_H",
+      "prompt": "The iterative formula x_(n+1) = \\frac{9 - x_n^2}{5} is used with x_0 = -3. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "solution_steps": [
+        "Iterative formula: x_(n+1) = \\frac{9 - x_n^2}{5}",
+        "x_0 = -3",
+        "x_1 = g(x_0) = \\frac{9 - (-3)^2}{5} = 0.000",
+        "x_2 = g(x_1) = \\frac{9 - 0.000^2}{5} = 1.800",
+        "x_3 = g(x_2) = \\frac{9 - 1.800^2}{5} = 1.152"
+      ],
+      "final_answer": "x_1 = 0.000, x_2 = 1.800, x_3 = 1.152",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Iterative formula: x_(n+1) = \\frac{9 - x_n^2}{5}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_0 = -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_1 = g(x_0) = \\frac{9 - (-3)^2}{5} = 0.000",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_2 = g(x_1) = \\frac{9 - 0.000^2}{5} = 1.800 x_3 = g(x_2) = \\frac{9 - 1.800^2}{5} = 1.152",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x_1 = 0.000, x_2 = 1.800, x_3 = 1.152 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics_H",
+      "prompt": "Factorise: x^2 - 3x + 2",
+      "solution_steps": [
+        "Find two numbers that multiply to 2 and add to -3: -1 and -2",
+        "Write as two brackets: (x - 1)(x - 2)"
+      ],
+      "final_answer": "(x - 1)(x - 2)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 2 and add to -3: -1 and -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x - 1)(x - 2)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x - 1)(x - 2) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object has a final velocity (v) of 21 m/s after a constant acceleration (a) of 4 m/s^2 for a time (t) of 4 s. Find its initial velocity (u).",
+      "solution_steps": [
+        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+        "v = u + at",
+        "Rearrange to make u the subject: u = v - at",
+        "Substitute v = 21, a = 4, t = 4: u = 21 - 4 × 4 = 21 - 16 = 5"
+      ],
+      "final_answer": "5 m/s",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v = u + at",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange to make u the subject: u = v - at",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute v = 21, a = 4, t = 4: u = 21 - 4 × 4 = 21 - 16 = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 m/s oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_proof_H",
+      "prompt": "Prove algebraically that the product of two consecutive odd numbers is always odd.",
+      "solution_steps": [
+        "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
+        "Write the given expression algebraically: (2n + 1)(2n + 3).",
+        "Expand and simplify: (2n + 1)(2n + 3) = 4n^2 + 8n + 3.",
+        "Factorise/rearrange to expose the structure: 4n^2 + 8n + 3 = 2(2n^2 + 4n + 1) + 1.",
+        "Since 4n^2 + 8n + 3 is exactly 1 more than the even number 2(2n^2 + 4n + 1), the product is always odd."
+      ],
+      "final_answer": "Proven: the product is 2(2n^2 + 4n + 1) + 1, always odd.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write the given expression algebraically: (2n + 1)(2n + 3).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand and simplify: (2n + 1)(2n + 3) = 4n^2 + 8n + 3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: 4n^2 + 8n + 3 = 2(2n^2 + 4n + 1) + 1. Since 4n^2 + 8n + 3 is exactly 1 more than the even number 2(2n^2 + 4n + 1), the product is always odd.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Proven: the product is 2(2n^2 + 4n + 1) + 1, always odd. oe",
           "marks": 1
         }
       ],
@@ -348,217 +497,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_H",
-      "prompt": "Factorise: x^2 - 3x + 2",
+      "topic_id": "reverse_percentage_H",
+      "prompt": "After a 24% increase, an item costs £49.60. Find the original price.",
       "solution_steps": [
-        "Find two numbers that multiply to 2 and add to -3: -1 and -2",
-        "Write as two brackets: (x - 1)(x - 2)"
+        "Convert 24% to a multiplier: 1.24 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 49.60 ÷ 1.24 = 40"
       ],
-      "final_answer": "(x - 1)(x - 2)",
+      "final_answer": "£40",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 2 and add to -3: -1 and -2",
+          "description": "Convert 24% to a multiplier: 1.24 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x - 1)(x - 2)",
+          "description": "Divide the new value by the multiplier: 49.60 ÷ 1.24 = 40",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x - 1)(x - 2) oe",
+          "description": "£40 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trial_and_improvement_H",
-      "prompt": "f(x) = x^3 - 3x - 33. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
-      "solution_steps": [
-        "f(x) = x^3 - 3x - 33",
-        "f(3) = -15.00 (negative)",
-        "f(4) = 19.00 (positive)",
-        "f(3.1) = -12.51 (negative)",
-        "f(3.2) = -9.83 (negative)",
-        "f(3.3) = -6.96 (negative)",
-        "f(3.4) = -3.90 (negative)",
-        "f(3.5) = -0.63 (negative)",
-        "f(3.6) = 2.86 (positive)",
-        "The sign changes between x = 3.5 and x = 3.6, so try the midpoint x = 3.55: f(3.55) = 1.09.",
-        "f(3.55) has the same sign as f(3.6), so the root lies between 3.5 and 3.55 - to 1 decimal place, this rounds down to 3.5."
-      ],
-      "final_answer": "x = 3.5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "f(x) = x^3 - 3x - 33",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(3) = -15.00 (negative)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(4) = 19.00 (positive)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(3.1) = -12.51 (negative) f(3.2) = -9.83 (negative) f(3.3) = -6.96 (negative) f(3.4) = -3.90 (negative) f(3.5) = -0.63 (negative) f(3.6) = 2.86 (positive) The sign changes between x = 3.5 and x = 3.6, so try the midpoint x = 3.55: f(3.55) = 1.09. f(3.55) has the same sign as f(3.6), so the root lies between 3.5 and 3.55 - to 1 decimal place, this rounds down to 3.5.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 3.5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inequalities_region_H",
-      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
-      "solution_steps": [
-        "The boundary line y = -2x + 3 is dashed, and the shading lies on the upper side of it, giving y > -2x + 3.",
-        "The boundary line y = -\\frac{x}{2} - 2 is solid, and the shading lies on the upper side of it, giving y ≥ -\\frac{x}{2} - 2."
-      ],
-      "final_answer": "y > -2x + 3 and y ≥ -\\frac{x}{2} - 2",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The boundary line y = -2x + 3 is dashed, and the shading lies on the upper side of it, giving y > -2x + 3.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The boundary line y = -\\frac{x}{2} - 2 is solid, and the shading lies on the upper side of it, giving y ≥ -\\frac{x}{2} - 2.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y > -2x + 3 and y ≥ -\\frac{x}{2} - 2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "lines": [
-            {
-              "m": -2.0,
-              "c": 3,
-              "op": ">"
-            },
-            {
-              "m": -0.5,
-              "c": -2,
-              "op": ">="
-            }
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sequences_quadratic_nth_term_H",
-      "prompt": "Here are the first four terms of a quadratic sequence: -5, 1, 13, 31.\nFind an expression for the nth term.",
-      "solution_steps": [
-        "First differences: 6, 12, 18",
-        "Second difference is constant: 6, so the coefficient of n^2 is 6 ÷ 2 = 3",
-        "nth term = 3n^2 - 3n - 5"
-      ],
-      "final_answer": "3n^2 - 3n - 5",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First differences: 6, 12, 18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second difference is constant: 6, so the coefficient of n^2 is 6 ÷ 2 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = 3n^2 - 3n - 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3n^2 - 3n - 5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_3d_H",
-      "prompt": "A cuboid has length 11 cm, width 4 cm and height 6 cm. Find the angle between the diagonal ag (from one corner to the opposite corner) and the base of the cuboid, correct to 1 decimal place.",
-      "solution_steps": [
-        "First find the diagonal across the base: base diagonal = √(l² + w²) = √(11² + 4²) = 11.705 cm - this is the projection of ag onto the base.",
-        "The angle between ag and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 6 ÷ 11.705.",
-        "angle = tan^-1(6 ÷ 11.705) = 27.1° (1 d.p.)"
-      ],
-      "final_answer": "27.1°",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First find the diagonal across the base: base diagonal = √(l² + w²) = √(11² + 4²) = 11.705 cm - this is the projection of ag onto the base.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The angle between ag and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 6 ÷ 11.705.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "angle = tan^-1(6 ÷ 11.705) = 27.1° (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "27.1° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "length_label": "11 cm",
-          "width_label": "4 cm",
-          "height_label": "6 cm",
-          "show_diagonal": true,
-          "vertex_labels": [
-            "a",
-            "b",
-            "c",
-            "d",
-            "e",
-            "f",
-            "g",
-            "h"
-          ]
-        }
-      },
       "solution_diagram": null
     },
     {
@@ -675,6 +639,41 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "area_circle_H",
+      "prompt": "Find the area of the following circle, in terms of π.",
+      "solution_steps": [
+        "Area = π × r² = π × 3² = 9π cm²",
+        "≈ 28.3 cm² (3 s.f.)"
+      ],
+      "final_answer": "9π cm² (≈ 28.3 cm²)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = π × r² = π × 3² = 9π cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "≈ 28.3 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9π cm² (≈ 28.3 cm²) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 3,
+          "label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
       "topic_id": "angles_polygon_interior_H",
       "prompt": "A polygon has 7 sides. 6 of its interior angles are each 135°, and the remaining interior angle is (3x + 87)°. Find x.",
       "solution_steps": [
@@ -756,18 +755,18 @@
     },
     {
       "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 5 cm of B AND closer to B than to A.",
+      "prompt": "Shade the region containing points that are both within 3 cm of B AND closer to B than to A.",
       "solution_steps": [
-        "The boundary for 'within 5 cm of B' is a circle, centre B, radius 5 cm - the region is inside this circle.",
+        "The boundary for 'within 3 cm of B' is a circle, centre B, radius 3 cm - the region is inside this circle.",
         "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
         "The required region is where these two conditions overlap."
       ],
-      "final_answer": "The region inside the circle of radius 5 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "final_answer": "The region inside the circle of radius 3 cm centred on B, and on the B side of the perpendicular bisector of BA.",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 5 cm of B' is a circle, centre B, radius 5 cm - the region is inside this circle.",
+          "description": "The boundary for 'within 3 cm of B' is a circle, centre B, radius 3 cm - the region is inside this circle.",
           "marks": 1
         },
         {
@@ -782,97 +781,78 @@
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 5 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "description": "The region inside the circle of radius 3 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -9.0,
-          "x_max": 5.0,
-          "y_min": -2.0,
-          "y_max": 10.0,
+          "x_min": -4.0,
+          "x_max": 4.0,
+          "y_min": -3.0,
+          "y_max": 5.0,
           "points": [
             {
               "xy": [
-                4,
-                -1
+                -3,
+                4
               ],
               "label": "A"
             },
             {
               "xy": [
-                -3,
-                4
+                0,
+                1
               ],
               "label": "B"
             }
           ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -3,
-                4
-              ],
-              "radius": 5
-            },
-            {
-              "type": "segment",
-              "p1": [
-                -7.63733471206735,
-                -9.89226859689429
-              ],
-              "p2": [
-                8.63733471206735,
-                12.89226859689429
-              ]
-            }
-          ]
+          "given_lines": []
         }
       },
       "solution_diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -9.0,
-          "x_max": 5.0,
-          "y_min": -2.0,
-          "y_max": 10.0,
+          "x_min": -4.0,
+          "x_max": 4.0,
+          "y_min": -3.0,
+          "y_max": 5.0,
           "points": [
             {
               "xy": [
-                4,
-                -1
+                -3,
+                4
               ],
               "label": "A"
             },
             {
               "xy": [
-                -3,
-                4
+                0,
+                1
               ],
               "label": "B"
             }
           ],
+          "given_lines": [],
           "boundaries": [
             {
               "type": "circle",
               "centre": [
-                -3,
-                4
+                0,
+                1
               ],
-              "radius": 5
+              "radius": 3
             },
             {
               "type": "segment",
               "p1": [
-                -7.63733471206735,
-                -9.89226859689429
+                4.156854249492381,
+                8.15685424949238
               ],
               "p2": [
-                8.63733471206735,
-                12.89226859689429
+                -7.156854249492381,
+                -3.1568542494923806
               ]
             }
           ],
@@ -880,21 +860,21 @@
             {
               "type": "disk",
               "centre": [
-                -3,
-                4
+                0,
+                1
               ],
-              "radius": 5,
+              "radius": 3,
               "inside": true
             },
             {
               "type": "half_plane",
               "closer_to": [
-                -3,
-                4
+                0,
+                1
               ],
               "than": [
-                4,
-                -1
+                -3,
+                4
               ]
             }
           ]
@@ -1041,16 +1021,6 @@
                 "1/5"
               ]
             ]
-          ],
-          "leaf_probs": [
-            [
-              "28/55",
-              "12/55"
-            ],
-            [
-              "12/55",
-              "3/55"
-            ]
           ]
         }
       },
@@ -1058,27 +1028,27 @@
     },
     {
       "topic_id": "cumulative_frequency_interpret_H",
-      "prompt": "The cumulative frequency graph shows the weights (in kg) of a group of parcels. Estimate how many values are above 40 weight.",
+      "prompt": "The cumulative frequency graph shows the weights (in kg) of a group of parcels. Use the graph to estimate the median.",
       "solution_steps": [
-        "At 40, the cumulative frequency is 15 (out of 24 total).",
-        "Above that point: 9."
+        "The median is at cumulative frequency 19.0 (out of 38 total).",
+        "Reading across from 19.0 to the curve, then down to the axis, gives ≈ 25.8."
       ],
-      "final_answer": "9",
+      "final_answer": "25.8",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "At 40, the cumulative frequency is 15 (out of 24 total).",
+          "description": "The median is at cumulative frequency 19.0 (out of 38 total).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Above that point: 9.",
+          "description": "Reading across from 19.0 to the curve, then down to the axis, gives ≈ 25.8.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "25.8 oe",
           "marks": 1
         }
       ],
@@ -1087,68 +1057,33 @@
         "params": {
           "points": [
             [
-              20,
+              0,
               0
             ],
             [
+              10,
+              4
+            ],
+            [
+              20,
+              12
+            ],
+            [
               30,
-              11
+              24
             ],
             [
               40,
-              15
+              34
             ],
             [
               50,
-              17
-            ],
-            [
-              60,
-              22
-            ],
-            [
-              70,
-              24
+              38
             ]
           ],
           "x_label": "Weight (kg)"
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_triple_brackets_no_coefficient_H",
-      "prompt": "Expand and simplify: (x - 2)(x - 2)(x + 3)",
-      "solution_steps": [
-        "First expand two of the brackets: (x - 2)(x - 2) = x^2 - 4x + 4",
-        "Multiply the result by (x + 3) and collect like terms",
-        "= x^3 - x^2 - 8x + 12"
-      ],
-      "final_answer": "x^3 - x^2 - 8x + 12",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First expand two of the brackets: (x - 2)(x - 2) = x^2 - 4x + 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the result by (x + 3) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= x^3 - x^2 - 8x + 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x^3 - x^2 - 8x + 12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

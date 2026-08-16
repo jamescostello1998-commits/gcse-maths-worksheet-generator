@@ -42,28 +42,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_H",
-      "prompt": "Fully simplify √72, giving your answer in the form a√b.",
+      "topic_id": "surds_multiply_divide_H",
+      "prompt": "Fully simplify √8 × √13, giving your answer in the form a√b.",
       "solution_steps": [
-        "Find the largest square factor of 72: 6^2 × 2 = 72",
-        "√72 = √(6^2 × 2) = 6√2"
+        "√8 × √13 = √(8 × 13) = √104",
+        "Find the largest square factor of 104: 2^2 × 26 = 104",
+        "√104 = √(2^2 × 26) = 2√26"
       ],
-      "final_answer": "6√2",
-      "marks": 3,
+      "final_answer": "2√26",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 72: 6^2 × 2 = 72",
+          "description": "√8 × √13 = √(8 × 13) = √104",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√72 = √(6^2 × 2) = 6√2",
+          "description": "Find the largest square factor of 104: 2^2 × 26 = 104",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√104 = √(2^2 × 26) = 2√26",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6√2 oe",
+          "description": "2√26 oe",
           "marks": 1
         }
       ],
@@ -100,110 +106,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging_H",
-      "prompt": "Simplify 64^(2/3) × 64^-2, giving your answer as a fraction where necessary.",
+      "topic_id": "roots_H",
+      "prompt": "Fully simplify √72, giving your answer in the form a√b.",
       "solution_steps": [
-        "64^(1/3) is the cube root of 64, which is 4, so 64^(2/3) = 4^2",
-        "64^-2 = \\frac{1}{64²} = \\frac{1}{4⁶}",
-        "64^(2/3) × 64^-2 = 4^2 × \\frac{1}{4⁶} = 4^(2-6) = 4^-4",
-        "4^-4 = 1/256"
+        "Find the largest square factor of 72: 6^2 × 2 = 72",
+        "√72 = √(6^2 × 2) = 6√2"
       ],
-      "final_answer": "1/256",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "64^(1/3) is the cube root of 64, which is 4, so 64^(2/3) = 4^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "64^-2 = \\frac{1}{64²} = \\frac{1}{4⁶}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "64^(2/3) × 64^-2 = 4^2 × \\frac{1}{4⁶} = 4^(2-6) = 4^-4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4^-4 = 1/256",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/256 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_combine_H",
-      "prompt": "Given that a:b = 1:7 and b:c = 2:1, find a:b:c in its simplest form.",
-      "solution_steps": [
-        "Scale a:b = 1:7 by 2 so b = 14: a:b = 2:14",
-        "Scale b:c = 2:1 by 7 so b = 14: b:c = 14:7",
-        "Combine: a:b:c = 2:14:7",
-        "Simplify by dividing by 1: a:b:c = 2:14:7"
-      ],
-      "final_answer": "2 : 14 : 7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale a:b = 1:7 by 2 so b = 14: a:b = 2:14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Scale b:c = 2:1 by 7 so b = 14: b:c = 14:7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: a:b:c = 2:14:7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify by dividing by 1: a:b:c = 2:14:7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 : 14 : 7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "prime_factors_H",
-      "prompt": "Write 546 as a product of its prime factors, giving your answer in index form.",
-      "solution_steps": [
-        "Divide 546 repeatedly by the smallest prime that fits: 2 × 3 × 7 × 13",
-        "Write repeated factors using index notation: 546 = 2 × 3 × 7 × 13"
-      ],
-      "final_answer": "2 × 3 × 7 × 13",
+      "final_answer": "6√2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 546 repeatedly by the smallest prime that fits: 2 × 3 × 7 × 13",
+          "description": "Find the largest square factor of 72: 6^2 × 2 = 72",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 546 = 2 × 3 × 7 × 13",
+          "description": "√72 = √(6^2 × 2) = 6√2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 × 3 × 7 × 13 oe",
+          "description": "6√2 oe",
           "marks": 1
         }
       ],
@@ -211,195 +135,236 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_cubic_H",
-      "prompt": "Complete a table of values for y = x^3 + 2x for x = -3 to 3, then plot the graph.",
+      "topic_id": "stats_reverse_mean_H",
+      "prompt": "The mean of five numbers is 14. Four of the numbers are 30, 29, 6, 2. Find the missing number.",
       "solution_steps": [
-        "Table of values for y = x^3 + 2x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -33, -12, -3, 0, 3, 12, 33",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "Total of all 5 numbers = mean × count = 14 × 5 = 70",
+        "Sum of the known numbers = 30 + 29 + 6 + 2 = 67",
+        "Missing number = 70 - 67 = 3"
       ],
-      "final_answer": "Cubic curve: y = x^3 + 2x",
-      "marks": 5,
+      "final_answer": "3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^3 + 2x:",
+          "description": "Total of all 5 numbers = mean × count = 14 × 5 = 70",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Sum of the known numbers = 30 + 29 + 6 + 2 = 67",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -33, -12, -3, 0, 3, 12, 33",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Missing number = 70 - 67 = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = x^3 + 2x oe",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "hcf_lcm_by_prime_factors_H",
+      "prompt": "Using prime factorisation, find the HCF of 171 and 188.",
+      "solution_steps": [
+        "171 = 3^2 × 19",
+        "188 = 2^2 × 47",
+        "HCF: take the lowest power of each prime that appears in both numbers",
+        "HCF = 1"
+      ],
+      "final_answer": "1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "171 = 3^2 × 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "188 = 2^2 × 47",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF: take the lowest power of each prime that appears in both numbers",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic_H",
+      "prompt": "Calculate 4 1/8 - 1 6/7. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 4 1/8 = 33/8, 1 6/7 = 13/7",
+        "Subtract the improper fractions: 33/8 - 13/7 = 127/56",
+        "Convert back to a mixed number: 2 15/56"
+      ],
+      "final_answer": "2 15/56",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 4 1/8 = 33/8, 1 6/7 = 13/7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the improper fractions: 33/8 - 13/7 = 127/56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 2 15/56",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 15/56 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 7 × 2^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 7 × 2^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 7, 14, 28, 56, 112",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 7 × 2^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 7 × 2^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 7, 14, 28, 56, 112",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 7 × 2^x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": 1,
-          "b": 2,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 7,
+          "base": 2,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -35,
-          "y_max": 35,
+          "y_min": 0,
+          "y_max": 123.2,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": 1,
-          "b": 2,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 7,
+          "base": 2,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -35,
-          "y_max": 35,
+          "y_min": 0,
+          "y_max": 123.2,
           "table_points": [
             [
-              -3,
-              -33
-            ],
-            [
-              -2,
-              -12
-            ],
-            [
-              -1,
-              -3
-            ],
-            [
               0,
-              0
+              7
             ],
             [
               1,
-              3
+              14
             ],
             [
               2,
-              12
+              28
             ],
             [
               3,
-              33
+              56
+            ],
+            [
+              4,
+              112
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "plot_reciprocal_H",
-      "prompt": "Complete a table of values for y = \\frac{36}{x} for x = -4 to 4, then plot the graph.",
+      "topic_id": "perpendicular_lines_equation_H",
+      "prompt": "A line is perpendicular to y = -3x - 4 and passes through the point (-2, -1). Find the equation of the line.",
       "solution_steps": [
-        "Table of values for y = \\frac{36}{x}:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -9, -12, -18, -36, 36, 18, 12, 9",
-        "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table.",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
+        "Substitute (-2, -1) into y = 1/3x + c: -1 = 1/3×(-2) + c, so c = -1/3",
+        "Equation of the line: y = 1/3x - 1/3"
       ],
-      "final_answer": "Reciprocal curve: y = \\frac{36}{x}",
-      "marks": 5,
+      "final_answer": "y = 1/3x - 1/3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = \\frac{36}{x}:",
+          "description": "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "Substitute (-2, -1) into y = 1/3x + c: -1 = 1/3×(-2) + c, so c = -1/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -9, -12, -18, -36, 36, 18, 12, 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table. Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "Equation of the line: y = 1/3x - 1/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = \\frac{36}{x} oe",
+          "description": "y = 1/3x - 1/3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 36,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 36,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
-          "table_points": [
-            [
-              -4,
-              -9
-            ],
-            [
-              -3,
-              -12
-            ],
-            [
-              -2,
-              -18
-            ],
-            [
-              -1,
-              -36
-            ],
-            [
-              1,
-              36
-            ],
-            [
-              2,
-              18
-            ],
-            [
-              3,
-              12
-            ],
-            [
-              4,
-              9
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "substitution_rearrange_H",
@@ -485,76 +450,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "perpendicular_lines_equation_H",
-      "prompt": "A line is perpendicular to y = -3x - 4 and passes through the point (-2, -1). Find the equation of the line.",
-      "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
-        "Substitute (-2, -1) into y = 1/3x + c: -1 = 1/3×(-2) + c, so c = -1/3",
-        "Equation of the line: y = 1/3x - 1/3"
-      ],
-      "final_answer": "y = 1/3x - 1/3",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (-2, -1) into y = 1/3x + c: -1 = 1/3×(-2) + c, so c = -1/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 1/3x - 1/3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = 1/3x - 1/3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "turning_point_of_graph_H",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 4x + 10.",
-      "solution_steps": [
-        "Complete the square: x^2 - 4x + 10 = (x - 2)^2 + 6",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (2, 6)"
-      ],
-      "final_answer": "(2, 6)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Complete the square: x^2 - 4x + 10 = (x - 2)^2 + 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Turning point = (2, 6)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(2, 6) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "velocity_time_interpret_H",
       "prompt": "The velocity-time graph shows a car's journey. Find its acceleration during the first phase.",
       "solution_steps": [
@@ -601,6 +496,89 @@
           "y_label": "Velocity (m/s)"
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solve_quadratic_completing_square_H",
+      "prompt": "Solve x^2 - 8x - 38 = 0 by completing the square, giving your answers in exact surd form.",
+      "solution_steps": [
+        "Half the coefficient of x: -8 ÷ 2 = -4",
+        "Complete the square: x^2 - 8x - 38 = (x - 4)^2 - 54",
+        "Set (x - 4)^2 - 54 = 0, so (x - 4)^2 = 54",
+        "(x - 4) = ±√54 = ±3√6",
+        "x = 4 + 3√6 or x = 4 - 3√6"
+      ],
+      "final_answer": "x = 4 + 3√6 or x = 4 - 3√6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: -8 ÷ 2 = -4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Complete the square: x^2 - 8x - 38 = (x - 4)^2 - 54",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Set (x - 4)^2 - 54 = 0, so (x - 4)^2 = 54",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 4) = ±√54 = ±3√6 x = 4 + 3√6 or x = 4 - 3√6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 4 + 3√6 or x = 4 - 3√6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "distance_between_points_H",
+      "prompt": "Find the length of the line segment joining A(6, 8) and B(5, -2). Give your answer as a surd in its simplest form.",
+      "solution_steps": [
+        "The distance between two points is found with Pythagoras: the square root of ((horizontal gap)^2 + (vertical gap)^2).",
+        "Horizontal gap: 5 - (6) = -1. Vertical gap: -2 - (8) = -10.",
+        "Distance = √((-1)^2 + (-10)^2) = √101",
+        "√101 is already in its simplest form."
+      ],
+      "final_answer": "√101",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The distance between two points is found with Pythagoras: the square root of ((horizontal gap)^2 + (vertical gap)^2).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Horizontal gap: 5 - (6) = -1. Vertical gap: -2 - (8) = -10.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = √((-1)^2 + (-10)^2) = √101",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√101 is already in its simplest form.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "√101 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -1013,16 +991,6 @@
                 "5/12"
               ]
             ]
-          ],
-          "leaf_probs": [
-            [
-              "7/26",
-              "7/26"
-            ],
-            [
-              "7/26",
-              "5/26"
-            ]
           ]
         }
       },
@@ -1055,83 +1023,6 @@
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_algebraic_H",
-      "prompt": "A biased spinner can only land on blue or red. The probability that it lands on blue is 3x, and the probability that it lands on red is x. The spinner is spun twice. Find the probability that both spins land on red.",
-      "solution_steps": [
-        "A biased spinner can only land on blue or red. The probability that it lands on blue is 3x, and the probability that it lands on red is x. Since the spinner can only land on blue or red, the two probabilities must sum to 1: 3x + x = 1.",
-        "Solving this equation gives x = 1/4.",
-        "Substituting back: P(blue) = 3/4, P(red) = 1/4.",
-        "P(both spins land on red) = 1/4 × 1/4 = 1/16"
-      ],
-      "final_answer": "1/16",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A biased spinner can only land on blue or red. The probability that it lands on blue is 3x, and the probability that it lands on red is x. Since the spinner can only land on blue or red, the two probabilities must sum to 1: 3x + x = 1.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Solving this equation gives x = 1/4.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substituting back: P(blue) = 3/4, P(red) = 1/4.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both spins land on red) = 1/4 × 1/4 = 1/16",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/16 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Blue",
-              "3x"
-            ],
-            [
-              "Red",
-              "x"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Blue",
-                "3x"
-              ],
-              [
-                "Red",
-                "x"
-              ]
-            ],
-            [
-              [
-                "Blue",
-                "3x"
-              ],
-              [
-                "Red",
-                "x"
-              ]
-            ]
-          ]
-        }
-      },
       "solution_diagram": null
     }
   ]

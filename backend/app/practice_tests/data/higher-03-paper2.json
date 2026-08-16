@@ -153,92 +153,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_H",
-      "prompt": "Simplify √216, giving your answer in the form a√b.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 5√11 - 4√11 - 2√11, giving your answer in the form a√b.",
       "solution_steps": [
-        "Find the largest square factor of 216: 6^2 × 6 = 216",
-        "√216 = √(6^2 × 6) = 6√6"
+        "Every term is a multiple of √11, so they are all like surds.",
+        "Combine the coefficients in order: 5 - 4 - 2 = -1.",
+        "= -√11"
       ],
-      "final_answer": "6√6",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the largest square factor of 216: 6^2 × 6 = 216",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√216 = √(6^2 × 6) = 6√6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6√6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "prime_factors_H",
-      "prompt": "Write 225 as a product of its prime factors, giving your answer in index form.",
-      "solution_steps": [
-        "Divide 225 repeatedly by the smallest prime that fits: 3 × 3 × 5 × 5",
-        "Write repeated factors using index notation: 225 = 3^2 × 5^2"
-      ],
-      "final_answer": "3^2 × 5^2",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide 225 repeatedly by the smallest prime that fits: 3 × 3 × 5 × 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write repeated factors using index notation: 225 = 3^2 × 5^2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3^2 × 5^2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "error_interval_H",
-      "prompt": "A number, x, is 6000 rounded to 1 significant figure. Write down the error interval for x.",
-      "solution_steps": [
-        "The last significant figure of 6000 has a place value of 1000, so x can be up to half of that above or below 6000.",
-        "Lower bound: 6000 - 500 = 5500",
-        "Upper bound: 6000 + 500 = 6500"
-      ],
-      "final_answer": "5500 ≤ x < 6500",
+      "final_answer": "-√11",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The last significant figure of 6000 has a place value of 1000, so x can be up to half of that above or below 6000.",
+          "description": "Every term is a multiple of √11, so they are all like surds.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lower bound: 6000 - 500 = 5500",
+          "description": "Combine the coefficients in order: 5 - 4 - 2 = -1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Upper bound: 6000 + 500 = 6500",
+          "description": "= -√11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5500 ≤ x < 6500 oe",
+          "description": "-√11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "powers_H",
+      "prompt": "Evaluate 3^0.",
+      "solution_steps": [
+        "Any nonzero number raised to the power 0 equals 1.",
+        "3^0 = 1"
+      ],
+      "final_answer": "1",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Any nonzero number raised to the power 0 equals 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3^0 = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation_H",
+      "prompt": "A car travels 197 km (to the nearest km) in 13 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
+      "solution_steps": [
+        "Distance: 197 km (to the nearest km) gives 196.5 ≤ distance < 197.5",
+        "Time: 13 hours (to the nearest hour) gives 12.5 ≤ time < 13.5",
+        "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 197.5 ÷ 12.5 = 15.8 ≈ 15.8 km/h"
+      ],
+      "final_answer": "15.8 km/h (to 1 d.p.)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Distance: 197 km (to the nearest km) gives 196.5 ≤ distance < 197.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time: 13 hours (to the nearest hour) gives 12.5 ≤ time < 13.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 197.5 ÷ 12.5 = 15.8 ≈ 15.8 km/h",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15.8 km/h (to 1 d.p.) oe",
           "marks": 1
         }
       ],
@@ -335,131 +341,122 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential_H",
-      "prompt": "Complete a table of values for y = 3 × 3^x for x = 0 to 4, then plot the graph.",
+      "topic_id": "trig_graph_H",
+      "prompt": "Complete a table of values for y = cos(x°) for x = -180 to 180 (in steps of 90°), then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 3 × 3^x:",
-        "x: 0, 1, 2, 3, 4",
-        "y: 3, 9, 27, 81, 243",
-        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+        "Table of values for y = cos(x°):",
+        "x: -180, -90, 0, 90, 180",
+        "y: -1, 0, 1, 0, -1",
+        "Plot each (x, y) point and join them with a single smooth curve - y = cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
       ],
-      "final_answer": "Exponential curve: y = 3 × 3^x",
+      "final_answer": "y = cos(x°)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 3 × 3^x:",
+          "description": "Table of values for y = cos(x°):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: 0, 1, 2, 3, 4",
+          "description": "x: -180, -90, 0, 90, 180",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 3, 9, 27, 81, 243",
+          "description": "y: -1, 0, 1, 0, -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Exponential curve: y = 3 × 3^x oe",
+          "description": "y = cos(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "exponential",
-          "a": 3,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 267.3,
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": 1,
+          "x_min": -180,
+          "x_max": 180,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "exponential",
-          "a": 3,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 267.3,
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": 1,
+          "x_min": -180,
+          "x_max": 180,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
           "table_points": [
             [
+              -180,
+              -1
+            ],
+            [
+              -90,
+              0
+            ],
+            [
               0,
-              3
+              1
             ],
             [
-              1,
-              9
+              90,
+              0
             ],
             [
-              2,
-              27
-            ],
-            [
-              3,
-              81
-            ],
-            [
-              4,
-              243
+              180,
+              -1
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "trial_and_improvement_H",
-      "prompt": "f(x) = x^3 - 1x - 33. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object starts with an initial velocity (u) of 5 m/s and has a constant acceleration (a) of 5 m/s^2 for a time (t) of 4 s. Find its final velocity (v).",
       "solution_steps": [
-        "f(x) = x^3 - 1x - 33",
-        "f(3) = -9.00 (negative)",
-        "f(4) = 27.00 (positive)",
-        "f(3.1) = -6.31 (negative)",
-        "f(3.2) = -3.43 (negative)",
-        "f(3.3) = -0.36 (negative)",
-        "f(3.4) = 2.90 (positive)",
-        "The sign changes between x = 3.3 and x = 3.4, so try the midpoint x = 3.35: f(3.35) = 1.25.",
-        "f(3.35) has the same sign as f(3.4), so the root lies between 3.3 and 3.35 - to 1 decimal place, this rounds down to 3.3."
+        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+        "v = u + at",
+        "Substitute u = 5, a = 5, t = 4: v = 5 + 5 × 4 = 5 + 20 = 25"
       ],
-      "final_answer": "x = 3.3",
-      "marks": 5,
+      "final_answer": "25 m/s",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(x) = x^3 - 1x - 33",
+          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(3) = -9.00 (negative)",
+          "description": "v = u + at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4) = 27.00 (positive)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(3.1) = -6.31 (negative) f(3.2) = -3.43 (negative) f(3.3) = -0.36 (negative) f(3.4) = 2.90 (positive) The sign changes between x = 3.3 and x = 3.4, so try the midpoint x = 3.35: f(3.35) = 1.25. f(3.35) has the same sign as f(3.4), so the root lies between 3.3 and 3.35 - to 1 decimal place, this rounds down to 3.3.",
+          "description": "Substitute u = 5, a = 5, t = 4: v = 5 + 5 × 4 = 5 + 20 = 25",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 3.3 oe",
+          "description": "25 m/s oe",
           "marks": 1
         }
       ],
@@ -512,28 +509,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_H",
-      "prompt": "Factorise: x^2 + x - 72",
+      "topic_id": "solve_quadratic_completing_square_H",
+      "prompt": "Solve x^2 + 10x - 101 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "Find two numbers that multiply to -72 and add to 1: -8 and 9",
-        "Write as two brackets: (x - 8)(x + 9)"
+        "Half the coefficient of x: 10 ÷ 2 = 5",
+        "Complete the square: x^2 + 10x - 101 = (x + 5)^2 - 126",
+        "Set (x + 5)^2 - 126 = 0, so (x + 5)^2 = 126",
+        "(x + 5) = ±√126 = ±3√14",
+        "x = -5 + 3√14 or x = -5 - 3√14"
       ],
-      "final_answer": "(x - 8)(x + 9)",
-      "marks": 3,
+      "final_answer": "x = -5 + 3√14 or x = -5 - 3√14",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to -72 and add to 1: -8 and 9",
+          "description": "Half the coefficient of x: 10 ÷ 2 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x - 8)(x + 9)",
+          "description": "Complete the square: x^2 + 10x - 101 = (x + 5)^2 - 126",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Set (x + 5)^2 - 126 = 0, so (x + 5)^2 = 126",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 5) = ±√126 = ±3√14 x = -5 + 3√14 or x = -5 - 3√14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x - 8)(x + 9) oe",
+          "description": "x = -5 + 3√14 or x = -5 - 3√14 oe",
           "marks": 1
         }
       ],
@@ -541,56 +551,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret_H",
-      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "topic_id": "graph_transformations_H",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(x) + 5. Describe this transformation fully.",
       "solution_steps": [
-        "Total distance = total area under the graph (a trapezium)",
-        "Distance = ½ × (49 + 25) × 20 = 740 m"
+        "y = f(x) + 5 corresponds to a translation by vector (0, 5)."
       ],
-      "final_answer": "740 m",
-      "marks": 3,
+      "final_answer": "Translation by vector (0, 5)",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total distance = total area under the graph (a trapezium)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Distance = ½ × (49 + 25) × 20 = 740 m",
+          "description": "y = f(x) + 5 corresponds to a translation by vector (0, 5).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "740 m oe",
+          "description": "Translation by vector (0, 5) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "piecewise_graph",
+        "kind": "graph_transformation",
         "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              12,
-              20
-            ],
-            [
-              37,
-              20
-            ],
-            [
-              49,
-              0
-            ]
-          ],
-          "x_max": 54,
-          "y_max": 25,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
+          "transform": "translate_up",
+          "shift": 5,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x) + 5"
         }
       },
       "solution_diagram": null
@@ -702,8 +688,37 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "compound_percentage_H",
+      "prompt": "A price of £228 increases by 42.5%, then decreases by 30%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 228 × 1.43 = 324.90",
+        "After the second change: 324.90 × 0.70 = 227.43"
+      ],
+      "final_answer": "£227.43",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 228 × 1.43 = 324.90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 324.90 × 0.70 = 227.43",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£227.43 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "area_semicircle_compound_H",
-      "prompt": "A shape is made from a rectangle 12 cm by 17 cm with a semicircle of diameter 12 cm attached to one side. Find the total area, giving your answer in terms of π.",
+      "prompt": "Find the total area of the following compound shape, giving your answer in terms of π.",
       "solution_steps": [
         "Area of rectangle = 12 × 17 = 204 cm²",
         "Radius of semicircle = 12 ÷ 2 = 6 cm",
@@ -753,7 +768,7 @@
     },
     {
       "topic_id": "volume_surface_area_cylinder_H",
-      "prompt": "Find the exact total surface area of the cylinder, in terms of π.",
+      "prompt": "Here is a cylinder. Find its total surface area, giving your answer in terms of π.",
       "solution_steps": [
         "Surface area = 2πr(r + h) = 2 × π × 5 × (5 + 13)",
         "= 180π cm²"
@@ -1009,41 +1024,6 @@
           }
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_reverse_mean_H",
-      "prompt": "The mean of four numbers is 15. Three of the numbers are 30, 10, 6. Find the missing number.",
-      "solution_steps": [
-        "Total of all 4 numbers = mean × count = 15 × 4 = 60",
-        "Sum of the known numbers = 30 + 10 + 6 = 46",
-        "Missing number = 60 - 46 = 14"
-      ],
-      "final_answer": "14",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total of all 4 numbers = mean × count = 15 × 4 = 60",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Sum of the known numbers = 30 + 10 + 6 = 46",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing number = 60 - 46 = 14",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "14 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

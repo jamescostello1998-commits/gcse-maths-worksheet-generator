@@ -193,40 +193,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_rearrange_F",
-      "prompt": "A = (1/2)bh. Make h the subject of the formula, then find the value of h when A = 20 and b = 4.",
+      "topic_id": "decimals_divide_F",
+      "prompt": "Evaluate 61.8 ÷ 6.",
       "solution_steps": [
-        "A = (1/2)bh",
-        "Rearrange to make h the subject: h = \\frac{2A}{b}",
-        "Substitute A = 20 and b = 4: h = \\frac{2 × 20}{4}",
-        "h = 10"
+        "61.8 ÷ 6 = 10.3"
       ],
-      "final_answer": "h = 10",
-      "marks": 5,
+      "final_answer": "10.3",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = (1/2)bh",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange to make h the subject: h = \\frac{2A}{b}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute A = 20 and b = 4: h = \\frac{2 × 20}{4}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "h = 10",
+          "description": "61.8 ÷ 6 = 10.3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "h = 10 oe",
+          "description": "10.3 oe",
           "marks": 1
         }
       ],
@@ -391,377 +373,211 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_F",
-      "prompt": "Draw the solution set of x < -5 on a number line.",
+      "topic_id": "sequences_next_term_F",
+      "prompt": "Find the next term in the sequence: 3, 6, 9, 12, 15, ...",
       "solution_steps": [
-        "Draw an open circle at -5 (the boundary value is not included).",
-        "Shade the line to the left of -5, with an arrow showing it continues indefinitely."
+        "Add 3 each time.",
+        "Next term = 15 + 3 = 18"
       ],
-      "final_answer": "x < -5",
+      "final_answer": "18",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw an open circle at -5 (the boundary value is not included).",
+          "description": "Add 3 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the line to the left of -5, with an arrow showing it continues indefinitely.",
+          "description": "Next term = 15 + 3 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -5 oe",
+          "description": "18 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "line_equation_from_graph_F",
+      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "solution_steps": [
+        "Gradient = rise/run = \\frac{6 - -4}{2 - -3} = 2",
+        "Using y = mx + c with the point (-3, -4): -4 = 2×(-3) + c, so c = 2",
+        "Equation of the line: y = 2x + 2"
+      ],
+      "final_answer": "y = 2x + 2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Gradient = rise/run = \\frac{6 - -4}{2 - -3} = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Using y = mx + c with the point (-3, -4): -4 = 2×(-3) + c, so c = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = 2x + 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = 2x + 2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "number_line",
+        "kind": "function_graph",
         "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [],
-          "blank": true
+          "kind": "linear",
+          "m": 2,
+          "c": 2,
+          "x_min": -4,
+          "x_max": 3,
+          "y_min": -7,
+          "y_max": 9
         }
       },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": -5,
-              "closed": false
-            }
-          ],
-          "shade": "left"
-        }
-      }
+      "solution_diagram": null
     },
     {
-      "topic_id": "plot_distance_time_F",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 5 km away after 15 minutes. They stay at the shop until 20 minutes, then cycle straight back home at a constant speed, arriving home at 30 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = 3x - 5 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 15 minutes.",
-        "Stay at 5 km until 20 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 30 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 5 km out + 5 km back = 10 km"
+        "Table of values for y = 3x - 5:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -14, -11, -8, -5, -2, 1, 4",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "10 km",
+      "final_answer": "Straight line: y = 3x - 5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 15 minutes.",
+          "description": "Table of values for y = 3x - 5:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stay at 5 km until 20 minutes.",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 30 minutes.",
+          "description": "y: -14, -11, -8, -5, -2, 1, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 5 km out + 5 km back = 10 km",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 km oe",
+          "description": "Straight line: y = 3x - 5 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              15,
-              5
-            ],
-            [
-              20,
-              5
-            ],
-            [
-              30,
-              0
-            ]
-          ],
-          "x_max": 35,
-          "y_max": 7,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
+          "kind": "linear",
+          "m": 3,
+          "c": -5,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -15,
+          "y_max": 5,
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
+          "kind": "linear",
+          "m": 3,
+          "c": -5,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -15,
+          "y_max": 5,
+          "table_points": [
+            [
+              -3,
+              -14
+            ],
+            [
+              -2,
+              -11
+            ],
+            [
+              -1,
+              -8
+            ],
             [
               0,
-              0
+              -5
             ],
             [
-              15,
-              5
+              1,
+              -2
             ],
             [
-              20,
-              5
+              2,
+              1
             ],
             [
-              30,
-              0
+              3,
+              4
             ]
-          ],
-          "x_max": 35,
-          "y_max": 7,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
+          ]
         }
       }
     },
     {
-      "topic_id": "special_sequences_F",
-      "prompt": "Here are the first 4 terms of a sequence: 4, 7, 10, 13. Find the next term.",
+      "topic_id": "linear_brackets_F",
+      "prompt": "Solve: 5(4x + 1) = 125",
       "solution_steps": [
-        "This is an arithmetic sequence: it goes up (or down) by the same amount, 3, each time.",
-        "Next term = 13 + 3 = 16"
+        "Expand the bracket: 5(4x + 1) = 20x + 5",
+        "20x + 5 = 125",
+        "Subtract 5 from both sides:",
+        "20x = 120",
+        "Divide both sides by 20:",
+        "x = 6"
       ],
-      "final_answer": "16",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 3, each time.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Next term = 13 + 3 = 16",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "16 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractional_equations_F",
-      "prompt": "Solve the following equation.\n\\frac{x - 2}{7} = 7",
-      "solution_steps": [
-        "Multiply both sides by 7: x - 2 = 49",
-        "x = 51"
-      ],
-      "final_answer": "x = 51",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 7: x - 2 = 49",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 51",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 51 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_two_step_F",
-      "prompt": "Solve: 7x + 10 = 94",
-      "solution_steps": [
-        "7x + 10 = 94",
-        "Subtract 10 from both sides:",
-        "7x = 84",
-        "Divide both sides by 7:",
-        "x = 12"
-      ],
-      "final_answer": "12",
+      "final_answer": "6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "7x + 10 = 94",
+          "description": "Expand the bracket: 5(4x + 1) = 20x + 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 10 from both sides:",
+          "description": "20x + 5 = 125",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7x = 84",
+          "description": "Subtract 5 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 7: x = 12",
+          "description": "20x = 120 Divide both sides by 20: x = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "best_buys_noncalculator_F",
-      "prompt": "A shop sells shampoo in different sizes: A: £3.80 for 200ml; B: £4.50 for 300ml; C: £11.20 for 800ml. Which option is the better value for money? Show your working.",
-      "solution_steps": [
-        "Work out the price per 100ml for each option:",
-        "A: £3.80 ÷ 200 × 100 = 190p per 100ml",
-        "B: £4.50 ÷ 300 × 100 = 150p per 100ml",
-        "C: £11.20 ÷ 800 × 100 = 140p per 100ml",
-        "The lowest price per 100ml is C at 140p per 100ml, so C is the best value."
-      ],
-      "final_answer": "C (£11.20 for 800ml)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Work out the price per 100ml for each option:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A: £3.80 ÷ 200 × 100 = 190p per 100ml",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B: £4.50 ÷ 300 × 100 = 150p per 100ml",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "C: £11.20 ÷ 800 × 100 = 140p per 100ml The lowest price per 100ml is C at 140p per 100ml, so C is the best value.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "C (£11.20 for 800ml) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "reverse_percentage_F",
-      "prompt": "After a 20% increase, an item costs £216. Find the original price.",
-      "solution_steps": [
-        "Convert 20% to a multiplier: 1.20 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 216 ÷ 1.20 = 180"
-      ],
-      "final_answer": "£180",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 20% to a multiplier: 1.20 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 216 ÷ 1.20 = 180",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£180 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "direct_proportion_F",
-      "prompt": "If 4 cm on a map represents 100 km in real life, how many km does 9 cm represent?",
-      "solution_steps": [
-        "Unit value = 100 km ÷ 4 = 25 km",
-        "Answer = 25 km × 9 = 225 km"
-      ],
-      "final_answer": "225 km",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Unit value = 100 km ÷ 4 = 25 km",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer = 25 km × 9 = 225 km",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "225 km oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_1_to_n_F",
-      "prompt": "Write the ratio 8:7 in the form \\plain{n}:1.",
-      "solution_steps": [
-        "Divide both parts of the ratio by 7 (the second part) so the second part becomes 1.",
-        "8 ÷ 7 ≈ 1.14, 7 ÷ 7 = 1"
-      ],
-      "final_answer": "1.14 : 1 (to 2 d.p.)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide both parts of the ratio by 7 (the second part) so the second part becomes 1.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "8 ÷ 7 ≈ 1.14, 7 ÷ 7 = 1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1.14 : 1 (to 2 d.p.) oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -798,6 +614,178 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "ratio_share_two_part_F",
+      "prompt": "Share 85 in the ratio 8:9.",
+      "solution_steps": [
+        "Total parts = 8 + 9 = 17",
+        "Value of one part = 85 ÷ 17 = 5",
+        "Share 1 = 8 × 5 = 40",
+        "Share 2 = 9 × 5 = 45"
+      ],
+      "final_answer": "40 : 45",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total parts = 8 + 9 = 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 85 ÷ 17 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 8 × 5 = 40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 9 × 5 = 45",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "40 : 45 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage_F",
+      "prompt": "A price of £320 decreases by 25%, then decreases by 10%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 320 × 0.75 = 240",
+        "After the second change: 240 × 0.90 = 216"
+      ],
+      "final_answer": "£216",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 320 × 0.75 = 240",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 240 × 0.90 = 216",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£216 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sampling_methods_F",
+      "prompt": "A school's students are split unevenly between boys and girls. The school wants a sample that reflects this split proportionally. Name a suitable sampling method.",
+      "solution_steps": [
+        "Since the two groups are different sizes, an equal number sampled from each would over- or under-represent one of them relative to the whole school.",
+        "Stratified sampling fixes this: the population is split into the two groups (strata), and the number sampled from each is kept proportional to its size in the whole population."
+      ],
+      "final_answer": "Stratified sampling - sample from each group in proportion to its size.",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Since the two groups are different sizes, an equal number sampled from each would over- or under-represent one of them relative to the whole school.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Stratified sampling fixes this: the population is split into the two groups (strata), and the number sampled from each is kept proportional to its size in the whole population.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Stratified sampling - sample from each group in proportion to its size. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_F",
+      "prompt": "h : k = 2 : 7.\nk - h = 10.\nFind h and k, and their total.",
+      "solution_steps": [
+        "Difference in parts = 7 - 2 = 5 parts",
+        "Value of one part = 10 ÷ 5 = 2",
+        "h = 2 × 2 = 4",
+        "k = 7 × 2 = 14",
+        "h + k = 4 + 14 = 18"
+      ],
+      "final_answer": "h = 4, k = 14 (total 18)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 7 - 2 = 5 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 10 ÷ 5 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "h = 2 × 2 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 7 × 2 = 14 h + k = 4 + 14 = 18",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "h = 4, k = 14 (total 18) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_parallelogram_F",
+      "prompt": "Find the area of the following parallelogram.",
+      "solution_steps": [
+        "Area = base × height = 16 × 3 = 48 cm²"
+      ],
+      "final_answer": "48 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = base × height = 16 × 3 = 48 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "48 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parallelogram",
+        "params": {
+          "base": 16,
+          "height": 3,
+          "base_label": "16 cm",
+          "height_label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
       "topic_id": "area_triangle_F",
       "prompt": "A triangle has base 6 cm and height 6 cm. Find its area.",
       "solution_steps": [
@@ -829,39 +817,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_F",
-      "prompt": "A triangle has angles 114°, 39°, and x°. Find x.",
+      "topic_id": "angles_parallel_lines_F",
+      "prompt": "A line crosses two parallel lines. The angle 136° and the angle x° are corresponding angles. Find x.",
       "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (114 + 39) = 180 - 153 = 27"
+        "Corresponding angles are equal.",
+        "x = 136"
       ],
-      "final_answer": "27",
+      "final_answer": "136",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "Corresponding angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (114 + 39) = 180 - 153 = 27",
+          "description": "x = 136",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27 oe",
+          "description": "136 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "parallel_lines",
         "params": {
-          "angle_labels": [
-            "114°",
-            "39°",
-            "x"
-          ]
+          "known_label": "136°",
+          "unknown_label": "x",
+          "relation": "corresponding",
+          "known_value": 136,
+          "x_frac": 0.38
         }
       },
       "solution_diagram": null
@@ -896,235 +884,335 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_rotational_F",
-      "prompt": "The diagram shows a rhombus. State the order of rotational symmetry.",
+      "topic_id": "transform_reflect_complete_F",
+      "prompt": "Reflect shape A in the line x = -1.",
       "solution_steps": [
-        "Rotating the rhombus about its centre, it looks exactly the same 2 times during a full 360° turn.",
-        "So the order of rotational symmetry is 2."
+        "Reflect each vertex of shape A in the line x = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "The image, shape B, has vertices (-3, -2), (-7, -2), (-7, 0), (-5, 0), (-5, 3), (-3, 3)."
       ],
-      "final_answer": "order 2",
+      "final_answer": "Image (shape B): (-3, -2), (-7, -2), (-7, 0), (-5, 0), (-5, 3), (-3, 3)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotating the rhombus about its centre, it looks exactly the same 2 times during a full 360° turn.",
+          "description": "Reflect each vertex of shape A in the line x = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the order of rotational symmetry is 2.",
+          "description": "The image, shape B, has vertices (-3, -2), (-7, -2), (-7, 0), (-5, 0), (-5, 3), (-3, 3).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "order 2 oe",
+          "description": "Image (shape B): (-3, -2), (-7, -2), (-7, 0), (-5, 0), (-5, 3), (-3, 3) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "symmetry_shape",
+        "kind": "grid_transformation",
         "params": {
-          "vertices": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              0,
-              -3
+              1,
+              -2
             ],
             [
-              4,
+              5,
+              -2
+            ],
+            [
+              5,
               0
             ],
             [
-              0,
+              3,
+              0
+            ],
+            [
+              3,
               3
             ],
             [
-              -4,
-              0
+              1,
+              3
             ]
           ],
-          "blank": true
+          "original_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "mirror_line": {
+            "type": "vertical",
+            "x": -1,
+            "label": "x = -1"
+          }
         }
       },
       "solution_diagram": {
-        "kind": "symmetry_shape",
+        "kind": "grid_transformation",
         "params": {
-          "vertices": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              0,
-              -3
+              1,
+              -2
             ],
             [
-              4,
+              5,
+              -2
+            ],
+            [
+              5,
               0
             ],
             [
-              0,
+              3,
+              0
+            ],
+            [
+              3,
               3
             ],
             [
-              -4,
-              0
+              1,
+              3
             ]
           ],
-          "rotation_centre": [
-            0.0,
-            0.0
+          "original_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
-          "rotation_order": 2
+          "original_shape_label": "A",
+          "mirror_line": {
+            "type": "vertical",
+            "x": -1,
+            "label": "x = -1"
+          },
+          "image_vertices": [
+            [
+              -3,
+              -2
+            ],
+            [
+              -7,
+              -2
+            ],
+            [
+              -7,
+              0
+            ],
+            [
+              -5,
+              0
+            ],
+            [
+              -5,
+              3
+            ],
+            [
+              -3,
+              3
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
     {
-      "topic_id": "nets_3d_shapes_F",
-      "prompt": "What 2D shapes make up the net of a triangular prism?",
+      "topic_id": "plans_and_elevations_F",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
-        "Imagine unfolding a triangular prism flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A triangular prism's net is made up of: 2 triangles and 3 rectangles.",
-        "So the answer is: 2 triangles and 3 rectangles."
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 7 cm by 8 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 6 cm by 7 cm."
       ],
-      "final_answer": "2 triangles and 3 rectangles",
-      "marks": 4,
+      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 7 cm by 8 cm. Plan view: a rectangle, 6 cm by 7 cm.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Imagine unfolding a triangular prism flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A triangular prism's net is made up of: 2 triangles and 3 rectangles.",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the answer is: 2 triangles and 3 rectangles.",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 7 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 7 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 triangles and 3 rectangles oe",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 7 cm by 8 cm. Plan view: a rectangle, 6 cm by 7 cm. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "plans_and_elevations_question",
+        "params": {
+          "shape": "triangular_prism",
+          "base_label": "6 cm",
+          "triangle_height_label": "8 cm",
+          "length_label": "7 cm"
+        }
+      },
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "triangular_prism",
+          "base": 6,
+          "tri_height": 8,
+          "length": 7,
+          "base_label": "6 cm",
+          "tri_height_label": "8 cm",
+          "length_label": "7 cm"
+        }
+      }
+    },
+    {
+      "topic_id": "tree_diagram_drawing_F",
+      "prompt": "A bag contains 2 green and 5 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is green.",
+      "solution_steps": [
+        "Draw two branches from the start: P(green) = 2/7, P(red) = 5/7.",
+        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+        "P(red then green) = 5/7 × 2/7 = 10/49"
+      ],
+      "final_answer": "10/49",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw two branches from the start: P(green) = 2/7, P(red) = 5/7.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then green) = 5/7 × 2/7 = 10/49",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10/49 oe",
           "marks": 1
         }
       ],
       "diagram": null,
       "solution_diagram": {
-        "kind": "net",
-        "params": {
-          "shape": "triangular_prism"
-        }
-      }
-    },
-    {
-      "topic_id": "tree_diagram_independent_F",
-      "prompt": "A bag contains 5 green and 6 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is green and the second counter is yellow.",
-      "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 5/11, P(yellow) = 6/11.",
-        "P(green then yellow) = 5/11 × 6/11 = 30/121"
-      ],
-      "final_answer": "30/121",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 5/11, P(yellow) = 6/11.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(green then yellow) = 5/11 × 6/11 = 30/121",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "30/121 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
         "kind": "tree_diagram",
         "params": {
           "stage1": [
             [
               "Green",
-              "5/11"
+              "2/7"
             ],
             [
-              "Yellow",
-              "6/11"
+              "Red",
+              "5/7"
             ]
           ],
           "stage2": [
             [
               [
                 "Green",
-                "5/11"
+                "2/7"
               ],
               [
-                "Yellow",
-                "6/11"
+                "Red",
+                "5/7"
               ]
             ],
             [
               [
                 "Green",
-                "5/11"
+                "2/7"
               ],
               [
-                "Yellow",
-                "6/11"
+                "Red",
+                "5/7"
               ]
             ]
           ]
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "probability_expectation_F",
-      "prompt": "In a batch of items, the probability that an item is defective is 2/10. 40 items are checked. How many would you expect to be defective?",
+      "topic_id": "ratio_shape_similar_F",
+      "prompt": "Shape A and Shape B are similar. Find the length of side y.",
       "solution_steps": [
-        "Expected number of times = probability × number of trials = 2/10 × 40",
-        "= 8"
+        "Scale factor = 8 ÷ 12 = 2/3",
+        "Corresponding length = 18 × 2/3 = 12"
       ],
-      "final_answer": "8",
+      "final_answer": "12 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 2/10 × 40",
+          "description": "Scale factor = 8 ÷ 12 = 2/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 8",
+          "description": "Corresponding length = 18 × 2/3 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "12 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_F",
-      "prompt": "Which of the following fractions is equivalent to 2/5? A) 10/30, B) 10/25, C) 9/25, D) 4/15",
-      "solution_steps": [
-        "Cross-multiply 2/5 against each option: a candidate p/q is equivalent only if 2 × q = p × 5.",
-        "Only option B) 10/25 works: 2 × 25 = 10 × 5 = 50."
-      ],
-      "final_answer": "B) 10/25",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "B) 10/25 (selecting the correct option)",
-          "marks": 1
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "shape_kind": "rectangle",
+          "orientation": "br",
+          "a_width_label": "12 cm",
+          "a_height_label": "18 cm",
+          "b_width_label": "8 cm",
+          "b_height_label": "y"
         }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     }
   ]

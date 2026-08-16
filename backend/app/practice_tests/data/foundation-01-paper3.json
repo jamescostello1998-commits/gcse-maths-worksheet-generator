@@ -408,34 +408,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 9x = 108",
+      "topic_id": "collect_like_terms_F",
+      "prompt": "Simplify -2x - 2x - 2x + 9x",
       "solution_steps": [
-        "9x = 108",
-        "Divide both sides by 9:",
-        "x = 12"
+        "Start with the expression: -2x - 2x - 2x + 9x.",
+        "Like terms have exactly the same letter part, so group the x terms together, keeping the + or - sign in front of each term.",
+        "Add the coefficients within each group (a term with no number in front counts as 1).",
+        "This simplifies to 3x."
       ],
-      "final_answer": "12",
-      "marks": 4,
+      "final_answer": "3x",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "9x = 108",
+          "description": "Start with the expression: -2x - 2x - 2x + 9x.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 9:",
+          "description": "Like terms have exactly the same letter part, so group the x terms together, keeping the + or - sign in front of each term.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 12",
+          "description": "Add the coefficients within each group (a term with no number in front counts as 1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This simplifies to 3x.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "3x oe",
           "marks": 1
         }
       ],
@@ -580,49 +586,38 @@
       }
     },
     {
-      "topic_id": "line_equation_from_graph_F",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "topic_id": "parallel_lines_equation_F",
+      "prompt": "A line is parallel to y = -x - 4 and passes through the point (-5, 10). Find the equation of the line.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{-2 - 13}{1 - -4} = -3",
-        "Using y = mx + c with the point (-4, 13): 13 = -3×(-4) + c, so c = 1",
-        "Equation of the line: y = -3x + 1"
+        "Parallel lines have the same gradient, so m = -1.",
+        "Substitute (-5, 10) into y = -1x + c: 10 = -1×(-5) + c, so c = 5",
+        "Equation of the line: y = -x + 5"
       ],
-      "final_answer": "y = -3x + 1",
+      "final_answer": "y = -x + 5",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = \\frac{-2 - 13}{1 - -4} = -3",
+          "description": "Parallel lines have the same gradient, so m = -1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using y = mx + c with the point (-4, 13): 13 = -3×(-4) + c, so c = 1",
+          "description": "Substitute (-5, 10) into y = -1x + c: 10 = -1×(-5) + c, so c = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = -3x + 1",
+          "description": "Equation of the line: y = -x + 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -3x + 1 oe",
+          "description": "y = -x + 5 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -3,
-          "c": 1,
-          "x_min": -5,
-          "x_max": 2,
-          "y_min": -6,
-          "y_max": 17
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -781,151 +776,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_rotational_F",
-      "prompt": "The diagram shows a kite. State the order of rotational symmetry.",
-      "solution_steps": [
-        "Rotating the kite about its centre, it only looks the same once during a full 360° turn (back at the start).",
-        "So the order of rotational symmetry is 1."
-      ],
-      "final_answer": "order 1",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Rotating the kite about its centre, it only looks the same once during a full 360° turn (back at the start).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So the order of rotational symmetry is 1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "order 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              -2
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              0,
-              5
-            ],
-            [
-              -3,
-              1
-            ]
-          ],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              -2
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              0,
-              5
-            ],
-            [
-              -3,
-              1
-            ]
-          ],
-          "rotation_centre": [
-            0.0,
-            1.25
-          ],
-          "rotation_order": 1
-        }
-      }
-    },
-    {
-      "topic_id": "pythagoras_shorter_leg_F",
-      "prompt": "A right-angled triangle has hypotenuse 10 cm and one side 6 cm. Find the length of x.",
-      "solution_steps": [
-        "b² = c² - a² = 10² - 6² = 100 - 36 = 64",
-        "b = √64 = 8"
-      ],
-      "final_answer": "8 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "b² = c² - a² = 10² - 6² = 100 - 36 = 64",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "b = √64 = 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "6 cm",
-          "leg2_label": "x",
-          "hyp_label": "10 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 7 cm, width 4 cm and height 6 cm. Find its volume.",
-      "solution_steps": [
-        "Volume = length × width × height = 7 × 4 × 6 = 168 cm³"
-      ],
-      "final_answer": "168 cm³",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Volume = length × width × height = 7 × 4 × 6 = 168 cm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "168 cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "4 cm",
-          "height_label": "6 cm",
-          "length_label": "7 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
       "topic_id": "transform_reflect_complete_F",
       "prompt": "Reflect shape A in the line y = -3.",
       "solution_steps": [
@@ -1041,37 +891,138 @@
       }
     },
     {
-      "topic_id": "area_sector_F",
-      "prompt": "Find the area of the following sector, correct to 1 decimal place.",
+      "topic_id": "pythagoras_ladder_context_F",
+      "prompt": "A ladder of length 74 m leans against a vertical wall with its base 24 m from the wall. Find the height the ladder reaches up the wall.",
       "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (261 ÷ 360) × π × 5²",
-        "= 56.9 cm² (1 d.p., using a calculator value of π)"
+        "height² = ladder² - base² = 74² - 24² = 5476 - 576 = 4900",
+        "height = √4900 = 70 m"
       ],
-      "final_answer": "56.9 cm²",
+      "final_answer": "70 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (261 ÷ 360) × π × 5²",
+          "description": "height² = ladder² - base² = 74² - 24² = 5476 - 576 = 4900",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 56.9 cm² (1 d.p., using a calculator value of π)",
+          "description": "height = √4900 = 70 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56.9 cm² oe",
+          "description": "70 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cuboid_F",
+      "prompt": "Here is a cuboid. Find its volume.",
+      "solution_steps": [
+        "Volume = length × width × height = 7 × 4 × 6 = 168 cm³"
+      ],
+      "final_answer": "168 cm³",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = length × width × height = 7 × 4 × 6 = 168 cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "168 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sector",
+        "kind": "cuboid",
         "params": {
-          "angle": 261,
-          "radius_label": "5 cm",
-          "angle_label": "261°"
+          "width_label": "4 cm",
+          "height_label": "6 cm",
+          "length_label": "7 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_reflect_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "solution_steps": [
+        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+        "Comparing corresponding vertices shows the mirror line is y = 2."
+      ],
+      "final_answer": "Reflection in the line y = 2",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Comparing corresponding vertices shows the mirror line is y = 2.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reflection in the line y = 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -3,
+              -2
+            ],
+            [
+              0,
+              -2
+            ],
+            [
+              -3,
+              0
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "image_vertices": [
+            [
+              -3,
+              6
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              -3,
+              4
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B",
+          "image_same_color": true
         }
       },
       "solution_diagram": null
@@ -1116,6 +1067,52 @@
             "x"
           ],
           "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_around_point_F",
+      "prompt": "The angles 33°, 47°, 140° and x° are angles around a point. Find x.",
+      "solution_steps": [
+        "Angles around a point sum to 360°.",
+        "x = 360 - (33 + 47 + 140) = 360 - 220 = 140"
+      ],
+      "final_answer": "140",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles around a point sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 360 - (33 + 47 + 140) = 360 - 220 = 140",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "140 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            33,
+            47,
+            140,
+            140
+          ],
+          "labels": [
+            "33°",
+            "47°",
+            "140°",
+            "x"
+          ],
+          "around_point": true
         }
       },
       "solution_diagram": null
@@ -1292,45 +1289,40 @@
       }
     },
     {
-      "topic_id": "probability_and_or_rule_F",
-      "prompt": "A bag contains coloured counters. P(green) = 4/10. P(yellow) = 4/10. A counter cannot be both colours. Find P(green or yellow).",
+      "topic_id": "relative_frequency_F",
+      "prompt": "A biased dice is tested 100 times, and it shows a six 34 times. Use this relative frequency to estimate how many times this would happen in 600 trials.",
       "solution_steps": [
-        "A counter cannot be both green and yellow, so these events are mutually exclusive.",
-        "For mutually exclusive events, P(A or B) = P(A) + P(B).",
-        "P(green or yellow) = 4/10 + 4/10 = 4/5"
+        "Relative frequency = frequency ÷ number of trials = 34/100 = 17/50",
+        "Estimated number of times in 600 trials = 17/50 × 600 = 204"
       ],
-      "final_answer": "4/5",
-      "marks": 4,
+      "final_answer": "204",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter cannot be both green and yellow, so these events are mutually exclusive.",
+          "description": "Relative frequency = frequency ÷ number of trials = 34/100 = 17/50",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For mutually exclusive events, P(A or B) = P(A) + P(B).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(green or yellow) = 4/10 + 4/10 = 4/5",
+          "description": "Estimated number of times in 600 trials = 17/50 × 600 = 204",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/5 oe",
+          "description": "204 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "dice",
         "params": {
-          "counts": {
-            "green": 4,
-            "yellow": 4,
-            "other": 2
-          }
+          "values": [
+            6
+          ],
+          "highlight": [
+            0
+          ]
         }
       },
       "solution_diagram": null

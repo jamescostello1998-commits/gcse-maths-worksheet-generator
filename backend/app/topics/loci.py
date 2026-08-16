@@ -104,6 +104,13 @@ def _two_points_locus(rng: random.Random) -> dict:
     }
 
 
+def _dist_to_line(P: tuple, line_a: tuple, line_b: tuple) -> float:
+    lx, ly = line_b[0] - line_a[0], line_b[1] - line_a[1]
+    line_len = math.hypot(lx, ly)
+    cross = abs(lx * (P[1] - line_a[1]) - ly * (P[0] - line_a[0]))
+    return cross / line_len
+
+
 def _two_lines_locus(rng: random.Random) -> dict:
     Y = (0.0, 0.0)
     base_angle = rng.randint(0, 359)
@@ -120,14 +127,8 @@ def _two_lines_locus(rng: random.Random) -> dict:
     # ray and confirm it is the same perpendicular distance from each of the
     # two given rays (the point-to-line distance formula, computed
     # separately per ray) - the geometric definition of an angle bisector.
-    def dist_to_line(P: tuple, line_a: tuple, line_b: tuple) -> float:
-        lx, ly = line_b[0] - line_a[0], line_b[1] - line_a[1]
-        line_len = math.hypot(lx, ly)
-        cross = abs(lx * (P[1] - line_a[1]) - ly * (P[0] - line_a[0]))
-        return cross / line_len
-
-    d1 = dist_to_line(bisector_end, Y, X)
-    d2 = dist_to_line(bisector_end, Y, Z)
+    d1 = _dist_to_line(bisector_end, Y, X)
+    d2 = _dist_to_line(bisector_end, Y, Z)
     if abs(d1 - d2) > 1e-6:
         raise ValueError("loci_constructions verification failed: two_lines locus not equidistant from both rays")
 
@@ -158,7 +159,7 @@ def _build_loci_construction(rng: random.Random) -> dict:
 
 
 def _loci_construction_diagrams(c: dict) -> tuple:
-    base = {**c["bbox"], "points": c["points"], "given_lines": c["given_lines"]}
+    base = {**c["bbox"], "points": c["points"], "given_lines": c["given_lines"], "show_grid": False}
     question = DiagramSpec(kind="loci_construction", params=dict(base))
     solution = DiagramSpec(kind="loci_construction", params={**base, "circle": c["circle"], "segment": c["segment"]})
     return question, solution
@@ -214,7 +215,9 @@ def _closer_to(x: float, y: float, target: tuple, other: tuple) -> bool:
     return d_target <= d_other
 
 
-def _build_loci_region(rng: random.Random) -> dict:
+def _perp_bisector_region(rng: random.Random) -> dict:
+    """circle + perpendicular-bisector variant: region within r cm of one
+    fixed point AND closer to it than to a second fixed point."""
     while True:
         A = (rng.randint(*_GRID_RANGE), rng.randint(*_GRID_RANGE))
         B = (rng.randint(*_GRID_RANGE), rng.randint(*_GRID_RANGE))
@@ -256,8 +259,8 @@ def _build_loci_region(rng: random.Random) -> dict:
     seg_p2 = (mx - ux * extend, my - uy * extend)
 
     prompt = (
-        f"A and B are two fixed points (shown). Shade the region containing points that are both within "
-        f"{r_cm} cm of {anchor_label} AND closer to {anchor_label} than to {other_label}."
+        f"Shade the region containing points that are both within {r_cm} cm of {anchor_label} AND closer "
+        f"to {anchor_label} than to {other_label}."
     )
     steps = [
         f"The boundary for 'within {r_cm} cm of {anchor_label}' is a circle, centre {anchor_label}, "
@@ -273,6 +276,7 @@ def _build_loci_region(rng: random.Random) -> dict:
     return {
         "prompt": prompt, "steps": steps, "answer": answer, "bbox": bbox,
         "points": [{"xy": A, "label": "A"}, {"xy": B, "label": "B"}],
+        "given_lines": [],
         "boundaries": [
             {"type": "circle", "centre": anchor, "radius": r_cm},
             {"type": "segment", "p1": seg_p1, "p2": seg_p2},
@@ -281,14 +285,94 @@ def _build_loci_region(rng: random.Random) -> dict:
             {"type": "disk", "centre": anchor, "radius": r_cm, "inside": True},
             {"type": "half_plane", "closer_to": anchor, "than": other},
         ],
-        "dedup_key": f"loci_region:{A}:{B}:{anchor_label}:{r_cm}",
+        "dedup_key": f"loci_region_perp:{A}:{B}:{anchor_label}:{r_cm}",
     }
 
 
+def _angle_bisector_region(rng: random.Random) -> dict:
+    """circle + angle-bisector variant: region within r cm of the vertex of
+    two given rays AND closer to one ray than the other."""
+    Y = (0.0, 0.0)
+    base_angle = rng.randint(0, 359)
+    sep_deg = rng.randint(40, 140)
+    ray_len = 5.0
+    ux1, uy1 = _unit_vector(base_angle)
+    ux2, uy2 = _unit_vector(base_angle + sep_deg)
+    X = (Y[0] + ray_len * ux1, Y[1] + ray_len * uy1)
+    Z = (Y[0] + ray_len * ux2, Y[1] + ray_len * uy2)
+    r_cm = rng.choice([2, 3, 4])
+
+    bux, buy = _unit_vector(base_angle + sep_deg / 2)
+    bisector_end = (Y[0] + ray_len * 1.1 * bux, Y[1] + ray_len * 1.1 * buy)
+
+    # Independent verification: the bisector ray is equidistant from both
+    # rays (the geometric definition of an angle bisector - same check
+    # _two_lines_locus uses), and a point actually ON ray YX is strictly
+    # closer to line YX (distance ~0) than to line YZ, confirming the
+    # "closer to line YX" half of the region is on the correct side.
+    d1 = _dist_to_line(bisector_end, Y, X)
+    d2 = _dist_to_line(bisector_end, Y, Z)
+    if abs(d1 - d2) > 1e-6:
+        raise ValueError("loci_regions verification failed: bisector ray not equidistant from both rays")
+    p_on_x = (Y[0] + 0.5 * ux1, Y[1] + 0.5 * uy1)
+    if _dist_to_line(p_on_x, Y, X) > 1e-6:
+        raise ValueError("loci_regions verification failed: point on ray YX should have ~0 distance to it")
+    if _dist_to_line(p_on_x, Y, X) >= _dist_to_line(p_on_x, Y, Z):
+        raise ValueError("loci_regions verification failed: point on ray YX should be closer to YX than YZ")
+
+    bbox = _bbox(
+        [X[0], Y[0], Z[0], bisector_end[0], Y[0] - r_cm, Y[0] + r_cm],
+        [X[1], Y[1], Z[1], bisector_end[1], Y[1] - r_cm, Y[1] + r_cm],
+    )
+
+    prompt = (
+        f"Shade the region containing points that are both within {r_cm} cm of Y AND closer to line YX "
+        f"than to line YZ."
+    )
+    steps = [
+        f"The boundary for 'within {r_cm} cm of Y' is a circle, centre Y, radius {r_cm} cm - the region "
+        "is inside this circle.",
+        "The boundary for 'closer to line YX than to line YZ' is the bisector of angle XYZ - the region "
+        "is on the X side of it.",
+        "The required region is where these two conditions overlap.",
+    ]
+    answer = (
+        f"The region inside the circle of radius {r_cm} cm centred on Y, and on the X side of the "
+        "bisector of angle XYZ."
+    )
+    return {
+        "prompt": prompt, "steps": steps, "answer": answer, "bbox": bbox,
+        "points": [{"xy": Y, "label": "Y"}, {"xy": X, "label": "X"}, {"xy": Z, "label": "Z"}],
+        "given_lines": [{"p1": Y, "p2": X}, {"p1": Y, "p2": Z}],
+        "boundaries": [
+            {"type": "circle", "centre": Y, "radius": r_cm},
+            {"type": "segment", "p1": Y, "p2": bisector_end},
+        ],
+        "shade_constraints": [
+            {"type": "disk", "centre": Y, "radius": r_cm, "inside": True},
+            {"type": "closer_to_line", "line_a": (Y, X), "line_b": (Y, Z)},
+        ],
+        "dedup_key": f"loci_region_angle:{base_angle}:{sep_deg}:{r_cm}",
+    }
+
+
+def _build_loci_region(rng: random.Random) -> dict:
+    branch = rng.choice([_perp_bisector_region, _angle_bisector_region])
+    return branch(rng)
+
+
 def _loci_region_diagrams(c: dict) -> tuple:
-    base = {**c["bbox"], "points": c["points"], "boundaries": c["boundaries"]}
+    # The boundaries (the circle and the perpendicular/angle bisector) are
+    # themselves part of what the student must construct, not given
+    # information - so only the fixed reference points appear on the
+    # question page; the solution page reveals the constructed boundaries
+    # and the shaded region together.
+    base = {**c["bbox"], "points": c["points"], "given_lines": c["given_lines"]}
     question = DiagramSpec(kind="loci_region", params=dict(base))
-    solution = DiagramSpec(kind="loci_region", params={**base, "shade_constraints": c["shade_constraints"]})
+    solution = DiagramSpec(
+        kind="loci_region",
+        params={**base, "boundaries": c["boundaries"], "shade_constraints": c["shade_constraints"]},
+    )
     return question, solution
 
 

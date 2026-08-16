@@ -353,44 +353,45 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_graphically_F",
-      "prompt": "The graphs of y = 3x - 2 and y = -2x - 7 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "topic_id": "solving_inequalities_F",
+      "prompt": "Solve the inequality: 2x + 7 > 8",
       "solution_steps": [
-        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = -1, y = -5."
+        "2x + 7 > 8",
+        "Subtract 7 from both sides:",
+        "2x > 1",
+        "Divide both sides by 2:",
+        "x > 1/2"
       ],
-      "final_answer": "x = -1, y = -5",
-      "marks": 3,
+      "final_answer": "x > 1/2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+          "description": "2x + 7 > 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = -1, y = -5.",
+          "description": "Subtract 7 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x > 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 2: x > 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -1, y = -5 oe",
+          "description": "x > 1/2 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "linear_graph_pair",
-        "params": {
-          "label1": "y = 3x - 2",
-          "label2": "y = -2x - 7",
-          "m1": 3,
-          "c1": -2,
-          "m2": -2,
-          "c2": -7,
-          "sol_x": -1,
-          "sol_y": -5
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -501,72 +502,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_F",
-      "prompt": "Write down the inequality shown by the number line below.",
+      "topic_id": "direct_proportion_noncalculator_F",
+      "prompt": "If a recipe for 5 people uses 70g of rice, how much rice is needed for 15 people?",
       "solution_steps": [
-        "The circle at -2 is open, so -2 is not included in the solution set.",
-        "The shading and arrow point to the right, so the solution is x > -2."
+        "Unit value = 70g ÷ 5 = 14g",
+        "Answer = 14g × 15 = 210g"
       ],
-      "final_answer": "x > -2",
+      "final_answer": "210g",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at -2 is open, so -2 is not included in the solution set.",
+          "description": "Unit value = 70g ÷ 5 = 14g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading and arrow point to the right, so the solution is x > -2.",
+          "description": "Answer = 14g × 15 = 210g",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x > -2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": -2,
-              "closed": false
-            }
-          ],
-          "shade": "right"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "reverse_percentage_F",
-      "prompt": "After a 25% decrease, an item costs £225. Find the original price.",
-      "solution_steps": [
-        "Convert 25% to a multiplier: 0.75 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 225 ÷ 0.75 = 300"
-      ],
-      "final_answer": "£300",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 25% to a multiplier: 0.75 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 225 ÷ 0.75 = 300",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£300 oe",
+          "description": "210g oe",
           "marks": 1
         }
       ],
@@ -574,40 +531,70 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 140 in the ratio 6:8.",
+      "topic_id": "find_percentage_change_F",
+      "prompt": "The price of an item changes from £180 to £171. Find the percentage decrease.",
       "solution_steps": [
-        "Total parts = 6 + 8 = 14",
-        "Value of one part = 140 ÷ 14 = 10",
-        "Share 1 = 6 × 10 = 60",
-        "Share 2 = 8 × 10 = 80"
+        "Find the difference between the two values: £171 and £180 differ by £9",
+        "Divide by the ORIGINAL value and convert to a percentage: £9 ÷ £180 × 100 = 5%"
       ],
-      "final_answer": "60 : 80",
-      "marks": 5,
+      "final_answer": "5% decrease",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 6 + 8 = 14",
+          "description": "Find the difference between the two values: £171 and £180 differ by £9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 140 ÷ 14 = 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 6 × 10 = 60",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 8 × 10 = 80",
+          "description": "Divide by the ORIGINAL value and convert to a percentage: £9 ÷ £180 × 100 = 5%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "60 : 80 oe",
+          "description": "5% decrease oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys_noncalculator_F",
+      "prompt": "A shop sells shampoo in different sizes: A: £2.60 for 200ml; B: £4.20 for 300ml; C: £3.60 for 600ml. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100ml for each option:",
+        "A: £2.60 ÷ 200 × 100 = 130p per 100ml",
+        "B: £4.20 ÷ 300 × 100 = 140p per 100ml",
+        "C: £3.60 ÷ 600 × 100 = 60p per 100ml",
+        "The lowest price per 100ml is C at 60p per 100ml, so C is the best value."
+      ],
+      "final_answer": "C (£3.60 for 600ml)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Work out the price per 100ml for each option:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A: £2.60 ÷ 200 × 100 = 130p per 100ml",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £4.20 ÷ 300 × 100 = 140p per 100ml",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "C: £3.60 ÷ 600 × 100 = 60p per 100ml The lowest price per 100ml is C at 60p per 100ml, so C is the best value.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "C (£3.60 for 600ml) oe",
           "marks": 1
         }
       ],
@@ -673,80 +660,61 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_F",
-      "prompt": "Shape A and Shape B are similar. Find the length of side x.",
+      "topic_id": "volume_surface_area_cylinder_F",
+      "prompt": "Here is a cylinder. Find its total surface area, correct to 2 decimal places.",
       "solution_steps": [
-        "Scale factor = 20 ÷ 15 = 4/3",
-        "Corresponding length = 12 × 4/3 = 16"
+        "Surface area = 2πr² + 2πrh = (2 × π × 12²) + (2 × π × 12 × 16)",
+        "= 2111.15 cm² (2 d.p., using a calculator value of π)"
       ],
-      "final_answer": "16 cm",
+      "final_answer": "2111.15 cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale factor = 20 ÷ 15 = 4/3",
+          "description": "Surface area = 2πr² + 2πrh = (2 × π × 12²) + (2 × π × 12 × 16)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Corresponding length = 12 × 4/3 = 16",
+          "description": "= 2111.15 cm² (2 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 cm oe",
+          "description": "2111.15 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_similar_rectangles",
+        "kind": "cylinder",
         "params": {
-          "shape_kind": "rectangle",
-          "orientation": "br",
-          "a_width_label": "15 cm",
-          "a_height_label": "12 cm",
-          "b_width_label": "20 cm",
-          "b_height_label": "x"
+          "radius_label": "12 cm",
+          "height_label": "16 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 39° and 34°. Find x.",
+      "topic_id": "angles_polygon_interior_F",
+      "prompt": "A polygon has 30 sides. Find the sum of its interior angles.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 39 + 34 = 73"
+        "Sum of interior angles = (n - 2) × 180 = (30 - 2) × 180 = 5040°"
       ],
-      "final_answer": "73",
-      "marks": 3,
+      "final_answer": "5040°",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 39 + 34 = 73",
+          "description": "Sum of interior angles = (n - 2) × 180 = (30 - 2) × 180 = 5040°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "73 oe",
+          "description": "5040° oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "exterior_triangle",
-        "params": {
-          "interior1_label": "39°",
-          "interior2_label": "34°",
-          "exterior_label": "x",
-          "interior1_value": 39,
-          "shape_variant": 0
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -822,7 +790,7 @@
     },
     {
       "topic_id": "construction_perpendicular_bisector_F",
-      "prompt": "Line segment XL has length 13 cm. Describe, step by step, how to construct the perpendicular bisector of XL using only a ruler and a pair of compasses.",
+      "prompt": "Construct a perpendicular bisector of the points XL using only a ruler and a pair of compasses.",
       "solution_steps": [
         "Open the compasses to a radius more than half of 13 cm (more than half the length of XL).",
         "With the compass point on X, draw an arc above and below the line.",
@@ -858,30 +826,83 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -7.8,
+          "x_max": 20.8,
+          "y_min": -7.8,
+          "y_max": 7.8,
+          "points": [
+            {
+              "xy": [
+                0.0,
+                0.0
+              ],
+              "label": "X"
+            },
+            {
+              "xy": [
+                13.0,
+                0.0
+              ],
+              "label": "L"
+            }
+          ],
+          "given_lines": [
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                13.0,
+                0.0
+              ]
+            }
+          ],
+          "show_grid": false
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_F",
-      "prompt": "A polygon has 30 sides. Find the sum of its interior angles.",
+      "topic_id": "probability_expectation_F",
+      "prompt": "A biased die has P(rolling a 3) = 1/8. The die is rolled 32 times. How many times would you expect to get a 3?",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (30 - 2) × 180 = 5040°"
+        "Expected number of times = probability × number of trials = 1/8 × 32",
+        "= 4"
       ],
-      "final_answer": "5040°",
-      "marks": 2,
+      "final_answer": "4",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (30 - 2) × 180 = 5040°",
+          "description": "Expected number of times = probability × number of trials = 1/8 × 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5040° oe",
+          "description": "4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            3
+          ],
+          "highlight": [
+            0
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -987,29 +1008,6 @@
           }
         }
       }
-    },
-    {
-      "topic_id": "stats_range_F",
-      "prompt": "Find the range of this data set: 6, 1, 3, 29, 11.",
-      "solution_steps": [
-        "Range = largest - smallest = 29 - 1 = 28"
-      ],
-      "final_answer": "28",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Range = largest - smallest = 29 - 1 = 28",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "28 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
     }
   ]
 }

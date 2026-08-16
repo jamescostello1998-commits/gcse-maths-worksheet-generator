@@ -25,16 +25,16 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **321 topics**, backend suite **1016/1016**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in
-`c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 across seven commits ending
-`91048ec`). Step 60 (tree-diagram AQA-style label fix + new `frequency_tree_F` topic/diagram) is
-**not yet committed as of the end of this session**. Practice Tests were deliberately NOT rebuilt
-in any of steps 54-60 (no existing diagram param SCHEMA changed - only optional new params, label
-positions, and prompt text, all backward-compatible; the new frequency-tree diagram kind is
-additive and isn't used by any frozen paper). No known bugs. **The review queue is empty** - every
-item the user sent as of the last session has been fixed, verified, and committed; the next
-session starts by asking the user for the next batch (see "Next natural step" below).
+**CURRENT STATE:** **323 topics**, backend suite **1032/1032**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks (rebuilt twice during step 61 - see below). Steps 54-59 are
+all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step
+59 across seven commits ending `91048ec`). **Nothing since then is committed yet** - step 60 (tree
+diagrams + `frequency_tree_F`, including all five of its same-session follow-ups) and step 61
+(probability/loci/construction/bearings fixes, including the two new bearings topics) are both
+still sitting in the working tree, ready to commit. **A new session should commit this work FIRST
+(the user has already reviewed and approved every piece of it - see the two steps below for what's
+included) before doing anything else**, then continue the review process by asking the user for the
+next batch (see "Next natural step" below). No known bugs.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -103,27 +103,169 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
   the same AQA GCSE Maths 8300 spec already audited in step 31 — only the site's topic taxonomy
   and generic layout conventions were referenced, never any copyrighted question text). Two
   outcomes, confirmed via `AskUserQuestion` before building: (1) `draw_tree_diagram`'s mid-tree
-  node label (e.g. the first coin's "Heads"/"Tails") was centred *above* the vertex — real AQA
-  trees caption it level with the branch, off to the side — fixed by moving `_node_label` to the
-  left of the vertex, nudged vertically away from the incoming branch's approach direction so it
-  still clears every line. (2) **Frequency trees** (oval nodes holding a raw count, plain
+  node label (e.g. the first coin's "Heads"/"Tails") was centred *above* the vertex, not beside
+  it like a real exam tree. (2) **Frequency trees** (oval nodes holding a raw count, plain
   connecting lines, category names captioned on the branches — a different diagram from a
   probability tree, which was confirmed genuinely absent from the app) were built as a new
   `draw_frequency_tree` diagram kind (`diagrams.py`) plus a new `frequency_tree_F` topic
   (`tree_diagrams.py`, same "Tree Diagrams" Probability group) — a two-level frequency tree from
-  a total split by two independently-chosen fractions, verified via a Fraction/Decimal
-  cross-check (two different numeric representations) plus an integer-and-positivity reroll loop;
-  the question diagram is fully blank (student completes it from three stated fractions), the
-  solution diagram fully solved. **320 → 321 topics.** Suite 1013 → 1016. No practice-test
-  rebuild (the new diagram kind isn't used by any frozen paper; the tree-diagram label fix changed
-  only rendering, not the param schema). Frontend unaffected (65/65).
+  a total split three times (root → two branches, then each branch → two leaves). **320 → 321
+  topics.**
+
+  Three follow-ups in the same session, each driven by further direct user feedback (including 4
+  reference images of real hand-drawn tree diagrams the user supplied): **(a)** the frequency-tree
+  generator originally required a fraction/percentage calculation at all three splits, which the
+  user found "very challenging" for a Foundation topic — reworked so each split is independently
+  either `"given"` (one side stated as a plain number, the other found by subtraction alone — no
+  calculation) or `"fraction"` (one side is a stated fraction/percentage of its parent, still
+  verified via a Fraction/Decimal cross-check); the fraction-vs-given coin flip for the whole
+  question is made once, before any retry, so a question needs **at most one**
+  fraction/percentage-of-amount calculation, and — per the user's explicit ask — roughly **half
+  of all questions use zero fractions at all**, filled in purely from given numbers and
+  subtraction logic (confirmed ~48/52 across 1000 trials). A real grammar bug was caught via an
+  actual rendered prompt, not a unit test: the `"people surveyed"` context produced "40 people
+  surveyed were surveyed" — fixed by renaming that context to plain `"people"`. **(b)** the
+  reference images showed the mid-tree node label sits BESIDE the vertex (level with it, growing
+  right into the branch "notch"), not above it as first assumed — `_node_label` was moved there,
+  but the very first attempt (label right at vertex height) put the branch line straight through
+  the text, since text has real height and this diagram's branches diverge too slowly near the
+  vertex to clear a label with no vertical clearance at all; fixed with a proven-safe `y+11`
+  offset (analytically checked against the diagram's actual branch slope and this topic's longest
+  realistic label width) confirmed clean via a real render, not just the maths. **(c)** per the
+  same reference images (which show only bare branch probabilities, nothing pre-computed), the
+  two "Interpreting Tree Diagrams" topics (`tree_diagram_independent_F`/`tree_diagram_dependent_H`,
+  and the `_mixed_H` topic that wraps them) no longer draw the combined/leaf probability at the
+  end of each path — `generate_tree_diagram_dependent`/its modelled example stopped passing
+  `leaf_probs` to the diagram (independent never did), so the student must now compute the
+  combined probability themselves instead of reading it straight off the tree; `draw_tree_diagram`
+  keeps the underlying `leaf_probs` capability for any future topic that still wants it.
+
+  A fourth, larger follow-up: (b)'s "beside the vertex" fix still didn't match the reference once
+  the user pointed at it again ("does not look like the options I gave at all") — rather than
+  guess a 4th time blind, several genuinely different layout mockups were rendered and sent for
+  the user to compare directly (reusing the real app's own leaf-spacing helpers each time, not a
+  reimplementation, so the comparison was fair and each option was actually collision-free). Two
+  further rounds of user feedback on those mockups revealed the real structural gap: real
+  hand-drawn tree diagrams draw each stage as its own independent "V", with a genuine GAP (no
+  line at all) between one stage's branch endpoint and the next stage's V — not one continuously
+  connected line through every level, which is what `draw_tree_diagram` had always drawn (before
+  *and* after fix (b)). `draw_tree_diagram` was rebuilt around this: the branch-outcome label now
+  sits centred in that empty gap, so it can never collide with a line regardless of length (no
+  more clearance maths needed for it at all - fix (b)'s `_node_label` was replaced with a simpler
+  `_gap_label`). This surfaced a second real issue once rendered: making the gap between different
+  stage1 groups bigger (per an earlier "notice the gaps" request) had inflated the ROOT's own
+  branch angle into a disproportionately huge "V" without a matching change to the second-stage
+  V's, since node1_ys were still derived bottom-up as an average of wherever the stage2 leaves
+  landed. Fixed by inverting the computation to be top-down: every V in the tree (root's and
+  every stage2 branch's) now shares one fixed run length and slope, and node1_ys are derived
+  FROM that fixed V size first, with each stage1 branch's own leaves then centred around its own
+  node1_y - the "big gap between groups" `_the user first asked for` falls out naturally as a
+  consequence of consistent V sizing, rather than being a separately-tuned parameter that could
+  push the root out of proportion again. A fifth, smaller follow-up in the same session: the
+  branch-probability label's perpendicular offset used `nx, ny = -dy/length, dx/length` - since
+  every branch runs left-to-right (dx always positive), `ny` was always positive regardless of
+  the branch's own slope, so a FALLING branch's label got pushed up toward the V's interior
+  instead of down, away from it, while a rising branch's label correctly sat above its own line -
+  an inconsistency the user spotted directly ("fractions in completely different places"). Fixed
+  by flipping the normal when `dy < 0`, so every probability now sits outside its own branch:
+  above a rising line, below a falling one, symmetric either way. All 60 Practice Test papers
+  were rebuilt after every one of these five follow-ups (16 papers use these tree-diagram topics;
+  every change in this step is visual/rendering-only and backward-compatible, but rebuilding
+  keeps the frozen papers consistent with the current style) — still exactly 100 marks each.
+  Suite 1013 → 1016 across the whole step. Frontend unaffected (65/65).
+
+- **Step 61** — three more direct user feedback items in the same session, unrelated to tree
+  diagrams. **(1)** `probability_listing_outcomes_F`'s `coin_spinner3`/`coin_spinner4` scenarios
+  showed only the spinner, not the coin — fixed by switching their diagram from bare `spinner` to
+  `event_pair` (coin + spinner side by side), the same composition already used for the
+  `coin_die` scenario. **(2)** `loci_regions_H` reworked: the circle and bisector boundary are no
+  longer given on the question page (`_loci_region_diagrams` now only passes `boundaries` on the
+  solution spec) — the student must construct both loci themselves before shading, not just read a
+  ready-made diagram; a new `_angle_bisector_region` branch was added alongside the existing
+  `_perp_bisector_region` one (renamed from the old `_build_loci_region` body), so roughly half of
+  all questions are "within *r* cm of a point AND closer to that point than another" (perpendicular
+  bisector) and half are "within *r* cm of a vertex Y AND closer to line YX than line YZ" (angle
+  bisector, verified via a `_dist_to_line` perpendicular-distance helper promoted to module level
+  out of `_two_lines_locus`); the prompt was trimmed to exactly the shading instruction (no more
+  "A and B are two fixed points (shown)." preamble); and the grid was removed entirely. **(3)**
+  `loci_constructions_F` also had its grid removed (all three branches - point/two_points/
+  two_lines). Both grid removals required a new `_loci_axes` helper (`diagrams.py`) - a coordinate
+  transform that draws no axes/gridlines/numbers at all, since a real loci construction is done
+  with compass and ruler, not read off a coordinate grid - added as an opt-out via a new
+  `show_grid` param (default `True`) on `draw_loci_construction`, **not** a blanket engine swap,
+  because `circle_equation_H` shares that same diagram kind and genuinely needs its numbered grid
+  (the whole point of that topic is reading coordinates off the graph) - confirmed unaffected by a
+  real render before considering this done. `draw_loci_region` (only ever used by `loci_regions_H`)
+  had its grid removed unconditionally, and gained `given_lines` support (for the angle-bisector
+  variant's two rays, which weren't a thing the old boundary-only version needed to draw).
+
+  Two more items in the same session, from a second batch of user feedback: **(4)**
+  `construction_triangle_F` - previously pure "describe the method in words" text with no diagram
+  at all - now shows a not-to-scale triangle diagram (reusing `draw_general_triangle` unchanged,
+  the same engine sine/cosine-rule topics already use) with the actual given side lengths/angles
+  labelled and the real vertex letters shown (`draw_general_triangle`'s `show_vertices` flag was
+  generalised to accept a `vertex_labels` tuple instead of always hardcoding "A"/"B"/"C" - a small,
+  backward-compatible extension, confirmed no existing caller passed custom letters). The prompt
+  changed from "Describe, step by step, how to construct..." to "Construct...", since the student is
+  meant to actually complete the construction, not narrate it - `solution_steps` stay as the same
+  method-description text (confirmed with the user: no separate solution diagram needed). **(5)**
+  the user's literal example prompt for this item ("perpendicular bisector of the points FP")
+  actually matched a *different*, already-existing topic - `construction_perpendicular_bisector_F`
+  - not the one they named (`construction_perpendicular_from_point_F`, which is a different
+  construction: perpendicular *to a line*, not *between two points*); confirmed via
+  `AskUserQuestion` before building anything, rather than guessing which one was meant.
+  `construction_perpendicular_bisector_F` got the same "Construct..." prompt rewording, plus a new
+  diagram (reusing `loci_construction` with `show_grid: False` from item (3) - the two points P/Q
+  shown with the segment PQ drawn, and a generous margin - `max(4, length_cm*0.6)` above/below/
+  around - so there's real room to swing compass arcs, not just enough to see the two points).
+  `construction_perpendicular_from_point_F` was deliberately left untouched.
+
+  A third batch, in the same session: two brand-new Foundation topics in the Bearings group, per
+  direct user request (with two rounds of `AskUserQuestion` to pin down the exact scenarios before
+  building, since guessing wrong here would mean building the wrong maths entirely - a real risk
+  already demonstrated earlier in this session by the tree-diagram back-and-forth).
+  **`bearings_back_bearing_F`** - a standalone, deliberately diagram-free topic (the user's explicit
+  ask): "the bearing of X from Y is N°, find the bearing of Y from X", with which point is "given"
+  vs "asked for" genuinely varying question to question (not just always "A then B"). **
+  `bearings_angle_facts_F`** - two branches: "around a point" (`_around_point_case` - a clockwise/
+  anticlockwise turn from a known bearing that's constructed to genuinely wrap past 0°/360°, every
+  time, not just sometimes, so the "angles around a point sum to 360°" fact is always actually
+  exercised) and "co-interior angles" (`_co_interior_case` - derives a bearing via the parallel-
+  north-lines co-interior-angle fact explicitly, rather than jumping straight to the bare +/-180
+  shortcut `bearings_back_bearing_F` teaches). A real bug was caught before it ever shipped: the
+  first version of `_co_interior_case` used a piecewise formula (`180 - bearing_pq` for
+  `bearing_pq <= 180`, else `180 - (bearing_pq - 180)`) that was simply wrong for the second branch
+  - its own paired verification check would have caught it immediately at runtime (the two
+  independently-computed angles summed to 140°, not 180°), but it was caught by reasoning through
+  the geometry by hand first, before ever running it. Fixed by restricting `bearing_pq` to a single
+  clean, unambiguous case (strictly between 0° and 180°) and verifying via genuine vector geometry
+  (a dot product between the north direction and the QP direction, `math.acos` of the result) - a
+  completely different computational route from the `180 - bearing_pq` subtraction used to build
+  the steps, not just the same formula checked twice. A new lean diagram kind,
+  `draw_bearings_two_rays` (kind `bearings_two_rays`), was built and spike-rendered first for the
+  "around a point" branch - one origin point with two direction rays and their own bearing arcs,
+  genuinely different from `draw_bearings`' journey-with-legs shape (no distance/leg at all, just
+  two directions from one point) - reusing `draw_bearings`' existing `_north_arrow`/`_bearing_arc`/
+  `_nudge_from_arrows` helpers rather than duplicating them. The "co-interior" branch reuses the
+  existing single-leg `bearings` diagram kind unchanged.
+
+  **321 → 323 topics** (the two new bearings topics only - every other item in this step modified
+  an existing topic). All 60 Practice Test papers were rebuilt twice in this step (once after the
+  probability/loci changes, once after the construction changes - 10 papers use the two changed
+  construction topics, 10 use the probability/loci topics) - still exactly 100 marks each every
+  time. Suite 1016 → 1032 across the whole step (10 new tests for constructions, 25 for the two new
+  bearings topics, plus loci/probability test updates for the changed diagram shapes). Frontend
+  unaffected (65/65).
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** ask the user for the next chunk of review feedback (the review is NOT
-confirmed finished — recent batches have been per-topic items the user sends directly, sometimes
-several in one message, occasionally a page range; they may equally have a new one-off feature in
-mind, as steps 45-46 were). The review workflow each batch: read the named items → fix them (render
+**Next natural step:** commit and push steps 60-61 first (see "CURRENT STATE" above — nothing since
+step 59 is committed yet; the user has already reviewed and approved this work across the session
+it was built in, so this isn't waiting on further confirmation). Then ask the user for the next
+chunk of review feedback (the review is NOT confirmed finished — recent batches have been per-topic
+items the user sends directly, sometimes several in one message, occasionally a page range; they
+may equally have a new one-off feature in mind, as steps 45-46 and 61's bearings topics were). The
+review workflow each batch: read the named items → fix them (render
 REAL PDFs to verify diagram/overlap fixes; don't trust unit tests for visual issues — show the
 user a before/after render when a fix is non-trivial, per this session's pattern) → if a topic count
 changed, bump the four `== N` assertions (`test_routes.py` ×2, `test_modelled_example_renderer.py`,
@@ -153,7 +295,7 @@ pending review feedback.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**321 topics across 6 sections**, all procedurally generated with independent
+**323 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -477,7 +619,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 57 |
 | Algebra | Expressions/Formulae/Equations/Identities (incl. Collecting Like Terms), Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs, Coordinate Geometry | 84 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
-| Geometry | Area & Perimeter, Parts of a Circle, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 90 |
+| Geometry | Area & Perimeter, Parts of a Circle, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 92 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 24 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms, Sampling and Populations | 29 |
 

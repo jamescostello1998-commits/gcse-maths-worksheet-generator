@@ -275,42 +275,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets_F",
-      "prompt": "Solve: 4(5x + 7) = 48",
+      "topic_id": "linear_both_sides_F",
+      "prompt": "Solve: 2x + 4 = 3x - 3",
       "solution_steps": [
-        "Expand the bracket: 4(5x + 7) = 20x + 28",
-        "20x + 28 = 48",
-        "Subtract 28 from both sides:",
-        "20x = 20",
-        "Divide both sides by 20:",
-        "x = 1"
+        "2x + 4 = 3x - 3",
+        "Subtract 3x from both sides:",
+        "-x + 4 = -3",
+        "Subtract 4 from both sides:",
+        "-x = -7",
+        "Divide both sides by -1:",
+        "x = 7"
       ],
-      "final_answer": "1",
+      "final_answer": "7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 4(5x + 7) = 20x + 28",
+          "description": "2x + 4 = 3x - 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "20x + 28 = 48",
+          "description": "Subtract 3x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 28 from both sides:",
+          "description": "-x + 4 = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "20x = 20 Divide both sides by 20: x = 1",
+          "description": "Subtract 4 from both sides: -x = -7 Divide both sides by -1: x = 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "7 oe",
           "marks": 1
         }
       ],
@@ -414,47 +415,108 @@
       }
     },
     {
-      "topic_id": "inequalities_number_line_F",
-      "prompt": "Write down the inequality shown by the number line below.",
+      "topic_id": "sequences_next_term_F",
+      "prompt": "Find the next term in the sequence: -8, -14, -20, -26, -32, ...",
       "solution_steps": [
-        "The circle at 5 is open, so 5 is not included in the solution set.",
-        "The shading and arrow point to the right, so the solution is x > 5."
+        "Subtract 6 each time.",
+        "Next term = -32 - 6 = -38"
       ],
-      "final_answer": "x > 5",
+      "final_answer": "-38",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at 5 is open, so 5 is not included in the solution set.",
+          "description": "Subtract 6 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading and arrow point to the right, so the solution is x > 5.",
+          "description": "Next term = -32 - 6 = -38",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x > 5 oe",
+          "description": "-38 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": 5,
-              "closed": false
-            }
-          ],
-          "shade": "right"
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "midpoint_of_segment_F",
+      "prompt": "Find the midpoint of the line segment joining A(7, -3) and B(-3, -6).",
+      "solution_steps": [
+        "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
+        "x-coordinate of midpoint: (7 + -3)/2 = 2",
+        "y-coordinate of midpoint: (-3 + -6)/2 = -4.5",
+        "Midpoint = (2, -4.5)"
+      ],
+      "final_answer": "(2, -4.5)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x-coordinate of midpoint: (7 + -3)/2 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y-coordinate of midpoint: (-3 + -6)/2 = -4.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Midpoint = (2, -4.5)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(2, -4.5) oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_single_bracket_F",
+      "prompt": "Expand: 4(4x + 5)",
+      "solution_steps": [
+        "Multiply 4 by 4x: 16x",
+        "Multiply 4 by 5: 20",
+        "Combine: 16x + 20"
+      ],
+      "final_answer": "16x + 20",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply 4 by 4x: 16x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply 4 by 5: 20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: 16x + 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16x + 20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -510,76 +572,6 @@
           "y_label": "Distance (km)"
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: 4(4x + 5)",
-      "solution_steps": [
-        "Multiply 4 by 4x: 16x",
-        "Multiply 4 by 5: 20",
-        "Combine: 16x + 20"
-      ],
-      "final_answer": "16x + 20",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply 4 by 4x: 16x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply 4 by 5: 20",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: 16x + 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "16x + 20 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = 4x - 7 and passes through the point (6, 2). Find the equation of the line.",
-      "solution_steps": [
-        "Parallel lines have the same gradient, so m = 4.",
-        "Substitute (6, 2) into y = 4x + c: 2 = 4×(6) + c, so c = -22",
-        "Equation of the line: y = 4x - 22"
-      ],
-      "final_answer": "y = 4x - 22",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = 4.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (6, 2) into y = 4x + c: 2 = 4×(6) + c, so c = -22",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 4x - 22",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = 4x - 22 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -769,6 +761,58 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "pythagoras_ladder_context_F",
+      "prompt": "A ladder of length 15 m leans against a vertical wall with its base 9 m from the wall. Find the height the ladder reaches up the wall.",
+      "solution_steps": [
+        "height² = ladder² - base² = 15² - 9² = 225 - 81 = 144",
+        "height = √144 = 12 m"
+      ],
+      "final_answer": "12 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "height² = ladder² - base² = 15² - 9² = 225 - 81 = 144",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "height = √144 = 12 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_median_F",
+      "prompt": "Find the median of this data set: 3, 16, 30, 12, 30, 5, 1.",
+      "solution_steps": [
+        "Sort the data: 1, 3, 5, 12, 16, 30, 30. The middle value is 12."
+      ],
+      "final_answer": "12",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sort the data: 1, 3, 5, 12, 16, 30, 30. The middle value is 12.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "pythagoras_shorter_leg_F",
       "prompt": "A right-angled triangle has hypotenuse 164 cm and one side 36 cm. Find the length of x.",
       "solution_steps": [
@@ -800,65 +844,6 @@
           "leg1_label": "36 cm",
           "leg2_label": "x",
           "hyp_label": "164 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_range_F",
-      "prompt": "Find the range of this data set: 12, 27, 25, 6, 17, 20, 23, 15.",
-      "solution_steps": [
-        "Range = largest - smallest = 27 - 6 = 21"
-      ],
-      "final_answer": "21",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Range = largest - smallest = 27 - 6 = 21",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "21 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_hypotenuse_decimal_F",
-      "prompt": "A right-angled triangle has sides 11 cm and 11 cm. Find the length of x, correct to 1 decimal place.",
-      "solution_steps": [
-        "c² = a² + b² = 11² + 11² = 121 + 121 = 242",
-        "c = √242 ≈ 15.6 cm (1 d.p.)"
-      ],
-      "final_answer": "15.6 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "c² = a² + b² = 11² + 11² = 121 + 121 = 242",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √242 ≈ 15.6 cm (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15.6 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "11 cm",
-          "leg2_label": "11 cm",
-          "hyp_label": "x"
         }
       },
       "solution_diagram": null
@@ -930,45 +915,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "relative_frequency_F",
-      "prompt": "A spinner is tested 40 times, and it lands on red 29 times. Use this relative frequency to estimate how many times this would happen in 280 trials.",
+      "topic_id": "set_listing_F",
+      "prompt": "List the elements of the set A = { x : x is even, 6 ≤ x ≤ 21 }.",
       "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 29/40 = 29/40",
-        "Estimated number of times in 280 trials = 29/40 × 280 = 203"
+        "Read the set-builder rule: it means 'the set of all x such that x is even, 6 ≤ x ≤ 21'.",
+        "Go through the candidates in order and keep only the ones that fit the description.",
+        "Written out in a list (roster form): {6, 8, 10, 12, 14, 16, 18, 20}"
       ],
-      "final_answer": "203",
-      "marks": 3,
+      "final_answer": "{6, 8, 10, 12, 14, 16, 18, 20}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 29/40 = 29/40",
+          "description": "Read the set-builder rule: it means 'the set of all x such that x is even, 6 ≤ x ≤ 21'.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Estimated number of times in 280 trials = 29/40 × 280 = 203",
+          "description": "Go through the candidates in order and keep only the ones that fit the description.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Written out in a list (roster form): {6, 8, 10, 12, 14, 16, 18, 20}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "203 oe",
+          "description": "{6, 8, 10, 12, 14, 16, 18, 20} oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "spinner",
-        "params": {
-          "sectors": [
-            "",
-            "",
-            "R",
-            ""
-          ],
-          "highlight": [
-            2
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -1091,29 +1069,6 @@
           "y_label": "Frequency"
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_mean_F",
-      "prompt": "Find the mean of this data set: 18, 2, 25, 10, 24.",
-      "solution_steps": [
-        "Mean = sum ÷ count = (18 + 2 + 25 + 10 + 24) ÷ 5 = 79 ÷ 5 = 15.80"
-      ],
-      "final_answer": "15.80",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Mean = sum ÷ count = (18 + 2 + 25 + 10 + 24) ÷ 5 = 79 ÷ 5 = 15.80",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15.80 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     },
     {

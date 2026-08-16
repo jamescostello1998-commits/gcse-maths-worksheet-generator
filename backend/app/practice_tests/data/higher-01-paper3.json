@@ -42,40 +42,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging_H",
-      "prompt": "Fully simplify 64^(1/3) × 64^-2, giving your answer as a fraction where necessary.",
+      "topic_id": "indices_common_base_equations_H",
+      "prompt": "Solve 5^(x+3) = 625^(3x).",
       "solution_steps": [
-        "64^(1/3) is the cube root of 64, which is 4, so 64^(1/3) = 4^1",
-        "64^-2 = \\frac{1}{64²} = \\frac{1}{4⁶}",
-        "64^(1/3) × 64^-2 = 4^1 × \\frac{1}{4⁶} = 4^(1-6) = 4^-5",
-        "4^-5 = 1/1024"
+        "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
+        "5^(x+3) = 625^(3x) becomes 5^(x+3) = 5^(4×3x), i.e. 5^(x+3) = 5^(12x)",
+        "Since the bases match, the powers must be equal: x + 3 = 12x",
+        "Rearranging: -11x = -3, so x = -3/-11 = 3/11"
       ],
-      "final_answer": "1/1024",
+      "final_answer": "3/11",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "64^(1/3) is the cube root of 64, which is 4, so 64^(1/3) = 4^1",
+          "description": "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "64^-2 = \\frac{1}{64²} = \\frac{1}{4⁶}",
+          "description": "5^(x+3) = 625^(3x) becomes 5^(x+3) = 5^(4×3x), i.e. 5^(x+3) = 5^(12x)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "64^(1/3) × 64^-2 = 4^1 × \\frac{1}{4⁶} = 4^(1-6) = 4^-5",
+          "description": "Since the bases match, the powers must be equal: x + 3 = 12x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4^-5 = 1/1024",
+          "description": "Rearranging: -11x = -3, so x = -3/-11 = 3/11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/1024 oe",
+          "description": "3/11 oe",
           "marks": 1
         }
       ],
@@ -83,34 +83,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Simplify √140 ÷ √5, giving your answer in the form a√b.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 3√3 + 5√3, giving your answer in the form a√b.",
       "solution_steps": [
-        "√140 ÷ √5 = √(140/5) = √28",
-        "Find the largest square factor of 28: 2^2 × 7 = 28",
-        "√28 = √(2^2 × 7) = 2√7"
+        "Both terms are multiples of √3, so they are 'like surds' and can be combined.",
+        "Combine the whole-number coefficients: 3 + 5 = 8.",
+        "= 8√3"
       ],
-      "final_answer": "2√7",
+      "final_answer": "8√3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√140 ÷ √5 = √(140/5) = √28",
+          "description": "Both terms are multiples of √3, so they are 'like surds' and can be combined.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the largest square factor of 28: 2^2 × 7 = 28",
+          "description": "Combine the whole-number coefficients: 3 + 5 = 8.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√28 = √(2^2 × 7) = 2√7",
+          "description": "= 8√3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2√7 oe",
+          "description": "8√3 oe",
           "marks": 1
         }
       ],
@@ -118,34 +118,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A rectangle has length 35 cm and width 14 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
+      "topic_id": "prime_factors_H",
+      "prompt": "Write 108 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Length: 35 cm (to the nearest cm) gives 34.5 ≤ length < 35.5",
-        "Width: 14 cm (to the nearest cm) gives 13.5 ≤ width < 14.5",
-        "For the upper bound of the area, use the upper bound of each measurement: 35.5 × 14.5 = 514.75 cm²"
+        "Divide 108 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 3 × 3",
+        "Write repeated factors using index notation: 108 = 2^2 × 3^3"
       ],
-      "final_answer": "514.75 cm²",
-      "marks": 4,
+      "final_answer": "2^2 × 3^3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Length: 35 cm (to the nearest cm) gives 34.5 ≤ length < 35.5",
+          "description": "Divide 108 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 3 × 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Width: 14 cm (to the nearest cm) gives 13.5 ≤ width < 14.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For the upper bound of the area, use the upper bound of each measurement: 35.5 × 14.5 = 514.75 cm²",
+          "description": "Write repeated factors using index notation: 108 = 2^2 × 3^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "514.75 cm² oe",
+          "description": "2^2 × 3^3 oe",
           "marks": 1
         }
       ],
@@ -223,85 +217,170 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sine_rule_H",
-      "prompt": "In triangle ABC, angle A = 58°, side a = 5 cm, and side b = 5.57 cm. Find angle B, correct to 1 decimal place.",
+      "topic_id": "algebraic_surds_H",
+      "prompt": "Expand and simplify (2 + √7)(7 + √7), giving your answer in the form p + q√7.",
       "solution_steps": [
-        "Use the sine rule: sin(B) / b = sin(A) / a",
-        "sin(B) = (5.57 × sin(58°)) ÷ 5",
-        "B = 71.0° (1 d.p.)"
+        "Expand the brackets (FOIL): (2 + √7)(7 + √7) = 14 +2√7 +7√7 +7",
+        "√7 × √7 = 7, so the last term is a whole number: +7",
+        "Combine the whole-number terms: 14 +7 = 21",
+        "Combine the √7 terms: +2√7 +7√7 = +9√7",
+        "(2 + √7)(7 + √7) = 21 + 9√7"
       ],
-      "final_answer": "71.0°",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Use the sine rule: sin(B) / b = sin(A) / a",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "sin(B) = (5.57 × sin(58°)) ÷ 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B = 71.0° (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "71.0° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "general_triangle",
-        "params": {
-          "side_a_label": "5 cm",
-          "side_b_label": "5.57 cm",
-          "side_c_label": null,
-          "angle_A_label": "58°",
-          "angle_B_label": "x°",
-          "angle_C_label": null
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "kinematics_suvat_H",
-      "prompt": "An object has a final velocity (v) of 23 m/s after a constant acceleration (a) of 2 m/s^2 for a time (t) of 2 s. Find its initial velocity (u).",
-      "solution_steps": [
-        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
-        "v = u + at",
-        "Rearrange to make u the subject: u = v - at",
-        "Substitute v = 23, a = 2, t = 2: u = 23 - 2 × 2 = 23 - 4 = 19"
-      ],
-      "final_answer": "19 m/s",
+      "final_answer": "21 + 9√7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+          "description": "Expand the brackets (FOIL): (2 + √7)(7 + √7) = 14 +2√7 +7√7 +7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = u + at",
+          "description": "√7 × √7 = 7, so the last term is a whole number: +7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange to make u the subject: u = v - at",
+          "description": "Combine the whole-number terms: 14 +7 = 21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute v = 23, a = 2, t = 2: u = 23 - 2 × 2 = 23 - 4 = 19",
+          "description": "Combine the √7 terms: +2√7 +7√7 = +9√7 (2 + √7)(7 + √7) = 21 + 9√7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "19 m/s oe",
+          "description": "21 + 9√7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic_H",
+      "prompt": "Complete a table of values for y = -x^3 - 3x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -x^3 - 3x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 36, 14, 4, 0, -4, -14, -36",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = -x^3 - 3x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -x^3 - 3x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 36, 14, 4, 0, -4, -14, -36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = -x^3 - 3x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "table_points": [
+            [
+              -3,
+              36
+            ],
+            [
+              -2,
+              14
+            ],
+            [
+              -1,
+              4
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -4
+            ],
+            [
+              2,
+              -14
+            ],
+            [
+              3,
+              -36
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "functions_composite_inverse_H",
+      "prompt": "f(x) = -6x - 3 and g(x) = -6x - 7. Find fg(x).",
+      "solution_steps": [
+        "fg(x) = f(-6x - 7)",
+        "= -6(-6x - 7) + -3",
+        "= 36x + 39"
+      ],
+      "final_answer": "36x + 39",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "fg(x) = f(-6x - 7)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= -6(-6x - 7) + -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 36x + 39",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "36x + 39 oe",
           "marks": 1
         }
       ],
@@ -367,41 +446,6 @@
           "segment": null
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "functions_composite_inverse_H",
-      "prompt": "f(x) = -6x - 3 and g(x) = -6x - 7. Find fg(x).",
-      "solution_steps": [
-        "fg(x) = f(-6x - 7)",
-        "= -6(-6x - 7) + -3",
-        "= 36x + 39"
-      ],
-      "final_answer": "36x + 39",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "fg(x) = f(-6x - 7)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= -6(-6x - 7) + -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 36x + 39",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "36x + 39 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -536,98 +580,45 @@
       }
     },
     {
-      "topic_id": "plot_cubic_H",
-      "prompt": "Complete a table of values for y = -x^3 - 3x for x = -3 to 3, then plot the graph.",
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object has a final velocity (v) of 23 m/s after a constant acceleration (a) of 2 m/s^2 for a time (t) of 2 s. Find its initial velocity (u).",
       "solution_steps": [
-        "Table of values for y = -x^3 - 3x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 36, 14, 4, 0, -4, -14, -36",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+        "v = u + at",
+        "Rearrange to make u the subject: u = v - at",
+        "Substitute v = 23, a = 2, t = 2: u = 23 - 2 × 2 = 23 - 4 = 19"
       ],
-      "final_answer": "Cubic curve: y = -x^3 - 3x",
+      "final_answer": "19 m/s",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^3 - 3x:",
+          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "v = u + at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 36, 14, 4, 0, -4, -14, -36",
+          "description": "Rearrange to make u the subject: u = v - at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Substitute v = 23, a = 2, t = 2: u = 23 - 2 × 2 = 23 - 4 = 19",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = -x^3 - 3x oe",
+          "description": "19 m/s oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": -3,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": -3,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
-          "table_points": [
-            [
-              -3,
-              36
-            ],
-            [
-              -2,
-              14
-            ],
-            [
-              -1,
-              4
-            ],
-            [
-              0,
-              0
-            ],
-            [
-              1,
-              -4
-            ],
-            [
-              2,
-              -14
-            ],
-            [
-              3,
-              -36
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "factorise_quadratics_H",
@@ -701,28 +692,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_H",
-      "prompt": "A price of £388 decreases by 17.5%, then decreases by 42.5%. Find the final price.",
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 2 different fonts, 5 different colours and 5 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "After the first change: 388 × 0.82 = 320.10",
-        "After the second change: 320.10 × 0.57 = 184.06"
+        "Total combinations = 2 × 5 × 5 = 50"
       ],
-      "final_answer": "£184.06",
-      "marks": 3,
+      "final_answer": "50",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 388 × 0.82 = 320.10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 320.10 × 0.57 = 184.06",
+          "description": "Total combinations = 2 × 5 × 5 = 50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£184.06 oe",
+          "description": "50 oe",
           "marks": 1
         }
       ],
@@ -759,32 +744,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "exact_trig_values_H",
-      "prompt": "Write down the exact value of tan(30°).",
+      "topic_id": "sine_rule_H",
+      "prompt": "Find the size of angle B, correct to 1 decimal place.",
       "solution_steps": [
-        "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
-        "tan(30°) = √3/3"
+        "Use the sine rule: sin(B) / b = sin(A) / a",
+        "sin(B) = (5.57 × sin(58°)) ÷ 5",
+        "B = 71.0° (1 d.p.)"
       ],
-      "final_answer": "√3/3",
-      "marks": 3,
+      "final_answer": "71.0°",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+          "description": "Use the sine rule: sin(B) / b = sin(A) / a",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "tan(30°) = √3/3",
+          "description": "sin(B) = (5.57 × sin(58°)) ÷ 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = 71.0° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "√3/3 oe",
+          "description": "71.0° oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_a_label": "5 cm",
+          "side_b_label": "5.57 cm",
+          "side_c_label": null,
+          "angle_A_label": "58°",
+          "angle_B_label": "",
+          "angle_C_label": null,
+          "show_vertices": true
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -912,109 +914,56 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_describe_H",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
       "solution_steps": [
-        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For mapping shape A onto shape B, the lines meet at (-1, 2) and the scale factor works out as -1."
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (30 + 10) × 12 = 240 m"
       ],
-      "final_answer": "Enlargement, scale factor -1, centre (-1, 2)",
+      "final_answer": "240 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+          "description": "Total distance = total area under the graph (a trapezium)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For mapping shape A onto shape B, the lines meet at (-1, 2) and the scale factor works out as -1.",
+          "description": "Distance = ½ × (30 + 10) × 12 = 240 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Enlargement, scale factor -1, centre (-1, 2) oe",
+          "description": "240 m oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "grid_transformation",
+        "kind": "piecewise_graph",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "points": [
             [
-              1,
-              1
+              0,
+              0
             ],
             [
-              5,
-              1
+              8,
+              12
             ],
             [
-              5,
-              3
+              18,
+              12
             ],
             [
-              3,
-              3
-            ],
-            [
-              3,
-              6
-            ],
-            [
-              1,
-              6
+              30,
+              0
             ]
           ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "image_vertices": [
-            [
-              -3,
-              3
-            ],
-            [
-              -7,
-              3
-            ],
-            [
-              -7,
-              1
-            ],
-            [
-              -5,
-              1
-            ],
-            [
-              -5,
-              -2
-            ],
-            [
-              -3,
-              -2
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "image_shape_label": "B",
-          "image_same_color": true
+          "x_max": 35,
+          "y_max": 17,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
         }
       },
       "solution_diagram": null

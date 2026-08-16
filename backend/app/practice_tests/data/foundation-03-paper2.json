@@ -106,40 +106,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising_F",
-      "prompt": "Solve x^2 + 11x + 24 = 0 by factorising.",
+      "topic_id": "bidmas_F",
+      "prompt": "Work out 21 - 8 ÷ 8 × (8 + 4).",
       "solution_steps": [
-        "Find two numbers that multiply to 24 and add to 11: 3 and 8",
-        "Factorise: (x + 3)(x + 8) = 0",
-        "Either x + 3 = 0 or x + 8 = 0",
-        "x = -3 or x = -8"
+        "Brackets: (8 + 4) = 12",
+        "Division and multiplication have equal priority, so work left to right: 8 ÷ 8 = 1, then × 12 = 12",
+        "Subtraction: 21 - 12 = 9"
       ],
-      "final_answer": "x = -3 or x = -8",
-      "marks": 5,
+      "final_answer": "9",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 24 and add to 11: 3 and 8",
+          "description": "Brackets: (8 + 4) = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 3)(x + 8) = 0",
+          "description": "Division and multiplication have equal priority, so work left to right: 8 ÷ 8 = 1, then × 12 = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Either x + 3 = 0 or x + 8 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -3 or x = -8",
+          "description": "Subtraction: 21 - 12 = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -3 or x = -8 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -294,28 +288,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractional_equations_F",
-      "prompt": "Solve the following equation.\n\\frac{2x}{3} = 4",
+      "topic_id": "linear_brackets_F",
+      "prompt": "Solve: 4(4x + 2) = 56",
       "solution_steps": [
-        "Multiply both sides by 3: 2x = 12",
-        "Divide both sides by 2: x = 6"
+        "Expand the bracket: 4(4x + 2) = 16x + 8",
+        "16x + 8 = 56",
+        "Subtract 8 from both sides:",
+        "16x = 48",
+        "Divide both sides by 16:",
+        "x = 3"
       ],
-      "final_answer": "x = 6",
-      "marks": 3,
+      "final_answer": "3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply both sides by 3: 2x = 12",
+          "description": "Expand the bracket: 4(4x + 2) = 16x + 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2: x = 6",
+          "description": "16x + 8 = 56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 8 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "16x = 48 Divide both sides by 16: x = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 6 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
@@ -352,15 +360,14 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_F",
-      "prompt": "Solve: 2x + 11 = 6x - 17",
+      "topic_id": "linear_multi_step_F",
+      "prompt": "Solve: 2x + 3 + 5x - 8 = 44",
       "solution_steps": [
-        "2x + 11 = 6x - 17",
-        "Subtract 6x from both sides:",
-        "-4x + 11 = -17",
-        "Subtract 11 from both sides:",
-        "-4x = -28",
-        "Divide both sides by -4:",
+        "Collect like terms: 2x + 5x = 7x, 3 - 8 = -5",
+        "7x - 5 = 44",
+        "Add 5 to both sides:",
+        "7x = 49",
+        "Divide both sides by 7:",
         "x = 7"
       ],
       "final_answer": "7",
@@ -368,22 +375,22 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2x + 11 = 6x - 17",
+          "description": "Collect like terms: 2x + 5x = 7x, 3 - 8 = -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6x from both sides:",
+          "description": "7x - 5 = 44",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-4x + 11 = -17",
+          "description": "Add 5 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 11 from both sides: -4x = -28 Divide both sides by -4: x = 7",
+          "description": "7x = 49 Divide both sides by 7: x = 7",
           "marks": 1
         },
         {
@@ -472,42 +479,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets_F",
-      "prompt": "Solve: 4(4x + 2) = 56",
+      "topic_id": "linear_both_sides_F",
+      "prompt": "Solve: 2x + 11 = 6x - 17",
       "solution_steps": [
-        "Expand the bracket: 4(4x + 2) = 16x + 8",
-        "16x + 8 = 56",
-        "Subtract 8 from both sides:",
-        "16x = 48",
-        "Divide both sides by 16:",
-        "x = 3"
+        "2x + 11 = 6x - 17",
+        "Subtract 6x from both sides:",
+        "-4x + 11 = -17",
+        "Subtract 11 from both sides:",
+        "-4x = -28",
+        "Divide both sides by -4:",
+        "x = 7"
       ],
-      "final_answer": "3",
+      "final_answer": "7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 4(4x + 2) = 16x + 8",
+          "description": "2x + 11 = 6x - 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "16x + 8 = 56",
+          "description": "Subtract 6x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8 from both sides:",
+          "description": "-4x + 11 = -17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "16x = 48 Divide both sides by 16: x = 3",
+          "description": "Subtract 11 from both sides: -4x = -28 Divide both sides by -4: x = 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "7 oe",
           "marks": 1
         }
       ],
@@ -695,28 +703,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context_F",
-      "prompt": "A ladder of length 51 m leans against a vertical wall with its base 24 m from the wall. Find the height the ladder reaches up the wall.",
+      "topic_id": "fractions_multiply_F",
+      "prompt": "Evaluate 5/11 × 2/8. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "height² = ladder² - base² = 51² - 24² = 2601 - 576 = 2025",
-        "height = √2025 = 45 m"
+        "Multiply numerators: 5 × 2 = 10",
+        "Multiply denominators: 11 × 8 = 88",
+        "Simplify 10/88 = 5/44"
       ],
-      "final_answer": "45 m",
-      "marks": 3,
+      "final_answer": "5/44",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 51² - 24² = 2601 - 576 = 2025",
+          "description": "Multiply numerators: 5 × 2 = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √2025 = 45 m",
+          "description": "Multiply denominators: 11 × 8 = 88",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify 10/88 = 5/44",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "45 m oe",
+          "description": "5/44 oe",
           "marks": 1
         }
       ],
@@ -725,7 +739,7 @@
     },
     {
       "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 10 cm, width 15 cm and height 8 cm. Find its volume.",
+      "prompt": "Here is a cuboid. Find its volume.",
       "solution_steps": [
         "Volume = length × width × height = 10 × 15 × 8 = 1200 cm³"
       ],
@@ -754,136 +768,186 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube_F",
-      "prompt": "A cube has side length 4 cm. Find its surface area.",
+      "topic_id": "volume_surface_area_triangular_prism_F",
+      "prompt": "Here is a triangular prism. Find its volume.",
       "solution_steps": [
-        "Surface area = 6 × side² = 6 × 4² = 6 × 16 = 96 cm²"
+        "Cross-section area = (1/2) × 18 × 24 = 216 cm²",
+        "Volume = cross-section area × length = 216 × 8 = 1728 cm³"
       ],
-      "final_answer": "96 cm²",
-      "marks": 2,
+      "final_answer": "1728 cm³",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 4² = 6 × 16 = 96 cm²",
+          "description": "Cross-section area = (1/2) × 18 × 24 = 216 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume = cross-section area × length = 216 × 8 = 1728 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "96 cm² oe",
+          "description": "1728 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "triangular_prism",
         "params": {
-          "width_label": "4 cm",
-          "height_label": "4 cm",
-          "length_label": "4 cm",
-          "is_cube": true
+          "base_label": "18 cm",
+          "triangle_height_label": "24 cm",
+          "length_label": "8 cm",
+          "hyp_label": "30 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_F",
-      "prompt": "\\vec{a} = \\colvec{0}{-1} and \\vec{b} = \\colvec{-3}{-2}. Find 2\\vec{a} - \\vec{b}.",
+      "topic_id": "properties_3d_shapes_diagram_F",
+      "prompt": "How many vertices does the cone shown have?",
       "solution_steps": [
-        "\\vec{a} = \\colvec{0}{-1}, \\vec{b} = \\colvec{-3}{-2}",
-        "2\\vec{a} = \\colvec{0}{-2} and \\vec{b} = \\colvec{-3}{-2}",
-        "2\\vec{a} - \\vec{b} = \\colvec{3}{0}"
+        "A vertex is a corner point where edges meet.",
+        "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
+        "So a cone has 1 vertices."
       ],
-      "final_answer": "\\colvec{3}{0}",
+      "final_answer": "1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{0}{-1}, \\vec{b} = \\colvec{-3}{-2}",
+          "description": "A vertex is a corner point where edges meet.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2\\vec{a} = \\colvec{0}{-2} and \\vec{b} = \\colvec{-3}{-2}",
+          "description": "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2\\vec{a} - \\vec{b} = \\colvec{3}{0}",
+          "description": "So a cone has 1 vertices.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{3}{0} oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "cone",
+        "params": {
+          "radius_label": "3 cm",
+          "slant_label": "7 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_drawing_F",
-      "prompt": "A bag contains 5 blue and 4 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is blue and the second counter is yellow.",
+      "topic_id": "frequency_tree_F",
+      "prompt": "40 customers were surveyed. 1/4 of the 40 customers did not use a discount code; the rest used a discount code. Of the 30 who used a discount code, 19 paid by cash. Of the 10 who did not use a discount code, 2 paid by card. Complete the frequency tree, then work out the number of the 40 customers who did not use a discount code and paid by card.",
       "solution_steps": [
-        "Draw two branches from the start: P(blue) = 5/9, P(yellow) = 4/9.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(blue then yellow) = 5/9 × 4/9 = 20/81"
+        "Of the 40 customers: number who did not use a discount code = 1/4 × 40 = 10, so number who used a discount code = 40 - 10 = 30",
+        "Of the 30 who used a discount code: 19 who paid by cash is given directly, so number who paid by card = 30 - 19 = 11",
+        "Of the 10 who did not use a discount code: 2 who paid by card is given directly, so number who paid by cash = 10 - 2 = 8"
       ],
-      "final_answer": "20/81",
+      "final_answer": "2",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(blue) = 5/9, P(yellow) = 4/9.",
+          "description": "Of the 40 customers: number who did not use a discount code = 1/4 × 40 = 10, so number who used a discount code = 40 - 10 = 30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "description": "Of the 30 who used a discount code: 19 who paid by cash is given directly, so number who paid by card = 30 - 19 = 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(blue then yellow) = 5/9 × 4/9 = 20/81",
+          "description": "Of the 10 who did not use a discount code: 2 who paid by card is given directly, so number who paid by cash = 10 - 2 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20/81 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
+      "diagram": {
+        "kind": "frequency_tree",
         "params": {
+          "root": "40",
           "stage1": [
             [
-              "Blue",
-              "5/9"
+              "Discount",
+              ""
             ],
             [
-              "Yellow",
-              "4/9"
+              "No discount",
+              ""
             ]
           ],
           "stage2": [
             [
               [
-                "Blue",
-                "5/9"
+                "Card",
+                ""
               ],
               [
-                "Yellow",
-                "4/9"
+                "Cash",
+                ""
               ]
             ],
             [
               [
-                "Blue",
-                "5/9"
+                "Card",
+                ""
               ],
               [
-                "Yellow",
-                "4/9"
+                "Cash",
+                ""
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "frequency_tree",
+        "params": {
+          "root": "40",
+          "stage1": [
+            [
+              "Discount",
+              "30"
+            ],
+            [
+              "No discount",
+              "10"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Card",
+                "11"
+              ],
+              [
+                "Cash",
+                "19"
+              ]
+            ],
+            [
+              [
+                "Card",
+                "2"
+              ],
+              [
+                "Cash",
+                "8"
               ]
             ]
           ]
@@ -1068,79 +1132,6 @@
           ]
         }
       }
-    },
-    {
-      "topic_id": "scatter_graph_interpret_F",
-      "prompt": "The scatter graph shows the number of hours a group of students revised for a test and their test score. Describe the correlation shown.",
-      "solution_steps": [
-        "As hours revised increases, test score (%) tends to increase.",
-        "This means the scatter graph shows positive correlation."
-      ],
-      "final_answer": "Positive correlation",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "As hours revised increases, test score (%) tends to increase.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "This means the scatter graph shows positive correlation.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Positive correlation oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "scatter_graph",
-        "params": {
-          "points": [
-            [
-              1,
-              35.3
-            ],
-            [
-              2,
-              31.0
-            ],
-            [
-              3,
-              38.9
-            ],
-            [
-              4,
-              58.3
-            ],
-            [
-              6,
-              56.1
-            ],
-            [
-              7,
-              64.2
-            ],
-            [
-              8,
-              77.0
-            ],
-            [
-              9,
-              86.7
-            ],
-            [
-              10,
-              91.9
-            ]
-          ],
-          "x_label": "Hours revised",
-          "y_label": "Test score (%)"
-        }
-      },
-      "solution_diagram": null
     }
   ]
 }

@@ -328,38 +328,58 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = 3x - 8 and passes through the point (6, 0). Find the equation of the line.",
+      "topic_id": "distance_time_interpret_F",
+      "prompt": "The distance-time graph shows a delivery van's journey. Find the total distance travelled.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = 3.",
-        "Substitute (6, 0) into y = 3x + c: 0 = 3×(6) + c, so c = -18",
-        "Equation of the line: y = 3x - 18"
+        "Distance out = 8 km. Distance back = 8 km.",
+        "Total distance travelled = 8 + 8 = 16 km"
       ],
-      "final_answer": "y = 3x - 18",
-      "marks": 4,
+      "final_answer": "16 km",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = 3.",
+          "description": "Distance out = 8 km. Distance back = 8 km.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (6, 0) into y = 3x + c: 0 = 3×(6) + c, so c = -18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 3x - 18",
+          "description": "Total distance travelled = 8 + 8 = 16 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 3x - 18 oe",
+          "description": "16 km oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              24,
+              8
+            ],
+            [
+              29,
+              8
+            ],
+            [
+              49,
+              0
+            ]
+          ],
+          "x_max": 54,
+          "y_max": 10,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -404,98 +424,97 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_quadratic_F",
-      "prompt": "Complete a table of values for y = -x^2 - x - 2 for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_distance_time_F",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 6 km away after 25 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 40 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
       "solution_steps": [
-        "Table of values for y = -x^2 - x - 2:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -8, -4, -2, -2, -4, -8, -14",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 25 minutes.",
+        "Stay at 6 km until 30 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 40 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 6 km out + 6 km back = 12 km"
       ],
-      "final_answer": "Quadratic curve: y = -x^2 - x - 2",
+      "final_answer": "12 km",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^2 - x - 2:",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 25 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Stay at 6 km until 30 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -8, -4, -2, -2, -4, -8, -14",
+          "description": "Return at a constant speed to 0 km, arriving home at 40 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 6 km out + 6 km back = 12 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = -x^2 - x - 2 oe",
+          "description": "12 km oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "quadratic",
-          "a": -1,
-          "b": -1,
-          "c": -2,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -15,
-          "y_max": -1,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              25,
+              6
+            ],
+            [
+              30,
+              6
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 8,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "quadratic",
-          "a": -1,
-          "b": -1,
-          "c": -2,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -15,
-          "y_max": -1,
-          "table_points": [
-            [
-              -3,
-              -8
-            ],
-            [
-              -2,
-              -4
-            ],
-            [
-              -1,
-              -2
-            ],
+          "points": [
             [
               0,
-              -2
+              0
             ],
             [
-              1,
-              -4
+              25,
+              6
             ],
             [
-              2,
-              -8
+              30,
+              6
             ],
             [
-              3,
-              -14
+              40,
+              0
             ]
-          ]
+          ],
+          "x_max": 45,
+          "y_max": 8,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
         }
       }
     },
@@ -718,28 +737,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape A in the line y = -1.",
+      "topic_id": "transform_reflect_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "Reflect each vertex of shape A in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "The image, shape B, has vertices (3, -5), (6, -5), (3, -7)."
+        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+        "Comparing corresponding vertices shows the mirror line is y = -1."
       ],
-      "final_answer": "Image (shape B): (3, -5), (6, -5), (3, -7)",
+      "final_answer": "Reflection in the line y = -1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex of shape A in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The image, shape B, has vertices (3, -5), (6, -5), (3, -7).",
+          "description": "Comparing corresponding vertices shows the mirror line is y = -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (3, -5), (6, -5), (3, -7) oe",
+          "description": "Reflection in the line y = -1 oe",
           "marks": 1
         }
       ],
@@ -752,16 +771,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              3,
-              3
+              -3,
+              1
             ],
             [
-              6,
-              3
+              0,
+              1
             ],
             [
-              3,
-              5
+              -3,
+              3
             ]
           ],
           "original_labels": [
@@ -770,57 +789,18 @@
             ""
           ],
           "original_shape_label": "A",
-          "mirror_line": {
-            "type": "horizontal",
-            "y": -1,
-            "label": "y = -1"
-          }
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              3,
-              3
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              3,
-              5
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "mirror_line": {
-            "type": "horizontal",
-            "y": -1,
-            "label": "y = -1"
-          },
           "image_vertices": [
             [
-              3,
-              -5
+              -3,
+              -3
             ],
             [
-              6,
-              -5
+              0,
+              -3
             ],
             [
-              3,
-              -7
+              -3,
+              -5
             ]
           ],
           "image_labels": [
@@ -828,9 +808,11 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "area_rectangle_F",
@@ -864,28 +846,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_describe_F",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "topic_id": "transform_enlarge_complete_F",
+      "prompt": "Enlarge shape A by scale factor 2, centre (9, -1).",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (0, 0), with the matching vertex of shape B, (-1, -1), gives the vector \\colvec{-1}{-1}.",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+        "The centre of enlargement is (9, -1) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (1, -3) is a displacement of (-8, -2) from the centre, so it maps to (9, -1) + 2 × (-8, -2) = (-7, -5).",
+        "Repeat for every vertex. The image, shape B, has vertices (-7, -5), (1, -5), (1, -1), (-3, -1), (-3, 5), (-7, 5)."
       ],
-      "final_answer": "Translation by the vector \\colvec{-1}{-1}",
-      "marks": 3,
+      "final_answer": "Image (shape B): (-7, -5), (1, -5), (1, -1), (-3, -1), (-3, 5), (-7, 5)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (0, 0), with the matching vertex of shape B, (-1, -1), gives the vector \\colvec{-1}{-1}.",
+          "description": "The centre of enlargement is (9, -1) and the scale factor is 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (1, -3) is a displacement of (-8, -2) from the centre, so it maps to (9, -1) + 2 × (-8, -2) = (-7, -5).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex. The image, shape B, has vertices (-7, -5), (1, -5), (1, -1), (-3, -1), (-3, 5), (-7, 5).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector \\colvec{-1}{-1} oe",
+          "description": "Image (shape B): (-7, -5), (1, -5), (1, -1), (-3, -1), (-3, 5), (-7, 5) oe",
           "marks": 1
         }
       ],
@@ -898,23 +886,77 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              0
+              1,
+              -3
             ],
             [
-              4,
-              0
+              5,
+              -3
+            ],
+            [
+              5,
+              -1
             ],
             [
               3,
-              4
+              -1
             ],
             [
-              -1,
-              3
+              3,
+              2
+            ],
+            [
+              1,
+              2
             ]
           ],
           "original_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A"
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              1,
+              -3
+            ],
+            [
+              5,
+              -3
+            ],
+            [
+              5,
+              -1
+            ],
+            [
+              3,
+              -1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
             "",
             "",
             "",
@@ -923,63 +965,82 @@
           "original_shape_label": "A",
           "image_vertices": [
             [
-              -1,
+              -7,
+              -5
+            ],
+            [
+              1,
+              -5
+            ],
+            [
+              1,
               -1
             ],
             [
-              3,
+              -3,
               -1
             ],
             [
-              2,
-              3
+              -3,
+              5
             ],
             [
-              -2,
-              2
+              -7,
+              5
             ]
           ],
           "image_labels": [
             "",
             "",
             "",
+            "",
+            "",
             ""
           ],
-          "image_shape_label": "B",
-          "image_same_color": true
+          "image_shape_label": "B"
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "area_trapezium_F",
-      "prompt": "Find the area of the following trapezium.",
+      "topic_id": "angles_straight_line_F",
+      "prompt": "The angles 15°, 128° and x° lie on a straight line. Find x.",
       "solution_steps": [
-        "Area = ½ × (a + b) × height = ½ × (11 + 19) × 9 = 135 cm²"
+        "Angles on a straight line sum to 180°.",
+        "x = 180 - (15 + 128) = 180 - 143 = 37"
       ],
-      "final_answer": "135 cm²",
-      "marks": 2,
+      "final_answer": "37",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = ½ × (a + b) × height = ½ × (11 + 19) × 9 = 135 cm²",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 180 - (15 + 128) = 180 - 143 = 37",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "135 cm² oe",
+          "description": "37 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trapezium",
+        "kind": "angle_line",
         "params": {
-          "a": 11,
-          "b": 19,
-          "height": 9,
-          "a_label": "11 cm",
-          "b_label": "19 cm",
-          "height_label": "9 cm"
+          "angle_values": [
+            15,
+            128,
+            37
+          ],
+          "labels": [
+            "15°",
+            "128°",
+            "x"
+          ],
+          "around_point": false
         }
       },
       "solution_diagram": null
@@ -1061,7 +1122,8 @@
                 -1.2940952255126035
               ]
             }
-          ]
+          ],
+          "show_grid": false
         }
       },
       "solution_diagram": {
@@ -1116,6 +1178,7 @@
               ]
             }
           ],
+          "show_grid": false,
           "circle": null,
           "segment": {
             "p1": [
@@ -1132,122 +1195,93 @@
       }
     },
     {
-      "topic_id": "transform_rotate_complete_F",
-      "prompt": "Rotate shape A 90° clockwise about the centre (-2, -2).",
+      "topic_id": "two_way_tables_F",
+      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "Rotate each vertex of shape A 90° clockwise about the centre (-2, -2): every point stays the same distance from the centre and turns through the same angle.",
-        "The image, shape B, has vertices (2, -2), (2, -6), (6, -5), (5, -1)."
+        "'Girls' / 'Cats': using the 'Cats' column total: 28 - 10 = 18",
+        "'Girls' / 'Dogs': using the 'Dogs' column total: 25 - 6 = 19"
       ],
-      "final_answer": "Image (shape B): (2, -2), (2, -6), (6, -5), (5, -1)",
+      "final_answer": "'Girls' / 'Cats' = 18; 'Girls' / 'Dogs' = 19",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotate each vertex of shape A 90° clockwise about the centre (-2, -2): every point stays the same distance from the centre and turns through the same angle.",
+          "description": "'Girls' / 'Cats': using the 'Cats' column total: 28 - 10 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The image, shape B, has vertices (2, -2), (2, -6), (6, -5), (5, -1).",
+          "description": "'Girls' / 'Dogs': using the 'Dogs' column total: 25 - 6 = 19",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (2, -2), (2, -6), (6, -5), (5, -1) oe",
+          "description": "'Girls' / 'Cats' = 18; 'Girls' / 'Dogs' = 19 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "grid_transformation",
+        "kind": "two_way_table",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
             [
-              -2,
-              2
+              "10",
+              "6",
+              "16"
             ],
             [
-              2,
-              2
+              "",
+              "",
+              "37"
             ],
             [
-              1,
-              6
-            ],
-            [
-              -3,
-              5
+              "28",
+              "25",
+              "53"
             ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A"
+          ]
         }
       },
       "solution_diagram": {
-        "kind": "grid_transformation",
+        "kind": "two_way_table",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
             [
-              -2,
-              2
+              "10",
+              "6",
+              "16"
             ],
             [
-              2,
-              2
+              "18",
+              "19",
+              "37"
             ],
             [
-              1,
-              6
-            ],
-            [
-              -3,
-              5
+              "28",
+              "25",
+              "53"
             ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "image_vertices": [
-            [
-              2,
-              -2
-            ],
-            [
-              2,
-              -6
-            ],
-            [
-              6,
-              -5
-            ],
-            [
-              5,
-              -1
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "image_shape_label": "B"
+          ]
         }
       }
     },
@@ -1324,75 +1358,86 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_drawing_F",
-      "prompt": "A bag contains 7 green and 4 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is green and the second counter is green.",
+      "topic_id": "stats_median_F",
+      "prompt": "Find the median of this data set: 12, 27, 10, 16, 30.",
       "solution_steps": [
-        "Draw two branches from the start: P(green) = 7/11, P(red) = 4/11.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(green then green) = 7/11 × 7/11 = 49/121"
+        "Sort the data: 10, 12, 16, 27, 30. The middle value is 16."
       ],
-      "final_answer": "49/121",
-      "marks": 4,
+      "final_answer": "16",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(green) = 7/11, P(red) = 4/11.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(green then green) = 7/11 × 7/11 = 49/121",
+          "description": "Sort the data: 10, 12, 16, 27, 30. The middle value is 16.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "49/121 oe",
+          "description": "16 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SAS  B) ASA  C) SSS  D) RHS",
+      "solution_steps": [
+        "Look at which measurements are marked equal on both triangles - here they match the Side-Angle-Side (SAS) pattern.",
+        "So the two triangles are congruent by Side-Angle-Side (SAS)."
+      ],
+      "final_answer": "A) SAS",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "A) SAS (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
         "params": {
-          "stage1": [
+          "side_labels_1": [
             [
-              "Green",
-              "7/11"
+              0,
+              1,
+              "9 cm"
             ],
             [
-              "Red",
-              "4/11"
+              0,
+              2,
+              "11 cm"
             ]
           ],
-          "stage2": [
+          "side_labels_2": [
             [
-              [
-                "Green",
-                "7/11"
-              ],
-              [
-                "Red",
-                "4/11"
-              ]
+              0,
+              1,
+              "9 cm"
             ],
             [
-              [
-                "Green",
-                "7/11"
-              ],
-              [
-                "Red",
-                "4/11"
-              ]
+              0,
+              2,
+              "11 cm"
+            ]
+          ],
+          "angle_labels_1": [
+            [
+              0,
+              "97°"
+            ]
+          ],
+          "angle_labels_2": [
+            [
+              0,
+              "97°"
             ]
           ]
         }
-      }
+      },
+      "solution_diagram": null
     }
   ]
 }

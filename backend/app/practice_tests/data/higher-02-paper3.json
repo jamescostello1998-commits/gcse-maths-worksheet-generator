@@ -42,34 +42,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Fully simplify √150 ÷ √3, giving your answer in the form a√b.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify √45 + √125, giving your answer in the form a√b.",
       "solution_steps": [
-        "√150 ÷ √3 = √(150/3) = √50",
-        "Find the largest square factor of 50: 5^2 × 2 = 50",
-        "√50 = √(5^2 × 2) = 5√2"
+        "Simplify each surd first: √45 = 3√5 and √125 = 5√5.",
+        "They are now like surds, so combine the coefficients: 3 + 5 = 8.",
+        "= 8√5"
       ],
-      "final_answer": "5√2",
+      "final_answer": "8√5",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√150 ÷ √3 = √(150/3) = √50",
+          "description": "Simplify each surd first: √45 = 3√5 and √125 = 5√5.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the largest square factor of 50: 5^2 × 2 = 50",
+          "description": "They are now like surds, so combine the coefficients: 3 + 5 = 8.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√50 = √(5^2 × 2) = 5√2",
+          "description": "= 8√5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5√2 oe",
+          "description": "8√5 oe",
           "marks": 1
         }
       ],
@@ -223,33 +223,90 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_H",
-      "prompt": "Fully simplify √125, giving your answer in the form a√b.",
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 2 × 2^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Find the largest square factor of 125: 5^2 × 5 = 125",
-        "√125 = √(5^2 × 5) = 5√5"
+        "Table of values for y = 2 × 2^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 2, 4, 8, 16, 32",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "5√5",
-      "marks": 3,
+      "final_answer": "Exponential curve: y = 2 × 2^x",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 125: 5^2 × 5 = 125",
+          "description": "Table of values for y = 2 × 2^x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√125 = √(5^2 × 5) = 5√5",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 2, 4, 8, 16, 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5√5 oe",
+          "description": "Exponential curve: y = 2 × 2^x oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 2,
+          "base": 2,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 35.2,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 2,
+          "base": 2,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 35.2,
+          "table_points": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              16
+            ],
+            [
+              4,
+              32
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "circle_equation_H",
@@ -523,43 +580,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_H",
-      "prompt": "Solve: 3x + 10 = 7x - 22",
+      "topic_id": "percentage_increase_decrease_calculator_H",
+      "prompt": "Using a calculator, increase £68.55 by 4.8%. Give your answer to 2 decimal places.",
       "solution_steps": [
-        "3x + 10 = 7x - 22",
-        "Subtract 7x from both sides:",
-        "-4x + 10 = -22",
-        "Subtract 10 from both sides:",
-        "-4x = -32",
-        "Divide both sides by -4:",
-        "x = 8"
+        "Convert 4.8% to a multiplier: 1.048",
+        "Multiply: £68.55 × 1.048 = £71.84 (calculator, 2 d.p.)"
       ],
-      "final_answer": "8",
-      "marks": 5,
+      "final_answer": "£71.84",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "3x + 10 = 7x - 22",
+          "description": "Convert 4.8% to a multiplier: 1.048",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 7x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-4x + 10 = -22",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 10 from both sides: -4x = -32 Divide both sides by -4: x = 8",
+          "description": "Multiply: £68.55 × 1.048 = £71.84 (calculator, 2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "£71.84 oe",
           "marks": 1
         }
       ],
@@ -567,38 +609,59 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_inverse_proportion_H",
-      "prompt": "y is inversely proportional to x^3. When x = 4, y = 135. Find the value of y when x = 3.",
+      "topic_id": "angles_straight_line_H",
+      "prompt": "The angles 119° and (2x + 43)° lie on a straight line. Find x.",
       "solution_steps": [
-        "y = k ÷ x^3",
-        "k = y × x^3 = 135 × 4^3 = 135 × 64 = 8640",
-        "y = k ÷ x^3 = 8640 ÷ 3^3 = 8640 ÷ 27 = 320"
+        "Angles on a straight line sum to 180°.",
+        "2x + 43 = 61",
+        "Subtract 43 from both sides:",
+        "2x = 18",
+        "Divide both sides by 2:",
+        "x = 9"
       ],
-      "final_answer": "320",
-      "marks": 4,
+      "final_answer": "9",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = k ÷ x^3",
+          "description": "Angles on a straight line sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = y × x^3 = 135 × 4^3 = 135 × 64 = 8640",
+          "description": "2x + 43 = 61",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = k ÷ x^3 = 8640 ÷ 3^3 = 8640 ÷ 27 = 320",
+          "description": "Subtract 43 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x = 18 Divide both sides by 2: x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "320 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            119,
+            61
+          ],
+          "labels": [
+            "119°",
+            "(2x + 43)°"
+          ],
+          "around_point": false
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -674,69 +737,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "mixed_percentages_H",
-      "prompt": "Increase 300 by 25%.",
+      "topic_id": "ratio_share_three_part_H",
+      "prompt": "Share 36 in the ratio 3:6:9.",
       "solution_steps": [
-        "Convert 25% to a multiplier: 1.25",
-        "Multiply: 300 × 1.25 = 375"
+        "Total parts = 3 + 6 + 9 = 18",
+        "Value of one part = 36 ÷ 18 = 2",
+        "Share 1 = 3 × 2 = 6",
+        "Share 2 = 6 × 2 = 12",
+        "Share 3 = 9 × 2 = 18"
       ],
-      "final_answer": "375",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 25% to a multiplier: 1.25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 300 × 1.25 = 375",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "375 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_to_equation_H",
-      "prompt": "(x + 7) : (4x - 32) = 3:2. Find the value of x.",
-      "solution_steps": [
-        "Cross-multiply: 2(x + 7) = 3(4x - 32)",
-        "Expand: 2x + 14 = 12x - 96",
-        "Collect x terms: -10x = -110",
-        "x = -110 ÷ -10 = 11"
-      ],
-      "final_answer": "x = 11",
+      "final_answer": "6 : 12 : 18",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-multiply: 2(x + 7) = 3(4x - 32)",
+          "description": "Total parts = 3 + 6 + 9 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand: 2x + 14 = 12x - 96",
+          "description": "Value of one part = 36 ÷ 18 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect x terms: -10x = -110",
+          "description": "Share 1 = 3 × 2 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -110 ÷ -10 = 11",
+          "description": "Share 2 = 6 × 2 = 12 Share 3 = 9 × 2 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 11 oe",
+          "description": "6 : 12 : 18 oe",
           "marks": 1
         }
       ],
@@ -744,8 +779,48 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "sine_rule_H",
+      "prompt": "Find the length of side b, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use the sine rule: a / sin(A) = b / sin(B)",
+        "b = (7 × sin(61°)) ÷ sin(102°) = 6.3 cm (1 d.p.)"
+      ],
+      "final_answer": "6.3 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use the sine rule: a / sin(A) = b / sin(B)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = (7 × sin(61°)) ÷ sin(102°) = 6.3 cm (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6.3 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_a_label": "7 cm",
+          "side_b_label": null,
+          "side_c_label": null,
+          "angle_A_label": "102°",
+          "angle_B_label": "61°",
+          "angle_C_label": null,
+          "show_vertices": true
+        }
+      },
+      "solution_diagram": null
+    },
+    {
       "topic_id": "cosine_rule_H",
-      "prompt": "In triangle ABC, side b = 20 cm, side c = 15 cm, and the angle between them, angle A = 106°. Find the length of side a, correct to 3 significant figures.",
+      "prompt": "Find the length of side a, correct to 3 significant figures.",
       "solution_steps": [
         "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
         "a² = 20² + 15² - 2×20×15×cos(106°) = 790.4",
@@ -778,19 +853,20 @@
       "diagram": {
         "kind": "general_triangle",
         "params": {
-          "side_a_label": "x cm",
+          "side_a_label": null,
           "side_b_label": "20 cm",
           "side_c_label": "15 cm",
           "angle_A_label": "106°",
           "angle_B_label": null,
-          "angle_C_label": null
+          "angle_C_label": null,
+          "show_vertices": true
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "volume_surface_area_cone_H",
-      "prompt": "A cone has radius 6 cm and slant height 15 cm. Find its volume, correct to 2 decimal places.",
+      "prompt": "Here is a cone. Find its volume, correct to 2 decimal places.",
       "solution_steps": [
         "Volume = (1/3) × π × r² × h = (1/3) × π × 6² × 13.748",
         "= 518.28 cm³ (2 d.p., using a calculator value of π)"
@@ -876,258 +952,83 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 5 cm of A AND closer to A than to B.",
+      "topic_id": "venn_diagram_algebra_H",
+      "prompt": "The Venn diagram shows the number of elements in each region of sets A and B, given in terms of x. There are 58 elements in total. Find the value of x, and hence find the number of elements in B.",
       "solution_steps": [
-        "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
-        "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
-        "The required region is where these two conditions overlap."
+        "a_only + b_only + both + neither = total: (2x) + (2x) + (x + 2) + 16 = 58",
+        "Collecting like terms: 5x + 18 = 58",
+        "x = 8",
+        "Substituting x = 8: A only = 16, B only = 16, both = 10, neither = 16",
+        "The number of elements in B = 26"
       ],
-      "final_answer": "The region inside the circle of radius 5 cm centred on A, and on the A side of the perpendicular bisector of AB.",
-      "marks": 4,
+      "final_answer": "26",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
+          "description": "a_only + b_only + both + neither = total: (2x) + (2x) + (x + 2) + 16 = 58",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
+          "description": "Collecting like terms: 5x + 18 = 58",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The required region is where these two conditions overlap.",
+          "description": "x = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substituting x = 8: A only = 16, B only = 16, both = 10, neither = 16 The number of elements in B = 26",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 5 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
+          "description": "26 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "loci_region",
+        "kind": "venn_diagram",
         "params": {
-          "x_min": -7.0,
-          "x_max": 5.0,
-          "y_min": -7.0,
-          "y_max": 5.0,
-          "points": [
-            {
-              "xy": [
-                -1,
-                -1
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                -4,
-                4
-              ],
-              "label": "B"
-            }
+          "labels": [
+            "A",
+            "B"
           ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -1,
-                -1
-              ],
-              "radius": 5
-            },
-            {
-              "type": "segment",
-              "p1": [
-                -12.78991510855053,
-                -4.6739490651303175
-              ],
-              "p2": [
-                7.789915108550529,
-                7.6739490651303175
-              ]
-            }
-          ]
+          "region_text": {
+            "a_only": "2x",
+            "b_only": "2x",
+            "both": "x + 2",
+            "neither": "16"
+          }
         }
       },
-      "solution_diagram": {
-        "kind": "loci_region",
-        "params": {
-          "x_min": -7.0,
-          "x_max": 5.0,
-          "y_min": -7.0,
-          "y_max": 5.0,
-          "points": [
-            {
-              "xy": [
-                -1,
-                -1
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                -4,
-                4
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -1,
-                -1
-              ],
-              "radius": 5
-            },
-            {
-              "type": "segment",
-              "p1": [
-                -12.78991510855053,
-                -4.6739490651303175
-              ],
-              "p2": [
-                7.789915108550529,
-                7.6739490651303175
-              ]
-            }
-          ],
-          "shade_constraints": [
-            {
-              "type": "disk",
-              "centre": [
-                -1,
-                -1
-              ],
-              "radius": 5,
-              "inside": true
-            },
-            {
-              "type": "half_plane",
-              "closer_to": [
-                -1,
-                -1
-              ],
-              "than": [
-                -4,
-                4
-              ]
-            }
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional_H",
-      "prompt": "A bag contains 4 yellow and 7 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 6 different shirts and 5 different pairs of trousers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "P(both yellow) = 4/11 × 3/10 = 6/55",
-        "P(both green) = 7/11 × 6/10 = 21/55",
-        "P(both same colour) = 6/55 + 21/55 = 27/55"
+        "Total combinations = 6 × 5 = 30"
       ],
-      "final_answer": "27/55",
-      "marks": 4,
+      "final_answer": "30",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(both yellow) = 4/11 × 3/10 = 6/55",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both green) = 7/11 × 6/10 = 21/55",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both same colour) = 6/55 + 21/55 = 27/55",
+          "description": "Total combinations = 6 × 5 = 30",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27/55 oe",
+          "description": "30 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Yellow",
-              ""
-            ],
-            [
-              "Green",
-              ""
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Yellow",
-                ""
-              ],
-              [
-                "Green",
-                ""
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                ""
-              ],
-              [
-                "Green",
-                ""
-              ]
-            ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Yellow",
-              "4/11"
-            ],
-            [
-              "Green",
-              "7/11"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Yellow",
-                "3/10"
-              ],
-              [
-                "Green",
-                "7/10"
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                "4/10"
-              ],
-              [
-                "Green",
-                "6/10"
-              ]
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

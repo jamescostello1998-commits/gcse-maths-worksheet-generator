@@ -283,85 +283,77 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SSS  B) ASA  C) RHS  D) SAS",
+      "topic_id": "fractions_ordering_F",
+      "prompt": "Write these fractions in descending order: 2/3, 3/4, 1/6, 1/2",
       "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Side-Side-Side (SSS) pattern.",
-        "So the two triangles are congruent by Side-Side-Side (SSS)."
+        "Convert every fraction to the same denominator, the LCM of 3, 4, 6, 2: 12",
+        "Rewrite each fraction over 12: 2/3 = 8/12, 3/4 = 9/12, 1/6 = 2/12, 1/2 = 6/12",
+        "Order the numerators in descending order and convert back: 3/4, 2/3, 1/2, 1/6"
       ],
-      "final_answer": "A) SSS",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "A) SSS (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "side_labels_1": [
-            [
-              0,
-              1,
-              "8 cm"
-            ],
-            [
-              0,
-              2,
-              "10 cm"
-            ],
-            [
-              1,
-              2,
-              "7 cm"
-            ]
-          ],
-          "side_labels_2": [
-            [
-              0,
-              1,
-              "8 cm"
-            ],
-            [
-              0,
-              2,
-              "10 cm"
-            ],
-            [
-              1,
-              2,
-              "7 cm"
-            ]
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractional_equations_F",
-      "prompt": "Solve the following equation.\n\\frac{x}{8} = 10",
-      "solution_steps": [
-        "Multiply both sides by 8: x = 10 × 8",
-        "x = 80"
-      ],
-      "final_answer": "x = 80",
-      "marks": 3,
+      "final_answer": "3/4, 2/3, 1/2, 1/6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply both sides by 8: x = 10 × 8",
+          "description": "Convert every fraction to the same denominator, the LCM of 3, 4, 6, 2: 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 80",
+          "description": "Rewrite each fraction over 12: 2/3 = 8/12, 3/4 = 9/12, 1/6 = 2/12, 1/2 = 6/12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Order the numerators in descending order and convert back: 3/4, 2/3, 1/2, 1/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 80 oe",
+          "description": "3/4, 2/3, 1/2, 1/6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets_F",
+      "prompt": "Solve: 2(5x + 1) = 72",
+      "solution_steps": [
+        "Expand the bracket: 2(5x + 1) = 10x + 2",
+        "10x + 2 = 72",
+        "Subtract 2 from both sides:",
+        "10x = 70",
+        "Divide both sides by 10:",
+        "x = 7"
+      ],
+      "final_answer": "7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 2(5x + 1) = 10x + 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10x + 2 = 72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 2 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10x = 70 Divide both sides by 10: x = 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 oe",
           "marks": 1
         }
       ],
@@ -559,49 +551,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph_F",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "topic_id": "parallel_lines_equation_F",
+      "prompt": "A line is parallel to y = 3x - 4 and passes through the point (4, -9). Find the equation of the line.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{-2 - 4}{2 - -1} = -2",
-        "Using y = mx + c with the point (-1, 4): 4 = -2×(-1) + c, so c = 2",
-        "Equation of the line: y = -2x + 2"
+        "Parallel lines have the same gradient, so m = 3.",
+        "Substitute (4, -9) into y = 3x + c: -9 = 3×(4) + c, so c = -21",
+        "Equation of the line: y = 3x - 21"
       ],
-      "final_answer": "y = -2x + 2",
+      "final_answer": "y = 3x - 21",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = \\frac{-2 - 4}{2 - -1} = -2",
+          "description": "Parallel lines have the same gradient, so m = 3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using y = mx + c with the point (-1, 4): 4 = -2×(-1) + c, so c = 2",
+          "description": "Substitute (4, -9) into y = 3x + c: -9 = 3×(4) + c, so c = -21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = -2x + 2",
+          "description": "Equation of the line: y = 3x - 21",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -2x + 2 oe",
+          "description": "y = 3x - 21 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -2,
-          "c": 2,
-          "x_min": -2,
-          "x_max": 3,
-          "y_min": -5,
-          "y_max": 7
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -721,44 +702,60 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 24 in the ratio 1:3.",
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SSS  B) ASA  C) RHS  D) SAS",
       "solution_steps": [
-        "Total parts = 1 + 3 = 4",
-        "Value of one part = 24 ÷ 4 = 6",
-        "Share 1 = 1 × 6 = 6",
-        "Share 2 = 3 × 6 = 18"
+        "Look at which measurements are marked equal on both triangles - here they match the Side-Side-Side (SSS) pattern.",
+        "So the two triangles are congruent by Side-Side-Side (SSS)."
       ],
-      "final_answer": "6 : 18",
-      "marks": 5,
+      "final_answer": "A) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Total parts = 1 + 3 = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 24 ÷ 4 = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 1 × 6 = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 3 × 6 = 18",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6 : 18 oe",
+          "code": "B1",
+          "description": "A) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "8 cm"
+            ],
+            [
+              0,
+              2,
+              "10 cm"
+            ],
+            [
+              1,
+              2,
+              "7 cm"
+            ]
+          ],
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "8 cm"
+            ],
+            [
+              0,
+              2,
+              "10 cm"
+            ],
+            [
+              1,
+              2,
+              "7 cm"
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -804,28 +801,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_describe_F",
+      "topic_id": "transform_enlarge_describe_F",
       "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-3, -2), with the matching vertex of shape B, (-3, 0), gives the vector \\colvec{0}{2}.",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For mapping shape A onto shape B, the lines meet at (-3, 1) and the scale factor works out as 1/3."
       ],
-      "final_answer": "Translation by the vector \\colvec{0}{2}",
+      "final_answer": "Enlargement, scale factor 1/3, centre (-3, 1)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-3, -2), with the matching vertex of shape B, (-3, 0), gives the vector \\colvec{0}{2}.",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "For mapping shape A onto shape B, the lines meet at (-3, 1) and the scale factor works out as 1/3.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector \\colvec{0}{2} oe",
+          "description": "Enlargement, scale factor 1/3, centre (-3, 1) oe",
           "marks": 1
         }
       ],
@@ -839,18 +836,23 @@
           "original_vertices": [
             [
               -3,
-              -2
+              1
             ],
             [
-              2,
-              -2
+              3,
+              1
             ],
             [
-              -2,
-              2
+              3,
+              4
+            ],
+            [
+              -3,
+              7
             ]
           ],
           "original_labels": [
+            "",
             "",
             "",
             ""
@@ -859,18 +861,23 @@
           "image_vertices": [
             [
               -3,
-              0
+              1
             ],
             [
-              2,
-              0
+              -1,
+              1
             ],
             [
-              -2,
-              4
+              -1,
+              2
+            ],
+            [
+              -3,
+              3
             ]
           ],
           "image_labels": [
+            "",
             "",
             "",
             ""
@@ -969,64 +976,136 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 9 cm, width 7 cm and height 13 cm. Find its surface area.",
+      "topic_id": "volume_surface_area_cube_F",
+      "prompt": "Here is a cube. Find its surface area.",
       "solution_steps": [
-        "Surface area = 2 × (lw + lh + wh) = 2 × (9×7 + 9×13 + 7×13)",
-        "= 2 × (63 + 117 + 91) = 542 cm²"
+        "Surface area = 6 × side² = 6 × 13² = 6 × 169 = 1014 cm²"
       ],
-      "final_answer": "542 cm²",
-      "marks": 3,
+      "final_answer": "1014 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2 × (lw + lh + wh) = 2 × (9×7 + 9×13 + 7×13)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2 × (63 + 117 + 91) = 542 cm²",
+          "description": "Surface area = 6 × side² = 6 × 13² = 6 × 169 = 1014 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "542 cm² oe",
+          "description": "1014 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "cuboid",
         "params": {
-          "width_label": "7 cm",
+          "width_label": "13 cm",
           "height_label": "13 cm",
-          "length_label": "9 cm"
+          "length_label": "13 cm",
+          "is_cube": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_expectation_F",
-      "prompt": "A biased die has P(rolling a 2) = 2/10. The die is rolled 100 times. How many times would you expect to get a 2?",
+      "topic_id": "tree_diagram_independent_F",
+      "prompt": "A bag contains 7 red and 4 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
       "solution_steps": [
-        "Expected number of times = probability × number of trials = 2/10 × 100",
-        "= 20"
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 7/11, P(green) = 4/11.",
+        "P(both red) = 7/11 × 7/11 = 49/121",
+        "P(both green) = 4/11 × 4/11 = 16/121",
+        "P(same colour) = 49/121 + 16/121 = 65/121"
       ],
-      "final_answer": "20",
-      "marks": 3,
+      "final_answer": "65/121",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 2/10 × 100",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 7/11, P(green) = 4/11.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 20",
+          "description": "P(both red) = 7/11 × 7/11 = 49/121",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both green) = 4/11 × 4/11 = 16/121",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(same colour) = 49/121 + 16/121 = 65/121",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 oe",
+          "description": "65/121 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "7/11"
+            ],
+            [
+              "Green",
+              "4/11"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "7/11"
+              ],
+              [
+                "Green",
+                "4/11"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "7/11"
+              ],
+              [
+                "Green",
+                "4/11"
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "relative_frequency_F",
+      "prompt": "A biased dice is tested 80 times, and it shows a six 8 times. Use this relative frequency to estimate how many times this would happen in 60 trials.",
+      "solution_steps": [
+        "Relative frequency = frequency ÷ number of trials = 8/80 = 1/10",
+        "Estimated number of times in 60 trials = 1/10 × 60 = 6"
+      ],
+      "final_answer": "6",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Relative frequency = frequency ÷ number of trials = 8/80 = 1/10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Estimated number of times in 60 trials = 1/10 × 60 = 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -1034,7 +1113,7 @@
         "kind": "dice",
         "params": {
           "values": [
-            2
+            6
           ],
           "highlight": [
             0
@@ -1044,157 +1123,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "two_way_tables_F",
-      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer cats or dogs. Find the missing values.",
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "1/3 = \\frac{?}{9}. Find the missing number.",
       "solution_steps": [
-        "'Year 11' / 'Cats': using the 'Cats' column total: 13 - 9 = 4",
-        "'Year 11' / 'Dogs': using the 'Dogs' column total: 18 - 9 = 9"
+        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
+        "Multiply the numerator by the same scale factor: 1 × 3 = 3"
       ],
-      "final_answer": "'Year 11' / 'Cats' = 4; 'Year 11' / 'Dogs' = 9",
+      "final_answer": "3",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "'Year 11' / 'Cats': using the 'Cats' column total: 13 - 9 = 4",
+          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Year 11' / 'Dogs': using the 'Dogs' column total: 18 - 9 = 9",
+          "description": "Multiply the numerator by the same scale factor: 1 × 3 = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "'Year 11' / 'Cats' = 4; 'Year 11' / 'Dogs' = 9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
-            [
-              "9",
-              "9",
-              "18"
-            ],
-            [
-              "",
-              "",
-              "13"
-            ],
-            [
-              "13",
-              "18",
-              "31"
-            ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
-            [
-              "9",
-              "9",
-              "18"
-            ],
-            [
-              "4",
-              "9",
-              "13"
-            ],
-            [
-              "13",
-              "18",
-              "31"
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "probability_listing_outcomes_F",
-      "prompt": "A 3-sided spinner (labelled 1, 2, 3) and a 4-sided spinner (labelled 1, 2, 3, 4) are both spun. List all the possible outcomes.",
-      "solution_steps": [
-        "There are 3 possible outcomes for the first event and 4 for the second, so there are 3 × 4 = 12 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34"
-      ],
-      "final_answer": "11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "There are 3 possible outcomes for the first event and 4 for the second, so there are 3 × 4 = 12 possible combined outcomes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "spinner_pair",
-        "params": {
-          "sectors_a": [
-            "1",
-            "2",
-            "3"
-          ],
-          "sectors_b": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_range_F",
-      "prompt": "Find the range of this data set: 10, 22, 24, 27, 21, 30, 23, 7.",
-      "solution_steps": [
-        "Range = largest - smallest = 30 - 7 = 23"
-      ],
-      "final_answer": "23",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Range = largest - smallest = 30 - 7 = 23",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "23 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],

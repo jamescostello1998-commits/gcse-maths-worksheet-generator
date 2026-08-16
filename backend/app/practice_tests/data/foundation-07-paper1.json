@@ -314,18 +314,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_F",
-      "prompt": "Which of the following fractions is equivalent to 1/6? A) 2/18, B) 3/18, C) 8/42, D) 5/24",
+      "topic_id": "parallel_lines_equation_F",
+      "prompt": "A line is parallel to y = 5x + 6 and passes through the point (6, 3). Find the equation of the line.",
       "solution_steps": [
-        "Cross-multiply 1/6 against each option: a candidate p/q is equivalent only if 1 × q = p × 6.",
-        "Only option B) 3/18 works: 1 × 18 = 3 × 6 = 18."
+        "Parallel lines have the same gradient, so m = 5.",
+        "Substitute (6, 3) into y = 5x + c: 3 = 5×(6) + c, so c = -27",
+        "Equation of the line: y = 5x - 27"
       ],
-      "final_answer": "B) 3/18",
-      "marks": 1,
+      "final_answer": "y = 5x - 27",
+      "marks": 4,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "B) 3/18 (selecting the correct option)",
+          "code": "M1",
+          "description": "Parallel lines have the same gradient, so m = 5.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (6, 3) into y = 5x + c: 3 = 5×(6) + c, so c = -27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = 5x - 27",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = 5x - 27 oe",
           "marks": 1
         }
       ],
@@ -333,34 +349,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 4x = 8",
+      "topic_id": "collect_like_terms_F",
+      "prompt": "Simplify 6 - 5x + 4 + 4x + 1",
       "solution_steps": [
-        "4x = 8",
-        "Divide both sides by 4:",
-        "x = 2"
+        "Start with the expression: 6 - 5x + 4 + 4x + 1.",
+        "Like terms have exactly the same letter part, so group the x terms, and separately the number terms together, keeping the + or - sign in front of each term.",
+        "Add the coefficients within each group (a term with no number in front counts as 1).",
+        "This simplifies to -x + 11."
       ],
-      "final_answer": "2",
-      "marks": 4,
+      "final_answer": "-x + 11",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x = 8",
+          "description": "Start with the expression: 6 - 5x + 4 + 4x + 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 4:",
+          "description": "Like terms have exactly the same letter part, so group the x terms, and separately the number terms together, keeping the + or - sign in front of each term.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 2",
+          "description": "Add the coefficients within each group (a term with no number in front counts as 1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This simplifies to -x + 11.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
+          "description": "-x + 11 oe",
           "marks": 1
         }
       ],
@@ -728,69 +750,80 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube_F",
-      "prompt": "A cube has side length 16 cm. Find its surface area.",
+      "topic_id": "volume_surface_area_triangular_prism_F",
+      "prompt": "Here is a triangular prism. Find its volume.",
       "solution_steps": [
-        "Surface area = 6 × side² = 6 × 16² = 6 × 256 = 1536 cm²"
+        "Cross-section area = (1/2) × 18 × 24 = 216 cm²",
+        "Volume = cross-section area × length = 216 × 20 = 4320 cm³"
       ],
-      "final_answer": "1536 cm²",
-      "marks": 2,
+      "final_answer": "4320 cm³",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 16² = 6 × 256 = 1536 cm²",
+          "description": "Cross-section area = (1/2) × 18 × 24 = 216 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume = cross-section area × length = 216 × 20 = 4320 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1536 cm² oe",
+          "description": "4320 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "triangular_prism",
         "params": {
-          "width_label": "16 cm",
-          "height_label": "16 cm",
-          "length_label": "16 cm",
-          "is_cube": true
+          "base_label": "18 cm",
+          "triangle_height_label": "24 cm",
+          "length_label": "20 cm",
+          "hyp_label": "30 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_F",
-      "prompt": "\\vec{a} = \\colvec{2}{-8} and \\vec{b} = \\colvec{-5}{6}. Find \\vec{a} + \\vec{b}.",
+      "topic_id": "circle_parts_F",
+      "prompt": "Name the part of the circle that is highlighted.",
       "solution_steps": [
-        "\\vec{a} = \\colvec{2}{-8}, \\vec{b} = \\colvec{-5}{6}",
-        "\\vec{a} = \\colvec{2}{-8} and \\vec{b} = \\colvec{-5}{6}",
-        "\\vec{a} + \\vec{b} = \\colvec{-3}{-2}"
+        "Look at which feature of the circle is highlighted.",
+        "It is a region enclosed by two radii and an arc (a 'slice' of the circle).",
+        "This part of a circle is called a sector."
       ],
-      "final_answer": "\\colvec{-3}{-2}",
+      "final_answer": "sector",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{2}{-8}, \\vec{b} = \\colvec{-5}{6}",
+          "description": "Look at which feature of the circle is highlighted.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{2}{-8} and \\vec{b} = \\colvec{-5}{6}",
+          "description": "It is a region enclosed by two radii and an arc (a 'slice' of the circle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\vec{a} + \\vec{b} = \\colvec{-3}{-2}",
+          "description": "This part of a circle is called a sector.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{-3}{-2} oe",
+          "description": "sector oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "circle_part",
+        "params": {
+          "part": "sector"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -836,106 +869,103 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 8 cm and 15 cm. Find the length of x.",
+      "topic_id": "volume_surface_area_cube_F",
+      "prompt": "Here is a cube. Find its surface area.",
       "solution_steps": [
-        "c² = a² + b² = 8² + 15² = 64 + 225 = 289",
-        "c = √289 = 17"
+        "Surface area = 6 × side² = 6 × 16² = 6 × 256 = 1536 cm²"
       ],
-      "final_answer": "17 cm",
-      "marks": 3,
+      "final_answer": "1536 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 8² + 15² = 64 + 225 = 289",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √289 = 17",
+          "description": "Surface area = 6 × side² = 6 × 16² = 6 × 256 = 1536 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17 cm oe",
+          "description": "1536 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "cuboid",
         "params": {
-          "leg1_label": "8 cm",
-          "leg2_label": "15 cm",
-          "hyp_label": "x"
+          "width_label": "16 cm",
+          "height_label": "16 cm",
+          "length_label": "16 cm",
+          "is_cube": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length_F",
-      "prompt": "Find the arc length of the following sector, correct to 3 significant figures.",
+      "topic_id": "probability_listing_outcomes_F",
+      "prompt": "A coin is flipped and a 3-sided spinner (labelled B, R, P) is spun. List all the possible outcomes.",
       "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (129 ÷ 360) × 2 × π × 3",
-        "= 6.75 cm (3 s.f., using a calculator value of π)"
+        "There are 2 possible outcomes for the first event and 3 for the second, so there are 2 × 3 = 6 possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: HB, HR, HP, TB, TR, TP"
       ],
-      "final_answer": "6.75 cm",
+      "final_answer": "HB, HR, HP, TB, TR, TP",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (129 ÷ 360) × 2 × π × 3",
+          "description": "There are 2 possible outcomes for the first event and 3 for the second, so there are 2 × 3 = 6 possible combined outcomes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 6.75 cm (3 s.f., using a calculator value of π)",
+          "description": "For each outcome of the first event, list every outcome of the second event: HB, HR, HP, TB, TR, TP",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6.75 cm oe",
+          "description": "HB, HR, HP, TB, TR, TP oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sector",
+        "kind": "event_pair",
         "params": {
-          "angle": 129,
-          "radius_label": "3 cm",
-          "angle_label": "129°"
+          "event_a": {
+            "kind": "coin"
+          },
+          "event_b": {
+            "kind": "spinner",
+            "sectors": [
+              "B",
+              "R",
+              "P"
+            ]
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_single_event_F",
-      "prompt": "A bag contains 3 yellow, 7 red, 8 green, 2 blue counters. A counter is picked at random. Find the probability that it is blue.",
+      "topic_id": "probability_complement_F",
+      "prompt": "A bag contains 6 yellow, 2 green, 2 red, 7 blue counters. A counter is picked at random. Find the probability that it is NOT red.",
       "solution_steps": [
-        "Total counters = 20",
-        "Number of blue counters = 2",
-        "P(blue) = 2/20 = 1/10"
+        "P(red) = 2/17 = 2/17",
+        "P(not red) = 1 - 2/17 = 15/17"
       ],
-      "final_answer": "1/10",
-      "marks": 4,
+      "final_answer": "15/17",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total counters = 20",
+          "description": "P(red) = 2/17 = 2/17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of blue counters = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(blue) = 2/20 = 1/10",
+          "description": "P(not red) = 1 - 2/17 = 15/17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/10 oe",
+          "description": "15/17 oe",
           "marks": 1
         }
       ],
@@ -943,42 +973,13 @@
         "kind": "bag_of_counters",
         "params": {
           "counts": {
-            "yellow": 3,
-            "red": 7,
-            "green": 8,
-            "blue": 2
+            "yellow": 6,
+            "green": 2,
+            "red": 2,
+            "blue": 7
           }
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_expectation_F",
-      "prompt": "In a batch of items, the probability that an item is defective is 4/12. 240 items are checked. How many would you expect to be defective?",
-      "solution_steps": [
-        "Expected number of times = probability × number of trials = 4/12 × 240",
-        "= 80"
-      ],
-      "final_answer": "80",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 4/12 × 240",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 80",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "80 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     },
     {

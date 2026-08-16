@@ -236,7 +236,7 @@ def test_expectation_spinner_diagram_matches_the_stated_probability():
 
 def test_listing_outcomes_attaches_a_diagram_matching_every_scenario():
     rng = random.Random(215)
-    saw_spinner_diagram = False
+    saw_coin_spinner_diagram = False
     saw_pair_diagram = False
     saw_coin_die_diagram = False
     saw_two_coins_diagram = False
@@ -244,8 +244,12 @@ def test_listing_outcomes_attaches_a_diagram_matching_every_scenario():
         q = probability.generate_listing_outcomes(Tier.FOUNDATION, rng)
         assert q.diagram is not None
         if q.dedup_key.startswith("listing:coin_spinner"):
-            assert q.diagram.kind == "spinner"
-            saw_spinner_diagram = True
+            # Both objects get a diagram - a coin AND the spinner, not just
+            # the spinner alone.
+            assert q.diagram.kind == "event_pair"
+            assert q.diagram.params["event_a"]["kind"] == "coin"
+            assert q.diagram.params["event_b"]["kind"] == "spinner"
+            saw_coin_spinner_diagram = True
         elif q.dedup_key.startswith("listing:two_spinner3") or q.dedup_key.startswith("listing:spinner3_spinner4"):
             assert q.diagram.kind == "spinner_pair"
             assert "sectors_a" in q.diagram.params
@@ -260,7 +264,7 @@ def test_listing_outcomes_attaches_a_diagram_matching_every_scenario():
             assert q.diagram.kind == "coin"
             assert q.diagram.params["count"] == 2
             saw_two_coins_diagram = True
-    assert saw_spinner_diagram
+    assert saw_coin_spinner_diagram
     assert saw_pair_diagram
     assert saw_coin_die_diagram
     assert saw_two_coins_diagram

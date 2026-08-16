@@ -328,58 +328,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "distance_time_interpret_F",
-      "prompt": "The distance-time graph shows a delivery van's journey. Find the average speed for the whole journey, in km/h.",
+      "topic_id": "midpoint_of_segment_F",
+      "prompt": "Find the midpoint of the line segment joining A(4, 4) and B(1, -3).",
       "solution_steps": [
-        "Total distance = 10 km. Total time = 50 minutes = 5/6 hours.",
-        "Average speed = 10 ÷ 5/6 = 12 km/h"
+        "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
+        "x-coordinate of midpoint: (4 + 1)/2 = 2.5",
+        "y-coordinate of midpoint: (4 + -3)/2 = 0.5",
+        "Midpoint = (2.5, 0.5)"
       ],
-      "final_answer": "12 km/h",
-      "marks": 3,
+      "final_answer": "(2.5, 0.5)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total distance = 10 km. Total time = 50 minutes = 5/6 hours.",
+          "description": "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Average speed = 10 ÷ 5/6 = 12 km/h",
+          "description": "x-coordinate of midpoint: (4 + 1)/2 = 2.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y-coordinate of midpoint: (4 + -3)/2 = 0.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Midpoint = (2.5, 0.5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 km/h oe",
+          "description": "(2.5, 0.5) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              30,
-              5
-            ],
-            [
-              40,
-              5
-            ],
-            [
-              50,
-              0
-            ]
-          ],
-          "x_max": 55,
-          "y_max": 7,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -512,28 +498,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_F",
-      "prompt": "Factorise: x^2 + 6x + 8",
+      "topic_id": "algebraic_indices_F",
+      "prompt": "Simplify (x^2)^2",
       "solution_steps": [
-        "Find two numbers that multiply to 8 and add to 6: 4 and 2",
-        "Write as two brackets: (x + 4)(x + 2)"
+        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+        "(x^2)^2 = 1^2 x^(2×2)",
+        "= x^4"
       ],
-      "final_answer": "(x + 4)(x + 2)",
-      "marks": 3,
+      "final_answer": "x^4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 8 and add to 6: 4 and 2",
+          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 4)(x + 2)",
+          "description": "(x^2)^2 = 1^2 x^(2×2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= x^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 4)(x + 2) oe",
+          "description": "x^4 oe",
           "marks": 1
         }
       ],
@@ -593,34 +585,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 3x = 30",
+      "topic_id": "percentage_of_amount_F",
+      "prompt": "Find 50% of 180.",
       "solution_steps": [
-        "3x = 30",
-        "Divide both sides by 3:",
-        "x = 10"
+        "Convert 50% to a fraction: 50/100",
+        "Multiply: 50/100 × 180 = 90"
       ],
-      "final_answer": "10",
-      "marks": 4,
+      "final_answer": "90",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "3x = 30",
+          "description": "Convert 50% to a fraction: 50/100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 3:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 10",
+          "description": "Multiply: 50/100 × 180 = 90",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "90 oe",
           "marks": 1
         }
       ],
@@ -692,28 +678,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_F",
-      "prompt": "A price of £60 increases by 20%, then decreases by 50%. Find the final price.",
+      "topic_id": "simple_interest_F",
+      "prompt": "£3500 is invested at a simple interest rate of 2% per year for 4 years. Find the total amount in the account after 4 years.",
       "solution_steps": [
-        "After the first change: 60 × 1.20 = 72",
-        "After the second change: 72 × 0.50 = 36"
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 3500 × 2 × 4 ÷ 100 = £280",
+        "Total in the account = P + I = £3500 + £280 = £3780"
       ],
-      "final_answer": "£36",
-      "marks": 3,
+      "final_answer": "£3780",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 60 × 1.20 = 72",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 72 × 0.50 = 36",
+          "description": "I = 3500 × 2 × 4 ÷ 100 = £280",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total in the account = P + I = £3500 + £280 = £3780",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£36 oe",
+          "description": "£3780 oe",
           "marks": 1
         }
       ],
@@ -721,40 +713,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys_F",
-      "prompt": "A shop sells pasta in different sizes: A: £7.92 for 300g; B: £15.68 for 700g. Which option is the better value for money? Show your working.",
+      "topic_id": "ratio_share_two_part_F",
+      "prompt": "Share 35 in the ratio 4:1.",
       "solution_steps": [
-        "Work out the price per 100g for each option:",
-        "A: £7.92 ÷ 300 × 100 = 264.00p per 100g",
-        "B: £15.68 ÷ 700 × 100 = 224.00p per 100g",
-        "The lowest price per 100g is B at 224.00p per 100g, so B is the best value."
+        "Total parts = 4 + 1 = 5",
+        "Value of one part = 35 ÷ 5 = 7",
+        "Share 1 = 4 × 7 = 28",
+        "Share 2 = 1 × 7 = 7"
       ],
-      "final_answer": "B (£15.68 for 700g)",
+      "final_answer": "28 : 7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100g for each option:",
+          "description": "Total parts = 4 + 1 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £7.92 ÷ 300 × 100 = 264.00p per 100g",
+          "description": "Value of one part = 35 ÷ 5 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £15.68 ÷ 700 × 100 = 224.00p per 100g",
+          "description": "Share 1 = 4 × 7 = 28",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lowest price per 100g is B at 224.00p per 100g, so B is the best value.",
+          "description": "Share 2 = 1 × 7 = 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "B (£15.68 for 700g) oe",
+          "description": "28 : 7 oe",
           "marks": 1
         }
       ],
@@ -762,117 +754,146 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 56° and 67°. Find x.",
+      "topic_id": "angles_polygon_interior_F",
+      "prompt": "A polygon has 45 sides. Find the sum of its interior angles.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 56 + 67 = 123"
+        "Sum of interior angles = (n - 2) × 180 = (45 - 2) × 180 = 7740°"
       ],
-      "final_answer": "123",
-      "marks": 3,
+      "final_answer": "7740°",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 56 + 67 = 123",
+          "description": "Sum of interior angles = (n - 2) × 180 = (45 - 2) × 180 = 7740°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "123 oe",
+          "description": "7740° oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "exterior_triangle",
-        "params": {
-          "interior1_label": "56°",
-          "interior2_label": "67°",
-          "exterior_label": "x",
-          "interior1_value": 56,
-          "shape_variant": 0
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_rotational_F",
-      "prompt": "The diagram shows an equilateral triangle. State the order of rotational symmetry.",
+      "topic_id": "transform_reflect_complete_F",
+      "prompt": "Reflect shape A in the line y = 2.",
       "solution_steps": [
-        "Rotating the equilateral triangle about its centre, it looks exactly the same 3 times during a full 360° turn.",
-        "So the order of rotational symmetry is 3."
+        "Reflect each vertex of shape A in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "The image, shape B, has vertices (0, 6), (3, 6), (0, 4)."
       ],
-      "final_answer": "order 3",
+      "final_answer": "Image (shape B): (0, 6), (3, 6), (0, 4)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotating the equilateral triangle about its centre, it looks exactly the same 3 times during a full 360° turn.",
+          "description": "Reflect each vertex of shape A in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the order of rotational symmetry is 3.",
+          "description": "The image, shape B, has vertices (0, 6), (3, 6), (0, 4).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "order 3 oe",
+          "description": "Image (shape B): (0, 6), (3, 6), (0, 4) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "symmetry_shape",
+        "kind": "grid_transformation",
         "params": {
-          "vertices": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              2.4492935982947064e-16,
-              4.0
+              0,
+              -2
             ],
             [
-              -3.4641016151377544,
-              -2.0000000000000004
+              3,
+              -2
             ],
             [
-              3.4641016151377535,
-              -2.0000000000000018
+              0,
+              0
             ]
           ],
-          "blank": true
+          "original_labels": [
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "mirror_line": {
+            "type": "horizontal",
+            "y": 2,
+            "label": "y = 2"
+          }
         }
       },
       "solution_diagram": {
-        "kind": "symmetry_shape",
+        "kind": "grid_transformation",
         "params": {
-          "vertices": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              2.4492935982947064e-16,
-              4.0
+              0,
+              -2
             ],
             [
-              -3.4641016151377544,
-              -2.0000000000000004
+              3,
+              -2
             ],
             [
-              3.4641016151377535,
-              -2.0000000000000018
+              0,
+              0
             ]
           ],
-          "rotation_centre": [
-            -2.1441635329021817e-16,
-            -7.401486830834377e-16
+          "original_labels": [
+            "",
+            "",
+            ""
           ],
-          "rotation_order": 3
+          "original_shape_label": "A",
+          "mirror_line": {
+            "type": "horizontal",
+            "y": 2,
+            "label": "y = 2"
+          },
+          "image_vertices": [
+            [
+              0,
+              6
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
     {
       "topic_id": "construction_triangle_F",
-      "prompt": "Triangle UCX has UC = 9 cm, the angle at U equal to 70°, and the angle at C equal to 22°. Describe, step by step, how to construct triangle UCX using a ruler and a protractor.",
+      "prompt": "Triangle UCX has UC = 9 cm, the angle at U equal to 70°, and the angle at C equal to 22°. Construct triangle UCX using a ruler and a protractor.",
       "solution_steps": [
         "Draw the line segment UC = 9 cm using a ruler.",
         "At U, use a protractor to draw a ray at 70° from the line UC.",
@@ -908,32 +929,45 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_c_label": "9 cm",
+          "angle_A_label": "70°",
+          "angle_B_label": "22°",
+          "show_vertices": true,
+          "vertex_labels": [
+            "U",
+            "C",
+            "X"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_complete_F",
-      "prompt": "Translate shape A by the vector \\colvec{-2}{-6}.",
+      "topic_id": "transform_translate_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "Translate every vertex of shape A by the vector \\colvec{-2}{-6}: move each point 2 squares left and 6 squares down.",
-        "The image, shape B, has vertices (-4, -4), (1, -4), (1, -2), (-1, -2), (-1, 0), (-4, 0)."
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-3, -3), with the matching vertex of shape B, (-5, 0), gives the vector \\colvec{-2}{3}.",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
-      "final_answer": "Image (shape B): (-4, -4), (1, -4), (1, -2), (-1, -2), (-1, 0), (-4, 0)",
+      "final_answer": "Translation by the vector \\colvec{-2}{3}",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Translate every vertex of shape A by the vector \\colvec{-2}{-6}: move each point 2 squares left and 6 squares down.",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-3, -3), with the matching vertex of shape B, (-5, 0), gives the vector \\colvec{-2}{3}.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The image, shape B, has vertices (-4, -4), (1, -4), (1, -2), (-1, -2), (-1, 0), (-4, 0).",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (-4, -4), (1, -4), (1, -2), (-1, -2), (-1, 0), (-4, 0) oe",
+          "description": "Translation by the vector \\colvec{-2}{3} oe",
           "marks": 1
         }
       ],
@@ -946,78 +980,19 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -2,
-              2
+              -3,
+              -3
             ],
             [
-              3,
-              2
-            ],
-            [
-              3,
-              4
-            ],
-            [
-              1,
-              4
-            ],
-            [
-              1,
-              6
+              2,
+              -3
             ],
             [
               -2,
-              6
+              1
             ]
           ],
           "original_labels": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A"
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -2,
-              2
-            ],
-            [
-              3,
-              2
-            ],
-            [
-              3,
-              4
-            ],
-            [
-              1,
-              4
-            ],
-            [
-              1,
-              6
-            ],
-            [
-              -2,
-              6
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
             "",
             "",
             ""
@@ -1025,69 +1000,62 @@
           "original_shape_label": "A",
           "image_vertices": [
             [
-              -4,
-              -4
+              -5,
+              0
             ],
             [
-              1,
-              -4
-            ],
-            [
-              1,
-              -2
-            ],
-            [
-              -1,
-              -2
-            ],
-            [
-              -1,
+              0,
               0
             ],
             [
               -4,
-              0
+              4
             ]
           ],
           "image_labels": [
             "",
             "",
-            "",
-            "",
-            "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube_F",
-      "prompt": "A cube has side length 13 cm. Find its volume.",
+      "topic_id": "volume_surface_area_triangular_prism_F",
+      "prompt": "Here is a triangular prism. Find its volume.",
       "solution_steps": [
-        "Volume = side³ = 13³ = 2197 cm³"
+        "Cross-section area = (1/2) × 18 × 24 = 216 cm²",
+        "Volume = cross-section area × length = 216 × 15 = 3240 cm³"
       ],
-      "final_answer": "2197 cm³",
-      "marks": 2,
+      "final_answer": "3240 cm³",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = side³ = 13³ = 2197 cm³",
+          "description": "Cross-section area = (1/2) × 18 × 24 = 216 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume = cross-section area × length = 216 × 15 = 3240 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2197 cm³ oe",
+          "description": "3240 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "triangular_prism",
         "params": {
-          "width_label": "13 cm",
-          "height_label": "13 cm",
-          "length_label": "13 cm",
-          "is_cube": true
+          "base_label": "18 cm",
+          "triangle_height_label": "24 cm",
+          "length_label": "15 cm",
+          "hyp_label": "30 cm"
         }
       },
       "solution_diagram": null
@@ -1130,87 +1098,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "relative_frequency_F",
-      "prompt": "A drawing pin is tested 20 times, and it lands point up 12 times. Use this relative frequency to estimate how many times this would happen in 15 trials.",
+      "topic_id": "set_listing_F",
+      "prompt": "List the elements of the set A = { x : x is a factor of 16 }.",
       "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 12/20 = 3/5",
-        "Estimated number of times in 15 trials = 3/5 × 15 = 9"
+        "Read the set-builder rule: it means 'the set of all x such that x is a factor of 16'.",
+        "Go through the candidates in order and keep only the ones that fit the description.",
+        "Written out in a list (roster form): {1, 2, 4, 8, 16}"
       ],
-      "final_answer": "9",
-      "marks": 3,
+      "final_answer": "{1, 2, 4, 8, 16}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 12/20 = 3/5",
+          "description": "Read the set-builder rule: it means 'the set of all x such that x is a factor of 16'.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Estimated number of times in 15 trials = 3/5 × 15 = 9",
+          "description": "Go through the candidates in order and keep only the ones that fit the description.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Written out in a list (roster form): {1, 2, 4, 8, 16}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "{1, 2, 4, 8, 16} oe",
           "marks": 1
         }
       ],
       "diagram": null,
       "solution_diagram": null
-    },
-    {
-      "topic_id": "venn_diagram_shading_F",
-      "prompt": "Shade the region that represents the elements in neither R nor T.",
-      "solution_steps": [
-        "The Venn diagram has two circles, R and T, inside a rectangle representing everything being considered.",
-        "'Shade the region that represents the elements in neither R nor T.' tells you which of the four regions (in R only, in T only, in both, or in neither) needs shading.",
-        "The region outside both R and T."
-      ],
-      "final_answer": "The region outside both R and T.",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The Venn diagram has two circles, R and T, inside a rectangle representing everything being considered.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "'Shade the region that represents the elements in neither R nor T.' tells you which of the four regions (in R only, in T only, in both, or in neither) needs shading.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The region outside both R and T.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "The region outside both R and T. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "R",
-            "T"
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "R",
-            "T"
-          ],
-          "shade": [
-            "neither"
-          ]
-        }
-      }
     }
   ]
 }

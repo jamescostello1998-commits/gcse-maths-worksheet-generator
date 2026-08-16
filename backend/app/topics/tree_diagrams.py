@@ -30,7 +30,7 @@ _FREQUENCY_TREE_CONTEXTS = [
      "paid by card", "paid by cash", "Card", "Cash"),
     ("workers", "travel to work by bus", "do not travel to work by bus", "Bus", "No bus",
      "work the morning shift", "work the evening shift", "Morning", "Evening"),
-    ("people surveyed", "own a pet", "do not own a pet", "Pet", "No pet",
+    ("people", "own a pet", "do not own a pet", "Pet", "No pet",
      "are under 18", "are 18 or over", "Under 18", "18 or over"),
 ]
 
@@ -43,69 +43,132 @@ _FREQUENCY_TREE_FRACTIONS = [
 _FREQUENCY_TREE_TOTALS = [40, 60, 80, 100, 120, 150, 160, 200, 240, 250, 300, 360, 400]
 
 
+def _resolve_split(rng: random.Random, parent_total: int, mode: str) -> tuple:
+    """Split parent_total into two child counts one of two ways: mode
+    'given' states one child's count directly (a plain number - the
+    student finds the other child by subtraction alone, no calculation
+    needed) or mode 'fraction' states one child as a fraction/percentage of
+    parent_total (the one genuine calculation this generator ever asks
+    for - the other child is still found by subtraction). Returns
+    (count_a, count_b, stated_is_a, stated_value_str, is_fraction)."""
+    stated_is_a = rng.random() < 0.5
+    if mode == "fraction":
+        for _ in range(100):
+            frac = rng.choice(_FREQUENCY_TREE_FRACTIONS)
+            stated_frac = parent_total * frac
+            if stated_frac.denominator != 1:
+                continue
+            stated = int(stated_frac)
+            other = parent_total - stated
+            if stated < 1 or other < 1:
+                continue
+            # Independent cross-check via Decimal - a different numeric
+            # representation from the Fraction arithmetic above.
+            d_stated = Decimal(parent_total) * Decimal(frac.numerator) / Decimal(frac.denominator)
+            if int(d_stated) != stated:
+                raise ValueError("frequency_tree: Fraction/Decimal cross-check mismatch")
+            count_a, count_b = (stated, other) if stated_is_a else (other, stated)
+            return count_a, count_b, stated_is_a, _frac_str(frac), True
+        raise ValueError("frequency_tree: failed to find a clean fraction split")
+
+    lo = max(1, round(parent_total * 0.15))
+    hi = min(parent_total - 1, round(parent_total * 0.85))
+    if lo > hi:
+        lo, hi = 1, parent_total - 1
+    stated = rng.randint(lo, hi)
+    other = parent_total - stated
+    count_a, count_b = (stated, other) if stated_is_a else (other, stated)
+    return count_a, count_b, stated_is_a, str(stated), False
+
+
 def _build_frequency_tree(rng: random.Random) -> dict:
-    """Pick a total and three independent split fractions (top-level, then
-    one further split within each top-level branch), rerolling until every
-    one of the six resulting frequencies is a clean positive integer with
-    no branch degenerately small (< 2). Cross-checks the Fraction-based
-    counts against an independently computed Decimal path before accepting
-    them - a different numeric representation from the Fraction arithmetic,
-    not just a repeat of the same formula."""
+    """Pick a total, then resolve the tree's three splits (root, then one
+    further split within each top-level branch) via _resolve_split. Exactly
+    one split (chosen at random) uses a fraction/percentage calculation
+    half the time; the other half, every split states a count directly, so
+    the whole tree is completed by subtraction alone - per the user's
+    explicit request that most (and half of all) questions shouldn't need
+    more than one fraction/percentage-of-amount calculation. Rerolls until
+    every one of the six resulting frequencies is a clean positive integer
+    with no branch degenerately small. The fraction-vs-given coin flip is
+    made ONCE, before any retrying - not re-flipped on every rejected
+    attempt - so the intended ~50/50 split holds even though a fraction
+    split occasionally needs a few retries to land on clean integers (a
+    'given' split almost never does), which would otherwise bias the mix
+    toward zero-fraction questions."""
+    use_fraction = rng.random() < 0.5
     for _ in range(500):
         ctx = rng.choice(_FREQUENCY_TREE_CONTEXTS)
         total = rng.choice(_FREQUENCY_TREE_TOTALS)
-        p1 = rng.choice(_FREQUENCY_TREE_FRACTIONS)
-        qa = rng.choice(_FREQUENCY_TREE_FRACTIONS)
-        qb = rng.choice(_FREQUENCY_TREE_FRACTIONS)
 
-        n_a_frac = total * p1
-        if n_a_frac.denominator != 1:
-            continue
-        n_a = int(n_a_frac)
-        n_b = total - n_a
-        if n_a < 2 or n_b < 2:
-            continue
+        fraction_split = rng.randrange(3) if use_fraction else -1
+        modes = ["fraction" if i == fraction_split else "given" for i in range(3)]
 
-        n_aa_frac, n_ba_frac = n_a * qa, n_b * qb
-        if n_aa_frac.denominator != 1 or n_ba_frac.denominator != 1:
+        try:
+            n_a, n_b, root_is_a, root_str, root_frac = _resolve_split(rng, total, modes[0])
+            if n_a < 2 or n_b < 2:
+                continue
+            n_aa, n_ab, a_is_a, a_str, a_frac = _resolve_split(rng, n_a, modes[1])
+            n_ba, n_bb, b_is_a, b_str, b_frac = _resolve_split(rng, n_b, modes[2])
+        except ValueError:
             continue
-        n_aa, n_ba = int(n_aa_frac), int(n_ba_frac)
-        n_ab, n_bb = n_a - n_aa, n_b - n_ba
         if min(n_aa, n_ab, n_ba, n_bb) < 1:
             continue
-
-        d_total = Decimal(total)
-        d_n_a = d_total * Decimal(p1.numerator) / Decimal(p1.denominator)
-        d_n_aa = d_n_a * Decimal(qa.numerator) / Decimal(qa.denominator)
-        d_n_ba = (d_total - d_n_a) * Decimal(qb.numerator) / Decimal(qb.denominator)
-        if int(d_n_a) != n_a or int(d_n_aa) != n_aa or int(d_n_ba) != n_ba:
-            raise ValueError("frequency_tree: Fraction/Decimal cross-check mismatch")
         if n_aa + n_ab + n_ba + n_bb != total:
             raise ValueError("frequency_tree: leaf counts do not sum to the total")
 
         return {
-            "ctx": ctx, "total": total, "p1": p1, "qa": qa, "qb": qb,
+            "ctx": ctx, "total": total,
             "n_a": n_a, "n_b": n_b, "n_aa": n_aa, "n_ab": n_ab, "n_ba": n_ba, "n_bb": n_bb,
+            "root": (root_is_a, root_str, root_frac),
+            "a": (a_is_a, a_str, a_frac),
+            "b": (b_is_a, b_str, b_frac),
         }
-    raise ValueError("frequency_tree: failed to find a clean-integer combination")
+    raise ValueError("frequency_tree: failed to find a valid combination")
 
 
 def _frequency_tree_prompt(data: dict, target_cat1: str, target_cat2: str) -> str:
     subject, cat1_a, cat1_b, *_rest = data["ctx"]
-    cat2_a = data["ctx"][5]
-    total, p1, qa, qb = data["total"], data["p1"], data["qa"], data["qb"]
+    cat2_a, cat2_b = data["ctx"][5], data["ctx"][6]
+    total = data["total"]
+    root_is_a, root_str, _ = data["root"]
+    a_is_a, a_str, _ = data["a"]
+    b_is_a, b_str, _ = data["b"]
+
+    root_clause = cat1_a if root_is_a else cat1_b
+    root_other = cat1_b if root_is_a else cat1_a
+    a_clause = cat2_a if a_is_a else cat2_b
+    b_clause = cat2_a if b_is_a else cat2_b
+
     return (
-        f"{total} {subject} were surveyed. {_frac_str(p1)} of the {total} {subject} {cat1_a}; the rest "
-        f"{cat1_b}. Of the {subject} who {cat1_a}, {_frac_str(qa)} {cat2_a}. Of the {subject} who "
-        f"{cat1_b}, {_frac_str(qb)} {cat2_a}. Complete the frequency tree, then work out the number of "
-        f"the {total} {subject} who {target_cat1} and {target_cat2}."
+        f"{total} {subject} were surveyed. {root_str} of the {total} {subject} {root_clause}; the rest "
+        f"{root_other}. Of the {data['n_a']} who {cat1_a}, {a_str} {a_clause}. Of the {data['n_b']} who "
+        f"{cat1_b}, {b_str} {b_clause}. Complete the frequency tree, then work out the number of the "
+        f"{total} {subject} who {target_cat1} and {target_cat2}."
     )
+
+
+def _split_calc(parent_total: int, split: tuple, clause_a: str, clause_b: str, count_a: int, count_b: int) -> str:
+    """A single-line 'how you find both children' description - a
+    calculation line if this split used a fraction, otherwise a plain
+    statement that one side is given, in both cases finishing with the
+    subtraction that finds the other side."""
+    stated_is_a, stated_str, is_frac = split
+    stated_clause = clause_a if stated_is_a else clause_b
+    other_clause = clause_b if stated_is_a else clause_a
+    stated_count = count_a if stated_is_a else count_b
+    other_count = count_b if stated_is_a else count_a
+    if is_frac:
+        head = f"number who {stated_clause} = {stated_str} × {parent_total} = {stated_count}"
+    else:
+        head = f"{stated_count} who {stated_clause} is given directly"
+    return f"{head}, so number who {other_clause} = {parent_total} - {stated_count} = {other_count}"
 
 
 def generate_frequency_tree(tier: Tier, rng: random.Random) -> Question:
     data = _build_frequency_tree(rng)
     subject, cat1_a, cat1_b, cat1_a_short, cat1_b_short, cat2_a, cat2_b, cat2_a_short, cat2_b_short = data["ctx"]
-    total, p1, qa, qb = data["total"], data["p1"], data["qa"], data["qb"]
+    total = data["total"]
     n_a, n_b = data["n_a"], data["n_b"]
     n_aa, n_ab, n_ba, n_bb = data["n_aa"], data["n_ab"], data["n_ba"], data["n_bb"]
 
@@ -119,12 +182,9 @@ def generate_frequency_tree(tier: Tier, rng: random.Random) -> Question:
     stage2 = [[(cat2_a_short, ""), (cat2_b_short, "")], [(cat2_a_short, ""), (cat2_b_short, "")]]
 
     steps = [
-        f"Number who {cat1_a} = {_frac_str(p1)} × {total} = {n_a}",
-        f"Number who {cat1_b} = {total} - {n_a} = {n_b}",
-        f"Of the {n_a} who {cat1_a}: number who {cat2_a} = {_frac_str(qa)} × {n_a} = {n_aa}, "
-        f"so number who {cat2_b} = {n_a} - {n_aa} = {n_ab}",
-        f"Of the {n_b} who {cat1_b}: number who {cat2_a} = {_frac_str(qb)} × {n_b} = {n_ba}, "
-        f"so number who {cat2_b} = {n_b} - {n_ba} = {n_bb}",
+        f"Of the {total} {subject}: {_split_calc(total, data['root'], cat1_a, cat1_b, n_a, n_b)}",
+        f"Of the {n_a} who {cat1_a}: {_split_calc(n_a, data['a'], cat2_a, cat2_b, n_aa, n_ab)}",
+        f"Of the {n_b} who {cat1_b}: {_split_calc(n_b, data['b'], cat2_a, cat2_b, n_ba, n_bb)}",
     ]
 
     return Question(
@@ -133,7 +193,7 @@ def generate_frequency_tree(tier: Tier, rng: random.Random) -> Question:
         prompt=_frequency_tree_prompt(data, target_cat1, target_cat2),
         solution_steps=tuple(steps),
         final_answer=str(answer),
-        dedup_key=f"freq_tree:{subject}:{total}:{p1}:{qa}:{qb}:{target_cat1}:{target_cat2}",
+        dedup_key=f"freq_tree:{subject}:{total}:{data['root']}:{data['a']}:{data['b']}:{target_cat1}:{target_cat2}",
         diagram=DiagramSpec(kind="frequency_tree", params={"root": str(total), "stage1": stage1, "stage2": stage2}),
         solution_diagram=DiagramSpec(
             kind="frequency_tree",
@@ -152,7 +212,7 @@ def generate_frequency_tree(tier: Tier, rng: random.Random) -> Question:
 def generate_modelled_example_frequency_tree(tier: Tier, rng: random.Random) -> ModelledExample:
     data = _build_frequency_tree(rng)
     subject, cat1_a, cat1_b, cat1_a_short, cat1_b_short, cat2_a, cat2_b, cat2_a_short, cat2_b_short = data["ctx"]
-    total, p1, qa, qb = data["total"], data["p1"], data["qa"], data["qb"]
+    total = data["total"]
     n_a, n_b = data["n_a"], data["n_b"]
     n_aa, n_ab, n_ba, n_bb = data["n_aa"], data["n_ab"], data["n_ba"], data["n_bb"]
 
@@ -163,22 +223,27 @@ def generate_modelled_example_frequency_tree(tier: Tier, rng: random.Random) -> 
     target_cat1, target_cat2, answer = rng.choice(targets)
 
     worked_calculation = [
-        f"{_frac_str(p1)} × {total} = {n_a} {cat1_a}; {total} - {n_a} = {n_b} {cat1_b}",
-        f"{_frac_str(qa)} × {n_a} = {n_aa}; {_frac_str(qb)} × {n_b} = {n_ba}",
+        _split_calc(total, data["root"], cat1_a, cat1_b, n_a, n_b),
+        _split_calc(n_a, data["a"], cat2_a, cat2_b, n_aa, n_ab),
+        _split_calc(n_b, data["b"], cat2_a, cat2_b, n_ba, n_bb),
         f"Answer: {answer}",
     ]
+    any_fraction = data["root"][2] or data["a"][2] or data["b"][2]
     teaching_steps = [
         "A frequency tree splits a total into branches using RAW COUNTS at each oval, not probabilities - "
-        "start from the given total and work outwards, one split at a time.",
-        f"The first split covers all {total} {subject}: {_frac_str(p1)} of them {cat1_a}, so that branch's "
-        f"count is {_frac_str(p1)} × {total} = {n_a}. The other branch (those who {cat1_b}) must make up "
-        f"the rest of the total: {total} - {n_a} = {n_b}.",
-        f"Each of those two branches then splits again. Of the {n_a} who {cat1_a}, {_frac_str(qa)} {cat2_a}: "
-        f"{_frac_str(qa)} × {n_a} = {n_aa}, leaving {n_a} - {n_aa} = {n_ab} who {cat2_b}. Of the {n_b} who "
-        f"{cat1_b}, {_frac_str(qb)} {cat2_a}: {_frac_str(qb)} × {n_b} = {n_ba}, leaving {n_b} - {n_ba} = "
-        f"{n_bb} who {cat2_b}.",
-        f"Every path through the tree ends at one of the four right-hand ovals - to answer the question, "
-        f"read off the oval for {subject} who {target_cat1} and {target_cat2}: {answer}.",
+        "work outward from the given total, resolving one split at a time. Most of what you need is given "
+        "to you directly as a plain number - the only time you actually have to calculate anything is when "
+        "a split is described as a FRACTION or PERCENTAGE of a group; every other value comes from simple "
+        "subtraction once you know its branch's own total."
+        if any_fraction
+        else "A frequency tree splits a total into branches using RAW COUNTS at each oval, not probabilities - "
+        "every split here states one branch's count directly, so the whole tree is just subtraction: "
+        "each pair of branches must add back up to the count they split from.",
+        f"First split, out of all {total} {subject}: {_split_calc(total, data['root'], cat1_a, cat1_b, n_a, n_b)}.",
+        f"Second split, within the {n_a} who {cat1_a}: {_split_calc(n_a, data['a'], cat2_a, cat2_b, n_aa, n_ab)}.",
+        f"Third split, within the {n_b} who {cat1_b}: {_split_calc(n_b, data['b'], cat2_a, cat2_b, n_ba, n_bb)}.",
+        f"Every path through the tree ends at one of the four right-hand ovals - read off the oval for "
+        f"{subject} who {target_cat1} and {target_cat2}: {answer}.",
     ]
 
     return ModelledExample(
@@ -513,10 +578,6 @@ def generate_tree_diagram_dependent(tier: Tier, rng: random.Random) -> Question:
         [(c1.title(), _frac_str(p1_given1)), (c2.title(), _frac_str(p2_given1))],
         [(c1.title(), _frac_str(p1_given2)), (c2.title(), _frac_str(p2_given2))],
     ]
-    leaf_probs = [
-        [_frac_str(p1 * p1_given1), _frac_str(p1 * p2_given1)],
-        [_frac_str(p2 * p1_given2), _frac_str(p2 * p2_given2)],
-    ]
 
     steps = [
         f"After the first counter is picked (without replacement), there are {total - 1} counters left.",
@@ -537,9 +598,7 @@ def generate_tree_diagram_dependent(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=_frac_str(formula_prob),
         dedup_key=f"tree_dep:{c1}:{c2}:{n1}:{n2}:{event}:{prompt_event}",
-        diagram=DiagramSpec(
-            kind="tree_diagram", params={"stage1": stage1, "stage2": stage2, "leaf_probs": leaf_probs}
-        ),
+        diagram=DiagramSpec(kind="tree_diagram", params={"stage1": stage1, "stage2": stage2}),
     )
 
 
@@ -618,10 +677,6 @@ def generate_modelled_example_tree_diagram_dependent(tier: Tier, rng: random.Ran
         [(c1.title(), _frac_str(p1_given1)), (c2.title(), _frac_str(p2_given1))],
         [(c1.title(), _frac_str(p1_given2)), (c2.title(), _frac_str(p2_given2))],
     ]
-    leaf_probs = [
-        [_frac_str(p_c1c1), _frac_str(p_c1c2)],
-        [_frac_str(p_c2c1), _frac_str(p_c2c2)],
-    ]
 
     teaching_steps = [
         f"Because the first counter is NOT replaced, picking it changes what's left in the bag - there are "
@@ -647,9 +702,7 @@ def generate_modelled_example_tree_diagram_dependent(tier: Tier, rng: random.Ran
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_frac_str(formula_prob),
-        diagram=DiagramSpec(
-            kind="tree_diagram", params={"stage1": stage1, "stage2": stage2, "leaf_probs": leaf_probs}
-        ),
+        diagram=DiagramSpec(kind="tree_diagram", params={"stage1": stage1, "stage2": stage2}),
     )
 
 

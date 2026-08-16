@@ -42,154 +42,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "powers_H",
-      "prompt": "Work out 25^(1/2).",
-      "solution_steps": [
-        "25^(1/2) means the square root of 25.",
-        "25^(1/2) = 5"
-      ],
-      "final_answer": "5",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "25^(1/2) means the square root of 25.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "25^(1/2) = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "rationalise_denominator_H",
-      "prompt": "Rationalise the denominator of \\frac{12}{9 + √3}, giving your answer in its simplest form.",
-      "solution_steps": [
-        "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √3):",
-        "\\frac{12}{9 + √3}",
-        "= \\frac{12(9 - √3)}{[(9 + √3)(9 - √3)]}",
-        "The denominator is a difference of two squares: 9^2 - 3 = 78",
-        "The numerator is 12(9 - √3) = 108 - 12√3",
-        "Simplify by dividing numerator and denominator by 6: \\frac{18 - 2√3}{13}"
-      ],
-      "final_answer": "\\frac{18 - 2√3}{13}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √3):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{12}{9 + √3}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= \\frac{12(9 - √3)}{[(9 + √3)(9 - √3)]}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The denominator is a difference of two squares: 9^2 - 3 = 78 The numerator is 12(9 - √3) = 108 - 12√3 Simplify by dividing numerator and denominator by 6: \\frac{18 - 2√3}{13}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "\\frac{18 - 2√3}{13} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "hcf_lcm_by_prime_factors_H",
-      "prompt": "Using prime factorisation, find the HCF of 57 and 155.",
-      "solution_steps": [
-        "57 = 3 × 19",
-        "155 = 5 × 31",
-        "HCF: take the lowest power of each prime that appears in both numbers",
-        "HCF = 1"
-      ],
-      "final_answer": "1",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "57 = 3 × 19",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "155 = 5 × 31",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "HCF: take the lowest power of each prime that appears in both numbers",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "HCF = 1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "standard_form_add_subtract_H",
-      "prompt": "Work out (8 × 10^6) - (1 × 10^5). Give your answer in standard form.",
-      "solution_steps": [
-        "Write both numbers with the same power of 10: 8×10^6 = 80×10^5, 1×10^5 = 1×10^5",
-        "Subtract the coefficients: 80 - 1 = 79",
-        "Write in standard form: 79 × 10^5 = 7.9 × 10^6"
-      ],
-      "final_answer": "7.9 × 10^6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both numbers with the same power of 10: 8×10^6 = 80×10^5, 1×10^5 = 1×10^5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the coefficients: 80 - 1 = 79",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write in standard form: 79 × 10^5 = 7.9 × 10^6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "7.9 × 10^6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "simplifying_indices_challenging_H",
       "prompt": "Fully simplify 4^(1/2) × 4^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
@@ -231,41 +83,175 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "iteration_H",
-      "prompt": "The iterative formula x_(n+1) = \\frac{10}{x_n + 3} is used with x_0 = 1. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "topic_id": "algebraic_surds_H",
+      "prompt": "Expand and simplify (5 - √10)^2, giving your answer in the form p + q√10.",
       "solution_steps": [
-        "Iterative formula: x_(n+1) = \\frac{10}{x_n + 3}",
-        "x_0 = 1",
-        "x_1 = g(x_0) = \\frac{10}{1 + 3} = 2.500",
-        "x_2 = g(x_1) = \\frac{10}{2.500 + 3} = 1.818",
-        "x_3 = g(x_2) = \\frac{10}{1.818 + 3} = 2.075"
+        "(5 - √10)^2 = (5 - √10)(5 - √10)",
+        "Expand: 25 -10√10 -10√10 + 10",
+        "Combine the whole-number terms: 25 + 10 = 35",
+        "Combine the √10 terms: -10√10 -10√10 = -10√10",
+        "(5 - √10)^2 = 35 - 10√10"
       ],
-      "final_answer": "x_1 = 2.500, x_2 = 1.818, x_3 = 2.075",
+      "final_answer": "35 - 10√10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Iterative formula: x_(n+1) = \\frac{10}{x_n + 3}",
+          "description": "(5 - √10)^2 = (5 - √10)(5 - √10)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_0 = 1",
+          "description": "Expand: 25 -10√10 -10√10 + 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_1 = g(x_0) = \\frac{10}{1 + 3} = 2.500",
+          "description": "Combine the whole-number terms: 25 + 10 = 35",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_2 = g(x_1) = \\frac{10}{2.500 + 3} = 1.818 x_3 = g(x_2) = \\frac{10}{1.818 + 3} = 2.075",
+          "description": "Combine the √10 terms: -10√10 -10√10 = -10√10 (5 - √10)^2 = 35 - 10√10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x_1 = 2.500, x_2 = 1.818, x_3 = 2.075 oe",
+          "description": "35 - 10√10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "powers_H",
+      "prompt": "Work out 25^(1/2).",
+      "solution_steps": [
+        "25^(1/2) means the square root of 25.",
+        "25^(1/2) = 5"
+      ],
+      "final_answer": "5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "25^(1/2) means the square root of 25.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^(1/2) = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "error_interval_H",
+      "prompt": "A number, x, is 26 rounded to 2 significant figures. Write down the error interval for x.",
+      "solution_steps": [
+        "The last significant figure of 26 has a place value of 1, so x can be up to half of that above or below 26.",
+        "Lower bound: 26 - 0.5 = 25.5",
+        "Upper bound: 26 + 0.5 = 26.5"
+      ],
+      "final_answer": "25.5 ≤ x < 26.5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The last significant figure of 26 has a place value of 1, so x can be up to half of that above or below 26.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Lower bound: 26 - 0.5 = 25.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Upper bound: 26 + 0.5 = 26.5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "25.5 ≤ x < 26.5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_H",
+      "prompt": "Simplify √27, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 27: 3^2 × 3 = 27",
+        "√27 = √(3^2 × 3) = 3√3"
+      ],
+      "final_answer": "3√3",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 27: 3^2 × 3 = 27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√27 = √(3^2 × 3) = 3√3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "indices_common_base_equations_H",
+      "prompt": "Solve 25^x = 15625.",
+      "solution_steps": [
+        "Write both sides as powers of 5: 25 = 5^2 and 15625 = 5^6",
+        "25^x = 15625 becomes (5^2)^x = 5^6, i.e. 5^(2x) = 5^6",
+        "Since the bases match, the powers must be equal: 2x = 6",
+        "x = 6/2 = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both sides as powers of 5: 25 = 5^2 and 15625 = 5^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^x = 15625 becomes (5^2)^x = 5^6, i.e. 5^(2x) = 5^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: 2x = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 6/2 = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
           "marks": 1
         }
       ],
@@ -308,41 +294,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic_H",
-      "prompt": "Solve the simultaneous equations: y = x^2 - 2x - 6 and y = x - 8",
+      "topic_id": "solving_inequalities_H",
+      "prompt": "Solve the inequality: -2(x - 2) < -15",
       "solution_steps": [
-        "Substitute y = x - 8 into y = x^2 - 2x - 6: x - 8 = x^2 - 2x - 6",
-        "Rearrange: x^2 - 3x + 2 = 0",
-        "Factorise: (x - 2)(x - 1) = 0",
-        "x = 2 or x = 1",
-        "When x = 2, y = -6. When x = 1, y = -7."
+        "Expand the bracket: -2(x - 2) < -15",
+        "-2x + 4 < -15",
+        "Subtract 4 from both sides:",
+        "-2x < -19",
+        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
+        "x > 19/2"
       ],
-      "final_answer": "(2, -6) and (1, -7)",
+      "final_answer": "x > 19/2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = x - 8 into y = x^2 - 2x - 6: x - 8 = x^2 - 2x - 6",
+          "description": "Expand the bracket: -2(x - 2) < -15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 - 3x + 2 = 0",
+          "description": "-2x + 4 < -15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 2)(x - 1) = 0",
+          "description": "Subtract 4 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 2 or x = 1 When x = 2, y = -6. When x = 1, y = -7.",
+          "description": "-2x < -19 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x > 19/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(2, -6) and (1, -7) oe",
+          "description": "x > 19/2 oe",
           "marks": 1
         }
       ],
@@ -469,45 +456,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trial_and_improvement_H",
-      "prompt": "f(x) = x^3 - 4x - 65. Show that f(x) = 0 has a root between x = 4 and x = 5, then use trial and improvement to find this root correct to 1 decimal place.",
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object has a constant acceleration (a) of -1 m/s^2 for a time (t) of 10 s, and travels a displacement (s) of 110 m in that time. Find its initial velocity (u).",
       "solution_steps": [
-        "f(x) = x^3 - 4x - 65",
-        "f(4) = -17.00 (negative)",
-        "f(5) = 40.00 (positive)",
-        "f(4.1) = -12.48 (negative)",
-        "f(4.2) = -7.71 (negative)",
-        "f(4.3) = -2.69 (negative)",
-        "f(4.4) = 2.58 (positive)",
-        "The sign changes between x = 4.3 and x = 4.4, so try the midpoint x = 4.35: f(4.35) = -0.09.",
-        "f(4.35) has the same sign as f(4.3), so the root lies between 4.35 and 4.4 - to 1 decimal place, this rounds up to 4.4."
+        "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
+        "s = ut + (1/2)at^2",
+        "Rearrange to make u the subject: u = \\frac{s - (1/2)at^2}{t}",
+        "Substitute s = 110, a = -1, t = 10: u = \\frac{110 - (1/2) × -1 × 10^2}{10} = 16"
       ],
-      "final_answer": "x = 4.4",
+      "final_answer": "16 m/s",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(x) = x^3 - 4x - 65",
+          "description": "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4) = -17.00 (negative)",
+          "description": "s = ut + (1/2)at^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(5) = 40.00 (positive)",
+          "description": "Rearrange to make u the subject: u = \\frac{s - (1/2)at^2}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4.1) = -12.48 (negative) f(4.2) = -7.71 (negative) f(4.3) = -2.69 (negative) f(4.4) = 2.58 (positive) The sign changes between x = 4.3 and x = 4.4, so try the midpoint x = 4.35: f(4.35) = -0.09. f(4.35) has the same sign as f(4.3), so the root lies between 4.35 and 4.4 - to 1 decimal place, this rounds up to 4.4.",
+          "description": "Substitute s = 110, a = -1, t = 10: u = \\frac{110 - (1/2) × -1 × 10^2}{10} = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 4.4 oe",
+          "description": "16 m/s oe",
           "marks": 1
         }
       ],
@@ -515,28 +497,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage_H",
-      "prompt": "After a 30% decrease, an item costs £201.60. Find the original price.",
+      "topic_id": "forming_equations_H",
+      "prompt": "I think of a number. I subtract 6 to it, then multiply the result by 5. The answer is 35. Form an equation and solve it to find the number.",
       "solution_steps": [
-        "Convert 30% to a multiplier: 0.70 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 201.60 ÷ 0.70 = 288"
+        "Let the number be x.",
+        "5(x - 6) = 35",
+        "Expand the bracket:",
+        "5x - 30 = 35",
+        "Add 30 to both sides:",
+        "5x = 65",
+        "Divide both sides by 5:",
+        "x = 13"
       ],
-      "final_answer": "£288",
-      "marks": 3,
+      "final_answer": "13",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 30% to a multiplier: 0.70 (original × multiplier = new value)",
+          "description": "Let the number be x.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 201.60 ÷ 0.70 = 288",
+          "description": "5(x - 6) = 35",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x - 30 = 35 Add 30 to both sides: 5x = 65 Divide both sides by 5: x = 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£288 oe",
+          "description": "13 oe",
           "marks": 1
         }
       ],
@@ -579,6 +577,35 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "reverse_percentage_H",
+      "prompt": "After a 30% decrease, an item costs £201.60. Find the original price.",
+      "solution_steps": [
+        "Convert 30% to a multiplier: 0.70 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 201.60 ÷ 0.70 = 288"
+      ],
+      "final_answer": "£288",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 30% to a multiplier: 0.70 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 201.60 ÷ 0.70 = 288",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£288 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "compound_percentage_H",
       "prompt": "A price of £296 increases by 24%, then decreases by 15%. Find the final price.",
       "solution_steps": [
@@ -608,71 +635,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "mixed_percentages_H",
-      "prompt": "A price of £240 increases by 12%, then increases by 15%. Find the final price.",
+      "topic_id": "ratio_combine_H",
+      "prompt": "Given that a:b = 1:7 and b:c = 4:3, find a:b:c in its simplest form.",
       "solution_steps": [
-        "After the first change: 240 × 1.12 = 268.80",
-        "After the second change: 268.80 × 1.15 = 309.12"
+        "Scale a:b = 1:7 by 4 so b = 28: a:b = 4:28",
+        "Scale b:c = 4:3 by 7 so b = 28: b:c = 28:21",
+        "Combine: a:b:c = 4:28:21",
+        "Simplify by dividing by 1: a:b:c = 4:28:21"
       ],
-      "final_answer": "£309.12",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 240 × 1.12 = 268.80",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 268.80 × 1.15 = 309.12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£309.12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_difference_H",
-      "prompt": "a : b : c = 2 : 9 : 3.\nb - a = 56.\nFind a, b and c, and their total.",
-      "solution_steps": [
-        "Difference in parts = 9 - 2 = 7 parts",
-        "Value of one part = 56 ÷ 7 = 8",
-        "a = 2 × 8 = 16",
-        "b = 9 × 8 = 72",
-        "c = 3 × 8 = 24",
-        "a + b + c = 16 + 72 + 24 = 112"
-      ],
-      "final_answer": "a = 16, b = 72, c = 24 (total 112)",
+      "final_answer": "4 : 28 : 21",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 9 - 2 = 7 parts",
+          "description": "Scale a:b = 1:7 by 4 so b = 28: a:b = 4:28",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 56 ÷ 7 = 8",
+          "description": "Scale b:c = 4:3 by 7 so b = 28: b:c = 28:21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 2 × 8 = 16",
+          "description": "Combine: a:b:c = 4:28:21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = 9 × 8 = 72 c = 3 × 8 = 24 a + b + c = 16 + 72 + 24 = 112",
+          "description": "Simplify by dividing by 1: a:b:c = 4:28:21",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "a = 16, b = 72, c = 24 (total 112) oe",
+          "description": "4 : 28 : 21 oe",
           "marks": 1
         }
       ],

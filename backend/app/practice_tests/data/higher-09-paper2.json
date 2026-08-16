@@ -288,86 +288,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities_H",
-      "prompt": "Solve the inequality: x^2 - x ≤ 0",
+      "topic_id": "plot_cubic_H",
+      "prompt": "Complete a table of values for y = x^3 - x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Factorise: x^2 - x = (x - 1)(x)",
-        "The critical values are x = 0 and x = 1.",
-        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
-        "Answer: 0 ≤ x ≤ 1"
+        "Table of values for y = x^3 - x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -24, -6, 0, 0, 0, 6, 24",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "0 ≤ x ≤ 1",
+      "final_answer": "Cubic curve: y = x^3 - x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: x^2 - x = (x - 1)(x)",
+          "description": "Table of values for y = x^3 - x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = 0 and x = 1.",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+          "description": "y: -24, -6, 0, 0, 0, 6, 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer: 0 ≤ x ≤ 1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0 ≤ x ≤ 1 oe",
+          "description": "Cubic curve: y = x^3 - x oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "kinematics_suvat_H",
-      "prompt": "An object has a final velocity (v) of 6 m/s after a constant acceleration (a) of 1 m/s^2 for a time (t) of 6 s. Find its initial velocity (u).",
-      "solution_steps": [
-        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
-        "v = u + at",
-        "Rearrange to make u the subject: u = v - at",
-        "Substitute v = 6, a = 1, t = 6: u = 6 - 1 × 6 = 6 - 6 = 0"
-      ],
-      "final_answer": "0 m/s",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "v = u + at",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange to make u the subject: u = v - at",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute v = 6, a = 1, t = 6: u = 6 - 1 × 6 = 6 - 6 = 0",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "0 m/s oe",
-          "marks": 1
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "blank": true
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "table_points": [
+            [
+              -3,
+              -24
+            ],
+            [
+              -2,
+              -6
+            ],
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              24
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "simultaneous_different_coefficient_H",
@@ -685,23 +697,23 @@
     },
     {
       "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 3 cm of B AND closer to B than to A.",
+      "prompt": "Shade the region containing points that are both within 2 cm of Y AND closer to line YX than to line YZ.",
       "solution_steps": [
-        "The boundary for 'within 3 cm of B' is a circle, centre B, radius 3 cm - the region is inside this circle.",
-        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+        "The boundary for 'within 2 cm of Y' is a circle, centre Y, radius 2 cm - the region is inside this circle.",
+        "The boundary for 'closer to line YX than to line YZ' is the bisector of angle XYZ - the region is on the X side of it.",
         "The required region is where these two conditions overlap."
       ],
-      "final_answer": "The region inside the circle of radius 3 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "final_answer": "The region inside the circle of radius 2 cm centred on Y, and on the X side of the bisector of angle XYZ.",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 3 cm of B' is a circle, centre B, radius 3 cm - the region is inside this circle.",
+          "description": "The boundary for 'within 2 cm of Y' is a circle, centre Y, radius 2 cm - the region is inside this circle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+          "description": "The boundary for 'closer to line YX than to line YZ' is the bisector of angle XYZ - the region is on the X side of it.",
           "marks": 1
         },
         {
@@ -711,51 +723,59 @@
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 3 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "description": "The region inside the circle of radius 2 cm centred on Y, and on the X side of the bisector of angle XYZ. oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -5.0,
-          "x_max": 7.0,
-          "y_min": -4.0,
-          "y_max": 5.0,
+          "x_min": -5.145187862775208,
+          "x_max": 4.4099918003124925,
+          "y_min": -3.0,
+          "y_max": 6.464645206221231,
           "points": [
             {
               "xy": [
-                -4,
-                4
+                0.0,
+                0.0
               ],
-              "label": "A"
+              "label": "Y"
             },
             {
               "xy": [
-                3,
-                0
+                3.4099918003124925,
+                3.656768508095852
               ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                3,
-                0
-              ],
-              "radius": 3
+              "label": "X"
             },
             {
-              "type": "segment",
+              "xy": [
+                -4.145187862775208,
+                2.7959645173537346
+              ],
+              "label": "Z"
+            }
+          ],
+          "given_lines": [
+            {
               "p1": [
-                5.453667260282007,
-                12.418917705493511
+                0.0,
+                0.0
               ],
               "p2": [
-                -6.453667260282007,
-                -8.418917705493511
+                3.4099918003124925,
+                3.656768508095852
+              ]
+            },
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                -4.145187862775208,
+                2.7959645173537346
               ]
             }
           ]
@@ -764,44 +784,73 @@
       "solution_diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -5.0,
-          "x_max": 7.0,
-          "y_min": -4.0,
-          "y_max": 5.0,
+          "x_min": -5.145187862775208,
+          "x_max": 4.4099918003124925,
+          "y_min": -3.0,
+          "y_max": 6.464645206221231,
           "points": [
             {
               "xy": [
-                -4,
-                4
+                0.0,
+                0.0
               ],
-              "label": "A"
+              "label": "Y"
             },
             {
               "xy": [
-                3,
-                0
+                3.4099918003124925,
+                3.656768508095852
               ],
-              "label": "B"
+              "label": "X"
+            },
+            {
+              "xy": [
+                -4.145187862775208,
+                2.7959645173537346
+              ],
+              "label": "Z"
+            }
+          ],
+          "given_lines": [
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                3.4099918003124925,
+                3.656768508095852
+              ]
+            },
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                -4.145187862775208,
+                2.7959645173537346
+              ]
             }
           ],
           "boundaries": [
             {
               "type": "circle",
               "centre": [
-                3,
-                0
+                0.0,
+                0.0
               ],
-              "radius": 3
+              "radius": 2
             },
             {
               "type": "segment",
               "p1": [
-                5.453667260282007,
-                12.418917705493511
+                0.0,
+                0.0
               ],
               "p2": [
-                -6.453667260282007,
-                -8.418917705493511
+                -0.6226176757234869,
+                5.464645206221231
               ]
             }
           ],
@@ -809,21 +858,33 @@
             {
               "type": "disk",
               "centre": [
-                3,
-                0
+                0.0,
+                0.0
               ],
-              "radius": 3,
+              "radius": 2,
               "inside": true
             },
             {
-              "type": "half_plane",
-              "closer_to": [
-                3,
-                0
+              "type": "closer_to_line",
+              "line_a": [
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  3.4099918003124925,
+                  3.656768508095852
+                ]
               ],
-              "than": [
-                -4,
-                4
+              "line_b": [
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.145187862775208,
+                  2.7959645173537346
+                ]
               ]
             }
           ]
@@ -1045,22 +1106,63 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting_H",
-      "prompt": "A shop sells 3 different starters, 6 different main courses and 5 different desserts. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "probability_combined_dice_H",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 1.",
       "solution_steps": [
-        "Total combinations = 3 × 6 × 5 = 90"
+        "P(first die is 1) = 1/6, P(second die is 1) = 1/6",
+        "Independent events multiply: P(both 1) = 1/6 × 1/6 = 1/36"
       ],
-      "final_answer": "90",
-      "marks": 2,
+      "final_answer": "1/36",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 3 × 6 × 5 = 90",
+          "description": "P(first die is 1) = 1/6, P(second die is 1) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Independent events multiply: P(both 1) = 1/6 × 1/6 = 1/36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "90 oe",
+          "description": "1/36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_quadratic_nth_term_H",
+      "prompt": "Here are the first four terms of a quadratic sequence: -5, -7, -7, -5.\nFind an expression for the nth term.",
+      "solution_steps": [
+        "First differences: -2, 0, 2",
+        "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
+        "nth term = n^2 - 5n - 1"
+      ],
+      "final_answer": "n^2 - 5n - 1",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First differences: -2, 0, 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = n^2 - 5n - 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "n^2 - 5n - 1 oe",
           "marks": 1
         }
       ],

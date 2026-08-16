@@ -234,44 +234,45 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_graphically_F",
-      "prompt": "The graphs of y = -3x + 4 and y = 3x + 4 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "topic_id": "solving_inequalities_F",
+      "prompt": "Solve the inequality: \\frac{x}{2} + 6 ≥ 11",
       "solution_steps": [
-        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = 0, y = 4."
+        "\\frac{x}{2} + 6 ≥ 11",
+        "Subtract 6 from both sides:",
+        "\\frac{x}{2} ≥ 5",
+        "Multiply both sides by 2:",
+        "x ≥ 10"
       ],
-      "final_answer": "x = 0, y = 4",
-      "marks": 3,
+      "final_answer": "x ≥ 10",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+          "description": "\\frac{x}{2} + 6 ≥ 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = 0, y = 4.",
+          "description": "Subtract 6 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "\\frac{x}{2} ≥ 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply both sides by 2: x ≥ 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 0, y = 4 oe",
+          "description": "x ≥ 10 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "linear_graph_pair",
-        "params": {
-          "label1": "y = -3x + 4",
-          "label2": "y = 3x + 4",
-          "m1": -3,
-          "c1": 4,
-          "m2": 3,
-          "c2": 4,
-          "sol_x": 0,
-          "sol_y": 4
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -318,28 +319,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_F",
-      "prompt": "Factorise: x^2 + 9x + 8",
+      "topic_id": "factorise_common_factor_F",
+      "prompt": "Factorise: -42x + 7",
       "solution_steps": [
-        "Find two numbers that multiply to 8 and add to 9: 8 and 1",
-        "Write as two brackets: (x + 8)(x + 1)"
+        "Find the highest common factor of -42 and 7: 7",
+        "Factorise: 7(-6x + 1)"
       ],
-      "final_answer": "(x + 8)(x + 1)",
+      "final_answer": "7(-6x + 1)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 8 and add to 9: 8 and 1",
+          "description": "Find the highest common factor of -42 and 7: 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 8)(x + 1)",
+          "description": "Factorise: 7(-6x + 1)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 8)(x + 1) oe",
+          "description": "7(-6x + 1) oe",
           "marks": 1
         }
       ],
@@ -347,255 +348,256 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "distance_time_interpret_F",
-      "prompt": "The distance-time graph shows a delivery van's journey. For how many minutes was the van stationary?",
+      "topic_id": "midpoint_of_segment_F",
+      "prompt": "Find the midpoint of the line segment joining A(-7, 3) and B(-8, 7).",
       "solution_steps": [
-        "The graph is flat (constant distance = 9 km) between 15 and 30 minutes.",
-        "Stationary time = 30 - 15 = 15 minutes"
+        "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
+        "x-coordinate of midpoint: (-7 + -8)/2 = -7.5",
+        "y-coordinate of midpoint: (3 + 7)/2 = 5",
+        "Midpoint = (-7.5, 5)"
       ],
-      "final_answer": "15 minutes",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The graph is flat (constant distance = 9 km) between 15 and 30 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Stationary time = 30 - 15 = 15 minutes",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 minutes oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              15,
-              9
-            ],
-            [
-              30,
-              9
-            ],
-            [
-              60,
-              0
-            ]
-          ],
-          "x_max": 65,
-          "y_max": 11,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "powers_F",
-      "prompt": "Evaluate 12^3.",
-      "solution_steps": [
-        "12^3 = 12 × 12 × 12 = 1728"
-      ],
-      "final_answer": "1728",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "12^3 = 12 × 12 × 12 = 1728",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1728 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 2x = 18",
-      "solution_steps": [
-        "2x = 18",
-        "Divide both sides by 2:",
-        "x = 9"
-      ],
-      "final_answer": "9",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "2x = 18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 2:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_distance_time_F",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 8 km away after 25 minutes. They stay at the shop until 35 minutes, then cycle straight back home at a constant speed, arriving home at 55 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
-      "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 8 km after 25 minutes.",
-        "Stay at 8 km until 35 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 55 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 8 km out + 8 km back = 16 km"
-      ],
-      "final_answer": "16 km",
+      "final_answer": "(-7.5, 5)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 8 km after 25 minutes.",
+          "description": "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stay at 8 km until 35 minutes.",
+          "description": "x-coordinate of midpoint: (-7 + -8)/2 = -7.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 55 minutes.",
+          "description": "y-coordinate of midpoint: (3 + 7)/2 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 8 km out + 8 km back = 16 km",
+          "description": "Midpoint = (-7.5, 5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 km oe",
+          "description": "(-7.5, 5) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_quadratic_F",
+      "prompt": "Complete a table of values for y = -x^2 + x + 1 for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -x^2 + x + 1:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -11, -5, -1, 1, 1, -1, -5",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Quadratic curve: y = -x^2 + x + 1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -x^2 + x + 1:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -11, -5, -1, 1, 1, -1, -5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Quadratic curve: y = -x^2 + x + 1 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              25,
-              8
-            ],
-            [
-              35,
-              8
-            ],
-            [
-              55,
-              0
-            ]
-          ],
-          "x_max": 60,
-          "y_max": 10,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -12,
+          "y_max": 2,
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -12,
+          "y_max": 2,
+          "table_points": [
+            [
+              -3,
+              -11
+            ],
+            [
+              -2,
+              -5
+            ],
+            [
+              -1,
+              -1
+            ],
             [
               0,
-              0
+              1
             ],
             [
-              25,
-              8
+              1,
+              1
             ],
             [
-              35,
-              8
+              2,
+              -1
             ],
             [
-              55,
-              0
+              3,
+              -5
             ]
-          ],
-          "x_max": 60,
-          "y_max": 10,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
+          ]
         }
       }
     },
     {
-      "topic_id": "inequalities_number_line_F",
-      "prompt": "Write down the inequality shown by the number line below.",
+      "topic_id": "collect_like_terms_F",
+      "prompt": "Simplify -5b - 6a - 6b - 4a",
       "solution_steps": [
-        "The circle at -4 is open, so -4 is not included in the solution set.",
-        "The shading and arrow point to the left, so the solution is x < -4."
+        "Start with the expression: -5b - 6a - 6b - 4a.",
+        "Like terms have exactly the same letter part, so group the a terms, and separately the b terms together, keeping the + or - sign in front of each term.",
+        "Add the coefficients within each group (a term with no number in front counts as 1).",
+        "This simplifies to -10a - 11b."
       ],
-      "final_answer": "x < -4",
-      "marks": 3,
+      "final_answer": "-10a - 11b",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at -4 is open, so -4 is not included in the solution set.",
+          "description": "Start with the expression: -5b - 6a - 6b - 4a.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading and arrow point to the left, so the solution is x < -4.",
+          "description": "Like terms have exactly the same letter part, so group the a terms, and separately the b terms together, keeping the + or - sign in front of each term.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the coefficients within each group (a term with no number in front counts as 1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This simplifies to -10a - 11b.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -4 oe",
+          "description": "-10a - 11b oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "line_equation_from_graph_F",
+      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "solution_steps": [
+        "Gradient = rise/run = \\frac{7 - 0}{4 - -3} = 1",
+        "Using y = mx + c with the point (-3, 0): 0 = 1×(-3) + c, so c = 3",
+        "Equation of the line: y = x + 3"
+      ],
+      "final_answer": "y = x + 3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Gradient = rise/run = \\frac{7 - 0}{4 - -3} = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Using y = mx + c with the point (-3, 0): 0 = 1×(-3) + c, so c = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = x + 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = x + 3 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "number_line",
+        "kind": "function_graph",
         "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": -4,
-              "closed": false
-            }
-          ],
-          "shade": "left"
+          "kind": "linear",
+          "m": 1,
+          "c": 3,
+          "x_min": -4,
+          "x_max": 5,
+          "y_min": -2,
+          "y_max": 9
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion_noncalculator_F",
+      "prompt": "If 5 cm on a map represents 75 km in real life, how many km does 25 cm represent?",
+      "solution_steps": [
+        "Unit value = 75 km ÷ 5 = 15 km",
+        "Answer = 15 km × 25 = 375 km"
+      ],
+      "final_answer": "375 km",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = 75 km ÷ 5 = 15 km",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = 15 km × 25 = 375 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "375 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -628,40 +630,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys_noncalculator_F",
-      "prompt": "A shop sells ground coffee in different sizes: A: £0.80 for 400g; B: £4.50 for 500g. Which option is the better value for money? Show your working.",
+      "topic_id": "best_buys_F",
+      "prompt": "A shop sells orange juice in different sizes: A: £15.50 for 1.25L; B: £12.80 for 1L. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Work out the price per 100g for each option:",
-        "A: £0.80 ÷ 400 × 100 = 20p per 100g",
-        "B: £4.50 ÷ 500 × 100 = 90p per 100g",
-        "The lowest price per 100g is A at 20p per 100g, so A is the best value."
+        "Work out the price per 100ml for each option:",
+        "A: 1.25L = 1250ml",
+        "A: £15.50 ÷ 1250 × 100 = 124.00p per 100ml",
+        "B: 1L = 1000ml",
+        "B: £12.80 ÷ 1000 × 100 = 128.00p per 100ml",
+        "The lowest price per 100ml is A at 124.00p per 100ml, so A is the best value."
       ],
-      "final_answer": "A (£0.80 for 400g)",
+      "final_answer": "A (£15.50 for 1.25L)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100g for each option:",
+          "description": "Work out the price per 100ml for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £0.80 ÷ 400 × 100 = 20p per 100g",
+          "description": "A: 1.25L = 1250ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £4.50 ÷ 500 × 100 = 90p per 100g",
+          "description": "A: £15.50 ÷ 1250 × 100 = 124.00p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lowest price per 100g is A at 20p per 100g, so A is the best value.",
+          "description": "B: 1L = 1000ml B: £12.80 ÷ 1000 × 100 = 128.00p per 100ml The lowest price per 100ml is A at 124.00p per 100ml, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A (£0.80 for 400g) oe",
+          "description": "A (£15.50 for 1.25L) oe",
           "marks": 1
         }
       ],
@@ -727,105 +731,128 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest_F",
-      "prompt": "£600 is invested at a simple interest rate of 3% per year for 4 years. Find the total amount in the account after 4 years.",
+      "topic_id": "angles_triangle_F",
+      "prompt": "A triangle has angles 119°, 22°, and x°. Find x.",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 600 × 3 × 4 ÷ 100 = £72",
-        "Total in the account = P + I = £600 + £72 = £672"
+        "Angles in a triangle sum to 180°.",
+        "x = 180 - (119 + 22) = 180 - 141 = 39"
       ],
-      "final_answer": "£672",
-      "marks": 4,
+      "final_answer": "39",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 600 × 3 × 4 ÷ 100 = £72",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total in the account = P + I = £600 + £72 = £672",
+          "description": "x = 180 - (119 + 22) = 180 - 141 = 39",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£672 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "properties_3d_shapes_diagram_F",
-      "prompt": "How many vertices does the cuboid shown have?",
-      "solution_steps": [
-        "A vertex is a corner point where edges meet.",
-        "A cuboid has 6 rectangular faces (3 congruent pairs), 12 edges, and 8 vertices (corners).",
-        "So a cuboid has 8 vertices."
-      ],
-      "final_answer": "8",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A vertex is a corner point where edges meet.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A cuboid has 6 rectangular faces (3 congruent pairs), 12 edges, and 8 vertices (corners).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So a cuboid has 8 vertices.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 oe",
+          "description": "39 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "triangle_angles",
         "params": {
-          "width_label": "6 cm",
-          "height_label": "4 cm",
-          "length_label": "5 cm"
+          "angle_labels": [
+            "119°",
+            "22°",
+            "x"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_describe_F",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "topic_id": "plans_and_elevations_F",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (1, 0), with the matching vertex of shape B, (2, -3), gives the vector \\colvec{1}{-3}.",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a rectangle, 4 cm by 4 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 3 cm by 4 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 4 cm by 3 cm."
       ],
-      "final_answer": "Translation by the vector \\colvec{1}{-3}",
-      "marks": 3,
+      "final_answer": "Front elevation: a rectangle, 4 cm by 4 cm. Side elevation: a rectangle, 3 cm by 4 cm. Plan view: a rectangle, 4 cm by 3 cm.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (1, 0), with the matching vertex of shape B, (2, -3), gives the vector \\colvec{1}{-3}.",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "Front elevation: a rectangle, 4 cm by 4 cm.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 3 cm by 4 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 4 cm by 3 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector \\colvec{1}{-3} oe",
+          "description": "Front elevation: a rectangle, 4 cm by 4 cm. Side elevation: a rectangle, 3 cm by 4 cm. Plan view: a rectangle, 4 cm by 3 cm. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "plans_and_elevations_question",
+        "params": {
+          "shape": "cuboid",
+          "length_label": "4 cm",
+          "width_label": "3 cm",
+          "height_label": "4 cm"
+        }
+      },
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "cuboid",
+          "length": 4,
+          "width": 3,
+          "height": 4,
+          "length_label": "4 cm",
+          "width_label": "3 cm",
+          "height_label": "4 cm"
+        }
+      }
+    },
+    {
+      "topic_id": "transform_enlarge_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "solution_steps": [
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For mapping shape A onto shape B, the lines meet at (-4, -7) and the scale factor works out as 1/3."
+      ],
+      "final_answer": "Enlargement, scale factor 1/3, centre (-4, -7)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For mapping shape A onto shape B, the lines meet at (-4, -7) and the scale factor works out as 1/3.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Enlargement, scale factor 1/3, centre (-4, -7) oe",
           "marks": 1
         }
       ],
@@ -838,33 +865,23 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              0
+              -4,
+              -7
             ],
             [
-              5,
-              0
+              2,
+              -7
             ],
             [
-              5,
-              2
+              2,
+              -4
             ],
             [
-              3,
-              2
-            ],
-            [
-              3,
-              5
-            ],
-            [
-              1,
-              5
+              -4,
+              -1
             ]
           ],
           "original_labels": [
-            "",
-            "",
             "",
             "",
             "",
@@ -873,33 +890,23 @@
           "original_shape_label": "A",
           "image_vertices": [
             [
-              2,
-              -3
+              -4,
+              -7
             ],
             [
-              6,
-              -3
+              -2,
+              -7
             ],
             [
-              6,
-              -1
+              -2,
+              -6
             ],
             [
-              4,
-              -1
-            ],
-            [
-              4,
-              2
-            ],
-            [
-              2,
-              2
+              -4,
+              -5
             ]
           ],
           "image_labels": [
-            "",
-            "",
             "",
             "",
             "",
@@ -913,7 +920,7 @@
     },
     {
       "topic_id": "construction_triangle_F",
-      "prompt": "Triangle LKR has LK = 11 cm, the angle at K equal to 48°, and KR = 5 cm. Describe, step by step, how to construct triangle LKR using a ruler, a protractor, and a pair of compasses.",
+      "prompt": "Triangle LKR has LK = 11 cm, the angle at K equal to 48°, and KR = 5 cm. Construct triangle LKR using a ruler, a protractor, and a pair of compasses.",
       "solution_steps": [
         "Draw the line segment LK = 11 cm using a ruler.",
         "At K, use a protractor to draw a ray at 48° from the line KL.",
@@ -949,96 +956,112 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_c_label": "11 cm",
+          "angle_B_label": "48°",
+          "side_a_label": "5 cm",
+          "show_vertices": true,
+          "vertex_labels": [
+            "L",
+            "K",
+            "R"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_reflect_describe_F",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "topic_id": "two_way_tables_F",
+      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer bus or walk. Find the missing values.",
       "solution_steps": [
-        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
-        "Comparing corresponding vertices shows the mirror line is y = -1."
+        "'Year 11' / 'Bus': using the 'Bus' column total: 25 - 19 = 6",
+        "'Year 11' / 'Walk': using the 'Walk' column total: 22 - 16 = 6"
       ],
-      "final_answer": "Reflection in the line y = -1",
+      "final_answer": "'Year 11' / 'Bus' = 6; 'Year 11' / 'Walk' = 6",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+          "description": "'Year 11' / 'Bus': using the 'Bus' column total: 25 - 19 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Comparing corresponding vertices shows the mirror line is y = -1.",
+          "description": "'Year 11' / 'Walk': using the 'Walk' column total: 22 - 16 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reflection in the line y = -1 oe",
+          "description": "'Year 11' / 'Bus' = 6; 'Year 11' / 'Walk' = 6 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "grid_transformation",
+        "kind": "two_way_table",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "row_labels": [
+            "Year 10",
+            "Year 11",
+            "Total"
+          ],
+          "col_labels": [
+            "Bus",
+            "Walk",
+            "Total"
+          ],
+          "cells": [
             [
-              2,
-              1
+              "19",
+              "16",
+              "35"
             ],
             [
-              6,
-              1
+              "",
+              "",
+              "12"
             ],
             [
-              5,
-              5
-            ],
-            [
-              1,
-              4
+              "25",
+              "22",
+              "47"
             ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "image_vertices": [
-            [
-              2,
-              -3
-            ],
-            [
-              6,
-              -3
-            ],
-            [
-              5,
-              -7
-            ],
-            [
-              1,
-              -6
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "image_shape_label": "B",
-          "image_same_color": true
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "Year 10",
+            "Year 11",
+            "Total"
+          ],
+          "col_labels": [
+            "Bus",
+            "Walk",
+            "Total"
+          ],
+          "cells": [
+            [
+              "19",
+              "16",
+              "35"
+            ],
+            [
+              "6",
+              "6",
+              "12"
+            ],
+            [
+              "25",
+              "22",
+              "47"
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "probability_single_event_F",
@@ -1084,110 +1107,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_probability_F",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(B).",
+      "topic_id": "probability_complement_F",
+      "prompt": "A bag contains 8 purple, 4 blue counters. A counter is picked at random. Find the probability that it is NOT purple.",
       "solution_steps": [
-        "Total number of elements = 8 + 2 + 7 + 12 = 29",
-        "Number of outcomes in B = 2 + 7 = 9",
-        "P(B) = 9/29 = 9/29"
+        "P(purple) = 8/12 = 2/3",
+        "P(not purple) = 1 - 2/3 = 1/3"
       ],
-      "final_answer": "9/29",
-      "marks": 4,
+      "final_answer": "1/3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total number of elements = 8 + 2 + 7 + 12 = 29",
+          "description": "P(purple) = 8/12 = 2/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of outcomes in B = 2 + 7 = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(B) = 9/29 = 9/29",
+          "description": "P(not purple) = 1 - 2/3 = 1/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9/29 oe",
+          "description": "1/3 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "venn_diagram",
+        "kind": "bag_of_counters",
         "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "region_text": {
-            "a_only": "8",
-            "b_only": "2",
-            "both": "7",
-            "neither": "12"
+          "counts": {
+            "purple": 8,
+            "blue": 4
           }
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "decimals_round_dp_F",
-      "prompt": "Round 50.030 to 1 decimal place.",
-      "solution_steps": [
-        "Look at the digit after the 1 decimal place we want: 3, so round down.",
-        "50.030 rounded to 1 decimal place = 50.0"
-      ],
-      "final_answer": "50.0",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Look at the digit after the 1 decimal place we want: 3, so round down.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "50.030 rounded to 1 decimal place = 50.0",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "50.0 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_F",
-      "prompt": "7/8 = \\frac{21}{?}. Find the missing number.",
-      "solution_steps": [
-        "Find the scale factor between the numerators: 21 ÷ 7 = 3",
-        "Multiply the denominator by the same scale factor: 8 × 3 = 24"
-      ],
-      "final_answer": "24",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the numerators: 21 ÷ 7 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the denominator by the same scale factor: 8 × 3 = 24",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "24 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

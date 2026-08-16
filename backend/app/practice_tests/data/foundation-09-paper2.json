@@ -264,43 +264,79 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_expectation_F",
-      "prompt": "A biased die has P(rolling a 5) = 6/20. The die is rolled 80 times. How many times would you expect to get a 5?",
+      "topic_id": "loci_constructions_F",
+      "prompt": "P is a fixed point. Describe the locus of points that are exactly 2 cm from P.",
       "solution_steps": [
-        "Expected number of times = probability × number of trials = 6/20 × 80",
-        "= 24"
+        "The locus of points a fixed distance from a single point is a circle centred on that point.",
+        "Every point on the locus must be exactly 2 cm from P, so the locus is a circle with centre P and radius 2 cm."
       ],
-      "final_answer": "24",
+      "final_answer": "A circle, centre P, radius 2 cm.",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 6/20 × 80",
+          "description": "The locus of points a fixed distance from a single point is a circle centred on that point.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 24",
+          "description": "Every point on the locus must be exactly 2 cm from P, so the locus is a circle with centre P and radius 2 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 oe",
+          "description": "A circle, centre P, radius 2 cm. oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "dice",
+        "kind": "loci_construction",
         "params": {
-          "values": [
-            5
+          "x_min": -3.0,
+          "x_max": 3.0,
+          "y_min": 0.0,
+          "y_max": 6.0,
+          "points": [
+            {
+              "xy": [
+                0,
+                3
+              ],
+              "label": "P"
+            }
           ],
-          "highlight": [
-            0
-          ]
+          "given_lines": [],
+          "show_grid": false
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -3.0,
+          "x_max": 3.0,
+          "y_min": 0.0,
+          "y_max": 6.0,
+          "points": [
+            {
+              "xy": [
+                0,
+                3
+              ],
+              "label": "P"
+            }
+          ],
+          "given_lines": [],
+          "show_grid": false,
+          "circle": {
+            "centre": [
+              0,
+              3
+            ],
+            "radius": 2
+          },
+          "segment": null
+        }
+      }
     },
     {
       "topic_id": "linear_two_step_F",
@@ -345,89 +381,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "distance_time_interpret_F",
-      "prompt": "The distance-time graph shows a delivery van's journey. For how many minutes was the van stationary?",
+      "topic_id": "midpoint_of_segment_F",
+      "prompt": "Find the midpoint of the line segment joining A(-8, 8) and B(-1, 7).",
       "solution_steps": [
-        "The graph is flat (constant distance = 9 km) between 10 and 20 minutes.",
-        "Stationary time = 20 - 10 = 10 minutes"
+        "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
+        "x-coordinate of midpoint: (-8 + -1)/2 = -4.5",
+        "y-coordinate of midpoint: (8 + 7)/2 = 7.5",
+        "Midpoint = (-4.5, 7.5)"
       ],
-      "final_answer": "10 minutes",
+      "final_answer": "(-4.5, 7.5)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The midpoint of a line segment is the average of its two end points: average the two x-coordinates, then average the two y-coordinates.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x-coordinate of midpoint: (-8 + -1)/2 = -4.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y-coordinate of midpoint: (8 + 7)/2 = 7.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Midpoint = (-4.5, 7.5)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-4.5, 7.5) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "special_sequences_F",
+      "prompt": "The first 4 square numbers are: 1, 4, 9, 16. Find the 7th term of the sequence.",
+      "solution_steps": [
+        "These are the square numbers: the nth term is given by n^2.",
+        "Term 7 = 7^2 = 49"
+      ],
+      "final_answer": "49",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The graph is flat (constant distance = 9 km) between 10 and 20 minutes.",
+          "description": "These are the square numbers: the nth term is given by n^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stationary time = 20 - 10 = 10 minutes",
+          "description": "Term 7 = 7^2 = 49",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 minutes oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              10,
-              9
-            ],
-            [
-              20,
-              9
-            ],
-            [
-              50,
-              0
-            ]
-          ],
-          "x_max": 55,
-          "y_max": 11,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sequences_nth_term_F",
-      "prompt": "Here are the first four terms of a sequence: -5, -8, -11, -14.\nFind an expression for the nth term.",
-      "solution_steps": [
-        "Common difference = -3",
-        "nth term = -3n - 2",
-        "nth term = -3n - 2"
-      ],
-      "final_answer": "-3n - 2",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Common difference = -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -3n - 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -3n - 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-3n - 2 oe",
+          "description": "49 oe",
           "marks": 1
         }
       ],
@@ -499,98 +515,97 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_quadratic_F",
-      "prompt": "Complete a table of values for y = x^2 + 1 for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_distance_time_F",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 4 km away after 10 minutes. They stay at the shop until 15 minutes, then cycle straight back home at a constant speed, arriving home at 45 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
       "solution_steps": [
-        "Table of values for y = x^2 + 1:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 10, 5, 2, 1, 2, 5, 10",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 10 minutes.",
+        "Stay at 4 km until 15 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 45 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 4 km out + 4 km back = 8 km"
       ],
-      "final_answer": "Quadratic curve: y = x^2 + 1",
+      "final_answer": "8 km",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^2 + 1:",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 10 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Stay at 4 km until 15 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 10, 5, 2, 1, 2, 5, 10",
+          "description": "Return at a constant speed to 0 km, arriving home at 45 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 4 km out + 4 km back = 8 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = x^2 + 1 oe",
+          "description": "8 km oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "quadratic",
-          "a": 1,
-          "b": 0,
-          "c": 1,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 11,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              15,
+              4
+            ],
+            [
+              45,
+              0
+            ]
+          ],
+          "x_max": 50,
+          "y_max": 6,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "quadratic",
-          "a": 1,
-          "b": 0,
-          "c": 1,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 11,
-          "table_points": [
-            [
-              -3,
-              10
-            ],
-            [
-              -2,
-              5
-            ],
-            [
-              -1,
-              2
-            ],
+          "points": [
             [
               0,
-              1
+              0
             ],
             [
-              1,
-              2
+              10,
+              4
             ],
             [
-              2,
-              5
+              15,
+              4
             ],
             [
-              3,
-              10
+              45,
+              0
             ]
-          ]
+          ],
+          "x_max": 50,
+          "y_max": 6,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
         }
       }
     },
@@ -630,157 +645,6 @@
         {
           "code": "A1",
           "description": "x^2 + 15x + 56 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inequalities_number_line_F",
-      "prompt": "Draw the solution set of x ≤ 4 on a number line.",
-      "solution_steps": [
-        "Draw a filled circle at 4 (the boundary value is included).",
-        "Shade the line to the left of 4, with an arrow showing it continues indefinitely."
-      ],
-      "final_answer": "x ≤ 4",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Draw a filled circle at 4 (the boundary value is included).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Shade the line to the left of 4, with an arrow showing it continues indefinitely.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": 4,
-              "closed": true
-            }
-          ],
-          "shade": "left"
-        }
-      }
-    },
-    {
-      "topic_id": "ratio_shape_similar_F",
-      "prompt": "Shape A and Shape B are similar. Find the length of side x.",
-      "solution_steps": [
-        "Scale factor = 5 ÷ 3 = 5/3",
-        "Corresponding length = 12 × 5/3 = 20"
-      ],
-      "final_answer": "20 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale factor = 5 ÷ 3 = 5/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Corresponding length = 12 × 5/3 = 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "20 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "shape_kind": "parallelogram",
-          "orientation": "left",
-          "a_width_label": "3 cm",
-          "a_height_label": "12 cm",
-          "b_width_label": "5 cm",
-          "b_height_label": "x"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "compound_percentage_F",
-      "prompt": "A price of £240 increases by 20%, then decreases by 20%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 240 × 1.20 = 288",
-        "After the second change: 288 × 0.80 = 230.40"
-      ],
-      "final_answer": "£230.40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 240 × 1.20 = 288",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 288 × 0.80 = 230.40",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£230.40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_find_missing_share_F",
-      "prompt": "p : q = 6 : 9. p = 12. What is the value of q?",
-      "solution_steps": [
-        "Value of one part = 12 ÷ 6 = 2",
-        "q = 9 × 2 = 18"
-      ],
-      "final_answer": "18",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Value of one part = 12 ÷ 6 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "q = 9 × 2 = 18",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "18 oe",
           "marks": 1
         }
       ],
@@ -859,28 +723,125 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_complete_F",
-      "prompt": "Translate shape A by the vector \\colvec{-4}{-2}.",
+      "topic_id": "compound_percentage_F",
+      "prompt": "A price of £240 increases by 20%, then decreases by 20%. Find the final price.",
       "solution_steps": [
-        "Translate every vertex of shape A by the vector \\colvec{-4}{-2}: move each point 4 squares left and 2 squares down.",
-        "The image, shape B, has vertices (-3, 1), (1, 1), (0, 5), (-4, 4)."
+        "After the first change: 240 × 1.20 = 288",
+        "After the second change: 288 × 0.80 = 230.40"
       ],
-      "final_answer": "Image (shape B): (-3, 1), (1, 1), (0, 5), (-4, 4)",
+      "final_answer": "£230.40",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Translate every vertex of shape A by the vector \\colvec{-4}{-2}: move each point 4 squares left and 2 squares down.",
+          "description": "After the first change: 240 × 1.20 = 288",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The image, shape B, has vertices (-3, 1), (1, 1), (0, 5), (-4, 4).",
+          "description": "After the second change: 288 × 0.80 = 230.40",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (-3, 1), (1, 1), (0, 5), (-4, 4) oe",
+          "description": "£230.40 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_find_missing_share_F",
+      "prompt": "p : q = 6 : 9. p = 12. What is the value of q?",
+      "solution_steps": [
+        "Value of one part = 12 ÷ 6 = 2",
+        "q = 9 × 2 = 18"
+      ],
+      "final_answer": "18",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Value of one part = 12 ÷ 6 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "q = 9 × 2 = 18",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_F",
+      "prompt": "Shape A and Shape B are similar. Find the length of side x.",
+      "solution_steps": [
+        "Scale factor = 5 ÷ 3 = 5/3",
+        "Corresponding length = 12 × 5/3 = 20"
+      ],
+      "final_answer": "20 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale factor = 5 ÷ 3 = 5/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Corresponding length = 12 × 5/3 = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "shape_kind": "parallelogram",
+          "orientation": "left",
+          "a_width_label": "3 cm",
+          "a_height_label": "12 cm",
+          "b_width_label": "5 cm",
+          "b_height_label": "x"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_reflect_complete_F",
+      "prompt": "Reflect shape A in the line x = -1.",
+      "solution_steps": [
+        "Reflect each vertex of shape A in the line x = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "The image, shape B, has vertices (-4, 1), (-7, 1), (-4, 3)."
+      ],
+      "final_answer": "Image (shape B): (-4, 1), (-7, 1), (-4, 3)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Reflect each vertex of shape A in the line x = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The image, shape B, has vertices (-4, 1), (-7, 1), (-4, 3).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Image (shape B): (-4, 1), (-7, 1), (-4, 3) oe",
           "marks": 1
         }
       ],
@@ -893,20 +854,141 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              3
+              2,
+              1
             ],
             [
               5,
-              3
+              1
             ],
             [
-              4,
-              7
+              2,
+              3
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "mirror_line": {
+            "type": "vertical",
+            "x": -1,
+            "label": "x = -1"
+          }
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              2,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "mirror_line": {
+            "type": "vertical",
+            "x": -1,
+            "label": "x = -1"
+          },
+          "image_vertices": [
+            [
+              -4,
+              1
+            ],
+            [
+              -7,
+              1
+            ],
+            [
+              -4,
+              3
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
+        }
+      }
+    },
+    {
+      "topic_id": "transform_enlarge_complete_F",
+      "prompt": "Enlarge shape A by scale factor 2, centre (-2, 7).",
+      "solution_steps": [
+        "The centre of enlargement is (-2, 7) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (-3, 0) is a displacement of (-1, -7) from the centre, so it maps to (-2, 7) + 2 × (-1, -7) = (-4, -7).",
+        "Repeat for every vertex. The image, shape B, has vertices (-4, -7), (4, -7), (2, 1), (-6, -1)."
+      ],
+      "final_answer": "Image (shape B): (-4, -7), (4, -7), (2, 1), (-6, -1)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is (-2, 7) and the scale factor is 2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (-3, 0) is a displacement of (-1, -7) from the centre, so it maps to (-2, 7) + 2 × (-1, -7) = (-4, -7).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex. The image, shape B, has vertices (-4, -7), (4, -7), (2, 1), (-6, -1).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Image (shape B): (-4, -7), (4, -7), (2, 1), (-6, -1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -3,
+              0
+            ],
+            [
+              1,
+              0
             ],
             [
               0,
-              6
+              4
+            ],
+            [
+              -4,
+              3
             ]
           ],
           "original_labels": [
@@ -927,20 +1009,20 @@
           "y_max": 8,
           "original_vertices": [
             [
+              -3,
+              0
+            ],
+            [
               1,
-              3
-            ],
-            [
-              5,
-              3
-            ],
-            [
-              4,
-              7
+              0
             ],
             [
               0,
-              6
+              4
+            ],
+            [
+              -4,
+              3
             ]
           ],
           "original_labels": [
@@ -952,20 +1034,20 @@
           "original_shape_label": "A",
           "image_vertices": [
             [
-              -3,
-              1
-            ],
-            [
-              1,
-              1
-            ],
-            [
-              0,
-              5
-            ],
-            [
               -4,
-              4
+              -7
+            ],
+            [
+              4,
+              -7
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              -6,
+              -1
             ]
           ],
           "image_labels": [
@@ -1056,132 +1138,108 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plans_and_elevations_F",
-      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
+      "topic_id": "frequency_tree_F",
+      "prompt": "300 people were surveyed. 228 of the 300 people do not own a pet; the rest own a pet. Of the 72 who own a pet, 56 are under 18. Of the 228 who do not own a pet, 1/3 are 18 or over. Complete the frequency tree, then work out the number of the 300 people who do not own a pet and are under 18.",
       "solution_steps": [
-        "The front elevation is what you see looking at the solid straight on from the front.",
-        "Front elevation: a rectangle, 5 cm by 8 cm.",
-        "The side elevation is what you see looking at the solid straight on from the side.",
-        "Side elevation: a rectangle, 8 cm by 8 cm.",
-        "The plan view is what you see looking straight down at the solid from above.",
-        "Plan view: a rectangle, 5 cm by 8 cm."
+        "Of the 300 people: 228 who do not own a pet is given directly, so number who own a pet = 300 - 228 = 72",
+        "Of the 72 who own a pet: 56 who are under 18 is given directly, so number who are 18 or over = 72 - 56 = 16",
+        "Of the 228 who do not own a pet: number who are 18 or over = 1/3 × 228 = 76, so number who are under 18 = 228 - 76 = 152"
       ],
-      "final_answer": "Front elevation: a rectangle, 5 cm by 8 cm. Side elevation: a rectangle, 8 cm by 8 cm. Plan view: a rectangle, 5 cm by 8 cm.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The front elevation is what you see looking at the solid straight on from the front.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Front elevation: a rectangle, 5 cm by 8 cm.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The side elevation is what you see looking at the solid straight on from the side.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Side elevation: a rectangle, 8 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 5 cm by 8 cm.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Front elevation: a rectangle, 5 cm by 8 cm. Side elevation: a rectangle, 8 cm by 8 cm. Plan view: a rectangle, 5 cm by 8 cm. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "plans_and_elevations_question",
-        "params": {
-          "shape": "cuboid",
-          "length_label": "5 cm",
-          "width_label": "8 cm",
-          "height_label": "8 cm"
-        }
-      },
-      "solution_diagram": {
-        "kind": "plans_and_elevations",
-        "params": {
-          "shape": "cuboid",
-          "length": 5,
-          "width": 8,
-          "height": 8,
-          "length_label": "5 cm",
-          "width_label": "8 cm",
-          "height_label": "8 cm"
-        }
-      }
-    },
-    {
-      "topic_id": "tree_diagram_drawing_F",
-      "prompt": "A bag contains 8 red and 3 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is yellow.",
-      "solution_steps": [
-        "Draw two branches from the start: P(red) = 8/11, P(yellow) = 3/11.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(red then yellow) = 8/11 × 3/11 = 24/121"
-      ],
-      "final_answer": "24/121",
+      "final_answer": "152",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(red) = 8/11, P(yellow) = 3/11.",
+          "description": "Of the 300 people: 228 who do not own a pet is given directly, so number who own a pet = 300 - 228 = 72",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "description": "Of the 72 who own a pet: 56 who are under 18 is given directly, so number who are 18 or over = 72 - 56 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then yellow) = 8/11 × 3/11 = 24/121",
+          "description": "Of the 228 who do not own a pet: number who are 18 or over = 1/3 × 228 = 76, so number who are under 18 = 228 - 76 = 152",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24/121 oe",
+          "description": "152 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
+      "diagram": {
+        "kind": "frequency_tree",
         "params": {
+          "root": "300",
           "stage1": [
             [
-              "Red",
-              "8/11"
+              "Pet",
+              ""
             ],
             [
-              "Yellow",
-              "3/11"
+              "No pet",
+              ""
             ]
           ],
           "stage2": [
             [
               [
-                "Red",
-                "8/11"
+                "Under 18",
+                ""
               ],
               [
-                "Yellow",
-                "3/11"
+                "18 or over",
+                ""
               ]
             ],
             [
               [
-                "Red",
-                "8/11"
+                "Under 18",
+                ""
               ],
               [
-                "Yellow",
-                "3/11"
+                "18 or over",
+                ""
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "frequency_tree",
+        "params": {
+          "root": "300",
+          "stage1": [
+            [
+              "Pet",
+              "72"
+            ],
+            [
+              "No pet",
+              "228"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Under 18",
+                "56"
+              ],
+              [
+                "18 or over",
+                "16"
+              ]
+            ],
+            [
+              [
+                "Under 18",
+                "152"
+              ],
+              [
+                "18 or over",
+                "76"
               ]
             ]
           ]
@@ -1189,34 +1247,41 @@
       }
     },
     {
-      "topic_id": "venn_diagram_probability_F",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A only).",
+      "topic_id": "set_notation_F",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 4, 5, 9, 10}, B = {4, 5, 8}. List the elements that are in both A and B.",
       "solution_steps": [
-        "Total number of elements = 3 + 15 + 5 + 8 = 31",
-        "Number of outcomes in A only = 3 = 3",
-        "P(A only) = 3/31 = 3/31"
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {2, 4, 5, 9, 10}",
+        "B = {4, 5, 8}",
+        "Check each element of ξ in turn to see whether it are in both A and B.",
+        "Elements that are in both A and B: {4, 5}"
       ],
-      "final_answer": "3/31",
-      "marks": 4,
+      "final_answer": "{4, 5}",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total number of elements = 3 + 15 + 5 + 8 = 31",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of outcomes in A only = 3 = 3",
+          "description": "A = {2, 4, 5, 9, 10}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(A only) = 3/31 = 3/31",
+          "description": "B = {4, 5, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Check each element of ξ in turn to see whether it are in both A and B. Elements that are in both A and B: {4, 5}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/31 oe",
+          "description": "{4, 5} oe",
           "marks": 1
         }
       ],
@@ -1227,69 +1292,95 @@
             "A",
             "B"
           ],
-          "region_text": {
-            "a_only": "3",
-            "b_only": "15",
-            "both": "5",
-            "neither": "8"
-          }
+          "universal_label": "ξ"
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "2, 9, 10",
+            "b_only": "8",
+            "both": "4, 5",
+            "neither": "1, 3, 6, 7"
+          }
+        }
+      }
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SAS  B) RHS  C) SSS  D) ASA",
+      "topic_id": "scatter_graph_interpret_F",
+      "prompt": "The scatter graph shows the age of a number of second-hand cars and their value. Describe the correlation shown.",
       "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Side-Side-Side (SSS) pattern.",
-        "So the two triangles are congruent by Side-Side-Side (SSS)."
+        "As age of car (years) increases, value (£1000s) tends to decrease.",
+        "This means the scatter graph shows negative correlation."
       ],
-      "final_answer": "C) SSS",
-      "marks": 1,
+      "final_answer": "Negative correlation",
+      "marks": 3,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "C) SSS (selecting the correct option)",
+          "code": "M1",
+          "description": "As age of car (years) increases, value (£1000s) tends to decrease.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This means the scatter graph shows negative correlation.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Negative correlation oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "scatter_graph",
         "params": {
-          "side_labels_1": [
-            [
-              0,
-              1,
-              "6 cm"
-            ],
-            [
-              0,
-              2,
-              "6 cm"
-            ],
+          "points": [
             [
               1,
+              19.3
+            ],
+            [
               2,
-              "9 cm"
+              17.2
+            ],
+            [
+              3,
+              21.5
+            ],
+            [
+              4,
+              16.6
+            ],
+            [
+              5,
+              12.3
+            ],
+            [
+              6,
+              12.3
+            ],
+            [
+              7,
+              11.7
+            ],
+            [
+              8,
+              10.1
+            ],
+            [
+              10,
+              4.8
             ]
           ],
-          "side_labels_2": [
-            [
-              0,
-              1,
-              "6 cm"
-            ],
-            [
-              0,
-              2,
-              "6 cm"
-            ],
-            [
-              1,
-              2,
-              "9 cm"
-            ]
-          ]
+          "x_label": "Age of car (years)",
+          "y_label": "Value (£1000s)"
         }
       },
       "solution_diagram": null

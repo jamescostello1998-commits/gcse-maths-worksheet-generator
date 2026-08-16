@@ -1601,7 +1601,8 @@ def draw_general_triangle(params: dict) -> Drawing:
     if params.get("show_vertices"):
         gx = (A[0] + B[0] + C[0]) / 3
         gy = (A[1] + B[1] + C[1]) / 3
-        for pt, letter in ((A, "A"), (B, "B"), (C, "C")):
+        vertex_labels = params.get("vertex_labels", ("A", "B", "C"))
+        for pt, letter in zip((A, B, C), vertex_labels):
             dx_l, dy_l = pt[0] - gx, pt[1] - gy
             dist = math.hypot(dx_l, dy_l) or 1.0
             d.add(_label(pt[0] + dx_l / dist * 15, pt[1] + dy_l / dist * 15, letter, size=size))
@@ -1742,6 +1743,61 @@ def _draw_bearings_single_leg(params: dict) -> Drawing:
     if answer_bearing_at_B is not None:
         d.add(_north_arrow(pB[0], pB[1], length=arrow_len))
         d.add(_bearing_arc(pB[0], pB[1], answer_bearing_at_B, color=ACCENT, radius=13))
+
+    return d
+
+
+def draw_bearings_two_rays(params: dict) -> Drawing:
+    """A single point O with two direction rays from it (to points labelled
+    params['label_a']/['label_b'], at params['bearing_a']/['bearing_b']) - a
+    genuinely different shape from draw_bearings' journey-with-legs diagram:
+    there's no distance here at all, just two directions from one origin, for
+    an 'angles around a point' bearings question. Both rays are unit length
+    (schematic, not to scale - only the two angles from north matter), each
+    with its own north-relative bearing arc; a single shared north arrow at O
+    (real bearings never draw two separate norths at the same point)."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    bearing_a, bearing_b = params["bearing_a"], params["bearing_b"]
+    label_a, label_b = params["label_a"], params["label_b"]
+
+    def unit_vector(bearing_deg: float) -> tuple:
+        rad = math.radians(bearing_deg)
+        return (math.sin(rad), math.cos(rad))
+
+    O = (0.0, 0.0)
+    Pa, Pb = unit_vector(bearing_a), unit_vector(bearing_b)
+
+    xs, ys = (O[0], Pa[0], Pb[0]), (O[1], Pa[1], Pb[1])
+    x_span, y_span = (max(xs) - min(xs)) or 1.0, (max(ys) - min(ys)) or 1.0
+    margin_side, margin_top, margin_bottom = 44, 46, 34
+    scale = min(
+        (DIAGRAM_WIDTH - 2 * margin_side) / x_span,
+        (DIAGRAM_HEIGHT - margin_top - margin_bottom) / y_span,
+    )
+    ox = (DIAGRAM_WIDTH - x_span * scale) / 2 - min(xs) * scale
+    oy = margin_bottom - min(ys) * scale
+
+    def to_px(p: tuple) -> tuple:
+        return (p[0] * scale + ox, p[1] * scale + oy)
+
+    pO, pPa, pPb = to_px(O), to_px(Pa), to_px(Pb)
+    arrow_len = 30
+    arrows = [(pO[0], pO[1])]
+
+    for end, label in ((pPa, label_a), (pPb, label_b)):
+        d.add(Line(pO[0], pO[1], end[0], end[1], strokeColor=INK, strokeWidth=1.2))
+        d.add(Circle(end[0], end[1], 1.8, strokeColor=INK, fillColor=INK))
+        vx, vy = end[0] - pO[0], end[1] - pO[1]
+        dist = math.hypot(vx, vy) or 1.0
+        ux, uy = vx / dist, vy / dist
+        lx, ly = _nudge_from_arrows(end[0] + ux * 14, end[1] + uy * 14, "middle", label, _LABEL_SIZE, arrows, arrow_len)
+        d.add(_label(lx, ly, label))
+
+    d.add(Circle(pO[0], pO[1], 1.8, strokeColor=INK, fillColor=INK))
+    d.add(_label(pO[0] - 12, pO[1] - 4, params.get("origin_label", "O"), anchor="end"))
+    d.add(_north_arrow(pO[0], pO[1], length=arrow_len))
+    d.add(_bearing_arc(pO[0], pO[1], bearing_a, radius=13))
+    d.add(_bearing_arc(pO[0], pO[1], bearing_b, radius=20, color=ACCENT))
 
     return d
 
@@ -2658,6 +2714,32 @@ def _scaled_circle(to_px: Callable, centre: tuple, r: float, x_span: float, y_sp
     return Ellipse(cx, cy, rx, ry, **kw)
 
 
+def _loci_axes(d: Drawing, x_min: float, x_max: float, y_min: float, y_max: float) -> Callable:
+    """A coordinate transform for loci diagrams that draws NO visible axes,
+    gridlines, or numbers at all - real loci/construction diagrams just
+    place given points/lines on a blank background (the student constructs
+    with compass and ruler, not by reading grid coordinates). Uses one
+    shared scale for x and y (never distorted), so a circle drawn at this
+    scale is a true circle - a plain Circle works directly, no Ellipse/
+    separate-rx-ry trick needed the way the gridded _draw_scaled_axes
+    transform requires."""
+    margin = 16.0
+    plot_w = d.width - 2 * margin
+    plot_h = d.height - 2 * margin
+    x_span = (x_max - x_min) or 1.0
+    y_span = (y_max - y_min) or 1.0
+    scale = min(plot_w / x_span, plot_h / y_span)
+    used_w, used_h = x_span * scale, y_span * scale
+    off_x = margin + (plot_w - used_w) / 2
+    off_y = margin + (plot_h - used_h) / 2
+
+    def to_px(x: float, y: float) -> tuple[float, float]:
+        return off_x + (x - x_min) * scale, off_y + (y - y_min) * scale
+
+    to_px.scale = scale  # type: ignore[attr-defined]
+    return to_px
+
+
 def _loci_reference_points(d: Drawing, to_px: Callable, points: list) -> None:
     for point in points:
         px, py = to_px(*point["xy"])
@@ -2667,21 +2749,43 @@ def _loci_reference_points(d: Drawing, to_px: Callable, points: list) -> None:
 
 
 def draw_loci_construction(params: dict) -> Drawing:
-    """A real-scale, gridded diagram for a loci question: the fixed
-    reference point(s) are always shown; the constructed locus itself - a
-    circle (locus of points a fixed distance from a point) or a line segment
-    (a perpendicular/angle bisector) - is added only once known, via the
-    same blank-question/completed-solution split already used by
+    """A real-scale diagram for a loci question: the fixed reference
+    point(s) are always shown; the constructed locus itself - a circle
+    (locus of points a fixed distance from a point) or a line segment (a
+    perpendicular/angle bisector) - is added only once known, via the same
+    blank-question/completed-solution split already used by
     draw_grid_transformation (params['circle']/'segment' omitted for the
     blank question-page diagram, present for the solution-page one).
     params['given_lines'] (e.g. the two rays forming an angle to bisect, or
     the segment between two points to bisect) are drawn on *both* pages,
     same as draw_grid_transformation's mirror_line/centre/vector - they are
-    information the student is given, not the answer."""
+    information the student is given, not the answer. params['show_grid']
+    (default True) toggles a real numbered coordinate grid - needed by
+    circle_equation_H, which shares this diagram kind and genuinely requires
+    reading coordinates off the axes - versus a blank background with no
+    axes at all, which loci.py's own two topics use instead: a real loci
+    construction is done with compass and ruler, not by reading a grid, and
+    a visible grid there would hint at exact coordinates that give away the
+    construction (e.g. lining a radius up to a whole number of squares)."""
     d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
     x_min, x_max = params["x_min"], params["x_max"]
     y_min, y_max = params["y_min"], params["y_max"]
-    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+    show_grid = params.get("show_grid", True)
+    if show_grid:
+        to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+        x_span = max(x_max, 0) - min(x_min, 0)
+        y_span = max(y_max, 0) - min(y_min, 0)
+        plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
+        plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
+
+        def _draw_circle(centre: tuple, radius: float, **kw) -> None:
+            d.add(_scaled_circle(to_px, centre, radius, x_span, y_span, plot_w, plot_h, **kw))
+    else:
+        to_px = _loci_axes(d, x_min, x_max, y_min, y_max)
+
+        def _draw_circle(centre: tuple, radius: float, **kw) -> None:
+            cx, cy = to_px(*centre)
+            d.add(Circle(cx, cy, radius * to_px.scale, **kw))
 
     for line in params.get("given_lines", []):
         x0, y0 = to_px(*line["p1"])
@@ -2692,14 +2796,7 @@ def draw_loci_construction(params: dict) -> Drawing:
 
     circle = params.get("circle")
     if circle is not None:
-        x_span = max(x_max, 0) - min(x_min, 0)
-        y_span = max(y_max, 0) - min(y_min, 0)
-        plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
-        plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
-        d.add(_scaled_circle(
-            to_px, circle["centre"], circle["radius"], x_span, y_span, plot_w, plot_h,
-            strokeColor=ACCENT, fillColor=None, strokeWidth=1.2,
-        ))
+        _draw_circle(circle["centre"], circle["radius"], strokeColor=ACCENT, fillColor=None, strokeWidth=1.2)
 
     segment = params.get("segment")
     if segment is not None:
@@ -2711,6 +2808,12 @@ def draw_loci_construction(params: dict) -> Drawing:
         ))
 
     return d
+
+
+def _dist_point_to_line(x: float, y: float, p1: tuple, p2: tuple) -> float:
+    lx, ly = p2[0] - p1[0], p2[1] - p1[1]
+    line_len = math.hypot(lx, ly) or 1.0
+    return abs(lx * (y - p1[1]) - ly * (x - p1[0])) / line_len
 
 
 def _satisfies_loci_constraints(x: float, y: float, constraints: list) -> bool:
@@ -2725,14 +2828,21 @@ def _satisfies_loci_constraints(x: float, y: float, constraints: list) -> bool:
             bx, by = c["than"]
             if (x - ax) ** 2 + (y - ay) ** 2 > (x - bx) ** 2 + (y - by) ** 2:
                 return False
+        elif c["type"] == "closer_to_line":
+            d_a = _dist_point_to_line(x, y, *c["line_a"])
+            d_b = _dist_point_to_line(x, y, *c["line_b"])
+            if d_a > d_b:
+                return False
     return True
 
 
 def draw_loci_region(params: dict) -> Drawing:
-    """Same grid base as draw_loci_construction, plus each constraint's own
-    boundary (a dashed circle or segment, in params['boundaries'] - always
-    drawn on both the question and solution page, since it's given
-    information) and, once known, a shaded region satisfying every
+    """Same ungridded base as draw_loci_construction, plus each constraint's
+    own boundary (a dashed circle or segment, in params['boundaries'] - only
+    passed once the student's own construction is being revealed, i.e. on
+    the solution page; the question page gives just the reference points,
+    so the boundaries are themselves something to construct, not read off a
+    ready-made diagram) and, once known, a shaded region satisfying every
     constraint in params['shade_constraints'] - rendered as a rasterized dot
     mesh (sample a fine grid, evaluate each constraint directly at each
     sample point, paint a small translucent dot wherever all of them hold)
@@ -2742,16 +2852,21 @@ def draw_loci_region(params: dict) -> Drawing:
     d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
     x_min, x_max = params["x_min"], params["x_max"]
     y_min, y_max = params["y_min"], params["y_max"]
-    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+    to_px = _loci_axes(d, x_min, x_max, y_min, y_max)
 
-    x_span = max(x_max, 0) - min(x_min, 0)
-    y_span = max(y_max, 0) - min(y_min, 0)
-    plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
-    plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
+    # Given lines (e.g. the two rays forming an angle) are information the
+    # student is given, not the answer - drawn solid, on both pages, same
+    # convention as draw_loci_construction's given_lines.
+    for line in params.get("given_lines", []):
+        x0, y0 = to_px(*line["p1"])
+        x1, y1 = to_px(*line["p2"])
+        d.add(Line(x0, y0, x1, y1, strokeColor=INK, strokeWidth=1.2))
+
     for boundary in params.get("boundaries", []):
         if boundary["type"] == "circle":
-            d.add(_scaled_circle(
-                to_px, boundary["centre"], boundary["radius"], x_span, y_span, plot_w, plot_h,
+            cx, cy = to_px(*boundary["centre"])
+            d.add(Circle(
+                cx, cy, boundary["radius"] * to_px.scale,
                 strokeColor=INK, fillColor=None, strokeWidth=1.0, strokeDashArray=[3, 2],
             ))
         elif boundary["type"] == "segment":
@@ -2937,15 +3052,18 @@ def draw_graph_transformation(params: dict) -> Drawing:
 
 
 def draw_tree_diagram(params: dict) -> Drawing:
-    """A two-stage probability tree. stage1 = [(label, prob_str), ...];
-    stage2 = one list of (label, prob_str) branches per stage1 node;
-    leaf_probs (optional) = matching nested list of combined-outcome
-    probability strings shown at each leaf. A branch's prob_str may be ""
-    (or omitted/falsy) to draw a short blank placeholder line instead of a
-    value, for a tree the student is meant to complete themselves.
-    params['stage1_header']/['stage2_header'] (optional) caption the two
-    columns of branches (e.g. the name of each stage's random event), drawn
-    above the diagram - matching real exam-style labelled trees."""
+    """A two-stage probability tree, drawn as real hand-drawn exam trees are:
+    each stage is its own independent "V" of two branches, with a genuine
+    GAP (no line at all) between one stage's branch endpoint and the next
+    stage's V - the branch outcome label sits centred in that empty gap,
+    so it never touches any line regardless of label length. stage1 =
+    [(label, prob_str), ...]; stage2 = one list of (label, prob_str)
+    branches per stage1 node; leaf_probs (optional) = matching nested list
+    of combined-outcome probability strings shown at each leaf. A branch's
+    prob_str may be "" (or omitted/falsy) to draw a short blank placeholder
+    line instead of a value, for a tree the student is meant to complete
+    themselves. params['stage1_header']/['stage2_header'] (optional)
+    caption the two columns of branches, drawn above the diagram."""
     stage1: list[tuple[str, str]] = params["stage1"]
     stage2: list[list[tuple[str, str]]] = params["stage2"]
     leaf_probs: list[list[str]] | None = params.get("leaf_probs")
@@ -2953,35 +3071,53 @@ def draw_tree_diagram(params: dict) -> Drawing:
     stage2_header = params.get("stage2_header")
 
     branch_counts = [len(b) for b in stage2]
-    total_leaves = sum(branch_counts)
 
-    leaf_spacing, group_spacing = 46.0, 20.0
+    # Every V in the tree (the root's, and each stage1 branch's own stage2
+    # V) is drawn at the SAME run and the SAME slope - one consistent size
+    # and angle throughout, matching a real hand-drawn tree where each
+    # branch point looks like a small copy of the others, not one huge
+    # opening "V" and several smaller ones. Because of this, node1_ys (the
+    # vertical position each stage1 branch reaches) is computed TOP-DOWN
+    # from that fixed V size FIRST - not as an afterthought average of
+    # wherever the stage2 leaves ended up, which is what let a big
+    # group_spacing balloon the root's own branches into a disproportionate
+    # shape in earlier attempts.
+    v_run, v_slope = 85.0, 0.62
+    half_gap = v_run * v_slope
+    leaf_spacing = 42.0
+    root_x = 16.0
+    gap, prob_col = 46.0, 46.0
+
+    n1 = len(stage1)
+    node1_ys = [(i - (n1 - 1) / 2) * (2 * half_gap) for i in range(n1)]
+    leaf_ys: list[list[float]] = []
+    for node_y, count in zip(node1_ys, branch_counts):
+        leaf_ys.append([node_y + (j - (count - 1) / 2) * leaf_spacing for j in range(count)])
+
     header_h = 26.0 if (stage1_header or stage2_header) else 0.0
     top_pad, bottom_pad = 14.0 + header_h, 14.0
-    height = max(
-        150.0,
-        top_pad + bottom_pad + total_leaves * leaf_spacing + max(0, len(branch_counts) - 1) * group_spacing,
-    )
-    width = 460.0 if leaf_probs is not None else 400.0
-    d = Drawing(width, height)
-
-    x1, x2, x3 = width * 0.30, width * 0.58, width * 0.85
-    root_x = 16.0
-
-    leaf_ys: list[list[float]] = []
-    cursor = bottom_pad + leaf_spacing / 2
-    for count in branch_counts:
-        ys = [cursor + i * leaf_spacing for i in range(count)]
-        leaf_ys.append(ys)
-        cursor += count * leaf_spacing + group_spacing
-
-    node1_ys = [sum(ys) / len(ys) for ys in leaf_ys]
+    all_ys = [y for ys in leaf_ys for y in ys] + node1_ys
+    span = max(all_ys) - min(all_ys)
+    height = max(150.0, top_pad + bottom_pad + span)
+    shift = bottom_pad - min(all_ys)
+    node1_ys = [y + shift for y in node1_ys]
+    leaf_ys = [[y + shift for y in ys] for ys in leaf_ys]
     root_y = sum(node1_ys) / len(node1_ys)
 
+    v1_run = v_run
+    v2_run = v_run
+
+    x1 = root_x + v1_run  # stage1 branch endpoint - the gap starts here
+    x2 = x1 + gap  # stage2 V apex - the gap ends here, no line crosses it
+    x3 = x2 + v2_run  # stage2 leaf endpoint
+    x4 = x3 + prob_col  # combined-probability column, only if leaf_probs given
+    width = (x4 + 70.0) if leaf_probs is not None else (x3 + 90.0)
+    d = Drawing(width, height)
+
     if stage1_header:
-        d.add(String(x1, height - 16, str(stage1_header), textAnchor="middle", fontSize=10, fillColor=INK, fontName=_LABEL_FONT_BOLD))
+        d.add(String((root_x + x1) / 2, height - 16, str(stage1_header), textAnchor="middle", fontSize=10, fillColor=INK, fontName=_LABEL_FONT_BOLD))
     if stage2_header:
-        d.add(String(x2, height - 16, str(stage2_header), textAnchor="middle", fontSize=10, fillColor=INK, fontName=_LABEL_FONT_BOLD))
+        d.add(String((x2 + x3) / 2, height - 16, str(stage2_header), textAnchor="middle", fontSize=10, fillColor=INK, fontName=_LABEL_FONT_BOLD))
 
     def _branch_prob(x_from: float, y_from: float, x_to: float, y_to: float, prob: str, size: float) -> None:
         # Offset the probability label perpendicular to the branch line
@@ -2992,37 +3128,42 @@ def draw_tree_diagram(params: dict) -> Drawing:
         dx, dy = x_to - x_from, y_to - y_from
         length = math.hypot(dx, dy) or 1.0
         nx, ny = -dy / length, dx / length
+        if dy < 0:
+            # dx is always positive here (every branch runs left to right),
+            # so the un-flipped normal always points "up" regardless of the
+            # branch's own slope - fine for a rising branch (label sits
+            # above it, outside the V), but for a FALLING branch it pushes
+            # the label up into the V's interior instead of below the line,
+            # outside it. Flipping the normal when the branch descends keeps
+            # every probability label on the outside of its own branch:
+            # above the top line, below the bottom one.
+            nx, ny = -nx, -ny
         lx, ly = (x_from + x_to) / 2 + nx * 12, (y_from + y_to) / 2 + ny * 12
         if prob:
             d.add(_label(lx, ly, prob, size=size))
         else:
             d.add(Line(lx - 9, ly - 2, lx + 9, ly - 2, strokeColor=INK, strokeWidth=0.9))
 
-    def _node_label(x: float, y: float, text: str, size: float, from_y: float) -> None:
-        # Every line/dash leaving this node starts exactly at (x, y) and
-        # only ever extends to the right (greater x), so a label placed to
-        # the LEFT of the node - matching real exam tree diagrams, which
-        # caption a mid-tree branch point beside it rather than above it -
-        # never touches any outgoing line. Nudged vertically away from the
-        # incoming branch's own approach direction (up if it climbed to get
-        # here, down if it descended) so it clears that line too.
-        ly = y + 7 if y >= from_y else y - 7
-        d.add(_label(x - 8, ly, text, anchor="end", size=size))
+    def _gap_label(x_start: float, x_end: float, y: float, text: str, size: float) -> None:
+        # Centred in the empty gap between one stage's branch endpoint and
+        # the next stage's V - no line is ever drawn through this gap, so
+        # this can never collide regardless of label length.
+        d.add(_label((x_start + x_end) / 2, y + 3, text, size=size))
 
     for i, ((label1, prob1), y1) in enumerate(zip(stage1, node1_ys)):
         d.add(Line(root_x, root_y, x1, y1, strokeColor=INK, strokeWidth=1.2))
         _branch_prob(root_x, root_y, x1, y1, prob1, 9)
-        _node_label(x1, y1, label1, 9.5, root_y)
+        _gap_label(x1, x2, y1, label1, 9.5)
 
         for j, ((label2, prob2), y2) in enumerate(zip(stage2[i], leaf_ys[i])):
-            d.add(Line(x1, y1, x2, y2, strokeColor=INK, strokeWidth=1.2))
-            _branch_prob(x1, y1, x2, y2, prob2, 9)
+            d.add(Line(x2, y1, x3, y2, strokeColor=INK, strokeWidth=1.2))
+            _branch_prob(x2, y1, x3, y2, prob2, 9)
             if leaf_probs is not None:
-                d.add(Line(x2, y2, x3, y2, strokeColor=MUTED, strokeWidth=0.5, strokeDashArray=[2, 2]))
-                _node_label(x2, y2, label2, 9.5, y1)
-                d.add(_label(x3 + 6, y2 + 3, leaf_probs[i][j], anchor="start", color=ACCENT, size=8.5))
+                d.add(Line(x3, y2, x4, y2, strokeColor=MUTED, strokeWidth=0.5, strokeDashArray=[2, 2]))
+                _gap_label(x3, x4, y2, label2, 9.5)
+                d.add(_label(x4 + 6, y2 + 3, leaf_probs[i][j], anchor="start", color=ACCENT, size=8.5))
             else:
-                d.add(_label(x2 + 6, y2 + 3, label2, anchor="start", size=9.5))
+                d.add(_label(x3 + 6, y2 + 3, label2, anchor="start", size=9.5))
 
     d.add(Circle(root_x, root_y, 2.2, strokeColor=INK, fillColor=INK))
     return d
@@ -5125,6 +5266,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "trig_triangle": draw_trig_triangle,
     "general_triangle": draw_general_triangle,
     "bearings": draw_bearings,
+    "bearings_two_rays": draw_bearings_two_rays,
     "two_triangle_congruence": draw_two_triangle_congruence,
     "vector_triangle": draw_vector_triangle,
     "circle_angle_centre": draw_circle_angle_centre,

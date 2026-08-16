@@ -14,7 +14,7 @@ question_count override).
 import random
 import string
 
-from app.core.models import ModelledExample, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 
 SECTION = "geometry"
@@ -93,10 +93,7 @@ def generate_modelled_example_construction_angle_bisector(tier: Tier, rng: rando
 # ---------------------------------------------------------------------------
 
 def _perpendicular_bisector_content(P: str, Q: str, length_cm: int) -> dict:
-    prompt = (
-        f"Line segment {P}{Q} has length {length_cm} cm. Describe, step by step, how to construct the "
-        f"perpendicular bisector of {P}{Q} using only a ruler and a pair of compasses."
-    )
+    prompt = f"Construct a perpendicular bisector of the points {P}{Q} using only a ruler and a pair of compasses."
     steps = [
         f"Open the compasses to a radius more than half of {length_cm} cm (more than half the length of {P}{Q}).",
         f"With the compass point on {P}, draw an arc above and below the line.",
@@ -107,6 +104,25 @@ def _perpendicular_bisector_content(P: str, Q: str, length_cm: int) -> dict:
     ]
     answer = f"A straight line through the two arc intersections, crossing {P}{Q} at its midpoint at a right angle."
     return {"prompt": prompt, "steps": steps, "answer": answer}
+
+
+def _perpendicular_bisector_diagram(P: str, Q: str, length_cm: int) -> DiagramSpec:
+    # A generous margin (bigger than loci.py's default) above/below and
+    # either side of PQ - the student needs real room to swing compass arcs
+    # well clear of the segment on both sides, not just enough to see the
+    # two points.
+    margin = max(4.0, length_cm * 0.6)
+    P_xy, Q_xy = (0.0, 0.0), (float(length_cm), 0.0)
+    return DiagramSpec(
+        kind="loci_construction",
+        params={
+            "x_min": -margin, "x_max": length_cm + margin,
+            "y_min": -margin, "y_max": margin,
+            "points": [{"xy": P_xy, "label": P}, {"xy": Q_xy, "label": Q}],
+            "given_lines": [{"p1": P_xy, "p2": Q_xy}],
+            "show_grid": False,
+        },
+    )
 
 
 def generate_construction_perpendicular_bisector(tier: Tier, rng: random.Random) -> Question:
@@ -120,6 +136,7 @@ def generate_construction_perpendicular_bisector(tier: Tier, rng: random.Random)
         solution_steps=tuple(c["steps"]),
         final_answer=c["answer"],
         dedup_key=f"bisector_perp:{P}{Q}:{length_cm}",
+        diagram=_perpendicular_bisector_diagram(P, Q, length_cm),
     )
 
 
@@ -145,6 +162,7 @@ def generate_modelled_example_construction_perpendicular_bisector(tier: Tier, rn
         worked_calculation=tuple(c["steps"]),
         teaching_steps=tuple(teaching_steps),
         final_answer=c["answer"],
+        diagram=_perpendicular_bisector_diagram(P, Q, length_cm),
     )
 
 
@@ -170,8 +188,8 @@ def _asa_angles(rng: random.Random) -> tuple:
 
 def _sss_content(X: str, Y: str, Z: str, xy: int, yz: int, xz: int) -> dict:
     prompt = (
-        f"Triangle {X}{Y}{Z} has {X}{Y} = {xy} cm, {Y}{Z} = {yz} cm, and {X}{Z} = {xz} cm. Describe, "
-        f"step by step, how to construct triangle {X}{Y}{Z} using only a ruler and a pair of compasses."
+        f"Triangle {X}{Y}{Z} has {X}{Y} = {xy} cm, {Y}{Z} = {yz} cm, and {X}{Z} = {xz} cm. Construct "
+        f"triangle {X}{Y}{Z} using only a ruler and a pair of compasses."
     )
     steps = [
         f"Draw the line segment {X}{Y} = {xy} cm using a ruler.",
@@ -181,14 +199,15 @@ def _sss_content(X: str, Y: str, Z: str, xy: int, yz: int, xz: int) -> dict:
         f"from {Y} to {Z} to complete the triangle.",
     ]
     answer = f"Triangle {X}{Y}{Z}, with {Z} located at the intersection of the two compass arcs."
-    return {"prompt": prompt, "steps": steps, "answer": answer}
+    diagram_labels = {"side_c_label": f"{xy} cm", "side_a_label": f"{yz} cm", "side_b_label": f"{xz} cm"}
+    return {"prompt": prompt, "steps": steps, "answer": answer, "diagram_labels": diagram_labels}
 
 
 def _sas_content(X: str, Y: str, Z: str, xy: int, angle_deg: int, yz: int) -> dict:
     prompt = (
         f"Triangle {X}{Y}{Z} has {X}{Y} = {xy} cm, the angle at {Y} equal to {angle_deg}°, and "
-        f"{Y}{Z} = {yz} cm. Describe, step by step, how to construct triangle {X}{Y}{Z} using a ruler, "
-        "a protractor, and a pair of compasses."
+        f"{Y}{Z} = {yz} cm. Construct triangle {X}{Y}{Z} using a ruler, a protractor, and a pair of "
+        "compasses."
     )
     steps = [
         f"Draw the line segment {X}{Y} = {xy} cm using a ruler.",
@@ -197,14 +216,14 @@ def _sas_content(X: str, Y: str, Z: str, xy: int, angle_deg: int, yz: int) -> di
         f"Draw a straight line from {X} to {Z} to complete the triangle.",
     ]
     answer = f"Triangle {X}{Y}{Z}, with {Z} marked {yz} cm from {Y} along the {angle_deg}° ray at {Y}."
-    return {"prompt": prompt, "steps": steps, "answer": answer}
+    diagram_labels = {"side_c_label": f"{xy} cm", "angle_B_label": f"{angle_deg}°", "side_a_label": f"{yz} cm"}
+    return {"prompt": prompt, "steps": steps, "answer": answer, "diagram_labels": diagram_labels}
 
 
 def _asa_content(X: str, Y: str, Z: str, xy: int, angle_x: int, angle_y: int) -> dict:
     prompt = (
         f"Triangle {X}{Y}{Z} has {X}{Y} = {xy} cm, the angle at {X} equal to {angle_x}°, and the angle "
-        f"at {Y} equal to {angle_y}°. Describe, step by step, how to construct triangle {X}{Y}{Z} using "
-        "a ruler and a protractor."
+        f"at {Y} equal to {angle_y}°. Construct triangle {X}{Y}{Z} using a ruler and a protractor."
     )
     steps = [
         f"Draw the line segment {X}{Y} = {xy} cm using a ruler.",
@@ -213,7 +232,10 @@ def _asa_content(X: str, Y: str, Z: str, xy: int, angle_x: int, angle_y: int) ->
         f"Label the point where the two new rays cross as {Z}. This completes triangle {X}{Y}{Z}.",
     ]
     answer = f"Triangle {X}{Y}{Z}, with {Z} located where the two angle rays from {X} and {Y} cross."
-    return {"prompt": prompt, "steps": steps, "answer": answer}
+    diagram_labels = {
+        "side_c_label": f"{xy} cm", "angle_A_label": f"{angle_x}°", "angle_B_label": f"{angle_y}°",
+    }
+    return {"prompt": prompt, "steps": steps, "answer": answer, "diagram_labels": diagram_labels}
 
 
 def _random_triangle_content(rng: random.Random) -> tuple:
@@ -236,7 +258,19 @@ def _random_triangle_content(rng: random.Random) -> tuple:
         angle_x, angle_y = _asa_angles(rng)
         content = _asa_content(X, Y, Z, xy, angle_x, angle_y)
         dedup_key = f"construct_triangle:ASA:{X}{Y}{Z}:{xy}:{angle_x}:{angle_y}"
+    content["vertex_labels"] = (X, Y, Z)
     return content, dedup_key
+
+
+def _construction_triangle_diagram(content: dict) -> DiagramSpec:
+    return DiagramSpec(
+        kind="general_triangle",
+        params={
+            **content["diagram_labels"],
+            "show_vertices": True,
+            "vertex_labels": content["vertex_labels"],
+        },
+    )
 
 
 def generate_construction_triangle(tier: Tier, rng: random.Random) -> Question:
@@ -248,6 +282,7 @@ def generate_construction_triangle(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(content["steps"]),
         final_answer=content["answer"],
         dedup_key=dedup_key,
+        diagram=_construction_triangle_diagram(content),
     )
 
 
@@ -273,6 +308,7 @@ def generate_modelled_example_construction_triangle(tier: Tier, rng: random.Rand
         worked_calculation=tuple(content["steps"]),
         teaching_steps=tuple(teaching_steps),
         final_answer=content["answer"],
+        diagram=_construction_triangle_diagram(content),
     )
 
 

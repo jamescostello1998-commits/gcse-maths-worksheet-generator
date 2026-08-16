@@ -120,34 +120,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "error_interval_H",
-      "prompt": "A number, x, is 54600 rounded to 3 significant figures. Write down the error interval for x.",
+      "topic_id": "bounds_calculation_H",
+      "prompt": "A rectangle has length 27 cm and width 28 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
       "solution_steps": [
-        "The last significant figure of 54600 has a place value of 100, so x can be up to half of that above or below 54600.",
-        "Lower bound: 54600 - 50 = 54550",
-        "Upper bound: 54600 + 50 = 54650"
+        "Length: 27 cm (to the nearest cm) gives 26.5 ≤ length < 27.5",
+        "Width: 28 cm (to the nearest cm) gives 27.5 ≤ width < 28.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 26.5 × 27.5 = 728.75 cm²"
       ],
-      "final_answer": "54550 ≤ x < 54650",
+      "final_answer": "728.75 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The last significant figure of 54600 has a place value of 100, so x can be up to half of that above or below 54600.",
+          "description": "Length: 27 cm (to the nearest cm) gives 26.5 ≤ length < 27.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lower bound: 54600 - 50 = 54550",
+          "description": "Width: 28 cm (to the nearest cm) gives 27.5 ≤ width < 28.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Upper bound: 54600 + 50 = 54650",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 26.5 × 27.5 = 728.75 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "54550 ≤ x < 54650 oe",
+          "description": "728.75 cm² oe",
           "marks": 1
         }
       ],
@@ -232,38 +232,52 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "perpendicular_lines_equation_H",
-      "prompt": "A line is perpendicular to y = -2x + 2 and passes through the point (-1, 3). Find the equation of the line.",
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
       "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × -2 = -1, so m = 1/2",
-        "Substitute (-1, 3) into y = 1/2x + c: 3 = 1/2×(-1) + c, so c = 7/2",
-        "Equation of the line: y = 1/2x + 7/2"
+        "Deceleration = change in velocity ÷ time = 15 ÷ 8 = 15/8 m/s^2"
       ],
-      "final_answer": "y = 1/2x + 7/2",
-      "marks": 4,
+      "final_answer": "15/8 m/s^2",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × -2 = -1, so m = 1/2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (-1, 3) into y = 1/2x + c: 3 = 1/2×(-1) + c, so c = 7/2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 1/2x + 7/2",
+          "description": "Deceleration = change in velocity ÷ time = 15 ÷ 8 = 15/8 m/s^2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 1/2x + 7/2 oe",
+          "description": "15/8 m/s^2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              15
+            ],
+            [
+              32,
+              15
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 20,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -302,127 +316,136 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities_H",
-      "prompt": "Solve the inequality: x^2 + 2x - 63 < 0",
+      "topic_id": "inequalities_number_line_H",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "Factorise: x^2 + 2x - 63 = (x + 9)(x - 7)",
-        "The critical values are x = -9 and x = 7.",
-        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and < 0 is satisfied between the two roots.",
-        "Answer: -9 < x < 7"
+        "The circle at 3 is open and the circle at 6 is filled.",
+        "The shading lies between the two circles, so both bounds must hold at once: 3 < x ≤ 6."
       ],
-      "final_answer": "-9 < x < 7",
-      "marks": 5,
+      "final_answer": "3 < x ≤ 6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: x^2 + 2x - 63 = (x + 9)(x - 7)",
+          "description": "The circle at 3 is open and the circle at 6 is filled.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = -9 and x = 7.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and < 0 is satisfied between the two roots.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer: -9 < x < 7",
+          "description": "The shading lies between the two circles, so both bounds must hold at once: 3 < x ≤ 6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-9 < x < 7 oe",
+          "description": "3 < x ≤ 6 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 3,
+              "closed": false
+            },
+            {
+              "value": 6,
+              "closed": true
+            }
+          ],
+          "shade": "between"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential_H",
-      "prompt": "Complete a table of values for y = 5 × 3^x for x = 0 to 4, then plot the graph.",
+      "topic_id": "trig_graph_H",
+      "prompt": "Complete a table of values for y = -tan(x°) for x = -80 to 80 (in steps of 40°), then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 5 × 3^x:",
-        "x: 0, 1, 2, 3, 4",
-        "y: 5, 15, 45, 135, 405",
-        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+        "Table of values for y = -tan(x°):",
+        "x: -80, -40, 0, 40, 80",
+        "y: 5.67, 0.84, -0.0, -0.84, -5.67",
+        "Plot each (x, y) point and join them with a single smooth curve - y = -tan(x°) repeats the same shape every 180°, and rises/falls very steeply near the edges of this window (approaching, but never reaching, a vertical asymptote just outside it)."
       ],
-      "final_answer": "Exponential curve: y = 5 × 3^x",
+      "final_answer": "y = -tan(x°)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 5 × 3^x:",
+          "description": "Table of values for y = -tan(x°):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: 0, 1, 2, 3, 4",
+          "description": "x: -80, -40, 0, 40, 80",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 5, 15, 45, 135, 405",
+          "description": "y: 5.67, 0.84, -0.0, -0.84, -5.67",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -tan(x°) repeats the same shape every 180°, and rises/falls very steeply near the edges of this window (approaching, but never reaching, a vertical asymptote just outside it).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Exponential curve: y = 5 × 3^x oe",
+          "description": "y = -tan(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "exponential",
-          "a": 5,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 445.5,
+          "kind": "trigonometric",
+          "fn": "tan",
+          "sign": -1,
+          "x_min": -80,
+          "x_max": 80,
+          "y_min": -7,
+          "y_max": 7,
+          "x_label": "x (degrees)",
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "exponential",
-          "a": 5,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 445.5,
+          "kind": "trigonometric",
+          "fn": "tan",
+          "sign": -1,
+          "x_min": -80,
+          "x_max": 80,
+          "y_min": -7,
+          "y_max": 7,
+          "x_label": "x (degrees)",
           "table_points": [
             [
+              -80,
+              5.67
+            ],
+            [
+              -40,
+              0.84
+            ],
+            [
               0,
-              5
+              -0.0
             ],
             [
-              1,
-              15
+              40,
+              -0.84
             ],
             [
-              2,
-              45
-            ],
-            [
-              3,
-              135
-            ],
-            [
-              4,
-              405
+              80,
+              -5.67
             ]
           ]
         }
@@ -557,46 +580,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_H",
-      "prompt": "Shape A and Shape B are similar. The area of shape B is 90 cm². Find the area of shape A.",
+      "topic_id": "algebraic_fractions_add_subtract_H",
+      "prompt": "Simplify \\frac{7}{x + 5} - \\frac{3}{x - 5}, giving your answer as a single fraction.",
       "solution_steps": [
-        "Linear scale factor = 3 ÷ 4 = 3/4",
-        "Area scale factor = (3/4)^2 = 9/16",
-        "Area of A = 90 ÷ 9/16 = 160 cm²"
+        "Write both fractions over the common denominator (x + 5)(x - 5):",
+        "\\frac{7}{x + 5} - \\frac{3}{x - 5} = \\frac{7(x - 5) - 3(x + 5)}{(x + 5)(x - 5)}",
+        "Expand the numerator: 7(x - 5) - 3(x + 5) = 4x - 50",
+        "= \\frac{4x - 50}{(x + 5)(x - 5)}"
       ],
-      "final_answer": "160 cm²",
-      "marks": 4,
+      "final_answer": "\\frac{4x - 50}{(x + 5)(x - 5)}",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear scale factor = 3 ÷ 4 = 3/4",
+          "description": "Write both fractions over the common denominator (x + 5)(x - 5):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area scale factor = (3/4)^2 = 9/16",
+          "description": "\\frac{7}{x + 5} - \\frac{3}{x - 5} = \\frac{7(x - 5) - 3(x + 5)}{(x + 5)(x - 5)}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of A = 90 ÷ 9/16 = 160 cm²",
+          "description": "Expand the numerator: 7(x - 5) - 3(x + 5) = 4x - 50",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= \\frac{4x - 50}{(x + 5)(x - 5)}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "160 cm² oe",
+          "description": "\\frac{4x - 50}{(x + 5)(x - 5)} oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "shape_kind": "right_triangle",
-          "orientation": "br",
-          "a_width_label": "4 cm",
-          "b_width_label": "3 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -629,28 +650,64 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage_H",
-      "prompt": "After a 24% decrease, an item costs £234.08. Find the original price.",
+      "topic_id": "density_H",
+      "prompt": "The piece of wood below has a density of 12 g/cm³. Find its mass.",
       "solution_steps": [
-        "Convert 24% to a multiplier: 0.76 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 234.08 ÷ 0.76 = 308"
+        "volume = length × width × height = 8 × 3 × 8 = 192 cm³",
+        "mass = density × volume = 12 × 192 = 2304 g"
       ],
-      "final_answer": "£308",
+      "final_answer": "2304 g",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 24% to a multiplier: 0.76 (original × multiplier = new value)",
+          "description": "volume = length × width × height = 8 × 3 × 8 = 192 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 234.08 ÷ 0.76 = 308",
+          "description": "mass = density × volume = 12 × 192 = 2304 g",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£308 oe",
+          "description": "2304 g oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "8 cm",
+          "height_label": "8 cm",
+          "length_label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage_H",
+      "prompt": "A price of £28 decreases by 24%, then increases by 17.5%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 28 × 0.76 = 21.28",
+        "After the second change: 21.28 × 1.18 = 25.00"
+      ],
+      "final_answer": "£25.00",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 28 × 0.76 = 21.28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 21.28 × 1.18 = 25.00",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£25.00 oe",
           "marks": 1
         }
       ],
@@ -693,56 +750,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_subtract_compound_H",
-      "prompt": "Find the shaded area.",
+      "topic_id": "percentage_increase_decrease_calculator_H",
+      "prompt": "Using a calculator, increase £798.85 by 22.5%. Give your answer to 2 decimal places.",
       "solution_steps": [
-        "Area of large rectangle = 22 × 19 = 418 cm²",
-        "Area of rectangular hole = 6 × 16 = 96 cm²",
-        "Shaded area = 418 - 96 = 322 cm²"
+        "Convert 22.5% to a multiplier: 1.225",
+        "Multiply: £798.85 × 1.225 = £978.59 (calculator, 2 d.p.)"
       ],
-      "final_answer": "322 cm²",
-      "marks": 4,
+      "final_answer": "£978.59",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of large rectangle = 22 × 19 = 418 cm²",
+          "description": "Convert 22.5% to a multiplier: 1.225",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 6 × 16 = 96 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Shaded area = 418 - 96 = 322 cm²",
+          "description": "Multiply: £798.85 × 1.225 = £978.59 (calculator, 2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "322 cm² oe",
+          "description": "£978.59 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "l_shape",
-        "params": {
-          "outer_w": 22,
-          "outer_h": 19,
-          "inner_w": 6,
-          "inner_h": 16,
-          "notch": "center",
-          "shade_frame": true,
-          "outer_labels": [
-            "22 cm",
-            "19 cm"
-          ],
-          "inner_labels": [
-            "6 cm",
-            "16 cm"
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -793,42 +826,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_around_point_H",
-      "prompt": "The angles 109°, 114° and (5x + 77)° are angles around a point. Find x.",
+      "topic_id": "angles_straight_line_H",
+      "prompt": "The angles 66° and (5x + 14)° lie on a straight line. Find x.",
       "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "5x + 77 = 137",
-        "Subtract 77 from both sides:",
-        "5x = 60",
+        "Angles on a straight line sum to 180°.",
+        "5x + 14 = 114",
+        "Subtract 14 from both sides:",
+        "5x = 100",
         "Divide both sides by 5:",
-        "x = 12"
+        "x = 20"
       ],
-      "final_answer": "12",
+      "final_answer": "20",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles around a point sum to 360°.",
+          "description": "Angles on a straight line sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 77 = 137",
+          "description": "5x + 14 = 114",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 77 from both sides:",
+          "description": "Subtract 14 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x = 60 Divide both sides by 5: x = 12",
+          "description": "5x = 100 Divide both sides by 5: x = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
@@ -836,56 +869,47 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            109,
-            114,
-            137
+            66,
+            114
           ],
           "labels": [
-            "109°",
-            "114°",
-            "(5x + 77)°"
+            "66°",
+            "(5x + 14)°"
           ],
-          "around_point": true
+          "around_point": false
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_3d_surface_area_H",
-      "prompt": "A silo-shaped solid is made from a cuboid with a square base of side 14 cm and height 13 cm, with a square-based pyramid of height 2 cm on top (sharing the same square base). Find the total surface area, correct to 3 significant figures.",
+      "topic_id": "compound_3d_volume_H",
+      "prompt": "A silo-shaped solid is made from a cuboid with a square base of side 8 cm and height 10 cm, with a square-based pyramid of height 2 cm on top (sharing the same square base). Find the total volume.",
       "solution_steps": [
-        "Slant height of a triangular face l = √(roof height² + (base ÷ 2)²) = √(2² + (14 ÷ 2)²) ≈ 7.28 cm",
-        "Cuboid's 4 vertical faces = 4 × base × height = 4 × 14 × 13",
-        "Cuboid's base = base² = 14² (the top is covered by the pyramid, and the pyramid's own base is the same internal square, so neither is exposed)",
-        "Pyramid's 4 triangular faces = 2 × base × l = 2 × 14 × 7.28",
-        "Total surface area ≈ 1130 cm² (3 s.f.)"
+        "Cuboid volume = base² × height = 8² × 10 = 640 cm³",
+        "Pyramid volume = (1/3) × base² × height = (1/3) × 8² × 2 = 128/3 cm³",
+        "Total volume = 640 + 128/3 = 2048/3 cm³"
       ],
-      "final_answer": "1130 cm²",
-      "marks": 5,
+      "final_answer": "2048/3 cm³",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Slant height of a triangular face l = √(roof height² + (base ÷ 2)²) = √(2² + (14 ÷ 2)²) ≈ 7.28 cm",
+          "description": "Cuboid volume = base² × height = 8² × 10 = 640 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cuboid's 4 vertical faces = 4 × base × height = 4 × 14 × 13",
+          "description": "Pyramid volume = (1/3) × base² × height = (1/3) × 8² × 2 = 128/3 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cuboid's base = base² = 14² (the top is covered by the pyramid, and the pyramid's own base is the same internal square, so neither is exposed)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Pyramid's 4 triangular faces = 2 × base × l = 2 × 14 × 7.28 Total surface area ≈ 1130 cm² (3 s.f.)",
+          "description": "Total volume = 640 + 128/3 = 2048/3 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1130 cm² oe",
+          "description": "2048/3 cm³ oe",
           "marks": 1
         }
       ],
@@ -893,33 +917,45 @@
         "kind": "compound_3d",
         "params": {
           "variant": "cuboid_pyramid",
-          "base_label": "14 cm",
+          "base_label": "8 cm",
           "roof_height_label": "2 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting_H",
-      "prompt": "A shop sells 2 different shirts, 6 different pairs of trousers and 6 different pairs of shoes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "volume_surface_area_sphere_H",
+      "prompt": "Here is a sphere. Find its total surface area, correct to 3 significant figures.",
       "solution_steps": [
-        "Total combinations = 2 × 6 × 6 = 72"
+        "SA = 4 × π × r² = 4 × π × 5²",
+        "= 314 cm² (3 s.f.)"
       ],
-      "final_answer": "72",
-      "marks": 2,
+      "final_answer": "314 cm²",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 2 × 6 × 6 = 72",
+          "description": "SA = 4 × π × r² = 4 × π × 5²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 314 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "72 oe",
+          "description": "314 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "sphere",
+        "params": {
+          "radius_label": "5 cm",
+          "hemisphere": false
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -952,38 +988,73 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_H",
-      "prompt": "Simplify 2x^5 ÷ x^-4",
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 2 different shirts, 6 different pairs of trousers and 6 different pairs of shoes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
-        "2x^5 ÷ x^-4 = (2÷1) x^(5-(-4))",
-        "= 2x^9"
+        "Total combinations = 2 × 6 × 6 = 72"
       ],
-      "final_answer": "2x^9",
-      "marks": 4,
+      "final_answer": "72",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x^5 ÷ x^-4 = (2÷1) x^(5-(-4))",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2x^9",
+          "description": "Total combinations = 2 × 6 × 6 = 72",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2x^9 oe",
+          "description": "72 oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "histogram_interpret_H",
+      "prompt": "The histogram shows the times (in minutes) taken to complete a puzzle. Estimate the total frequency across all classes.",
+      "solution_steps": [
+        "Frequencies: 20, 20, 20, 4.",
+        "Total = 20 + 20 + 20 + 4 = 64."
+      ],
+      "final_answer": "64",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Frequencies: 20, 20, 20, 4.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total = 20 + 20 + 20 + 4 = 64.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "64 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "histogram",
+        "params": {
+          "boundaries": [
+            0,
+            20,
+            30,
+            50,
+            60
+          ],
+          "frequency_densities": [
+            1.0,
+            2.0,
+            1.0,
+            0.4
+          ],
+          "x_label": "Time (minutes)"
+        }
+      },
       "solution_diagram": null
     }
   ]

@@ -33,7 +33,11 @@ def test_interpreting_generators_show_a_tree_diagram_on_the_question():
         q_dep = tree_diagrams.generate_tree_diagram_dependent(Tier.HIGHER, rng)
         assert q_indep.diagram is not None and q_indep.diagram.kind == "tree_diagram"
         assert q_dep.diagram is not None and q_dep.diagram.kind == "tree_diagram"
-        assert "leaf_probs" in q_dep.diagram.params
+        # The combined/leaf probabilities are deliberately NOT shown on the
+        # diagram for an interpreting question - the student must compute
+        # them; only the given branch probabilities appear.
+        assert "leaf_probs" not in q_indep.diagram.params
+        assert "leaf_probs" not in q_dep.diagram.params
 
 
 def test_drawing_generator_has_no_question_diagram_but_a_solution_diagram():
@@ -77,9 +81,10 @@ def test_mixed_generator_exercises_both_branches():
         assert q.topic_id == "tree_diagram_mixed_H"
         assert q.tier == Tier.HIGHER
         assert q.diagram is not None and q.diagram.kind == "tree_diagram"
-        if "leaf_probs" in q.diagram.params:
+        assert "leaf_probs" not in q.diagram.params
+        if q.dedup_key.startswith("mixed:tree_dep:"):
             dependent_like += 1
-        else:
+        elif q.dedup_key.startswith("mixed:tree_indep:"):
             independent_like += 1
     assert independent_like > 0
     assert dependent_like > 0
@@ -142,7 +147,7 @@ def test_modelled_example_tree_diagram_dependent_produces_verified_examples():
         assert len(example.teaching_steps) >= 3
         assert example.final_answer
         assert example.diagram is not None and example.diagram.kind == "tree_diagram"
-        assert "leaf_probs" in example.diagram.params
+        assert "leaf_probs" not in example.diagram.params
 
 
 def test_modelled_example_tree_diagram_drawing_produces_verified_examples():

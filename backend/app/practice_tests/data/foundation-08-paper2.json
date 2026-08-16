@@ -351,86 +351,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph_F",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "topic_id": "parallel_lines_equation_F",
+      "prompt": "A line is parallel to y = x - 3 and passes through the point (2, -10). Find the equation of the line.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{2 - -16}{2 - -4} = 3",
-        "Using y = mx + c with the point (-4, -16): -16 = 3×(-4) + c, so c = -4",
-        "Equation of the line: y = 3x - 4"
+        "Parallel lines have the same gradient, so m = 1.",
+        "Substitute (2, -10) into y = 1x + c: -10 = 1×(2) + c, so c = -12",
+        "Equation of the line: y = x - 12"
       ],
-      "final_answer": "y = 3x - 4",
+      "final_answer": "y = x - 12",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = \\frac{2 - -16}{2 - -4} = 3",
+          "description": "Parallel lines have the same gradient, so m = 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using y = mx + c with the point (-4, -16): -16 = 3×(-4) + c, so c = -4",
+          "description": "Substitute (2, -10) into y = 1x + c: -10 = 1×(2) + c, so c = -12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = 3x - 4",
+          "description": "Equation of the line: y = x - 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 3x - 4 oe",
+          "description": "y = x - 12 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 3,
-          "c": -4,
-          "x_min": -5,
-          "x_max": 3,
-          "y_min": -20,
-          "y_max": 6
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_common_coefficient_F",
-      "prompt": "Solve the simultaneous equations: 6x + 4y = -46 and 2x + 4y = -34",
+      "topic_id": "simultaneous_forming_and_solving_F",
+      "prompt": "2 tickets and 2 programmes cost £1.90 in total. 3 tickets and 4 programmes cost £3.51 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
       "solution_steps": [
-        "6x + 4y = -46  (1)",
-        "2x + 4y = -34  (2)",
-        "Subtract the equations to eliminate y: 4x = -12, so x = -3",
-        "Substitute x = -3 into (1): 4y = -28, so y = -7"
+        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+        "2x + 2y = 190  (1)",
+        "3x + 4y = 351  (2)",
+        "Solving simultaneously: x = 29, y = 66"
       ],
-      "final_answer": "x = -3, y = -7",
+      "final_answer": "ticket = £0.29, programme = £0.66",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x + 4y = -46  (1)",
+          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 4y = -34  (2)",
+          "description": "2x + 2y = 190  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the equations to eliminate y: 4x = -12, so x = -3",
+          "description": "3x + 4y = 351  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute x = -3 into (1): 4y = -28, so y = -7",
+          "description": "Solving simultaneously: x = 29, y = 66",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -3, y = -7 oe",
+          "description": "ticket = £0.29, programme = £0.66 oe",
           "marks": 1
         }
       ],
@@ -514,112 +503,106 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractional_equations_F",
-      "prompt": "Solve the following equation.\n\\frac{x}{5} - 9 = -3",
+      "topic_id": "linear_brackets_F",
+      "prompt": "Solve: 4(3x + 5) = 80",
       "solution_steps": [
-        "Add 9 to both sides: \\frac{x}{5} = 6",
-        "Multiply both sides by 5: x = 30"
+        "Expand the bracket: 4(3x + 5) = 12x + 20",
+        "12x + 20 = 80",
+        "Subtract 20 from both sides:",
+        "12x = 60",
+        "Divide both sides by 12:",
+        "x = 5"
       ],
-      "final_answer": "x = 30",
+      "final_answer": "5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 4(3x + 5) = 12x + 20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12x + 20 = 80",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 20 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12x = 60 Divide both sides by 12: x = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_single_bracket_F",
+      "prompt": "Expand: -6(6x + 7)",
+      "solution_steps": [
+        "Multiply -6 by 6x: -36x",
+        "Multiply -6 by 7: -42",
+        "Combine: -36x - 42"
+      ],
+      "final_answer": "-36x - 42",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply -6 by 6x: -36x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply -6 by 7: -42",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: -36x - 42",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-36x - 42 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_1_to_n_F",
+      "prompt": "Write the ratio 4:10 in the form \\plain{n}:1.",
+      "solution_steps": [
+        "Divide both parts of the ratio by 10 (the second part) so the second part becomes 1.",
+        "4 ÷ 10 ≈ 0.40, 10 ÷ 10 = 1"
+      ],
+      "final_answer": "0.40 : 1 (to 2 d.p.)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add 9 to both sides: \\frac{x}{5} = 6",
+          "description": "Divide both parts of the ratio by 10 (the second part) so the second part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply both sides by 5: x = 30",
+          "description": "4 ÷ 10 ≈ 0.40, 10 ÷ 10 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 30 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_double_brackets_F",
-      "prompt": "Expand and simplify: (4x + 4)(x + 2)",
-      "solution_steps": [
-        "First: 4x × 1x = 4x^2",
-        "Outer: 4x × 2 = 8x",
-        "Inner: 4 × 1x = 4x",
-        "Last: 4 × 2 = 8",
-        "Combine like terms: 4x^2 + 12x + 8"
-      ],
-      "final_answer": "4x^2 + 12x + 8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First: 4x × 1x = 4x^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Outer: 4x × 2 = 8x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Inner: 4 × 1x = 4x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 4 × 2 = 8 Combine like terms: 4x^2 + 12x + 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4x^2 + 12x + 8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "functions_evaluate_F",
-      "prompt": "f(x) = -6x + 6. Find the value of x for which f(x) = -4.",
-      "solution_steps": [
-        "-6x + 6 = -4",
-        "Subtract 6 from both sides:",
-        "-6x = -10",
-        "Divide both sides by -6:",
-        "x = 5/3"
-      ],
-      "final_answer": "5/3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "-6x + 6 = -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 6 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-6x = -10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by -6: x = 5/3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5/3 oe",
+          "description": "0.40 : 1 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -685,44 +668,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_F",
-      "prompt": "a : b = 1 : 2.\nb - a = 16.\nFind a and b.",
+      "topic_id": "ratio_shape_similar_F",
+      "prompt": "Shape A and Shape B are similar. Find the length of side x.",
       "solution_steps": [
-        "Difference in parts = 2 - 1 = 1 parts",
-        "Value of one part = 16 ÷ 1 = 16",
-        "a = 1 × 16 = 16",
-        "b = 2 × 16 = 32"
+        "Scale factor = 1 ÷ 4 = 1/4",
+        "Corresponding length = 12 × 1/4 = 3"
       ],
-      "final_answer": "a = 16, b = 32",
-      "marks": 5,
+      "final_answer": "3 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 2 - 1 = 1 parts",
+          "description": "Scale factor = 1 ÷ 4 = 1/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 16 ÷ 1 = 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "a = 1 × 16 = 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "b = 2 × 16 = 32",
+          "description": "Corresponding length = 12 × 1/4 = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "a = 16, b = 32 oe",
+          "description": "3 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "shape_kind": "right_triangle",
+          "orientation": "tr",
+          "a_width_label": "4 cm",
+          "a_height_label": "12 cm",
+          "b_width_label": "1 cm",
+          "b_height_label": "x"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -755,32 +736,33 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_F",
-      "prompt": "A sculpture has a mass of 4087 kg and a volume of 19 m³. Find its density, correct to 2 decimal places.",
+      "topic_id": "volume_surface_area_cuboid_F",
+      "prompt": "Here is a cuboid. Find its volume.",
       "solution_steps": [
-        "density = mass ÷ volume",
-        "density = 4087 ÷ 19 = 215.11 kg/m³ (2 d.p.)"
+        "Volume = length × width × height = 3 × 10 × 4 = 120 cm³"
       ],
-      "final_answer": "215.11 kg/m³",
-      "marks": 3,
+      "final_answer": "120 cm³",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "density = mass ÷ volume",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "density = 4087 ÷ 19 = 215.11 kg/m³ (2 d.p.)",
+          "description": "Volume = length × width × height = 3 × 10 × 4 = 120 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "215.11 kg/m³ oe",
+          "description": "120 cm³ oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "10 cm",
+          "height_label": "4 cm",
+          "length_label": "3 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -880,7 +862,7 @@
     },
     {
       "topic_id": "volume_surface_area_cube_F",
-      "prompt": "A cube has side length 12 cm. Find its volume.",
+      "prompt": "Here is a cube. Find its volume.",
       "solution_steps": [
         "Volume = side³ = 12³ = 1728 cm³"
       ],
@@ -910,57 +892,66 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean_F",
-      "prompt": "Find the mean of this data set: 30, 5, 13, 11, 23, 22.",
+      "topic_id": "angles_exterior_F",
+      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 49° and 44°. Find x.",
       "solution_steps": [
-        "Mean = sum ÷ count = (30 + 5 + 13 + 11 + 23 + 22) ÷ 6 = 104 ÷ 6 = 52/3"
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "x = 49 + 44 = 93"
       ],
-      "final_answer": "52/3",
-      "marks": 2,
+      "final_answer": "93",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Mean = sum ÷ count = (30 + 5 + 13 + 11 + 23 + 22) ÷ 6 = 104 ÷ 6 = 52/3",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 49 + 44 = 93",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "52/3 oe",
+          "description": "93 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "exterior_triangle",
+        "params": {
+          "interior1_label": "49°",
+          "interior2_label": "44°",
+          "exterior_label": "x",
+          "interior1_value": 49,
+          "shape_variant": 1
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_F",
-      "prompt": "Enlarge shape A by scale factor 2, centre (11, 1).",
+      "topic_id": "transform_enlarge_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "The centre of enlargement is (11, 1) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (3, -3) is a displacement of (-8, -4) from the centre, so it maps to (11, 1) + 2 × (-8, -4) = (-5, -7).",
-        "Repeat for every vertex. The image, shape B, has vertices (-5, -7), (3, -7), (1, 1), (-7, -1)."
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For mapping shape A onto shape B, the lines meet at (-4, -3) and the scale factor works out as 1/3."
       ],
-      "final_answer": "Image (shape B): (-5, -7), (3, -7), (1, 1), (-7, -1)",
-      "marks": 4,
+      "final_answer": "Enlargement, scale factor 1/3, centre (-4, -3)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (11, 1) and the scale factor is 2.",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (3, -3) is a displacement of (-8, -4) from the centre, so it maps to (11, 1) + 2 × (-8, -4) = (-5, -7).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex. The image, shape B, has vertices (-5, -7), (3, -7), (1, 1), (-7, -1).",
+          "description": "For mapping shape A onto shape B, the lines meet at (-4, -3) and the scale factor works out as 1/3.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Image (shape B): (-5, -7), (3, -7), (1, 1), (-7, -1) oe",
+          "description": "Enlargement, scale factor 1/3, centre (-4, -3) oe",
           "marks": 1
         }
       ],
@@ -973,54 +964,20 @@
           "y_max": 8,
           "original_vertices": [
             [
-              3,
+              -4,
               -3
             ],
             [
-              7,
+              2,
               -3
-            ],
-            [
-              6,
-              1
             ],
             [
               2,
               0
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A"
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              3,
-              -3
             ],
             [
-              7,
-              -3
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              2,
-              0
+              -4,
+              3
             ]
           ],
           "original_labels": [
@@ -1032,19 +989,19 @@
           "original_shape_label": "A",
           "image_vertices": [
             [
-              -5,
-              -7
+              -4,
+              -3
             ],
             [
-              3,
-              -7
+              -2,
+              -3
             ],
             [
-              1,
-              1
+              -2,
+              -2
             ],
             [
-              -7,
+              -4,
               -1
             ]
           ],
@@ -1054,162 +1011,157 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation_F",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {1, 2, 4, 6, 10}, B = {1, 5, 6, 9, 10}. List the elements that are in A, in B, or in both.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {1, 2, 4, 6, 10}",
+        "B = {1, 5, 6, 9, 10}",
+        "Check each element of ξ in turn to see whether it are in A, in B, or in both.",
+        "Elements that are in A, in B, or in both: {1, 2, 4, 5, 6, 9, 10}"
+      ],
+      "final_answer": "{1, 2, 4, 5, 6, 9, 10}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 2, 4, 6, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {1, 5, 6, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Check each element of ξ in turn to see whether it are in A, in B, or in both. Elements that are in A, in B, or in both: {1, 2, 4, 5, 6, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 2, 4, 5, 6, 9, 10} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ"
+        }
+      },
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "2, 4",
+            "b_only": "5, 9",
+            "both": "1, 6, 10",
+            "neither": "3, 7, 8"
+          }
         }
       }
     },
     {
-      "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 3 cm, width 10 cm and height 4 cm. Find its volume.",
+      "topic_id": "probability_expectation_F",
+      "prompt": "A biased coin has P(heads) = 5/10. The coin is flipped 60 times. How many times would you expect to get heads?",
       "solution_steps": [
-        "Volume = length × width × height = 3 × 10 × 4 = 120 cm³"
+        "Expected number of times = probability × number of trials = 5/10 × 60",
+        "= 30"
       ],
-      "final_answer": "120 cm³",
+      "final_answer": "30",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expected number of times = probability × number of trials = 5/10 × 60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 30",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "30 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_range_F",
+      "prompt": "Find the range of this data set: 22, 12, 9, 2, 28, 8.",
+      "solution_steps": [
+        "Range = largest - smallest = 28 - 2 = 26"
+      ],
+      "final_answer": "26",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = length × width × height = 3 × 10 × 4 = 120 cm³",
+          "description": "Range = largest - smallest = 28 - 2 = 26",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "120 cm³ oe",
+          "description": "26 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "10 cm",
-          "height_label": "4 cm",
-          "length_label": "3 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 60 cm and 63 cm. Find the length of x.",
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "1/2 = \\frac{?}{6}. Find the missing number.",
       "solution_steps": [
-        "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
-        "c = √7569 = 87"
+        "Find the scale factor between the denominators: 6 ÷ 2 = 3",
+        "Multiply the numerator by the same scale factor: 1 × 3 = 3"
       ],
-      "final_answer": "87 cm",
+      "final_answer": "3",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
+          "description": "Find the scale factor between the denominators: 6 ÷ 2 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √7569 = 87",
+          "description": "Multiply the numerator by the same scale factor: 1 × 3 = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "87 cm oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "60 cm",
-          "leg2_label": "63 cm",
-          "hyp_label": "x"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_listing_outcomes_F",
-      "prompt": "A coin is flipped and a 4-sided spinner (labelled P, G, B, R) is spun. List all the possible outcomes.",
-      "solution_steps": [
-        "There are 2 possible outcomes for the first event and 4 for the second, so there are 2 × 4 = 8 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: HP, HG, HB, HR, TP, TG, TB, TR"
-      ],
-      "final_answer": "HP, HG, HB, HR, TP, TG, TB, TR",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "There are 2 possible outcomes for the first event and 4 for the second, so there are 2 × 4 = 8 possible combined outcomes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: HP, HG, HB, HR, TP, TG, TB, TR",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "HP, HG, HB, HR, TP, TG, TB, TR oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "spinner",
-        "params": {
-          "sectors": [
-            "P",
-            "G",
-            "B",
-            "R"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) ASA  B) RHS  C) SSS  D) SAS",
-      "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Right angle-Hypotenuse-Side (RHS) pattern.",
-        "So the two triangles are congruent by Right angle-Hypotenuse-Side (RHS)."
-      ],
-      "final_answer": "B) RHS",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "B) RHS (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "right_angle_1": 0,
-          "right_angle_2": 0,
-          "side_labels_1": [
-            [
-              1,
-              2,
-              "13 cm"
-            ],
-            [
-              0,
-              1,
-              "5 cm"
-            ]
-          ],
-          "side_labels_2": [
-            [
-              1,
-              2,
-              "13 cm"
-            ],
-            [
-              0,
-              1,
-              "5 cm"
-            ]
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

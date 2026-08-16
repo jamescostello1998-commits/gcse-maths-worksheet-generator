@@ -7,28 +7,40 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "prime_factors_H",
-      "prompt": "Write 651 as a product of its prime factors, giving your answer in index form.",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
+      "prompt": "Using prime factorisation, find the HCF of 120 and 45.",
       "solution_steps": [
-        "Divide 651 repeatedly by the smallest prime that fits: 3 × 7 × 31",
-        "Write repeated factors using index notation: 651 = 3 × 7 × 31"
+        "120 = 2^3 × 3 × 5",
+        "45 = 3^2 × 5",
+        "HCF: take the lowest power of each prime that appears in both numbers",
+        "HCF = 15"
       ],
-      "final_answer": "3 × 7 × 31",
-      "marks": 3,
+      "final_answer": "15",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 651 repeatedly by the smallest prime that fits: 3 × 7 × 31",
+          "description": "120 = 2^3 × 3 × 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 651 = 3 × 7 × 31",
+          "description": "45 = 3^2 × 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF: take the lowest power of each prime that appears in both numbers",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 × 7 × 31 oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],
@@ -135,28 +147,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_H",
-      "prompt": "Fully simplify √150, giving your answer in the form a√b.",
+      "topic_id": "surds_multiply_divide_H",
+      "prompt": "Work out √16 ÷ √4, giving your answer as an integer.",
       "solution_steps": [
-        "Find the largest square factor of 150: 5^2 × 6 = 150",
-        "√150 = √(5^2 × 6) = 5√6"
+        "√16 ÷ √4 = √(16/4) = √4",
+        "√4 = 2"
       ],
-      "final_answer": "5√6",
+      "final_answer": "2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 150: 5^2 × 6 = 150",
+          "description": "√16 ÷ √4 = √(16/4) = √4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√150 = √(5^2 × 6) = 5√6",
+          "description": "√4 = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5√6 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -199,40 +211,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors_H",
-      "prompt": "Using prime factorisation, find the HCF of 120 and 45.",
+      "topic_id": "powers_H",
+      "prompt": "Work out 25^(3/2).",
       "solution_steps": [
-        "120 = 2^3 × 3 × 5",
-        "45 = 3^2 × 5",
-        "HCF: take the lowest power of each prime that appears in both numbers",
-        "HCF = 15"
+        "25^(3/2) = (25^(1/2))^3",
+        "25^(1/2) = 5",
+        "5^3 = 125"
       ],
-      "final_answer": "15",
-      "marks": 5,
+      "final_answer": "125",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "120 = 2^3 × 3 × 5",
+          "description": "25^(3/2) = (25^(1/2))^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "45 = 3^2 × 5",
+          "description": "25^(1/2) = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "HCF: take the lowest power of each prime that appears in both numbers",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "HCF = 15",
+          "description": "5^3 = 125",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "125 oe",
           "marks": 1
         }
       ],
@@ -279,6 +285,37 @@
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "graph_transformations_H",
+      "prompt": "The graph of y = f(x) undergoes a reflection in the y-axis. Write down the equation of the transformed graph in terms of f(x).",
+      "solution_steps": [
+        "y = f(-x) corresponds to a reflection in the y-axis."
+      ],
+      "final_answer": "y = f(-x)",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = f(-x) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "reflect_y",
+          "shift": 0,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(-x)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -337,34 +374,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "perpendicular_lines_equation_H",
-      "prompt": "A line is perpendicular to y = 5x and passes through the point (1, -2). Find the equation of the line.",
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 6 different starters, 3 different main courses and 5 different desserts. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × 5 = -1, so m = -1/5",
-        "Substitute (1, -2) into y = -1/5x + c: -2 = -1/5×(1) + c, so c = -9/5",
-        "Equation of the line: y = -1/5x - 9/5"
+        "Total combinations = 6 × 3 × 5 = 90"
       ],
-      "final_answer": "y = -1/5x - 9/5",
-      "marks": 4,
+      "final_answer": "90",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × 5 = -1, so m = -1/5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (1, -2) into y = -1/5x + c: -2 = -1/5×(1) + c, so c = -9/5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = -1/5x - 9/5",
+          "description": "Total combinations = 6 × 3 × 5 = 90",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -1/5x - 9/5 oe",
+          "description": "90 oe",
           "marks": 1
         }
       ],
@@ -372,77 +397,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_H",
-      "prompt": "In the triangle shown, find the length of x, correct to 3 significant figures.",
+      "topic_id": "expand_triple_brackets_H",
+      "prompt": "Expand and simplify: (3x - 3)(4x + 1)(3x - 3)",
       "solution_steps": [
-        "We know the opposite and want the hypotenuse, so use sin.",
-        "x = 24 ÷ sin(73°) = 25.1 (3 s.f.)"
+        "First expand two of the brackets: (3x - 3)(4x + 1) = 12x^2 - 9x - 3",
+        "Multiply the result by (3x - 3) and collect like terms",
+        "= 36x^3 - 63x^2 + 18x + 9"
       ],
-      "final_answer": "25.1 cm",
-      "marks": 3,
+      "final_answer": "36x^3 - 63x^2 + 18x + 9",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "We know the opposite and want the hypotenuse, so use sin.",
+          "description": "First expand two of the brackets: (3x - 3)(4x + 1) = 12x^2 - 9x - 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 24 ÷ sin(73°) = 25.1 (3 s.f.)",
+          "description": "Multiply the result by (3x - 3) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 36x^3 - 63x^2 + 18x + 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25.1 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": null,
-          "opposite_label": "24 cm",
-          "hyp_label": "x cm",
-          "angle_label": "73°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "substitution_rearrange_H",
-      "prompt": "v^2 = u^2 + 2as. Make s the subject of the formula, then find the value of s when v = 3, u = 1 and a = 2.",
-      "solution_steps": [
-        "v^2 = u^2 + 2as",
-        "Rearrange to make s the subject: s = \\frac{v^2 - u^2}{2a}",
-        "Substitute v = 3, u = 1 and a = 2: s = \\frac{3^2 - 1^2}{2 × 2}",
-        "s = 8/4 = 2"
-      ],
-      "final_answer": "s = 2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "v^2 = u^2 + 2as",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange to make s the subject: s = \\frac{v^2 - u^2}{2a}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute v = 3, u = 1 and a = 2: s = \\frac{3^2 - 1^2}{2 × 2}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "s = 8/4 = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "s = 2 oe",
+          "description": "36x^3 - 63x^2 + 18x + 9 oe",
           "marks": 1
         }
       ],
@@ -546,42 +528,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_H",
-      "prompt": "s : t : u = 6 : 2 : 3.\ns - t = 36.\nFind s, t and u, and their total.",
+      "topic_id": "functions_composite_inverse_H",
+      "prompt": "f(x) = 6x - 6 and g(x) = -6x - 4. Find gf(x).",
       "solution_steps": [
-        "Difference in parts = 6 - 2 = 4 parts",
-        "Value of one part = 36 ÷ 4 = 9",
-        "s = 6 × 9 = 54",
-        "t = 2 × 9 = 18",
-        "u = 3 × 9 = 27",
-        "s + t + u = 54 + 18 + 27 = 99"
+        "gf(x) = g(6x - 6)",
+        "= -6(6x - 6) + -4",
+        "= -36x + 32"
       ],
-      "final_answer": "s = 54, t = 18, u = 27 (total 99)",
-      "marks": 5,
+      "final_answer": "-36x + 32",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 6 - 2 = 4 parts",
+          "description": "gf(x) = g(6x - 6)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 36 ÷ 4 = 9",
+          "description": "= -6(6x - 6) + -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "s = 6 × 9 = 54",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "t = 2 × 9 = 18 u = 3 × 9 = 27 s + t + u = 54 + 18 + 27 = 99",
+          "description": "= -36x + 32",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "s = 54, t = 18, u = 27 (total 99) oe",
+          "description": "-36x + 32 oe",
           "marks": 1
         }
       ],
@@ -688,86 +662,114 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_describe_H",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "topic_id": "density_H",
+      "prompt": "A stone has a mass of 9 kg and a volume of 1850 cm³. Find its density in g/cm³, correct to 2 decimal places.",
       "solution_steps": [
-        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For mapping shape A onto shape B, the lines meet at (2, 0) and the scale factor works out as -1."
+        "Convert mass to grams: 9 kg = 9 × 1000 = 9000 g",
+        "density = mass ÷ volume = 9000 ÷ 1850 = 4.86 g/cm³ (2 d.p.)"
       ],
-      "final_answer": "Enlargement, scale factor -1, centre (2, 0)",
+      "final_answer": "4.86 g/cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+          "description": "Convert mass to grams: 9 kg = 9 × 1000 = 9000 g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For mapping shape A onto shape B, the lines meet at (2, 0) and the scale factor works out as -1.",
+          "description": "density = mass ÷ volume = 9000 ÷ 1850 = 4.86 g/cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Enlargement, scale factor -1, centre (2, 0) oe",
+          "description": "4.86 g/cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_direct_proportion_H",
+      "prompt": "y is directly proportional to x^3. When x = 7, y = 4116. Find the value of y when x = 8.",
+      "solution_steps": [
+        "y = kx^3",
+        "4116 = k × 7^3 = k × 343",
+        "k = 4116 ÷ 343 = 12",
+        "y = 12 × 8^3 = 12 × 512 = 6144"
+      ],
+      "final_answer": "6144",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = kx^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4116 = k × 7^3 = k × 343",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 4116 ÷ 343 = 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 12 × 8^3 = 12 × 512 = 6144",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6144 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_surd_hypotenuse_H",
+      "prompt": "A right-angled triangle has sides 6 cm and 10 cm. Find the exact length of x, giving your answer as a simplified surd.",
+      "solution_steps": [
+        "c² = a² + b² = 6² + 10² = 36 + 100 = 136",
+        "c = √136 = 2√34 cm (exact form)"
+      ],
+      "final_answer": "2√34 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 6² + 10² = 36 + 100 = 136",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √136 = 2√34 cm (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2√34 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "grid_transformation",
+        "kind": "right_triangle",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              2
-            ],
-            [
-              2,
-              2
-            ],
-            [
-              -2,
-              6
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "image_vertices": [
-            [
-              7,
-              -2
-            ],
-            [
-              2,
-              -2
-            ],
-            [
-              6,
-              -6
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            ""
-          ],
-          "image_shape_label": "B",
-          "image_same_color": true
+          "leg1_label": "6 cm",
+          "leg2_label": "10 cm",
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "sine_rule_H",
-      "prompt": "In triangle ABC, angle A = 94°, side a = 20 cm, and side b = 13.7 cm. Find angle B, correct to 1 decimal place.",
+      "prompt": "Find the size of angle B, correct to 1 decimal place.",
       "solution_steps": [
         "Use the sine rule: sin(B) / b = sin(A) / a",
         "sin(B) = (13.7 × sin(94°)) ÷ 20",
@@ -804,228 +806,183 @@
           "side_b_label": "13.7 cm",
           "side_c_label": null,
           "angle_A_label": "94°",
-          "angle_B_label": "x°",
-          "angle_C_label": null
+          "angle_B_label": "",
+          "angle_C_label": null,
+          "show_vertices": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_H",
-      "prompt": "A polygon has 5 sides. 4 of its interior angles are each 119°, and the remaining interior angle is (3x + 7)°. Find x.",
+      "topic_id": "trig_missing_side_H",
+      "prompt": "In the triangle shown, find the length of x, correct to 3 significant figures.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
-        "Sum of the 4 equal angles = 4 × 119 = 476°",
-        "Remaining angle = 540 - 476 = 64°",
-        "3x + 7 = 64",
-        "Subtract 7 from both sides:",
-        "3x = 57",
-        "Divide both sides by 3:",
-        "x = 19"
+        "We know the opposite and want the hypotenuse, so use sin.",
+        "x = 24 ÷ sin(73°) = 25.1 (3 s.f.)"
       ],
-      "final_answer": "19",
-      "marks": 5,
+      "final_answer": "25.1 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
+          "description": "We know the opposite and want the hypotenuse, so use sin.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Sum of the 4 equal angles = 4 × 119 = 476°",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Remaining angle = 540 - 476 = 64°",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 7 = 64 Subtract 7 from both sides: 3x = 57 Divide both sides by 3: x = 19",
+          "description": "x = 24 ÷ sin(73°) = 25.1 (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "19 oe",
+          "description": "25.1 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "trig_triangle",
         "params": {
-          "n_sides": 5,
-          "marked_angle_label": "(3x + 7)°"
+          "adjacent_label": null,
+          "opposite_label": "24 cm",
+          "hyp_label": "x cm",
+          "angle_label": "73°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_3d_H",
-      "prompt": "A cuboid has length 11 cm, width 9 cm and height 9 cm. Find the angle between the diagonal ag (from one corner to the opposite corner) and the base of the cuboid, correct to 1 decimal place.",
+      "topic_id": "compound_3d_volume_H",
+      "prompt": "A silo-shaped solid is made from a cuboid with a square base of side 16 cm and height 7 cm, with a square-based pyramid of height 6 cm on top (sharing the same square base). Find the total volume.",
       "solution_steps": [
-        "First find the diagonal across the base: base diagonal = √(l² + w²) = √(11² + 9²) = 14.213 cm - this is the projection of ag onto the base.",
-        "The angle between ag and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 9 ÷ 14.213.",
-        "angle = tan^-1(9 ÷ 14.213) = 32.3° (1 d.p.)"
+        "Cuboid volume = base² × height = 16² × 7 = 1792 cm³",
+        "Pyramid volume = (1/3) × base² × height = (1/3) × 16² × 6 = 512 cm³",
+        "Total volume = 1792 + 512 = 2304 cm³"
       ],
-      "final_answer": "32.3°",
+      "final_answer": "2304 cm³",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First find the diagonal across the base: base diagonal = √(l² + w²) = √(11² + 9²) = 14.213 cm - this is the projection of ag onto the base.",
+          "description": "Cuboid volume = base² × height = 16² × 7 = 1792 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The angle between ag and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 9 ÷ 14.213.",
+          "description": "Pyramid volume = (1/3) × base² × height = (1/3) × 16² × 6 = 512 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle = tan^-1(9 ÷ 14.213) = 32.3° (1 d.p.)",
+          "description": "Total volume = 1792 + 512 = 2304 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "32.3° oe",
+          "description": "2304 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "compound_3d",
         "params": {
-          "length_label": "11 cm",
-          "width_label": "9 cm",
-          "height_label": "9 cm",
-          "show_diagonal": true,
-          "vertex_labels": [
-            "a",
-            "b",
-            "c",
-            "d",
-            "e",
-            "f",
-            "g",
-            "h"
-          ]
+          "variant": "cuboid_pyramid",
+          "base_label": "16 cm",
+          "roof_height_label": "6 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_algebraic_H",
-      "prompt": "A biased spinner can only land on yellow or red. The probability that it lands on yellow is x, and the probability that it lands on red is 1 - x. Landing on red is 3 times as likely as landing on yellow. The spinner is spun twice. Find the probability that at least one of the two spins lands on yellow.",
+      "topic_id": "area_mixed_compound_H",
+      "prompt": "Find the total area of the following compound shape, correct to 3 significant figures.",
       "solution_steps": [
-        "A biased spinner can only land on yellow or red. The probability that it lands on yellow is x, and the probability that it lands on red is 1 - x. Landing on red is 3 times as likely as landing on yellow. Since the spinner can only land on yellow or red, the two probabilities must sum to 1: x + 3x = 1.",
-        "Solving this equation gives x = 1/4.",
-        "Substituting back: P(yellow) = 1/4, P(red) = 3/4.",
-        "P(at least one of the two spins lands on yellow) = 1 - P(both red) = 1 - 9/16 = 7/16"
+        "Rectangle area = 14 × 7 = 98 cm²",
+        "Semicircular top area = ½ × π × 7² ≈ 77.0 cm²",
+        "Semicircular cut area = ½ × π × 5² ≈ 39.3 cm²",
+        "Total area = 98 + 77.0 - 39.3 ≈ 136 cm² (3 s.f.)"
       ],
-      "final_answer": "7/16",
+      "final_answer": "136 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A biased spinner can only land on yellow or red. The probability that it lands on yellow is x, and the probability that it lands on red is 1 - x. Landing on red is 3 times as likely as landing on yellow. Since the spinner can only land on yellow or red, the two probabilities must sum to 1: x + 3x = 1.",
+          "description": "Rectangle area = 14 × 7 = 98 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving this equation gives x = 1/4.",
+          "description": "Semicircular top area = ½ × π × 7² ≈ 77.0 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substituting back: P(yellow) = 1/4, P(red) = 3/4.",
+          "description": "Semicircular cut area = ½ × π × 5² ≈ 39.3 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(at least one of the two spins lands on yellow) = 1 - P(both red) = 1 - 9/16 = 7/16",
+          "description": "Total area = 98 + 77.0 - 39.3 ≈ 136 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/16 oe",
+          "description": "136 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "tree_diagram",
+        "kind": "mixed_compound",
         "params": {
-          "stage1": [
-            [
-              "Yellow",
-              "x"
-            ],
-            [
-              "Red",
-              "1-x"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Yellow",
-                "x"
-              ],
-              [
-                "Red",
-                "1-x"
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                "x"
-              ],
-              [
-                "Red",
-                "1-x"
-              ]
-            ]
-          ]
+          "width": 14,
+          "height": 7,
+          "top_kind": "semicircle",
+          "cut_kind": "semicircle_notch",
+          "width_label": "14 cm",
+          "height_label": "7 cm",
+          "top_radius": 7,
+          "top_label": "7 cm",
+          "notch_radius": 5,
+          "cut_label": "5 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_notation_H",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6}. The Venn diagram shows sets A and B. List the elements of (A ∪ B)'.",
+      "topic_id": "set_notation_H",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, A = {1, 8, 9}, B = {1, 2, 4, 6, 7, 10}. List the elements of (A ∩ B)'.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6}",
-        "A = {1, 2, 3, 5}, B = {5, 6}",
-        "(A ∪ B)' means the elements in neither A nor B.",
-        "(A ∪ B)' = {4}"
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+        "A = {1, 8, 9}",
+        "B = {1, 2, 4, 6, 7, 10}",
+        "(A ∩ B)' means the complement of A intersect B.",
+        "(A ∩ B)' = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11}"
       ],
-      "final_answer": "{4}",
+      "final_answer": "{2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6}",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {1, 2, 3, 5}, B = {5, 6}",
+          "description": "A = {1, 8, 9}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(A ∪ B)' means the elements in neither A nor B.",
+          "description": "B = {1, 2, 4, 6, 7, 10}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(A ∪ B)' = {4}",
+          "description": "(A ∩ B)' means the complement of A intersect B. (A ∩ B)' = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{4} oe",
+          "description": "{2, 3, 4, 5, 6, 7, 8, 9, 10, 11} oe",
           "marks": 1
         }
       ],
@@ -1036,39 +993,25 @@
             "A",
             "B"
           ],
-          "universal_label": "S",
-          "region_text": {
-            "a_only": "1, 2, 3",
-            "b_only": "6",
-            "both": "5",
-            "neither": "4"
-          }
+          "universal_label": "ξ"
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "product_rule_counting_H",
-      "prompt": "A shop sells 6 different starters, 3 different main courses and 5 different desserts. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
-      "solution_steps": [
-        "Total combinations = 6 × 3 × 5 = 90"
-      ],
-      "final_answer": "90",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total combinations = 6 × 3 × 5 = 90",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "90 oe",
-          "marks": 1
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "8, 9",
+            "b_only": "2, 4, 6, 7, 10",
+            "both": "1",
+            "neither": "3, 5, 11"
+          }
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      }
     }
   ]
 }

@@ -187,52 +187,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SSS  B) RHS  C) SAS  D) ASA",
+      "topic_id": "lcm_by_listing_F",
+      "prompt": "Find the lowest common multiple (LCM) of 13 and 14.",
       "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Right angle-Hypotenuse-Side (RHS) pattern.",
-        "So the two triangles are congruent by Right angle-Hypotenuse-Side (RHS)."
+        "Multiples of 13: 13, 26, 39, 52, 65, ...",
+        "Multiples of 14: 14, 28, 42, 56, 70, ...",
+        "Lowest common multiple = 182"
       ],
-      "final_answer": "B) RHS",
-      "marks": 1,
+      "final_answer": "182",
+      "marks": 4,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "B) RHS (selecting the correct option)",
+          "code": "M1",
+          "description": "Multiples of 13: 13, 26, 39, 52, 65, ...",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiples of 14: 14, 28, 42, 56, 70, ...",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Lowest common multiple = 182",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "182 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "right_angle_1": 0,
-          "right_angle_2": 0,
-          "side_labels_1": [
-            [
-              1,
-              2,
-              "17 cm"
-            ],
-            [
-              0,
-              1,
-              "8 cm"
-            ]
-          ],
-          "side_labels_2": [
-            [
-              1,
-              2,
-              "17 cm"
-            ],
-            [
-              0,
-              1,
-              "8 cm"
-            ]
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -271,20 +257,20 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line_F",
-      "prompt": "Complete a table of values for y = -x + 1 for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_quadratic_F",
+      "prompt": "Complete a table of values for y = -x^2 + 2x + 2 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -x + 1:",
+        "Table of values for y = -x^2 + 2x + 2:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 4, 3, 2, 1, 0, -1, -2",
-        "Plot each (x, y) point and join them with a single ruled straight line."
+        "y: -13, -6, -1, 2, 3, 2, -1",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Straight line: y = -x + 1",
+      "final_answer": "Quadratic curve: y = -x^2 + 2x + 2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x + 1:",
+          "description": "Table of values for y = -x^2 + 2x + 2:",
           "marks": 1
         },
         {
@@ -294,71 +280,73 @@
         },
         {
           "code": "M1",
-          "description": "y: 4, 3, 2, 1, 0, -1, -2",
+          "description": "y: -13, -6, -1, 2, 3, 2, -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = -x + 1 oe",
+          "description": "Quadratic curve: y = -x^2 + 2x + 2 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "linear",
-          "m": -1,
-          "c": 1,
+          "kind": "quadratic",
+          "a": -1,
+          "b": 2,
+          "c": 2,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -3,
-          "y_max": 5,
+          "y_min": -14,
+          "y_max": 4,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "linear",
-          "m": -1,
-          "c": 1,
+          "kind": "quadratic",
+          "a": -1,
+          "b": 2,
+          "c": 2,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -3,
-          "y_max": 5,
+          "y_min": -14,
+          "y_max": 4,
           "table_points": [
             [
               -3,
-              4
+              -13
             ],
             [
               -2,
-              3
+              -6
             ],
             [
               -1,
-              2
-            ],
-            [
-              0,
-              1
-            ],
-            [
-              1,
-              0
-            ],
-            [
-              2,
               -1
             ],
             [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              2
+            ],
+            [
               3,
-              -2
+              -1
             ]
           ]
         }
@@ -394,28 +382,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term_F",
-      "prompt": "Find the next term in the sequence: 18, 12, 6, 0, -6, ...",
+      "topic_id": "sequences_term_to_term_rule_F",
+      "prompt": "Here are the first four terms of a sequence: -8, -13, -18, -23. Describe the term-to-term rule, and find the next term.",
       "solution_steps": [
-        "Subtract 6 each time.",
-        "Next term = -6 - 6 = -12"
+        "Term-to-term rule: subtract 5",
+        "Next term = -28"
       ],
-      "final_answer": "-12",
+      "final_answer": "Rule: subtract 5. Next term = -28",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Subtract 6 each time.",
+          "description": "Term-to-term rule: subtract 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -6 - 6 = -12",
+          "description": "Next term = -28",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-12 oe",
+          "description": "Rule: subtract 5. Next term = -28 oe",
           "marks": 1
         }
       ],
@@ -423,28 +411,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor_F",
-      "prompt": "Factorise: 24x + 8",
+      "topic_id": "expand_double_brackets_no_coefficient_F",
+      "prompt": "Expand and simplify: (x + 7)(x + 1)",
       "solution_steps": [
-        "Find the highest common factor of 24 and 8: 8",
-        "Factorise: 8(3x + 1)"
+        "First: x × x = x^2",
+        "Outer: x × 1 = 1x",
+        "Inner: 7 × x = 7x",
+        "Last: 7 × 1 = 7",
+        "Combine like terms: x^2 + 8x + 7"
       ],
-      "final_answer": "8(3x + 1)",
-      "marks": 3,
+      "final_answer": "x^2 + 8x + 7",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 24 and 8: 8",
+          "description": "First: x × x = x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 8(3x + 1)",
+          "description": "Outer: x × 1 = 1x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 7 × x = 7x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 7 × 1 = 7 Combine like terms: x^2 + 8x + 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8(3x + 1) oe",
+          "description": "x^2 + 8x + 7 oe",
           "marks": 1
         }
       ],
@@ -564,38 +565,58 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = 4x + 1 and passes through the point (-3, 10). Find the equation of the line.",
+      "topic_id": "distance_time_interpret_F",
+      "prompt": "The distance-time graph shows a delivery van's journey. Find the total distance travelled.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = 4.",
-        "Substitute (-3, 10) into y = 4x + c: 10 = 4×(-3) + c, so c = 22",
-        "Equation of the line: y = 4x + 22"
+        "Distance out = 4 km. Distance back = 4 km.",
+        "Total distance travelled = 4 + 4 = 8 km"
       ],
-      "final_answer": "y = 4x + 22",
-      "marks": 4,
+      "final_answer": "8 km",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = 4.",
+          "description": "Distance out = 4 km. Distance back = 4 km.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (-3, 10) into y = 4x + c: 10 = 4×(-3) + c, so c = 22",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 4x + 22",
+          "description": "Total distance travelled = 4 + 4 = 8 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 4x + 22 oe",
+          "description": "8 km oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              30,
+              4
+            ],
+            [
+              70,
+              0
+            ]
+          ],
+          "x_max": 75,
+          "y_max": 6,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -808,7 +829,7 @@
     },
     {
       "topic_id": "construction_triangle_F",
-      "prompt": "Triangle JXN has JX = 14 cm, the angle at J equal to 115°, and the angle at X equal to 26°. Describe, step by step, how to construct triangle JXN using a ruler and a protractor.",
+      "prompt": "Triangle JXN has JX = 14 cm, the angle at J equal to 115°, and the angle at X equal to 26°. Construct triangle JXN using a ruler and a protractor.",
       "solution_steps": [
         "Draw the line segment JX = 14 cm using a ruler.",
         "At J, use a protractor to draw a ray at 115° from the line JX.",
@@ -844,92 +865,208 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_c_label": "14 cm",
+          "angle_A_label": "115°",
+          "angle_B_label": "26°",
+          "show_vertices": true,
+          "vertex_labels": [
+            "J",
+            "X",
+            "N"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length_F",
-      "prompt": "Find the arc length of the following sector, correct to 2 decimal places.",
+      "topic_id": "area_sector_F",
+      "prompt": "Find the area of the following sector, correct to 2 decimal places.",
       "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (62 ÷ 360) × 2 × π × 3",
-        "= 3.25 cm (2 d.p., using a calculator value of π)"
+        "Area = (θ ÷ 360) × π × r² = (108 ÷ 360) × π × 8²",
+        "= 60.32 cm² (2 d.p., using a calculator value of π)"
       ],
-      "final_answer": "3.25 cm",
+      "final_answer": "60.32 cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (62 ÷ 360) × 2 × π × 3",
+          "description": "Area = (θ ÷ 360) × π × r² = (108 ÷ 360) × π × 8²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 3.25 cm (2 d.p., using a calculator value of π)",
+          "description": "= 60.32 cm² (2 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3.25 cm oe",
+          "description": "60.32 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "sector",
         "params": {
-          "angle": 62,
-          "radius_label": "3 cm",
-          "angle_label": "62°"
+          "angle": 108,
+          "radius_label": "8 cm",
+          "angle_label": "108°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_triangular_prism_F",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 3 cm and 4 cm (hypotenuse 5 cm), and length 4 cm. Find its surface area.",
+      "topic_id": "volume_surface_area_cylinder_F",
+      "prompt": "Here is a cylinder. Find its total surface area, correct to 2 decimal places.",
       "solution_steps": [
-        "Area of the two triangular ends = 2 × (1/2) × 3 × 4 = 12 cm²",
-        "Perimeter of the triangular cross-section = 3 + 4 + 5 = 12 cm",
-        "Area of the three rectangular faces = 12 × 4 = 48 cm²",
-        "Surface area = 12 + 48 = 60 cm²"
+        "Surface area = 2πr² + 2πrh = (2 × π × 5²) + (2 × π × 5 × 4)",
+        "= 282.74 cm² (2 d.p., using a calculator value of π)"
       ],
-      "final_answer": "60 cm²",
-      "marks": 5,
+      "final_answer": "282.74 cm²",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of the two triangular ends = 2 × (1/2) × 3 × 4 = 12 cm²",
+          "description": "Surface area = 2πr² + 2πrh = (2 × π × 5²) + (2 × π × 5 × 4)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Perimeter of the triangular cross-section = 3 + 4 + 5 = 12 cm",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Area of the three rectangular faces = 12 × 4 = 48 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Surface area = 12 + 48 = 60 cm²",
+          "description": "= 282.74 cm² (2 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "60 cm² oe",
+          "description": "282.74 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangular_prism",
+        "kind": "cylinder",
         "params": {
-          "base_label": "3 cm",
-          "triangle_height_label": "4 cm",
-          "length_label": "4 cm"
+          "radius_label": "5 cm",
+          "height_label": "4 cm"
         }
       },
       "solution_diagram": null
+    },
+    {
+      "topic_id": "symmetry_lines_F",
+      "prompt": "The diagram shows a square. How many lines of symmetry does it have?",
+      "solution_steps": [
+        "A square has 4 lines of symmetry.",
+        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
+      ],
+      "final_answer": "4 lines of symmetry",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A square has 4 lines of symmetry.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 lines of symmetry oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              2.8284271247461903,
+              2.8284271247461903
+            ],
+            [
+              -2.82842712474619,
+              2.8284271247461903
+            ],
+            [
+              -2.8284271247461907,
+              -2.82842712474619
+            ],
+            [
+              2.8284271247461894,
+              -2.8284271247461907
+            ]
+          ],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              2.8284271247461903,
+              2.8284271247461903
+            ],
+            [
+              -2.82842712474619,
+              2.8284271247461903
+            ],
+            [
+              -2.8284271247461907,
+              -2.82842712474619
+            ],
+            [
+              2.8284271247461894,
+              -2.8284271247461907
+            ]
+          ],
+          "symmetry_lines": [
+            {
+              "p1": [
+                -3.6769552621700474,
+                -3.6769552621700474
+              ],
+              "p2": [
+                3.6769552621700474,
+                3.6769552621700474
+              ]
+            },
+            {
+              "p1": [
+                -3.1840816777831187e-16,
+                -5.2
+              ],
+              "p2": [
+                3.1840816777831187e-16,
+                5.2
+              ]
+            },
+            {
+              "p1": [
+                3.676955262170047,
+                -3.6769552621700474
+              ],
+              "p2": [
+                -3.676955262170047,
+                3.6769552621700474
+              ]
+            },
+            {
+              "p1": [
+                5.2,
+                -6.368163355566237e-16
+              ],
+              "p2": [
+                -5.2,
+                6.368163355566237e-16
+              ]
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "relative_frequency_F",
@@ -974,162 +1111,27 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "two_way_tables_F",
-      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
+      "topic_id": "stats_mean_F",
+      "prompt": "Find the mean of this data set: 27, 13, 14, 28, 21, 28, 12.",
       "solution_steps": [
-        "'Girls' / 'Cats': using the 'Girls' row total: 35 - 19 = 16",
-        "'Boys' / 'Cats': using the 'Boys' row total: 14 - 5 = 9"
+        "Mean = sum ÷ count = (27 + 13 + 14 + 28 + 21 + 28 + 12) ÷ 7 = 143 ÷ 7 = 143/7"
       ],
-      "final_answer": "'Girls' / 'Cats' = 16; 'Boys' / 'Cats' = 9",
-      "marks": 3,
+      "final_answer": "143/7",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "'Girls' / 'Cats': using the 'Girls' row total: 35 - 19 = 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "'Boys' / 'Cats': using the 'Boys' row total: 14 - 5 = 9",
+          "description": "Mean = sum ÷ count = (27 + 13 + 14 + 28 + 21 + 28 + 12) ÷ 7 = 143 ÷ 7 = 143/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "'Girls' / 'Cats' = 16; 'Boys' / 'Cats' = 9 oe",
+          "description": "143/7 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Boys",
-            "Girls",
-            "Total"
-          ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
-            [
-              "",
-              "5",
-              "14"
-            ],
-            [
-              "",
-              "19",
-              "35"
-            ],
-            [
-              "25",
-              "24",
-              "49"
-            ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Boys",
-            "Girls",
-            "Total"
-          ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
-            [
-              "9",
-              "5",
-              "14"
-            ],
-            [
-              "16",
-              "19",
-              "35"
-            ],
-            [
-              "25",
-              "24",
-              "49"
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "fractions_equivalent_diagram_F",
-      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
-      "solution_steps": [
-        "Shape A shows 2/5 shaded; Shape B has 10 equal parts.",
-        "Find the scale factor between the denominators: 10 ÷ 5 = 2",
-        "Multiply the shaded count by the same scale factor: 2 × 2 = 4"
-      ],
-      "final_answer": "4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Shape A shows 2/5 shaded; Shape B has 10 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 10 ÷ 5 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 2 × 2 = 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 5,
-              "shaded": 2
-            },
-            {
-              "kind": "circle",
-              "parts": 10,
-              "shaded": 0
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 5,
-              "shaded": 2
-            },
-            {
-              "kind": "circle",
-              "parts": 10,
-              "shaded": 4
-            }
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

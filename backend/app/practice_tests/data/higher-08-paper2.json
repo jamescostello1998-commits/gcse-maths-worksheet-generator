@@ -106,34 +106,63 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "turning_point_of_graph_H",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 2x + 1.",
+      "topic_id": "powers_H",
+      "prompt": "Work out 216^(1/3).",
       "solution_steps": [
-        "Complete the square: x^2 + 2x + 1 = (x + 1)^2",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (-1, 0)"
+        "216^(1/3) means the cube root of 216.",
+        "216^(1/3) = 6"
       ],
-      "final_answer": "(-1, 0)",
-      "marks": 4,
+      "final_answer": "6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 + 2x + 1 = (x + 1)^2",
+          "description": "216^(1/3) means the cube root of 216.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Turning point = (-1, 0)",
+          "description": "216^(1/3) = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-1, 0) oe",
+          "description": "6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify √8 + √2, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Simplify each surd first: √8 = 2√2 and √2 = 1√2.",
+        "They are now like surds, so combine the coefficients: 2 + 1 = 3.",
+        "= 3√2"
+      ],
+      "final_answer": "3√2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simplify each surd first: √8 = 2√2 and √2 = 1√2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "They are now like surds, so combine the coefficients: 2 + 1 = 3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 3√2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√2 oe",
           "marks": 1
         }
       ],
@@ -163,47 +192,6 @@
         {
           "code": "A1",
           "description": "5√2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 8^(x+1) = 16^(3x).",
-      "solution_steps": [
-        "Write both sides as powers of 2: 8 = 2^3 and 16 = 2^4",
-        "8^(x+1) = 16^(3x) becomes 2^(3(x+1)) = 2^(4×3x), i.e. 2^(3x+3) = 2^(12x)",
-        "Since the bases match, the powers must be equal: 3x + 3 = 12x",
-        "Rearranging: -9x = -3, so x = -3/-9 = 1/3"
-      ],
-      "final_answer": "1/3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both sides as powers of 2: 8 = 2^3 and 16 = 2^4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "8^(x+1) = 16^(3x) becomes 2^(3(x+1)) = 2^(4×3x), i.e. 2^(3x+3) = 2^(12x)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 3x + 3 = 12x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearranging: -9x = -3, so x = -3/-9 = 1/3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/3 oe",
           "marks": 1
         }
       ],
@@ -291,34 +279,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term_H",
-      "prompt": "Here are the first four terms of a quadratic sequence: -6, -14, -28, -48.\nFind an expression for the nth term.",
+      "topic_id": "special_sequences_H",
+      "prompt": "The first 4 terms of a geometric sequence are: 3, 9, 27, 81. Find the 5th term of the sequence.",
       "solution_steps": [
-        "First differences: -8, -14, -20",
-        "Second difference is constant: -6, so the coefficient of n^2 is -6 ÷ 2 = -3",
-        "nth term = -3n^2 + n - 4"
+        "Common ratio r = 3 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 3 × (3)^4",
+        "Term 5 = 243"
       ],
-      "final_answer": "-3n^2 + n - 4",
+      "final_answer": "243",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: -8, -14, -20",
+          "description": "Common ratio r = 3 (divide any term by the term before it).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: -6, so the coefficient of n^2 is -6 ÷ 2 = -3",
+          "description": "nth term = a × r^(n - 1) = 3 × (3)^4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -3n^2 + n - 4",
+          "description": "Term 5 = 243",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-3n^2 + n - 4 oe",
+          "description": "243 oe",
           "marks": 1
         }
       ],
@@ -412,211 +400,40 @@
       }
     },
     {
-      "topic_id": "graph_transformations_H",
-      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
+      "topic_id": "distance_between_points_H",
+      "prompt": "Find the length of the line segment joining A(-3, 3) and B(8, 2). Give your answer as a surd in its simplest form.",
       "solution_steps": [
-        "y = f(-x) corresponds to a reflection in the y-axis."
+        "The distance between two points is found with Pythagoras: the square root of ((horizontal gap)^2 + (vertical gap)^2).",
+        "Horizontal gap: 8 - (-3) = 11. Vertical gap: 2 - (3) = -1.",
+        "Distance = √((11)^2 + (-1)^2) = √122",
+        "√122 is already in its simplest form."
       ],
-      "final_answer": "Reflection in the y-axis",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Reflection in the y-axis oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "graph_transformation",
-        "params": {
-          "transform": "reflect_y",
-          "shift": 0,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(-x)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_graph_H",
-      "prompt": "Complete a table of values for y = -sin(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = -sin(x°):",
-        "x: 0, 90, 180, 270, 360",
-        "y: 0, -1, 0, 1, 0",
-        "Plot each (x, y) point and join them with a single smooth curve - y = -sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
-      ],
-      "final_answer": "y = -sin(x°)",
+      "final_answer": "√122",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -sin(x°):",
+          "description": "The distance between two points is found with Pythagoras: the square root of ((horizontal gap)^2 + (vertical gap)^2).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: 0, 90, 180, 270, 360",
+          "description": "Horizontal gap: 8 - (-3) = 11. Vertical gap: 2 - (3) = -1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 0, -1, 0, 1, 0",
+          "description": "Distance = √((11)^2 + (-1)^2) = √122",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
+          "description": "√122 is already in its simplest form.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -sin(x°) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "sin",
-          "sign": -1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "sin",
-          "sign": -1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "table_points": [
-            [
-              0,
-              0
-            ],
-            [
-              90,
-              -1
-            ],
-            [
-              180,
-              0
-            ],
-            [
-              270,
-              1
-            ],
-            [
-              360,
-              0
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "inequalities_number_line_H",
-      "prompt": "Draw the inequality/ies of 0 ≤ x < 4 on a number line.",
-      "solution_steps": [
-        "Draw a filled circle at 0 and an open circle at 4.",
-        "Shade the segment of the line between the two circles."
-      ],
-      "final_answer": "0 ≤ x < 4",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Draw a filled circle at 0 and an open circle at 4.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Shade the segment of the line between the two circles.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "0 ≤ x < 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
-            {
-              "value": 0,
-              "closed": true
-            },
-            {
-              "value": 4,
-              "closed": false
-            }
-          ],
-          "shade": "between"
-        }
-      }
-    },
-    {
-      "topic_id": "kinematics_suvat_H",
-      "prompt": "An object starts with an initial velocity (u) of 2 m/s and has a constant acceleration (a) of 5 m/s^2 for a time (t) of 3 s. Find the total displacement (s).",
-      "solution_steps": [
-        "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
-        "s = ut + (1/2)at^2",
-        "Substitute u = 2, a = 5, t = 3: s = 2 × 3 + (1/2) × 5 × 3^2 = 6 + 45/2 = 28.5"
-      ],
-      "final_answer": "28.5 m",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "s = ut + (1/2)at^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute u = 2, a = 5, t = 3: s = 2 × 3 + (1/2) × 5 × 3^2 = 6 + 45/2 = 28.5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "28.5 m oe",
+          "description": "√122 oe",
           "marks": 1
         }
       ],
@@ -624,52 +441,287 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret_H",
-      "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
+      "topic_id": "plot_reciprocal_H",
+      "prompt": "Complete a table of values for y = -\\frac{24}{x} for x = -4 to 4, then plot the graph.",
       "solution_steps": [
-        "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2"
+        "Table of values for y = -\\frac{24}{x}:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: 6, 8, 12, 24, -24, -12, -8, -6",
+        "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table.",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
       ],
-      "final_answer": "5/4 m/s^2",
-      "marks": 2,
+      "final_answer": "Reciprocal curve: y = -\\frac{24}{x}",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2",
+          "description": "Table of values for y = -\\frac{24}{x}:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 6, 8, 12, 24, -24, -12, -8, -6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table. Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/4 m/s^2 oe",
+          "description": "Reciprocal curve: y = -\\frac{24}{x} oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
+          "kind": "reciprocal",
+          "a": -24,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": -24,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "table_points": [
+            [
+              -4,
+              6
+            ],
+            [
+              -3,
+              8
+            ],
+            [
+              -2,
+              12
+            ],
+            [
+              -1,
+              24
+            ],
+            [
+              1,
+              -24
+            ],
+            [
+              2,
+              -12
+            ],
+            [
+              3,
+              -8
+            ],
+            [
+              4,
+              -6
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "inequalities_region_H",
+      "prompt": "On the grid, shade the region that satisfies both y ≥ \\frac{x}{2} - 1 and y ≤ x - 3.",
+      "solution_steps": [
+        "Draw the line y = \\frac{x}{2} - 1 (solid - the line itself is included in the region).",
+        "Draw the line y = x - 3 (solid - the line itself is included in the region).",
+        "Shade the region where both y ≥ \\frac{x}{2} - 1 and y ≤ x - 3 are true at the same time."
+      ],
+      "final_answer": "y ≥ \\frac{x}{2} - 1 and y ≤ x - 3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw the line y = \\frac{x}{2} - 1 (solid - the line itself is included in the region).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw the line y = x - 3 (solid - the line itself is included in the region).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shade the region where both y ≥ \\frac{x}{2} - 1 and y ≤ x - 3 are true at the same time.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y ≥ \\frac{x}{2} - 1 and y ≤ x - 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": 0.5,
+              "c": -1,
+              "op": ">="
+            },
+            {
+              "m": 1.0,
+              "c": -3,
+              "op": "<="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "plot_cubic_H",
+      "prompt": "Complete a table of values for y = -x^3 - 3x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -x^3 - 3x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 36, 14, 4, 0, -4, -14, -36",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = -x^3 - 3x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -x^3 - 3x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 36, 14, 4, 0, -4, -14, -36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = -x^3 - 3x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "table_points": [
+            [
+              -3,
+              36
+            ],
+            [
+              -2,
+              14
+            ],
+            [
+              -1,
+              4
+            ],
             [
               0,
               0
             ],
             [
-              8,
-              15
+              1,
+              -4
             ],
             [
-              33,
-              15
+              2,
+              -14
             ],
             [
-              45,
-              0
+              3,
+              -36
             ]
-          ],
-          "x_max": 50,
-          "y_max": 20,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
+          ]
         }
-      },
+      }
+    },
+    {
+      "topic_id": "pressure_H",
+      "prompt": "A brick exerts a force of 5915 N over a contact area of 370 cm². Find the pressure in N/m², correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert area to m²: 370 cm² = 370 ÷ 10000 = 0.037 m²",
+        "pressure = force ÷ area = 5915 ÷ 0.037 = 159864.86 N/m² (2 d.p.)"
+      ],
+      "final_answer": "159864.86 N/m²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert area to m²: 370 cm² = 370 ÷ 10000 = 0.037 m²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area = 5915 ÷ 0.037 = 159864.86 N/m² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "159864.86 N/m² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -755,35 +807,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_H",
-      "prompt": "A sculpture has a mass of 16 kg and a volume of 113 cm³. Find its density in g/cm³, correct to 2 decimal places.",
-      "solution_steps": [
-        "Convert mass to grams: 16 kg = 16 × 1000 = 16000 g",
-        "density = mass ÷ volume = 16000 ÷ 113 = 141.59 g/cm³ (2 d.p.)"
-      ],
-      "final_answer": "141.59 g/cm³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert mass to grams: 16 kg = 16 × 1000 = 16000 g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "density = mass ÷ volume = 16000 ÷ 113 = 141.59 g/cm³ (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "141.59 g/cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "unit_conversions_H",
       "prompt": "Convert 11 cm² to mm².",
       "solution_steps": [
@@ -810,6 +833,114 @@
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_rotate_describe_H",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
+      "solution_steps": [
+        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+        "Measuring the turn from a vertex to its image about that point gives 90° anticlockwise about (-2, -2)."
+      ],
+      "final_answer": "Rotation 90° anticlockwise about (-2, -2)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Measuring the turn from a vertex to its image about that point gives 90° anticlockwise about (-2, -2).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Rotation 90° anticlockwise about (-2, -2) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              1,
+              -2
+            ],
+            [
+              5,
+              -2
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "image_vertices": [
+            [
+              -2,
+              1
+            ],
+            [
+              -2,
+              5
+            ],
+            [
+              -4,
+              5
+            ],
+            [
+              -4,
+              3
+            ],
+            [
+              -7,
+              3
+            ],
+            [
+              -7,
+              1
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B",
+          "image_same_color": true
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -849,38 +980,93 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_H",
-      "prompt": "\\vec{a} = \\colvec{9}{-5} and \\vec{b} = \\colvec{-2}{-3}. Find -1\\vec{a} + (-1\\vec{b}).",
+      "topic_id": "congruent_triangle_proof_H",
+      "prompt": "ABCD is a parallelogram with AB parallel to DC. Its diagonals AC and BD cross at O. Prove that the two triangles are congruent.",
       "solution_steps": [
-        "\\vec{a} = \\colvec{9}{-5}, \\vec{b} = \\colvec{-2}{-3}",
-        "-1\\vec{a} = \\colvec{-9}{5} and -1\\vec{b} = \\colvec{2}{3}",
-        "-1\\vec{a} + (-1\\vec{b}) = \\colvec{-7}{8}"
+        "angle OAB = angle OCD (alternate angles, AB parallel to DC)",
+        "AB = CD (opposite sides of a parallelogram)",
+        "angle OBA = angle ODC (alternate angles, AB parallel to DC)",
+        "By Angle-Side-Angle (ASA), the triangles are congruent.",
+        "Since triangles OAB and OCD are congruent, OA = OC and OB = OD - the diagonals of a parallelogram bisect each other."
       ],
-      "final_answer": "\\colvec{-7}{8}",
-      "marks": 4,
+      "final_answer": "Triangles are congruent (ASA).",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{9}{-5}, \\vec{b} = \\colvec{-2}{-3}",
+          "description": "angle OAB = angle OCD (alternate angles, AB parallel to DC)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-1\\vec{a} = \\colvec{-9}{5} and -1\\vec{b} = \\colvec{2}{3}",
+          "description": "AB = CD (opposite sides of a parallelogram)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-1\\vec{a} + (-1\\vec{b}) = \\colvec{-7}{8}",
+          "description": "angle OBA = angle ODC (alternate angles, AB parallel to DC)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "By Angle-Side-Angle (ASA), the triangles are congruent. Since triangles OAB and OCD are congruent, OA = OC and OB = OD - the diagonals of a parallelogram bisect each other.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{-7}{8} oe",
+          "description": "Triangles are congruent (ASA). oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "B",
+            "O"
+          ],
+          "labels_2": [
+            "C",
+            "D",
+            "O"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "arcs_1": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "arcs_2": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -931,155 +1117,6 @@
           "inner_labels": [
             "11 cm",
             "6 cm"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_around_point_H",
-      "prompt": "The angles 28°, 110°, 73° and (3x + 143)° are angles around a point. Find x.",
-      "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "3x + 143 = 149",
-        "Subtract 143 from both sides:",
-        "3x = 6",
-        "Divide both sides by 3:",
-        "x = 2"
-      ],
-      "final_answer": "2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles around a point sum to 360°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 143 = 149",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 143 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x = 6 Divide both sides by 3: x = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            28,
-            110,
-            73,
-            149
-          ],
-          "labels": [
-            "28°",
-            "110°",
-            "73°",
-            "(3x + 143)°"
-          ],
-          "around_point": true
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_dependent_H",
-      "prompt": "A bag contains 6 red and 4 green counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
-      "solution_steps": [
-        "After the first counter is picked (without replacement), there are 9 counters left.",
-        "P(red then red) = 3/5 × 5/9 = 1/3",
-        "P(red then green) = 3/5 × 4/9 = 4/15",
-        "P(green then red) = 2/5 × 2/3 = 4/15",
-        "P(green then green) = 2/5 × 1/3 = 2/15",
-        "P(the two counters are different colours) = 8/15"
-      ],
-      "final_answer": "8/15",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 9 counters left.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(red then red) = 3/5 × 5/9 = 1/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(red then green) = 3/5 × 4/9 = 4/15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(green then red) = 2/5 × 2/3 = 4/15 P(green then green) = 2/5 × 1/3 = 2/15 P(the two counters are different colours) = 8/15",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8/15 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "3/5"
-            ],
-            [
-              "Green",
-              "2/5"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "5/9"
-              ],
-              [
-                "Green",
-                "4/9"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "2/3"
-              ],
-              [
-                "Green",
-                "1/3"
-              ]
-            ]
-          ],
-          "leaf_probs": [
-            [
-              "1/3",
-              "4/15"
-            ],
-            [
-              "4/15",
-              "2/15"
-            ]
           ]
         }
       },
@@ -1193,26 +1230,131 @@
       }
     },
     {
-      "topic_id": "product_rule_counting_H",
-      "prompt": "A shop sells 6 different phone cases, 4 different screen protectors and 2 different chargers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "tree_diagram_dependent_H",
+      "prompt": "A bag contains 6 red and 4 green counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
-        "Total combinations = 6 × 4 × 2 = 48"
+        "After the first counter is picked (without replacement), there are 9 counters left.",
+        "P(red then red) = 3/5 × 5/9 = 1/3",
+        "P(red then green) = 3/5 × 4/9 = 4/15",
+        "P(green then red) = 2/5 × 2/3 = 4/15",
+        "P(green then green) = 2/5 × 1/3 = 2/15",
+        "P(the two counters are different colours) = 8/15"
       ],
-      "final_answer": "48",
-      "marks": 2,
+      "final_answer": "8/15",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 6 × 4 × 2 = 48",
+          "description": "After the first counter is picked (without replacement), there are 9 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then red) = 3/5 × 5/9 = 1/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then green) = 3/5 × 4/9 = 4/15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green then red) = 2/5 × 2/3 = 4/15 P(green then green) = 2/5 × 1/3 = 2/15 P(the two counters are different colours) = 8/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 oe",
+          "description": "8/15 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "3/5"
+            ],
+            [
+              "Green",
+              "2/5"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "5/9"
+              ],
+              [
+                "Green",
+                "4/9"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "2/3"
+              ],
+              [
+                "Green",
+                "1/3"
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
+      "solution_steps": [
+        "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2"
+      ],
+      "final_answer": "5/4 m/s^2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/4 m/s^2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              15
+            ],
+            [
+              33,
+              15
+            ],
+            [
+              45,
+              0
+            ]
+          ],
+          "x_max": 50,
+          "y_max": 20,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
       "solution_diagram": null
     }
   ]

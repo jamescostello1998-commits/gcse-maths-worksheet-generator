@@ -8,27 +8,27 @@
   "questions": [
     {
       "topic_id": "standard_form_multiply_divide_H",
-      "prompt": "Work out (6 × 10^6) ÷ (1 × 10^-3). Give your answer in standard form.",
+      "prompt": "Work out (1 × 10^0) × (3 × 10^5). Give your answer in standard form.",
       "solution_steps": [
-        "Divide the mantissas: 6 ÷ 1 = 6",
-        "Subtract the powers of 10: 6 - -3 = 9"
+        "Multiply the mantissas: 1 × 3 = 3",
+        "Add the powers of 10: 0 + 5 = 5"
       ],
-      "final_answer": "6 × 10^9",
+      "final_answer": "3 × 10^5",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide the mantissas: 6 ÷ 1 = 6",
+          "description": "Multiply the mantissas: 1 × 3 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers of 10: 6 - -3 = 9",
+          "description": "Add the powers of 10: 0 + 5 = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 × 10^9 oe",
+          "description": "3 × 10^5 oe",
           "marks": 1
         }
       ],
@@ -36,116 +36,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide_H",
-      "prompt": "Work out 6/7 ÷ 9/7. Give your answer as a fraction in its simplest form.",
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 5√3 - 6√3, giving your answer in the form a√b.",
       "solution_steps": [
-        "Keep-change-flip: 6/7 ÷ 9/7 = 6/7 × 7/9",
-        "Multiply: \\frac{(6×7)}{(7×9)} = 42/63",
-        "Simplify: 2/3"
+        "Both terms are multiples of √3, so they are 'like surds' and can be combined.",
+        "Combine the whole-number coefficients: 5 - 6 = -1.",
+        "= -√3"
       ],
-      "final_answer": "2/3",
+      "final_answer": "-√3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 6/7 ÷ 9/7 = 6/7 × 7/9",
+          "description": "Both terms are multiples of √3, so they are 'like surds' and can be combined.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: \\frac{(6×7)}{(7×9)} = 42/63",
+          "description": "Combine the whole-number coefficients: 5 - 6 = -1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 2/3",
+          "description": "= -√3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2/3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simplifying_indices_challenging_H",
-      "prompt": "Simplify (5^2 × 5^-3)^2, giving your answer as a fraction where necessary.",
-      "solution_steps": [
-        "Add the powers inside the bracket first: 2 + -3 = -1",
-        "(5^2 × 5^-3)^2 = (5^-1)^2",
-        "Multiply the powers: -1 × 2 = -2",
-        "(5^-1)^2 = 5^-2 = 1/25"
-      ],
-      "final_answer": "1/25",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Add the powers inside the bracket first: 2 + -3 = -1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(5^2 × 5^-3)^2 = (5^-1)^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the powers: -1 × 2 = -2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(5^-1)^2 = 5^-2 = 1/25",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/25 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "hcf_lcm_by_prime_factors_H",
-      "prompt": "Using prime factorisation, find the HCF of 88 and 120.",
-      "solution_steps": [
-        "88 = 2^3 × 11",
-        "120 = 2^3 × 3 × 5",
-        "HCF: take the lowest power of each prime that appears in both numbers",
-        "HCF = 8"
-      ],
-      "final_answer": "8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "88 = 2^3 × 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "120 = 2^3 × 3 × 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "HCF: take the lowest power of each prime that appears in both numbers",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "HCF = 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 oe",
+          "description": "-√3 oe",
           "marks": 1
         }
       ],
@@ -154,27 +72,27 @@
     },
     {
       "topic_id": "prime_factors_H",
-      "prompt": "Write 999 as a product of its prime factors, giving your answer in index form.",
+      "prompt": "Write 435 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Divide 999 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 37",
-        "Write repeated factors using index notation: 999 = 3^3 × 37"
+        "Divide 435 repeatedly by the smallest prime that fits: 3 × 5 × 29",
+        "Write repeated factors using index notation: 435 = 3 × 5 × 29"
       ],
-      "final_answer": "3^3 × 37",
+      "final_answer": "3 × 5 × 29",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 999 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 37",
+          "description": "Divide 435 repeatedly by the smallest prime that fits: 3 × 5 × 29",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 999 = 3^3 × 37",
+          "description": "Write repeated factors using index notation: 435 = 3 × 5 × 29",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3^3 × 37 oe",
+          "description": "3 × 5 × 29 oe",
           "marks": 1
         }
       ],
@@ -182,34 +100,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A car travels 139 km (to the nearest km) in 6 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
+      "topic_id": "standard_form_add_subtract_H",
+      "prompt": "Work out (6 × 10^3) - (3 × 10^1). Give your answer in standard form.",
       "solution_steps": [
-        "Distance: 139 km (to the nearest km) gives 138.5 ≤ distance < 139.5",
-        "Time: 6 hours (to the nearest hour) gives 5.5 ≤ time < 6.5",
-        "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 139.5 ÷ 5.5 = 279/11 ≈ 25.4 km/h"
+        "Write both numbers with the same power of 10: 6×10^3 = 600×10^1, 3×10^1 = 3×10^1",
+        "Subtract the coefficients: 600 - 3 = 597",
+        "Write in standard form: 597 × 10^1 = 5.97 × 10^3"
       ],
-      "final_answer": "25.4 km/h (to 1 d.p.)",
+      "final_answer": "5.97 × 10^3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance: 139 km (to the nearest km) gives 138.5 ≤ distance < 139.5",
+          "description": "Write both numbers with the same power of 10: 6×10^3 = 600×10^1, 3×10^1 = 3×10^1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time: 6 hours (to the nearest hour) gives 5.5 ≤ time < 6.5",
+          "description": "Subtract the coefficients: 600 - 3 = 597",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 139.5 ÷ 5.5 = 279/11 ≈ 25.4 km/h",
+          "description": "Write in standard form: 597 × 10^1 = 5.97 × 10^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25.4 km/h (to 1 d.p.) oe",
+          "description": "5.97 × 10^3 oe",
           "marks": 1
         }
       ],
@@ -217,28 +135,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "powers_H",
-      "prompt": "Evaluate 125^(1/3).",
+      "topic_id": "simplifying_indices_challenging_H",
+      "prompt": "Simplify 8^(1/3) × 8^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "125^(1/3) means the cube root of 125.",
-        "125^(1/3) = 5"
+        "8^(1/3) is the cube root of 8, which is 2, so 8^(1/3) = 2^1",
+        "8^-3 = \\frac{1}{8³} = \\frac{1}{2⁹}",
+        "8^(1/3) × 8^-3 = 2^1 × \\frac{1}{2⁹} = 2^(1-9) = 2^-8",
+        "2^-8 = 1/256"
       ],
-      "final_answer": "5",
+      "final_answer": "1/256",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "8^(1/3) is the cube root of 8, which is 2, so 8^(1/3) = 2^1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8^-3 = \\frac{1}{8³} = \\frac{1}{2⁹}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8^(1/3) × 8^-3 = 2^1 × \\frac{1}{2⁹} = 2^(1-9) = 2^-8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2^-8 = 1/256",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/256 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_H",
+      "prompt": "Fully simplify √60, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 60: 2^2 × 15 = 60",
+        "√60 = √(2^2 × 15) = 2√15"
+      ],
+      "final_answer": "2√15",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "125^(1/3) means the cube root of 125.",
+          "description": "Find the largest square factor of 60: 2^2 × 15 = 60",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "125^(1/3) = 5",
+          "description": "√60 = √(2^2 × 15) = 2√15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "2√15 oe",
           "marks": 1
         }
       ],
@@ -246,41 +205,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic_H",
-      "prompt": "Solve the simultaneous equations: y = x^2 + 3x and y = 4x + 12",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
+      "prompt": "Using prime factorisation, find the LCM of 128 and 169.",
       "solution_steps": [
-        "Substitute y = 4x + 12 into y = x^2 + 3x: 4x + 12 = x^2 + 3x",
-        "Rearrange: x^2 - x - 12 = 0",
-        "Factorise: (x - 4)(x + 3) = 0",
-        "x = 4 or x = -3",
-        "When x = 4, y = 28. When x = -3, y = 0."
+        "128 = 2^7",
+        "169 = 13^2",
+        "LCM: take the highest power of each prime",
+        "LCM = 21632"
       ],
-      "final_answer": "(4, 28) and (-3, 0)",
+      "final_answer": "21632",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = 4x + 12 into y = x^2 + 3x: 4x + 12 = x^2 + 3x",
+          "description": "128 = 2^7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 - x - 12 = 0",
+          "description": "169 = 13^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 4)(x + 3) = 0",
+          "description": "LCM: take the highest power of each prime",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 4 or x = -3 When x = 4, y = 28. When x = -3, y = 0.",
+          "description": "LCM = 21632",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(4, 28) and (-3, 0) oe",
+          "description": "21632 oe",
           "marks": 1
         }
       ],
@@ -288,112 +246,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets_no_coefficient_H",
-      "prompt": "Expand and simplify: (x - 1)(x - 4)(x + 1)",
+      "topic_id": "solving_inequalities_H",
+      "prompt": "Solve the inequality: 2x + 1 < 4x - 2",
       "solution_steps": [
-        "First expand two of the brackets: (x - 1)(x - 4) = x^2 - 5x + 4",
-        "Multiply the result by (x + 1) and collect like terms",
-        "= x^3 - 4x^2 - x + 4"
+        "2x + 1 < 4x - 2",
+        "Subtract 4x from both sides:",
+        "-2x + 1 < -2",
+        "Subtract 1 from both sides:",
+        "-2x < -3",
+        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
+        "x > 3/2"
       ],
-      "final_answer": "x^3 - 4x^2 - x + 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First expand two of the brackets: (x - 1)(x - 4) = x^2 - 5x + 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the result by (x + 1) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= x^3 - 4x^2 - x + 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x^3 - 4x^2 - x + 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_H",
-      "prompt": "Simplify 2x^(1/4) × 4x^(3/4)",
-      "solution_steps": [
-        "Multiplying powers of the same base: add the exponents, even when they're fractions.",
-        "2x^(1/4) × 4x^(3/4) = (2×4) x^(\\frac{1}{4}+\\frac{3}{4})",
-        "= 8x"
-      ],
-      "final_answer": "8x",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents, even when they're fractions.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x^(1/4) × 4x^(3/4) = (2×4) x^(\\frac{1}{4}+\\frac{3}{4})",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 8x",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_different_coefficient_H",
-      "prompt": "Solve the simultaneous equations: 2x + 2y = 14 and 4x + 5y = 32",
-      "solution_steps": [
-        "2x + 2y = 14  (1)",
-        "4x + 5y = 32  (2)",
-        "(1) × 5: 10x + 10y = 70  (3)",
-        "(2) × 2: 8x + 10y = 64  (4)",
-        "(3) - (4): 2x = 6, so x = 3",
-        "Substitute x = 3 into (1): 2y = 8, so y = 4"
-      ],
-      "final_answer": "x = 3, y = 4",
+      "final_answer": "x > 3/2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2x + 2y = 14  (1)",
+          "description": "2x + 1 < 4x - 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 5y = 32  (2)",
+          "description": "Subtract 4x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(1) × 5: 10x + 10y = 70  (3)",
+          "description": "-2x + 1 < -2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2) × 2: 8x + 10y = 64  (4) (3) - (4): 2x = 6, so x = 3 Substitute x = 3 into (1): 2y = 8, so y = 4",
+          "description": "Subtract 1 from both sides: -2x < -3 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x > 3/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 3, y = 4 oe",
+          "description": "x > 3/2 oe",
           "marks": 1
         }
       ],
@@ -401,69 +290,181 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "completing_the_square_H",
-      "prompt": "Write x^2 - 18x - 5 in the form (x + p)^2 + q.",
+      "topic_id": "circle_equation_H",
+      "prompt": "The point (12, -16) lies on the circle x^2 + y^2 = 400. Find the equation of the tangent to the circle at this point.",
       "solution_steps": [
-        "Half the coefficient of x: -18 ÷ 2 = -9",
-        "(x - 9)^2 = x^2 - 18x + 81",
-        "x^2 - 18x - 5 = (x - 9)^2 + (-5 - 81) = (x - 9)^2 - 86"
+        "The point (12, -16) lies on the circle x^2 + y^2 = 400, since 12^2 + -16^2 = 400.",
+        "The radius to (12, -16) has gradient \\frac{-16}{12}, so the tangent (perpendicular to the radius) has gradient -\\frac{12}{-16}.",
+        "The tangent line through (12, -16) with that gradient simplifies to 12x - 16y = 400."
       ],
-      "final_answer": "(x - 9)^2 - 86",
+      "final_answer": "12x - 16y = 400",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: -18 ÷ 2 = -9",
+          "description": "The point (12, -16) lies on the circle x^2 + y^2 = 400, since 12^2 + -16^2 = 400.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x - 9)^2 = x^2 - 18x + 81",
+          "description": "The radius to (12, -16) has gradient \\frac{-16}{12}, so the tangent (perpendicular to the radius) has gradient -\\frac{12}{-16}.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x^2 - 18x - 5 = (x - 9)^2 + (-5 - 81) = (x - 9)^2 - 86",
+          "description": "The tangent line through (12, -16) with that gradient simplifies to 12x - 16y = 400.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x - 9)^2 - 86 oe",
+          "description": "12x - 16y = 400 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -21,
+          "x_max": 21,
+          "y_min": -21,
+          "y_max": 21,
+          "points": [
+            {
+              "xy": [
+                12,
+                -16
+              ],
+              "label": null
+            }
+          ],
+          "given_lines": [],
+          "circle": {
+            "centre": [
+              0,
+              0
+            ],
+            "radius": 20
+          },
+          "segment": null
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_H",
-      "prompt": "The first 4 terms of a Fibonacci-type sequence are: 5, 8, 13, 21. Each term (from the 3rd onwards) is found by adding the two terms before it. Find the next two terms of the sequence.",
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 3^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
-        "13 + 21 = 34",
-        "21 + 34 = 55"
+        "Table of values for y = 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 1, 3, 9, 27, 81",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "34, 55",
+      "final_answer": "Exponential curve: y = 3^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 3^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 1, 3, 9, 27, 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 3^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 1,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 89.1,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 1,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 89.1,
+          "table_points": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              27
+            ],
+            [
+              4,
+              81
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "functions_inverse_evaluate_H",
+      "prompt": "f(x) = 2x - 9. Find f^-1(9).",
+      "solution_steps": [
+        "f^-1(x) = \\frac{x + 9}{2}",
+        "f^-1(9) = \\frac{9 + 9}{2}",
+        "f^-1(9) = 9"
+      ],
+      "final_answer": "9",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+          "description": "f^-1(x) = \\frac{x + 9}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "13 + 21 = 34",
+          "description": "f^-1(9) = \\frac{9 + 9}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "21 + 34 = 55",
+          "description": "f^-1(9) = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "34, 55 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -471,40 +472,128 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_multiply_divide_H",
-      "prompt": "Simplify \\frac{x^2 - 49}{x - 4} × \\frac{x - 4}{x - 7}, giving your answer in its simplest form.",
+      "topic_id": "plot_cubic_H",
+      "prompt": "Complete a table of values for y = -x^3 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Factorise the difference of two squares: x^2 - 49 = (x - 7)(x + 7)",
-        "\\frac{(x - 7)(x + 7)}{x - 4} × \\frac{x - 4}{x - 7}",
-        "Cancel the common factors x - 4 and x - 7:",
-        "= x + 7"
+        "Table of values for y = -x^3:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 27, 8, 1, 0, -1, -8, -27",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "x + 7",
+      "final_answer": "Cubic curve: y = -x^3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise the difference of two squares: x^2 - 49 = (x - 7)(x + 7)",
+          "description": "Table of values for y = -x^3:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{(x - 7)(x + 7)}{x - 4} × \\frac{x - 4}{x - 7}",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cancel the common factors x - 4 and x - 7:",
+          "description": "y: 27, 8, 1, 0, -1, -8, -27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= x + 7",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x + 7 oe",
+          "description": "Cubic curve: y = -x^3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -29,
+          "y_max": 29,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -29,
+          "y_max": 29,
+          "table_points": [
+            [
+              -3,
+              27
+            ],
+            [
+              -2,
+              8
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              -8
+            ],
+            [
+              3,
+              -27
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "turning_point_of_graph_H",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 12x - 4.",
+      "solution_steps": [
+        "Complete the square: x^2 + 12x - 4 = (x + 6)^2 - 40",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (-6, -40)"
+      ],
+      "final_answer": "(-6, -40)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Complete the square: x^2 + 12x - 4 = (x + 6)^2 - 40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Turning point = (-6, -40)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-6, -40) oe",
           "marks": 1
         }
       ],
@@ -512,98 +601,112 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_to_equation_H",
-      "prompt": "(x + 7) : (2x + 48) = 1:4. Find the value of x.",
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object's velocity increases from 2 m/s (u) to 10 m/s (v) over a time (t) of 2 s at a constant acceleration. Find this acceleration (a).",
       "solution_steps": [
-        "Cross-multiply: 4(x + 7) = 1(2x + 48)",
-        "Expand: 4x + 28 = 2x + 48",
-        "Collect x terms: 2x = 20",
-        "x = 20 ÷ 2 = 10"
+        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+        "v = u + at",
+        "Rearrange to make a the subject: a = \\frac{v - u}{t}",
+        "Substitute u = 2, v = 10, t = 2: a = \\frac{10 - 2}{2} = 8/2 = 4"
       ],
-      "final_answer": "x = 10",
+      "final_answer": "4 m/s^2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-multiply: 4(x + 7) = 1(2x + 48)",
+          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand: 4x + 28 = 2x + 48",
+          "description": "v = u + at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect x terms: 2x = 20",
+          "description": "Rearrange to make a the subject: a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 20 ÷ 2 = 10",
+          "description": "Substitute u = 2, v = 10, t = 2: a = \\frac{10 - 2}{2} = 8/2 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 10 oe",
+          "description": "4 m/s^2 oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_H",
+      "prompt": "Shape A and Shape B are similar. The volume of shape B is 1 cm^3. Find the volume of shape A.",
+      "solution_steps": [
+        "Linear scale factor = 3 ÷ 6 = 1/2",
+        "Volume scale factor = (1/2)^3 = 1/8",
+        "Volume of A = 1 ÷ 1/8 = 8 cm^3"
+      ],
+      "final_answer": "8 cm^3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear scale factor = 3 ÷ 6 = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume scale factor = (1/2)^3 = 1/8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume of A = 1 ÷ 1/8 = 8 cm^3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 cm^3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "shape_kind": "right_triangle",
+          "orientation": "br",
+          "a_width_label": "6 cm",
+          "b_width_label": "3 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "percentage_increase_decrease_calculator_H",
-      "prompt": "Using a calculator, decrease £186.40 by 6.4%. Give your answer to 2 decimal places.",
+      "prompt": "Using a calculator, decrease £768.85 by 22.5%. Give your answer to 2 decimal places.",
       "solution_steps": [
-        "Convert 6.4% to a multiplier: 0.936",
-        "Multiply: £186.40 × 0.936 = £174.47 (calculator, 2 d.p.)"
+        "Convert 22.5% to a multiplier: 0.775",
+        "Multiply: £768.85 × 0.775 = £595.86 (calculator, 2 d.p.)"
       ],
-      "final_answer": "£174.47",
+      "final_answer": "£595.86",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 6.4% to a multiplier: 0.936",
+          "description": "Convert 22.5% to a multiplier: 0.775",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £186.40 × 0.936 = £174.47 (calculator, 2 d.p.)",
+          "description": "Multiply: £768.85 × 0.775 = £595.86 (calculator, 2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£174.47 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "compound_percentage_H",
-      "prompt": "A price of £380 decreases by 35%, then increases by 17.5%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 380 × 0.65 = 247",
-        "After the second change: 247 × 1.18 = 290.23"
-      ],
-      "final_answer": "£290.23",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 380 × 0.65 = 247",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 247 × 1.18 = 290.23",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£290.23 oe",
+          "description": "£595.86 oe",
           "marks": 1
         }
       ],
@@ -612,77 +715,76 @@
     },
     {
       "topic_id": "pressure_H",
-      "prompt": "The table leg below exerts a pressure of 12 N/cm² on its base. Find the force it exerts.",
+      "prompt": "The table leg below exerts a pressure of 13 N/cm² on its base. Find the force it exerts.",
       "solution_steps": [
-        "area = ½ × base × height = ½ × 19 × 8 = 76 cm²",
-        "force = pressure × area = 12 × 76 = 912 N"
+        "area = ½ × base × height = ½ × 15 × 10 = 75 cm²",
+        "force = pressure × area = 13 × 75 = 975 N"
       ],
-      "final_answer": "912 N",
+      "final_answer": "975 N",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "area = ½ × base × height = ½ × 19 × 8 = 76 cm²",
+          "description": "area = ½ × base × height = ½ × 15 × 10 = 75 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "force = pressure × area = 12 × 76 = 912 N",
+          "description": "force = pressure × area = 13 × 75 = 975 N",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "912 N oe",
+          "description": "975 N oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "triangle_area",
         "params": {
-          "base": 19,
-          "height": 8,
-          "base_label": "19 cm",
-          "height_label": "8 cm"
+          "base": 15,
+          "height": 10,
+          "base_label": "15 cm",
+          "height_label": "10 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_H",
-      "prompt": "p : q : r = 2 : 9 : 6.\nq - p = 70.\nFind p, q and r.",
+      "topic_id": "algebraic_direct_proportion_H",
+      "prompt": "y is directly proportional to x^2. When x = 5, y = 150. Find the value of y when x = 6.",
       "solution_steps": [
-        "Difference in parts = 9 - 2 = 7 parts",
-        "Value of one part = 70 ÷ 7 = 10",
-        "p = 2 × 10 = 20",
-        "q = 9 × 10 = 90",
-        "r = 6 × 10 = 60"
+        "y = kx^2",
+        "150 = k × 5^2 = k × 25",
+        "k = 150 ÷ 25 = 6",
+        "y = 6 × 6^2 = 6 × 36 = 216"
       ],
-      "final_answer": "p = 20, q = 90, r = 60",
+      "final_answer": "216",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 9 - 2 = 7 parts",
+          "description": "y = kx^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 70 ÷ 7 = 10",
+          "description": "150 = k × 5^2 = k × 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "p = 2 × 10 = 20",
+          "description": "k = 150 ÷ 25 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "q = 9 × 10 = 90 r = 6 × 10 = 60",
+          "description": "y = 6 × 6^2 = 6 × 36 = 216",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "p = 20, q = 90, r = 60 oe",
+          "description": "216 oe",
           "marks": 1
         }
       ],
@@ -690,206 +792,307 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_surd_hypotenuse_H",
-      "prompt": "A right-angled triangle has sides 8 cm and 13 cm. Find the exact length of x, giving your answer as a simplified surd.",
+      "topic_id": "pythagoras_ladder_context_H",
+      "prompt": "A ladder of length 12 m leans against a vertical wall with its base 4 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
       "solution_steps": [
-        "c² = a² + b² = 8² + 13² = 64 + 169 = 233",
-        "c = √233 = √233 cm (exact form)"
+        "height² = ladder² - base² = 12² - 4² = 144 - 16 = 128",
+        "height = √128 = 8√2 m (exact form)"
       ],
-      "final_answer": "√233 cm",
+      "final_answer": "8√2 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 8² + 13² = 64 + 169 = 233",
+          "description": "height² = ladder² - base² = 12² - 4² = 144 - 16 = 128",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √233 = √233 cm (exact form)",
+          "description": "height = √128 = 8√2 m (exact form)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "√233 cm oe",
+          "description": "8√2 m oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "8 cm",
-          "leg2_label": "13 cm",
-          "hyp_label": "x"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "area_semicircle_compound_H",
-      "prompt": "A shape is made from a rectangle 14 cm by 12 cm with a semicircle of diameter 14 cm attached to one side. Find the total area, giving your answer in terms of π.",
+      "topic_id": "angles_exterior_H",
+      "prompt": "An exterior angle of a triangle is 75°. The two remote interior angles are 63° and (5x - 78)°. Find x.",
       "solution_steps": [
-        "Area of rectangle = 14 × 12 = 168 cm²",
-        "Radius of semicircle = 14 ÷ 2 = 7 cm",
-        "Area of semicircle = (1/2) × π × 7² = (49/2)π cm²",
-        "Total area = 168 + (49/2)π cm² (exact form)"
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "5x - 78 = 12",
+        "Add 78 to both sides:",
+        "5x = 90",
+        "Divide both sides by 5:",
+        "x = 18"
       ],
-      "final_answer": "(168 + (49/2)π) cm²",
+      "final_answer": "18",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of rectangle = 14 × 12 = 168 cm²",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Radius of semicircle = 14 ÷ 2 = 7 cm",
+          "description": "5x - 78 = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of semicircle = (1/2) × π × 7² = (49/2)π cm²",
+          "description": "Add 78 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 168 + (49/2)π cm² (exact form)",
+          "description": "5x = 90 Divide both sides by 5: x = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(168 + (49/2)π) cm² oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle_semicircle",
+        "kind": "exterior_triangle",
         "params": {
-          "width": 14,
-          "height": 12,
-          "radius": 7,
-          "width_label": "14 cm",
-          "height_label": "12 cm"
+          "interior1_label": "63°",
+          "interior2_label": "(5x - 78)°",
+          "exterior_label": "75°",
+          "interior1_value": 63,
+          "shape_variant": 1
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_H",
-      "prompt": "A polygon has 7 sides. 6 of its interior angles are each 131°, and the remaining interior angle is (4x + 58)°. Find x.",
+      "topic_id": "congruent_triangle_proof_H",
+      "prompt": "Triangle ABC is isosceles with AB = AC. AD bisects angle BAC, meeting BC at D. Prove that the two triangles are congruent.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (7 - 2) × 180 = 900°",
-        "Sum of the 6 equal angles = 6 × 131 = 786°",
-        "Remaining angle = 900 - 786 = 114°",
-        "4x + 58 = 114",
-        "Subtract 58 from both sides:",
-        "4x = 56",
-        "Divide both sides by 4:",
-        "x = 14"
+        "AB = AC (given)",
+        "angle BAD = angle CAD (AD bisects angle BAC)",
+        "AD is common to both triangles",
+        "By Side-Angle-Side (SAS), the triangles are congruent.",
+        "Since two sides and the included angle match, triangles ABD and ACD are congruent."
       ],
-      "final_answer": "14",
+      "final_answer": "Triangles are congruent (SAS).",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (7 - 2) × 180 = 900°",
+          "description": "AB = AC (given)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Sum of the 6 equal angles = 6 × 131 = 786°",
+          "description": "angle BAD = angle CAD (AD bisects angle BAC)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Remaining angle = 900 - 786 = 114°",
+          "description": "AD is common to both triangles",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 58 = 114 Subtract 58 from both sides: 4x = 56 Divide both sides by 4: x = 14",
+          "description": "By Side-Angle-Side (SAS), the triangles are congruent. Since two sides and the included angle match, triangles ABD and ACD are congruent.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 oe",
+          "description": "Triangles are congruent (SAS). oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "two_triangle_congruence",
         "params": {
-          "n_sides": 7,
-          "marked_angle_label": "(4x + 58)°"
+          "labels_1": [
+            "A",
+            "B",
+            "D"
+          ],
+          "labels_2": [
+            "A",
+            "C",
+            "D"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "arcs_1": [
+            [
+              0,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              0,
+              1
+            ]
+          ],
+          "note": "AD is common to both triangles."
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "circle_theorems_H",
-      "prompt": "Find the size of angle x.",
+      "topic_id": "trig_missing_angle_H",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "The angle at the centre is twice the angle at the circumference subtended by the same arc.",
-        "x = 68° ÷ 2 = 34°"
+        "Use tan, since we know two of the three sides.",
+        "tan(x) = 12 ÷ 22",
+        "x = tan^-1(12 ÷ 22) = 28.6° (1 d.p.)"
       ],
-      "final_answer": "34°",
-      "marks": 3,
+      "final_answer": "28.6°",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The angle at the centre is twice the angle at the circumference subtended by the same arc.",
+          "description": "Use tan, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 68° ÷ 2 = 34°",
+          "description": "tan(x) = 12 ÷ 22",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = tan^-1(12 ÷ 22) = 28.6° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "34° oe",
+          "description": "28.6° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "circle_angle_centre",
+        "kind": "trig_triangle",
         "params": {
-          "centre_label": "68°",
-          "circumference_label": "x°"
+          "adjacent_label": "22 cm",
+          "opposite_label": "12 cm",
+          "hyp_label": null,
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation_H",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}. The Venn diagram shows sets A and B. List the elements of A ∩ B'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {1, 3, 6, 7, 9, 10}, B = {2, 3, 5, 6, 7, 8}",
+        "A ∩ B' means the elements in A but not in B.",
+        "A ∩ B' = {1, 9, 10}"
+      ],
+      "final_answer": "{1, 9, 10}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 3, 6, 7, 9, 10}, B = {2, 3, 5, 6, 7, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∩ B' means the elements in A but not in B.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∩ B' = {1, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 9, 10} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "1, 9, 10",
+            "b_only": "2, 5, 8",
+            "both": "3, 6, 7",
+            "neither": "4"
+          }
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "probability_conditional_H",
-      "prompt": "A bag contains 6 purple and 4 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
+      "prompt": "A bag contains 7 blue and 4 purple counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
-        "P(both purple) = 6/10 × 5/9 = 1/3",
-        "P(both green) = 4/10 × 3/9 = 2/15",
-        "P(both same colour) = 1/3 + 2/15 = 7/15"
+        "P(both blue) = 7/11 × 6/10 = 21/55",
+        "P(both purple) = 4/11 × 3/10 = 6/55",
+        "P(both same colour) = 21/55 + 6/55 = 27/55"
       ],
-      "final_answer": "7/15",
+      "final_answer": "27/55",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(both purple) = 6/10 × 5/9 = 1/3",
+          "description": "P(both blue) = 7/11 × 6/10 = 21/55",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both green) = 4/10 × 3/9 = 2/15",
+          "description": "P(both purple) = 4/11 × 3/10 = 6/55",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both same colour) = 1/3 + 2/15 = 7/15",
+          "description": "P(both same colour) = 21/55 + 6/55 = 27/55",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/15 oe",
+          "description": "27/55 oe",
           "marks": 1
         }
       ],
@@ -898,32 +1101,32 @@
         "params": {
           "stage1": [
             [
-              "Purple",
+              "Blue",
               ""
             ],
             [
-              "Green",
+              "Purple",
               ""
             ]
           ],
           "stage2": [
             [
               [
-                "Purple",
+                "Blue",
                 ""
               ],
               [
-                "Green",
+                "Purple",
                 ""
               ]
             ],
             [
               [
-                "Purple",
+                "Blue",
                 ""
               ],
               [
-                "Green",
+                "Purple",
                 ""
               ]
             ]
@@ -935,67 +1138,38 @@
         "params": {
           "stage1": [
             [
-              "Purple",
-              "6/10"
+              "Blue",
+              "7/11"
             ],
             [
-              "Green",
-              "4/10"
+              "Purple",
+              "4/11"
             ]
           ],
           "stage2": [
             [
               [
-                "Purple",
-                "5/9"
+                "Blue",
+                "6/10"
               ],
               [
-                "Green",
-                "4/9"
+                "Purple",
+                "4/10"
               ]
             ],
             [
               [
-                "Purple",
-                "6/9"
+                "Blue",
+                "7/10"
               ],
               [
-                "Green",
-                "3/9"
+                "Purple",
+                "3/10"
               ]
             ]
           ]
         }
       }
-    },
-    {
-      "topic_id": "probability_combined_dice_H",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that the two scores add up to 2.",
-      "solution_steps": [
-        "Number of ways to score a total of 2 out of 36 equally likely outcomes = 1",
-        "P(total = 2) = 1/36 = 1/36"
-      ],
-      "final_answer": "1/36",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Number of ways to score a total of 2 out of 36 equally likely outcomes = 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(total = 2) = 1/36 = 1/36",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
     }
   ]
 }

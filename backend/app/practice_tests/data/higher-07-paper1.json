@@ -7,70 +7,6 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "error_interval_H",
-      "prompt": "A number, x, is 4.35 rounded to 3 significant figures. Write down the error interval for x.",
-      "solution_steps": [
-        "The last significant figure of 4.35 has a place value of 0.01, so x can be up to half of that above or below 4.35.",
-        "Lower bound: 4.35 - 0.005 = 4.345",
-        "Upper bound: 4.35 + 0.005 = 4.355"
-      ],
-      "final_answer": "4.345 ≤ x < 4.355",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The last significant figure of 4.35 has a place value of 0.01, so x can be up to half of that above or below 4.35.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Lower bound: 4.35 - 0.005 = 4.345",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Upper bound: 4.35 + 0.005 = 4.355",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4.345 ≤ x < 4.355 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "roots_H",
-      "prompt": "Simplify √275, giving your answer in the form a√b.",
-      "solution_steps": [
-        "Find the largest square factor of 275: 5^2 × 11 = 275",
-        "√275 = √(5^2 × 11) = 5√11"
-      ],
-      "final_answer": "5√11",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the largest square factor of 275: 5^2 × 11 = 275",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√275 = √(5^2 × 11) = 5√11",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5√11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "bounds_calculation_H",
       "prompt": "A rectangle has length 14 cm and width 19 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
       "solution_steps": [
@@ -99,6 +35,76 @@
         {
           "code": "A1",
           "description": "282.75 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 4√5 + 3√5, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Both terms are multiples of √5, so they are 'like surds' and can be combined.",
+        "Combine the whole-number coefficients: 4 + 3 = 7.",
+        "= 7√5"
+      ],
+      "final_answer": "7√5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Both terms are multiples of √5, so they are 'like surds' and can be combined.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the whole-number coefficients: 4 + 3 = 7.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 7√5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7√5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "error_interval_H",
+      "prompt": "A number, x, is 4.35 rounded to 3 significant figures. Write down the error interval for x.",
+      "solution_steps": [
+        "The last significant figure of 4.35 has a place value of 0.01, so x can be up to half of that above or below 4.35.",
+        "Lower bound: 4.35 - 0.005 = 4.345",
+        "Upper bound: 4.35 + 0.005 = 4.355"
+      ],
+      "final_answer": "4.345 ≤ x < 4.355",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The last significant figure of 4.35 has a place value of 0.01, so x can be up to half of that above or below 4.35.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Lower bound: 4.35 - 0.005 = 4.345",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Upper bound: 4.35 + 0.005 = 4.355",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4.345 ≤ x < 4.355 oe",
           "marks": 1
         }
       ],
@@ -147,40 +153,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 5^(x+3) = 625^(3x).",
+      "topic_id": "roots_H",
+      "prompt": "Simplify √275, giving your answer in the form a√b.",
       "solution_steps": [
-        "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
-        "5^(x+3) = 625^(3x) becomes 5^(x+3) = 5^(4×3x), i.e. 5^(x+3) = 5^(12x)",
-        "Since the bases match, the powers must be equal: x + 3 = 12x",
-        "Rearranging: -11x = -3, so x = -3/-11 = 3/11"
+        "Find the largest square factor of 275: 5^2 × 11 = 275",
+        "√275 = √(5^2 × 11) = 5√11"
       ],
-      "final_answer": "3/11",
-      "marks": 5,
+      "final_answer": "5√11",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
+          "description": "Find the largest square factor of 275: 5^2 × 11 = 275",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5^(x+3) = 625^(3x) becomes 5^(x+3) = 5^(4×3x), i.e. 5^(x+3) = 5^(12x)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: x + 3 = 12x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearranging: -11x = -3, so x = -3/-11 = 3/11",
+          "description": "√275 = √(5^2 × 11) = 5√11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/11 oe",
+          "description": "5√11 oe",
           "marks": 1
         }
       ],
@@ -223,34 +217,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "turning_point_of_graph_H",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 8x + 7.",
+      "topic_id": "standard_form_add_subtract_H",
+      "prompt": "Work out (2 × 10^3) - (7 × 10^1). Give your answer in standard form.",
       "solution_steps": [
-        "Complete the square: x^2 - 8x + 7 = (x - 4)^2 - 9",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (4, -9)"
+        "Write both numbers with the same power of 10: 2×10^3 = 200×10^1, 7×10^1 = 7×10^1",
+        "Subtract the coefficients: 200 - 7 = 193",
+        "Write in standard form: 193 × 10^1 = 1.93 × 10^3"
       ],
-      "final_answer": "(4, -9)",
+      "final_answer": "1.93 × 10^3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 8x + 7 = (x - 4)^2 - 9",
+          "description": "Write both numbers with the same power of 10: 2×10^3 = 200×10^1, 7×10^1 = 7×10^1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "description": "Subtract the coefficients: 200 - 7 = 193",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Turning point = (4, -9)",
+          "description": "Write in standard form: 193 × 10^1 = 1.93 × 10^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(4, -9) oe",
+          "description": "1.93 × 10^3 oe",
           "marks": 1
         }
       ],
@@ -258,158 +252,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "kinematics_suvat_H",
-      "prompt": "An object's velocity increases from 23 m/s (u) to 26 m/s (v) at a constant acceleration (a) of 1 m/s^2. Find how long this takes (t).",
+      "topic_id": "plot_cubic_H",
+      "prompt": "Complete a table of values for y = -x^3 - 3x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
-        "v = u + at",
-        "Rearrange to make t the subject: t = \\frac{v - u}{a}",
-        "Substitute u = 23, v = 26, a = 1: t = \\frac{26 - 23}{1} = \\frac{3}{1} = 3"
+        "Table of values for y = -x^3 - 3x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 36, 14, 4, 0, -4, -14, -36",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "3 s",
+      "final_answer": "Cubic curve: y = -x^3 - 3x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+          "description": "Table of values for y = -x^3 - 3x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = u + at",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange to make t the subject: t = \\frac{v - u}{a}",
+          "description": "y: 36, 14, 4, 0, -4, -14, -36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute u = 23, v = 26, a = 1: t = \\frac{26 - 23}{1} = \\frac{3}{1} = 3",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 s oe",
+          "description": "Cubic curve: y = -x^3 - 3x oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "change_subject_factorise_H",
-      "prompt": "Make x the subject of the formula ax + 7x = 40.",
-      "solution_steps": [
-        "ax + 7x = 40",
-        "Factorise the left-hand side: x(a + 7) = 40",
-        "Divide both sides by (a + 7): x = \\frac{40}{a + 7}"
-      ],
-      "final_answer": "x = \\frac{40}{a + 7}",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "ax + 7x = 40",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise the left-hand side: x(a + 7) = 40",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by (a + 7): x = \\frac{40}{a + 7}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = \\frac{40}{a + 7} oe",
-          "marks": 1
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "blank": true
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "functions_inverse_evaluate_H",
-      "prompt": "f(x) = 2x - 7. Find f^-1(0).",
-      "solution_steps": [
-        "f^-1(x) = \\frac{x + 7}{2}",
-        "f^-1(0) = \\frac{0 + 7}{2}",
-        "f^-1(0) = 7/2"
-      ],
-      "final_answer": "7/2",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "f^-1(x) = \\frac{x + 7}{2}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f^-1(0) = \\frac{0 + 7}{2}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f^-1(0) = 7/2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "7/2 oe",
-          "marks": 1
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "table_points": [
+            [
+              -3,
+              36
+            ],
+            [
+              -2,
+              14
+            ],
+            [
+              -1,
+              4
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -4
+            ],
+            [
+              2,
+              -14
+            ],
+            [
+              3,
+              -36
+            ]
+          ]
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractional_equations_H",
-      "prompt": "Solve the following equation.\n\\frac{x + 4}{6} + \\frac{x - 8}{3} = 2",
-      "solution_steps": [
-        "Multiply every term by the LCM of 6 and 3, which is 6:",
-        "3x - 12 = 12",
-        "Add 12 to both sides:",
-        "3x = 24",
-        "Divide both sides by 3:",
-        "x = 8"
-      ],
-      "final_answer": "x = 8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply every term by the LCM of 6 and 3, which is 6:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x - 12 = 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 12 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x = 24 Divide both sides by 3: x = 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      }
     },
     {
       "topic_id": "substitution_H",
@@ -453,33 +387,239 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_H",
-      "prompt": "Convert 45.5 m³ to cm³.",
+      "topic_id": "functions_inverse_evaluate_H",
+      "prompt": "f(x) = 2x - 7. Find f^-1(0).",
       "solution_steps": [
-        "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
-        "45.5 m³ = 45.5 × 1000000 = 45500000 cm³"
+        "f^-1(x) = \\frac{x + 7}{2}",
+        "f^-1(0) = \\frac{0 + 7}{2}",
+        "f^-1(0) = 7/2"
       ],
-      "final_answer": "45500000 cm³",
-      "marks": 3,
+      "final_answer": "7/2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
+          "description": "f^-1(x) = \\frac{x + 7}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "45.5 m³ = 45.5 × 1000000 = 45500000 cm³",
+          "description": "f^-1(0) = \\frac{0 + 7}{2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f^-1(0) = 7/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "45500000 cm³ oe",
+          "description": "7/2 oe",
           "marks": 1
         }
       ],
       "diagram": null,
       "solution_diagram": null
+    },
+    {
+      "topic_id": "cross_multiplication_H",
+      "prompt": "Solve the following equation.\n\\frac{3x - 4}{5} = \\frac{x - 2}{2}",
+      "solution_steps": [
+        "Cross-multiply: 2(3x - 4) = 5(x - 2)",
+        "6x - 8 = 5x - 10",
+        "Subtract 5x from both sides:",
+        "x - 8 = -10",
+        "Add 8 to both sides:",
+        "x = -2",
+        "x = -2"
+      ],
+      "final_answer": "x = -2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cross-multiply: 2(3x - 4) = 5(x - 2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x - 8 = 5x - 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 5x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x - 8 = -10 Add 8 to both sides: x = -2 x = -2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_factorise_H",
+      "prompt": "Make x the subject of the formula ax + 7x = 40.",
+      "solution_steps": [
+        "ax + 7x = 40",
+        "Factorise the left-hand side: x(a + 7) = 40",
+        "Divide both sides by (a + 7): x = \\frac{40}{a + 7}"
+      ],
+      "final_answer": "x = \\frac{40}{a + 7}",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ax + 7x = 40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise the left-hand side: x(a + 7) = 40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by (a + 7): x = \\frac{40}{a + 7}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = \\frac{40}{a + 7} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractional_equations_advanced_H",
+      "prompt": "Solve the following equation, giving your answers to 2 decimal places where necessary.\n\\frac{7}{x - 4} = \\frac{x}{4}",
+      "solution_steps": [
+        "Multiply both sides by the denominator(s) to clear the fractions.",
+        "This rearranges to x^2 - 4x - 28 = 0.",
+        "Solving the quadratic: x = -3.66 or x = 7.66."
+      ],
+      "final_answer": "x = -3.66 or x = 7.66",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply both sides by the denominator(s) to clear the fractions.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This rearranges to x^2 - 4x - 28 = 0.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving the quadratic: x = -3.66 or x = 7.66.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -3.66 or x = 7.66 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 4 × 3^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 4 × 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 4, 12, 36, 108, 324",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 4 × 3^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 4 × 3^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 4, 12, 36, 108, 324",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 4 × 3^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 4,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 356.4,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 4,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 356.4,
+          "table_points": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              2,
+              36
+            ],
+            [
+              3,
+              108
+            ],
+            [
+              4,
+              324
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "percentage_increase_decrease_calculator_H",
@@ -540,40 +680,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine_H",
-      "prompt": "Given that a:b = 4:9 and b:c = 2:7, find a:b:c in its simplest form.",
+      "topic_id": "ratio_difference_H",
+      "prompt": "p : q : r = 4 : 8 : 2.\nq - r = 78.\nFind p, q and r, and their total.",
       "solution_steps": [
-        "Scale a:b = 4:9 by 2 so b = 18: a:b = 8:18",
-        "Scale b:c = 2:7 by 9 so b = 18: b:c = 18:63",
-        "Combine: a:b:c = 8:18:63",
-        "Simplify by dividing by 1: a:b:c = 8:18:63"
+        "Difference in parts = 8 - 2 = 6 parts",
+        "Value of one part = 78 ÷ 6 = 13",
+        "p = 4 × 13 = 52",
+        "q = 8 × 13 = 104",
+        "r = 2 × 13 = 26",
+        "p + q + r = 52 + 104 + 26 = 182"
       ],
-      "final_answer": "8 : 18 : 63",
+      "final_answer": "p = 52, q = 104, r = 26 (total 182)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale a:b = 4:9 by 2 so b = 18: a:b = 8:18",
+          "description": "Difference in parts = 8 - 2 = 6 parts",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Scale b:c = 2:7 by 9 so b = 18: b:c = 18:63",
+          "description": "Value of one part = 78 ÷ 6 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: a:b:c = 8:18:63",
+          "description": "p = 4 × 13 = 52",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify by dividing by 1: a:b:c = 8:18:63",
+          "description": "q = 8 × 13 = 104 r = 2 × 13 = 26 p + q + r = 52 + 104 + 26 = 182",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 : 18 : 63 oe",
+          "description": "p = 52, q = 104, r = 26 (total 182) oe",
           "marks": 1
         }
       ],
@@ -610,38 +752,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder_H",
-      "prompt": "Find the exact volume of the cylinder, in terms of π.",
+      "topic_id": "algebraic_direct_proportion_H",
+      "prompt": "y is directly proportional to x^3. When x = 3, y = 324. Find the value of y when x = 5.",
       "solution_steps": [
-        "Volume = π × r² × h = π × 10² × 12",
-        "= 1200π cm³"
+        "y = kx^3",
+        "324 = k × 3^3 = k × 27",
+        "k = 324 ÷ 27 = 12",
+        "y = 12 × 5^3 = 12 × 125 = 1500"
       ],
-      "final_answer": "1200π cm³",
-      "marks": 3,
+      "final_answer": "1500",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = π × r² × h = π × 10² × 12",
+          "description": "y = kx^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 1200π cm³",
+          "description": "324 = k × 3^3 = k × 27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 324 ÷ 27 = 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 12 × 5^3 = 12 × 125 = 1500",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1200π cm³ oe",
+          "description": "1500 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "cylinder",
-        "params": {
-          "radius_label": "10 cm",
-          "height_label": "12 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -695,23 +843,23 @@
     },
     {
       "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 6 cm of B AND closer to B than to A.",
+      "prompt": "Shade the region containing points that are both within 4 cm of A AND closer to A than to B.",
       "solution_steps": [
-        "The boundary for 'within 6 cm of B' is a circle, centre B, radius 6 cm - the region is inside this circle.",
-        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+        "The boundary for 'within 4 cm of A' is a circle, centre A, radius 4 cm - the region is inside this circle.",
+        "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
         "The required region is where these two conditions overlap."
       ],
-      "final_answer": "The region inside the circle of radius 6 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "final_answer": "The region inside the circle of radius 4 cm centred on A, and on the A side of the perpendicular bisector of AB.",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 6 cm of B' is a circle, centre B, radius 6 cm - the region is inside this circle.",
+          "description": "The boundary for 'within 4 cm of A' is a circle, centre A, radius 4 cm - the region is inside this circle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+          "description": "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
           "marks": 1
         },
         {
@@ -721,97 +869,78 @@
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 6 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "description": "The region inside the circle of radius 4 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -8.0,
-          "x_max": 6.0,
-          "y_min": -7.0,
-          "y_max": 7.0,
+          "x_min": -5.0,
+          "x_max": 5.0,
+          "y_min": -2.0,
+          "y_max": 8.0,
           "points": [
             {
               "xy": [
-                4,
-                4
+                0,
+                3
               ],
               "label": "A"
             },
             {
               "xy": [
-                -1,
+                3,
                 0
               ],
               "label": "B"
             }
           ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -1,
-                0
-              ],
-              "radius": 6
-            },
-            {
-              "type": "segment",
-              "p1": [
-                10.24573066576194,
-                -8.932163332202425
-              ],
-              "p2": [
-                -7.24573066576194,
-                12.932163332202425
-              ]
-            }
-          ]
+          "given_lines": []
         }
       },
       "solution_diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -8.0,
-          "x_max": 6.0,
-          "y_min": -7.0,
-          "y_max": 7.0,
+          "x_min": -5.0,
+          "x_max": 5.0,
+          "y_min": -2.0,
+          "y_max": 8.0,
           "points": [
             {
               "xy": [
-                4,
-                4
+                0,
+                3
               ],
               "label": "A"
             },
             {
               "xy": [
-                -1,
+                3,
                 0
               ],
               "label": "B"
             }
           ],
+          "given_lines": [],
           "boundaries": [
             {
               "type": "circle",
               "centre": [
-                -1,
-                0
+                0,
+                3
               ],
-              "radius": 6
+              "radius": 4
             },
             {
               "type": "segment",
               "p1": [
-                10.24573066576194,
-                -8.932163332202425
+                8.571067811865476,
+                8.571067811865476
               ],
               "p2": [
-                -7.24573066576194,
-                12.932163332202425
+                -5.5710678118654755,
+                -5.5710678118654755
               ]
             }
           ],
@@ -819,21 +948,21 @@
             {
               "type": "disk",
               "centre": [
-                -1,
-                0
+                0,
+                3
               ],
-              "radius": 6,
+              "radius": 4,
               "inside": true
             },
             {
               "type": "half_plane",
               "closer_to": [
-                -1,
-                0
+                0,
+                3
               ],
               "than": [
-                4,
-                4
+                3,
+                0
               ]
             }
           ]
@@ -883,200 +1012,93 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation_H",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 3, 7, 8, 10}, B = {3, 6, 7, 10}. List the elements of (A ∪ B)'.",
+      "topic_id": "geometric_vectors_H",
+      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 1:2. Find the vector OP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {2, 3, 7, 8, 10}",
-        "B = {3, 6, 7, 10}",
-        "(A ∪ B)' means the complement of A union B.",
-        "(A ∪ B)' = {1, 4, 5, 9}"
+        "AB = OB - OA = \\vec{b} - \\vec{a}",
+        "AP = (1/3)AB = (1/3)(\\vec{b} - \\vec{a})",
+        "OP = OA + AP = \\vec{a} + (1/3)(\\vec{b} - \\vec{a}) = (2/3)\\vec{a} + (1/3)\\vec{b}"
       ],
-      "final_answer": "{1, 4, 5, 9}",
-      "marks": 5,
+      "final_answer": "(2/3)\\vec{a} + (1/3)\\vec{b}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {2, 3, 7, 8, 10}",
+          "description": "AP = (1/3)AB = (1/3)(\\vec{b} - \\vec{a})",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {3, 6, 7, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(A ∪ B)' means the complement of A union B. (A ∪ B)' = {1, 4, 5, 9}",
+          "description": "OP = OA + AP = \\vec{a} + (1/3)(\\vec{b} - \\vec{a}) = (2/3)\\vec{a} + (1/3)\\vec{b}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{1, 4, 5, 9} oe",
+          "description": "(2/3)\\vec{a} + (1/3)\\vec{b} oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "venn_diagram",
+        "kind": "vector_triangle",
         "params": {
-          "labels": [
-            "A",
-            "B"
+          "ratio": [
+            1,
+            2
           ],
-          "universal_label": "ξ"
-        }
-      },
-      "solution_diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "ξ",
-          "region_text": {
-            "a_only": "2, 8",
-            "b_only": "6",
-            "both": "3, 7, 10",
-            "neither": "1, 4, 5, 9"
-          }
-        }
-      }
-    },
-    {
-      "topic_id": "tree_diagram_dependent_H",
-      "prompt": "A bag contains 8 red and 7 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
-      "solution_steps": [
-        "After the first counter is picked (without replacement), there are 14 counters left.",
-        "P(red then red) = 8/15 × 1/2 = 4/15",
-        "P(red then yellow) = 8/15 × 1/2 = 4/15",
-        "P(yellow then red) = 7/15 × 4/7 = 4/15",
-        "P(yellow then yellow) = 7/15 × 3/7 = 1/5",
-        "P(the two counters are different colours) = 8/15"
-      ],
-      "final_answer": "8/15",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 14 counters left.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(red then red) = 8/15 × 1/2 = 4/15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(red then yellow) = 8/15 × 1/2 = 4/15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(yellow then red) = 7/15 × 4/7 = 4/15 P(yellow then yellow) = 7/15 × 3/7 = 1/5 P(the two counters are different colours) = 8/15",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8/15 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "8/15"
-            ],
-            [
-              "Yellow",
-              "7/15"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "1/2"
-              ],
-              [
-                "Yellow",
-                "1/2"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "4/7"
-              ],
-              [
-                "Yellow",
-                "3/7"
-              ]
-            ]
-          ],
-          "leaf_probs": [
-            [
-              "4/15",
-              "4/15"
-            ],
-            [
-              "4/15",
-              "1/5"
-            ]
-          ]
+          "point_label": "P",
+          "a_label": "\\vec{a}",
+          "b_label": "\\vec{b}",
+          "origin_label": "O"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_completing_square_H",
-      "prompt": "Solve x^2 + 10x + 14 = 0 by completing the square, giving your answers in exact surd form.",
+      "topic_id": "ratio_shape_similar_H",
+      "prompt": "Shape A and Shape B are similar. The volume of shape B is 16 cm^3. Find the volume of shape A.",
       "solution_steps": [
-        "Half the coefficient of x: 10 ÷ 2 = 5",
-        "Complete the square: x^2 + 10x + 14 = (x + 5)^2 - 11",
-        "Set (x + 5)^2 - 11 = 0, so (x + 5)^2 = 11",
-        "(x + 5) = ±√11",
-        "x = -5 + √11 or x = -5 - √11"
+        "Linear scale factor = 2 ÷ 3 = 2/3",
+        "Volume scale factor = (2/3)^3 = 8/27",
+        "Volume of A = 16 ÷ 8/27 = 54 cm^3"
       ],
-      "final_answer": "x = -5 + √11 or x = -5 - √11",
-      "marks": 5,
+      "final_answer": "54 cm^3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: 10 ÷ 2 = 5",
+          "description": "Linear scale factor = 2 ÷ 3 = 2/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Complete the square: x^2 + 10x + 14 = (x + 5)^2 - 11",
+          "description": "Volume scale factor = (2/3)^3 = 8/27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Set (x + 5)^2 - 11 = 0, so (x + 5)^2 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(x + 5) = ±√11 x = -5 + √11 or x = -5 - √11",
+          "description": "Volume of A = 16 ÷ 8/27 = 54 cm^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -5 + √11 or x = -5 - √11 oe",
+          "description": "54 cm^3 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "shape_kind": "parallelogram",
+          "orientation": "left",
+          "a_width_label": "3 cm",
+          "b_width_label": "2 cm"
+        }
+      },
       "solution_diagram": null
     }
   ]

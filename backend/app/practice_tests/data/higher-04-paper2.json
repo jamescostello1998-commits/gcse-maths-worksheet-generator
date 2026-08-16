@@ -7,6 +7,76 @@
   "calculator_allowed": false,
   "questions": [
     {
+      "topic_id": "error_interval_H",
+      "prompt": "A number, x, is 323 rounded to 3 significant figures. Write down the error interval for x.",
+      "solution_steps": [
+        "The last significant figure of 323 has a place value of 1, so x can be up to half of that above or below 323.",
+        "Lower bound: 323 - 0.5 = 322.5",
+        "Upper bound: 323 + 0.5 = 323.5"
+      ],
+      "final_answer": "322.5 ≤ x < 323.5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The last significant figure of 323 has a place value of 1, so x can be up to half of that above or below 323.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Lower bound: 323 - 0.5 = 322.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Upper bound: 323 + 0.5 = 323.5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "322.5 ≤ x < 323.5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_add_subtract_H",
+      "prompt": "Simplify 5√5 - 4√5 + 2√5, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Every term is a multiple of √5, so they are all like surds.",
+        "Combine the coefficients in order: 5 - 4 + 2 = 3.",
+        "= 3√5"
+      ],
+      "final_answer": "3√5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every term is a multiple of √5, so they are all like surds.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the coefficients in order: 5 - 4 + 2 = 3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 3√5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the HCF of 108 and 39.",
       "solution_steps": [
@@ -41,134 +111,6 @@
         {
           "code": "A1",
           "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A rectangle has length 21 cm and width 27 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
-      "solution_steps": [
-        "Length: 21 cm (to the nearest cm) gives 20.5 ≤ length < 21.5",
-        "Width: 27 cm (to the nearest cm) gives 26.5 ≤ width < 27.5",
-        "For the upper bound of the area, use the upper bound of each measurement: 21.5 × 27.5 = 591.25 cm²"
-      ],
-      "final_answer": "591.25 cm²",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Length: 21 cm (to the nearest cm) gives 20.5 ≤ length < 21.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Width: 27 cm (to the nearest cm) gives 26.5 ≤ width < 27.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For the upper bound of the area, use the upper bound of each measurement: 21.5 × 27.5 = 591.25 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "591.25 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "recurring_decimal_two_digit_H",
-      "prompt": "Show that \\recur{0.}{85} can be written as 85/99.",
-      "solution_steps": [
-        "Let x = \\recur{0.}{85}, so 100x = 85.8585... (two digits repeat, so multiply by 100 to shift a full block)",
-        "Subtract: 100x - x = 85 - 0, so 99x = 85",
-        "x = 85/99 = 85/99"
-      ],
-      "final_answer": "85/99",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let x = \\recur{0.}{85}, so 100x = 85.8585... (two digits repeat, so multiply by 100 to shift a full block)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract: 100x - x = 85 - 0, so 99x = 85",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 85/99 = 85/99",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "85/99 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "roots_H",
-      "prompt": "Simplify √224, giving your answer in the form a√b.",
-      "solution_steps": [
-        "Find the largest square factor of 224: 4^2 × 14 = 224",
-        "√224 = √(4^2 × 14) = 4√14"
-      ],
-      "final_answer": "4√14",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the largest square factor of 224: 4^2 × 14 = 224",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√224 = √(4^2 × 14) = 4√14",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4√14 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Work out √20 × √5, giving your answer as an integer.",
-      "solution_steps": [
-        "√20 × √5 = √(20 × 5) = √100",
-        "√100 = 10"
-      ],
-      "final_answer": "10",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "√20 × √5 = √(20 × 5) = √100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√100 = 10",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -211,45 +153,195 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 3^(2x) = 1/27.",
+      "topic_id": "powers_H",
+      "prompt": "Evaluate 125^(1/3).",
       "solution_steps": [
-        "Write the right-hand side as a power of 3: \\frac{1}{3³} = 3^-3",
-        "3^(2x) = 3^-3",
-        "Since the bases match, the powers must be equal: 2x = -3",
-        "x = -3/2"
+        "125^(1/3) means the cube root of 125.",
+        "125^(1/3) = 5"
       ],
-      "final_answer": "-3/2",
-      "marks": 5,
+      "final_answer": "5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write the right-hand side as a power of 3: \\frac{1}{3³} = 3^-3",
+          "description": "125^(1/3) means the cube root of 125.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3^(2x) = 3^-3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x = -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -3/2",
+          "description": "125^(1/3) = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-3/2 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
       "diagram": null,
       "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation_H",
+      "prompt": "A rectangle has length 21 cm and width 27 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 21 cm (to the nearest cm) gives 20.5 ≤ length < 21.5",
+        "Width: 27 cm (to the nearest cm) gives 26.5 ≤ width < 27.5",
+        "For the upper bound of the area, use the upper bound of each measurement: 21.5 × 27.5 = 591.25 cm²"
+      ],
+      "final_answer": "591.25 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 21 cm (to the nearest cm) gives 20.5 ≤ length < 21.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 27 cm (to the nearest cm) gives 26.5 ≤ width < 27.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the upper bound of the area, use the upper bound of each measurement: 21.5 × 27.5 = 591.25 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "591.25 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging_H",
+      "prompt": "Simplify 27^(1/3) × 27^-3, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "27^(1/3) is the cube root of 27, which is 3, so 27^(1/3) = 3^1",
+        "27^-3 = \\frac{1}{27³} = \\frac{1}{3⁹}",
+        "27^(1/3) × 27^-3 = 3^1 × \\frac{1}{3⁹} = 3^(1-9) = 3^-8",
+        "3^-8 = 1/6561"
+      ],
+      "final_answer": "1/6561",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "27^(1/3) is the cube root of 27, which is 3, so 27^(1/3) = 3^1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "27^-3 = \\frac{1}{27³} = \\frac{1}{3⁹}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "27^(1/3) × 27^-3 = 3^1 × \\frac{1}{3⁹} = 3^(1-9) = 3^-8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3^-8 = 1/6561",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/6561 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 3 × 3^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 3 × 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 3, 9, 27, 81, 243",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 3 × 3^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 3 × 3^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 3, 9, 27, 81, 243",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 3 × 3^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 3,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 267.3,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 3,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 267.3,
+          "table_points": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              27
+            ],
+            [
+              3,
+              81
+            ],
+            [
+              4,
+              243
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "linear_brackets_H",
@@ -295,144 +387,89 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_H",
-      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
+      "topic_id": "inequalities_region_H",
+      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
       "solution_steps": [
-        "The circle at -6 is open and the circle at -1 is filled.",
-        "The shading lies outside the two circles, so either bound alone is enough: x < -6 or x ≥ -1."
+        "The boundary line y = -x + 3 is dashed, and the shading lies on the lower side of it, giving y < -x + 3.",
+        "The boundary line y = -\\frac{x}{2} + 1 is solid, and the shading lies on the upper side of it, giving y ≥ -\\frac{x}{2} + 1."
       ],
-      "final_answer": "x < -6 or x ≥ -1",
+      "final_answer": "y < -x + 3 and y ≥ -\\frac{x}{2} + 1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at -6 is open and the circle at -1 is filled.",
+          "description": "The boundary line y = -x + 3 is dashed, and the shading lies on the lower side of it, giving y < -x + 3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading lies outside the two circles, so either bound alone is enough: x < -6 or x ≥ -1.",
+          "description": "The boundary line y = -\\frac{x}{2} + 1 is solid, and the shading lies on the upper side of it, giving y ≥ -\\frac{x}{2} + 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -6 or x ≥ -1 oe",
+          "description": "y < -x + 3 and y ≥ -\\frac{x}{2} + 1 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "number_line",
+        "kind": "inequality_region",
         "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
             {
-              "value": -6,
-              "closed": false
+              "m": -1.0,
+              "c": 3,
+              "op": "<"
             },
             {
-              "value": -1,
-              "closed": true
+              "m": -0.5,
+              "c": 1,
+              "op": ">="
             }
-          ],
-          "shade": "outside"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret_H",
-      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "topic_id": "change_subject_H",
+      "prompt": "Make x the subject of the formula y = 8x + 5x + -3.",
       "solution_steps": [
-        "Total distance = total area under the graph (a trapezium)",
-        "Distance = ½ × (40 + 25) × 20 = 650 m"
+        "y = 8x + 5x + -3",
+        "Add 3 to both sides: y + 3 = 8x + 5x",
+        "Factorise the right-hand side: y + 3 = (13)x",
+        "Divide both sides by 13: x = \\frac{y + 3}{13}"
       ],
-      "final_answer": "650 m",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total distance = total area under the graph (a trapezium)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Distance = ½ × (40 + 25) × 20 = 650 m",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "650 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              5,
-              20
-            ],
-            [
-              30,
-              20
-            ],
-            [
-              40,
-              0
-            ]
-          ],
-          "x_max": 45,
-          "y_max": 25,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_double_brackets_H",
-      "prompt": "Expand and simplify: (3x - 1)(x - 1)",
-      "solution_steps": [
-        "First: 3x × 1x = 3x^2",
-        "Outer: 3x × -1 = -3x",
-        "Inner: -1 × 1x = -1x",
-        "Last: -1 × -1 = 1",
-        "Combine like terms: 3x^2 - 4x + 1"
-      ],
-      "final_answer": "3x^2 - 4x + 1",
+      "final_answer": "x = \\frac{y + 3}{13}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 3x × 1x = 3x^2",
+          "description": "y = 8x + 5x + -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 3x × -1 = -3x",
+          "description": "Add 3 to both sides: y + 3 = 8x + 5x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: -1 × 1x = -1x",
+          "description": "Factorise the right-hand side: y + 3 = (13)x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: -1 × -1 = 1 Combine like terms: 3x^2 - 4x + 1",
+          "description": "Divide both sides by 13: x = \\frac{y + 3}{13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3x^2 - 4x + 1 oe",
+          "description": "x = \\frac{y + 3}{13} oe",
           "marks": 1
         }
       ],
@@ -440,40 +477,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising_H",
-      "prompt": "Solve x^2 + 6x - 16 = 0 by factorising.",
+      "topic_id": "forming_equations_H",
+      "prompt": "I think of a number. I add 7 to it, then multiply the result by 6. The answer is 72. Form an equation and solve it to find the number.",
       "solution_steps": [
-        "Find two numbers that multiply to -16 and add to 6: -2 and 8",
-        "Factorise: (x - 2)(x + 8) = 0",
-        "Either x + -2 = 0 or x + 8 = 0",
-        "x = 2 or x = -8"
+        "Let the number be x.",
+        "6(x + 7) = 72",
+        "Expand the bracket:",
+        "6x + 42 = 72",
+        "Subtract 42 from both sides:",
+        "6x = 30",
+        "Divide both sides by 6:",
+        "x = 5"
       ],
-      "final_answer": "x = 2 or x = -8",
+      "final_answer": "5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to -16 and add to 6: -2 and 8",
+          "description": "Let the number be x.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 2)(x + 8) = 0",
+          "description": "6(x + 7) = 72",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Either x + -2 = 0 or x + 8 = 0",
+          "description": "Expand the bracket:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 2 or x = -8",
+          "description": "6x + 42 = 72 Subtract 42 from both sides: 6x = 30 Divide both sides by 6: x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 2 or x = -8 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -481,41 +522,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_multiply_divide_H",
-      "prompt": "Simplify \\frac{x^2 - 25}{x - 3} ÷ \\frac{x - 5}{x - 3}, giving your answer in its simplest form.",
+      "topic_id": "fractional_equations_H",
+      "prompt": "Solve the following equation.\n\\frac{x}{4} + \\frac{x}{6} = 4",
       "solution_steps": [
-        "Factorise the difference of two squares: x^2 - 25 = (x - 5)(x + 5)",
-        "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{x - 5}{x - 3} becomes × \\frac{x - 3}{x - 5}",
-        "\\frac{(x - 5)(x + 5)}{x - 3} × \\frac{x - 3}{x - 5}",
-        "Cancel the common factors x - 3 and x - 5:",
-        "= x + 5"
+        "Multiply every term by the LCM of 4 and 6, which is 12:",
+        "3x + 2x = 48",
+        "5x = 48",
+        "x = 48/5"
       ],
-      "final_answer": "x + 5",
+      "final_answer": "x = 48/5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise the difference of two squares: x^2 - 25 = (x - 5)(x + 5)",
+          "description": "Multiply every term by the LCM of 4 and 6, which is 12:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{x - 5}{x - 3} becomes × \\frac{x - 3}{x - 5}",
+          "description": "3x + 2x = 48",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{(x - 5)(x + 5)}{x - 3} × \\frac{x - 3}{x - 5}",
+          "description": "5x = 48",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cancel the common factors x - 3 and x - 5: = x + 5",
+          "description": "x = 48/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x + 5 oe",
+          "description": "x = 48/5 oe",
           "marks": 1
         }
       ],
@@ -523,63 +563,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_factorise_H",
-      "prompt": "Make x the subject of the formula qx + 6x = 42.",
+      "topic_id": "substitution_H",
+      "prompt": "v^2 = u^2 + 2as. Find the value of v when u = 7, a = 7 and s = 6. Give your answer to 1 decimal place if it is not exact.",
       "solution_steps": [
-        "qx + 6x = 42",
-        "Factorise the left-hand side: x(q + 6) = 42",
-        "Divide both sides by (q + 6): x = \\frac{42}{q + 6}"
+        "v^2 = u^2 + 2as",
+        "v^2 = 7^2 + 2 × 7 × 6",
+        "v^2 = 49 + 84",
+        "v^2 = 133",
+        "v = √133 = 11.5 (1 d.p.)",
+        "Take the positive square root only, since v represents a speed and must be positive."
       ],
-      "final_answer": "x = \\frac{42}{q + 6}",
-      "marks": 4,
+      "final_answer": "v = 11.5 (1 d.p.)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "qx + 6x = 42",
+          "description": "v^2 = u^2 + 2as",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise the left-hand side: x(q + 6) = 42",
+          "description": "v^2 = 7^2 + 2 × 7 × 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by (q + 6): x = \\frac{42}{q + 6}",
+          "description": "v^2 = 49 + 84",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v^2 = 133 v = √133 = 11.5 (1 d.p.) Take the positive square root only, since v represents a speed and must be positive.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = \\frac{42}{q + 6} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "unit_conversions_H",
-      "prompt": "Convert 14 cm³ to mm³.",
-      "solution_steps": [
-        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
-        "14 cm³ = 14 × 1000 = 14000 mm³"
-      ],
-      "final_answer": "14000 mm³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "14 cm³ = 14 × 1000 = 14000 mm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "14000 mm³ oe",
+          "description": "v = 11.5 (1 d.p.) oe",
           "marks": 1
         }
       ],
@@ -616,40 +635,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure_H",
-      "prompt": "The machine foot below exerts a pressure of 33 N/cm² on its base. Find the force it exerts.",
+      "topic_id": "ratio_combine_H",
+      "prompt": "Given that a:b = 9:2 and b:c = 2:5, find a:b:c in its simplest form.",
       "solution_steps": [
-        "area = side² = 11 × 11 = 121 cm²",
-        "force = pressure × area = 33 × 121 = 3993 N"
+        "Scale a:b = 9:2 by 1 so b = 2: a:b = 9:2",
+        "Scale b:c = 2:5 by 1 so b = 2: b:c = 2:5",
+        "Combine: a:b:c = 9:2:5",
+        "Simplify by dividing by 1: a:b:c = 9:2:5"
       ],
-      "final_answer": "3993 N",
-      "marks": 3,
+      "final_answer": "9 : 2 : 5",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "area = side² = 11 × 11 = 121 cm²",
+          "description": "Scale a:b = 9:2 by 1 so b = 2: a:b = 9:2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "force = pressure × area = 33 × 121 = 3993 N",
+          "description": "Scale b:c = 2:5 by 1 so b = 2: b:c = 2:5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: a:b:c = 9:2:5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify by dividing by 1: a:b:c = 9:2:5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3993 N oe",
+          "description": "9 : 2 : 5 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "rectangle",
-        "params": {
-          "width": 11,
-          "height": 11,
-          "width_label": "11 cm",
-          "height_label": "11 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -694,41 +717,65 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_H",
-      "prompt": "Share 51 in the ratio 6:9:2.",
+      "topic_id": "pressure_H",
+      "prompt": "The machine foot below exerts a pressure of 33 N/cm² on its base. Find the force it exerts.",
       "solution_steps": [
-        "Total parts = 6 + 9 + 2 = 17",
-        "Value of one part = 51 ÷ 17 = 3",
-        "Share 1 = 6 × 3 = 18",
-        "Share 2 = 9 × 3 = 27",
-        "Share 3 = 2 × 3 = 6"
+        "area = side² = 11 × 11 = 121 cm²",
+        "force = pressure × area = 33 × 121 = 3993 N"
       ],
-      "final_answer": "18 : 27 : 6",
-      "marks": 5,
+      "final_answer": "3993 N",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 6 + 9 + 2 = 17",
+          "description": "area = side² = 11 × 11 = 121 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 51 ÷ 17 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 6 × 3 = 18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 9 × 3 = 27 Share 3 = 2 × 3 = 6",
+          "description": "force = pressure × area = 33 × 121 = 3993 N",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 : 27 : 6 oe",
+          "description": "3993 N oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 11,
+          "height": 11,
+          "width_label": "11 cm",
+          "height_label": "11 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_ladder_context_H",
+      "prompt": "A ladder of length 6 m leans against a vertical wall with its base 3 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
+      "solution_steps": [
+        "height² = ladder² - base² = 6² - 3² = 36 - 9 = 27",
+        "height = √27 = 3√3 m (exact form)"
+      ],
+      "final_answer": "3√3 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "height² = ladder² - base² = 6² - 3² = 36 - 9 = 27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "height = √27 = 3√3 m (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√3 m oe",
           "marks": 1
         }
       ],
@@ -736,132 +783,150 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_mixed_compound_H",
-      "prompt": "Find the total area of the following compound shape, correct to 2 decimal places.",
+      "topic_id": "volume_surface_area_cylinder_H",
+      "prompt": "Here is a cylinder. Find its volume, giving your answer in terms of π.",
       "solution_steps": [
-        "Rectangle area = 12 × 12 = 144 cm²",
-        "Semicircular top area = ½ × π × 6² ≈ 56.5 cm²",
-        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
-        "Total area = 144 + 56.5 - 3.14 ≈ 197.41 cm² (2 d.p.)"
+        "Volume = π × r² × h = π × 9² × 20",
+        "= 1620π cm³"
       ],
-      "final_answer": "197.41 cm²",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Rectangle area = 12 × 12 = 144 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Semicircular top area = ½ × π × 6² ≈ 56.5 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total area = 144 + 56.5 - 3.14 ≈ 197.41 cm² (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "197.41 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "mixed_compound",
-        "params": {
-          "width": 12,
-          "height": 12,
-          "top_kind": "semicircle",
-          "cut_kind": "quarter_circle",
-          "width_label": "12 cm",
-          "height_label": "12 cm",
-          "top_radius": 6,
-          "top_label": "6 cm",
-          "cut_radius": 2,
-          "cut_label": "2 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_circle_H",
-      "prompt": "Find the circumference of the following circle, in terms of π.",
-      "solution_steps": [
-        "Circumference = 2 × π × r = 2 × π × 14 = 28π cm",
-        "≈ 88.0 cm (3 s.f.)"
-      ],
-      "final_answer": "28π cm (≈ 88.0 cm)",
+      "final_answer": "1620π cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Circumference = 2 × π × r = 2 × π × 14 = 28π cm",
+          "description": "Volume = π × r² × h = π × 9² × 20",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "≈ 88.0 cm (3 s.f.)",
+          "description": "= 1620π cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "28π cm (≈ 88.0 cm) oe",
+          "description": "1620π cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "circle",
+        "kind": "cylinder",
         "params": {
-          "radius": 14,
-          "label": "14 cm"
+          "radius_label": "9 cm",
+          "height_label": "20 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line_H",
-      "prompt": "The angles 139° and (3x - 1)° lie on a straight line. Find x.",
+      "topic_id": "exact_trig_values_triangles_H",
+      "prompt": "In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "3x - 1 = 41",
-        "Add 1 to both sides:",
-        "3x = 42",
-        "Divide both sides by 3:",
-        "x = 14"
+        "We know the adjacent and want the opposite, so use tan(30°) = √3/3 - its exact value, not a decimal approximation.",
+        "x = 12 × √3/3 = 4√3 cm"
       ],
-      "final_answer": "14",
-      "marks": 5,
+      "final_answer": "4√3 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "We know the adjacent and want the opposite, so use tan(30°) = √3/3 - its exact value, not a decimal approximation.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x - 1 = 41",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 1 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x = 42 Divide both sides by 3: x = 14",
+          "description": "x = 12 × √3/3 = 4√3 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 oe",
+          "description": "4√3 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "12 cm",
+          "opposite_label": "x cm",
+          "hyp_label": null,
+          "angle_label": "30°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_surd_hypotenuse_H",
+      "prompt": "A right-angled triangle has sides 11 cm and 13 cm. Find the exact length of x, giving your answer as a simplified surd.",
+      "solution_steps": [
+        "c² = a² + b² = 11² + 13² = 121 + 169 = 290",
+        "c = √290 = √290 cm (exact form)"
+      ],
+      "final_answer": "√290 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 11² + 13² = 121 + 169 = 290",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √290 = √290 cm (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "√290 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "11 cm",
+          "leg2_label": "13 cm",
+          "hyp_label": "x"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_around_point_H",
+      "prompt": "The angles 58°, 91°, 74° and (2x + 101)° are angles around a point. Find x.",
+      "solution_steps": [
+        "Angles around a point sum to 360°.",
+        "2x + 101 = 137",
+        "Subtract 101 from both sides:",
+        "2x = 36",
+        "Divide both sides by 2:",
+        "x = 18"
+      ],
+      "final_answer": "18",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles around a point sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 101 = 137",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 101 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x = 36 Divide both sides by 2: x = 18",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18 oe",
           "marks": 1
         }
       ],
@@ -869,102 +934,18 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            139,
-            41
+            58,
+            91,
+            74,
+            137
           ],
           "labels": [
-            "139°",
-            "(3x - 1)°"
+            "58°",
+            "91°",
+            "74°",
+            "(2x + 101)°"
           ],
-          "around_point": false
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_describe_H",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
-      "solution_steps": [
-        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For mapping shape A onto shape B, the lines meet at (-1, 1) and the scale factor works out as -1."
-      ],
-      "final_answer": "Enlargement, scale factor -1, centre (-1, 1)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For mapping shape A onto shape B, the lines meet at (-1, 1) and the scale factor works out as -1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Enlargement, scale factor -1, centre (-1, 1) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              3
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              3,
-              7
-            ],
-            [
-              -1,
-              6
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "original_shape_label": "A",
-          "image_vertices": [
-            [
-              -2,
-              -1
-            ],
-            [
-              -6,
-              -1
-            ],
-            [
-              -5,
-              -5
-            ],
-            [
-              -1,
-              -4
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "image_shape_label": "B",
-          "image_same_color": true
+          "around_point": true
         }
       },
       "solution_diagram": null
@@ -999,111 +980,27 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional_H",
-      "prompt": "A bag contains 4 green and 6 purple counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 4 different fonts and 4 different colours. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "P(both green) = 4/10 × 3/9 = 2/15",
-        "P(both purple) = 6/10 × 5/9 = 1/3",
-        "P(both same colour) = 2/15 + 1/3 = 7/15"
+        "Total combinations = 4 × 4 = 16"
       ],
-      "final_answer": "7/15",
-      "marks": 4,
+      "final_answer": "16",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(both green) = 4/10 × 3/9 = 2/15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both purple) = 6/10 × 5/9 = 1/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both same colour) = 2/15 + 1/3 = 7/15",
+          "description": "Total combinations = 4 × 4 = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/15 oe",
+          "description": "16 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Green",
-              ""
-            ],
-            [
-              "Purple",
-              ""
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Green",
-                ""
-              ],
-              [
-                "Purple",
-                ""
-              ]
-            ],
-            [
-              [
-                "Green",
-                ""
-              ],
-              [
-                "Purple",
-                ""
-              ]
-            ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Green",
-              "4/10"
-            ],
-            [
-              "Purple",
-              "6/10"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Green",
-                "3/9"
-              ],
-              [
-                "Purple",
-                "6/9"
-              ]
-            ],
-            [
-              [
-                "Green",
-                "4/9"
-              ],
-              [
-                "Purple",
-                "5/9"
-              ]
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

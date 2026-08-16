@@ -42,7 +42,20 @@ def test_question_diagram_never_leaks_the_answer_geometry():
     for _ in range(TRIALS):
         q = loci.generate_loci_regions(Tier.HIGHER, rng)
         assert "shade_constraints" not in q.diagram.params
+        # The boundaries (the circle and the perpendicular/angle bisector)
+        # are themselves part of what the student must construct - only the
+        # fixed reference points/given lines may appear on the question page.
+        assert "boundaries" not in q.diagram.params
         assert q.solution_diagram.params.get("shade_constraints")
+        assert q.solution_diagram.params.get("boundaries")
+
+
+def test_loci_regions_covers_both_perpendicular_and_angle_bisector_variants():
+    rng = random.Random(1006)
+    branches = {q.dedup_key.split(":")[0] for q in (
+        loci.generate_loci_regions(Tier.HIGHER, rng) for _ in range(TRIALS)
+    )}
+    assert branches == {"loci_region_perp", "loci_region_angle"}
 
 
 def test_dedup_keys_vary_widely():

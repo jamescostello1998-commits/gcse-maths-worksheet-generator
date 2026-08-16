@@ -84,44 +84,81 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_triangle_F",
-      "prompt": "Triangle OFL has OF = 7 cm, FL = 13 cm, and OL = 13 cm. Describe, step by step, how to construct triangle OFL using only a ruler and a pair of compasses.",
+      "topic_id": "construction_perpendicular_bisector_F",
+      "prompt": "Construct a perpendicular bisector of the points ZO using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Draw the line segment OF = 7 cm using a ruler.",
-        "Open the compasses to 13 cm. With the point on O, draw an arc above the line.",
-        "Open the compasses to 13 cm. With the point on F, draw a second arc that crosses the first.",
-        "Label the point where the two arcs cross as L, then draw straight lines from O to L and from F to L to complete the triangle."
+        "Open the compasses to a radius more than half of 13 cm (more than half the length of ZO).",
+        "With the compass point on Z, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on O and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of ZO."
       ],
-      "final_answer": "Triangle OFL, with L located at the intersection of the two compass arcs.",
+      "final_answer": "A straight line through the two arc intersections, crossing ZO at its midpoint at a right angle.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line segment OF = 7 cm using a ruler.",
+          "description": "Open the compasses to a radius more than half of 13 cm (more than half the length of ZO).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Open the compasses to 13 cm. With the point on O, draw an arc above the line.",
+          "description": "With the compass point on Z, draw an arc above and below the line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Open the compasses to 13 cm. With the point on F, draw a second arc that crosses the first.",
+          "description": "Without changing the compass radius, place the point on O and draw two more arcs, crossing the first two.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Label the point where the two arcs cross as L, then draw straight lines from O to L and from F to L to complete the triangle.",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of ZO.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangle OFL, with L located at the intersection of the two compass arcs. oe",
+          "description": "A straight line through the two arc intersections, crossing ZO at its midpoint at a right angle. oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -7.8,
+          "x_max": 20.8,
+          "y_min": -7.8,
+          "y_max": 7.8,
+          "points": [
+            {
+              "xy": [
+                0.0,
+                0.0
+              ],
+              "label": "Z"
+            },
+            {
+              "xy": [
+                13.0,
+                0.0
+              ],
+              "label": "O"
+            }
+          ],
+          "given_lines": [
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                13.0,
+                0.0
+              ]
+            }
+          ],
+          "show_grid": false
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -760,64 +797,64 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length_F",
-      "prompt": "Find the arc length of the following sector, correct to 3 significant figures.",
+      "topic_id": "area_sector_F",
+      "prompt": "Find the area of the following sector, correct to 3 significant figures.",
       "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (271 ÷ 360) × 2 × π × 11",
-        "= 52.0 cm (3 s.f., using a calculator value of π)"
+        "Area = (θ ÷ 360) × π × r² = (108 ÷ 360) × π × 6²",
+        "= 33.9 cm² (3 s.f., using a calculator value of π)"
       ],
-      "final_answer": "52.0 cm",
+      "final_answer": "33.9 cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (271 ÷ 360) × 2 × π × 11",
+          "description": "Area = (θ ÷ 360) × π × r² = (108 ÷ 360) × π × 6²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 52.0 cm (3 s.f., using a calculator value of π)",
+          "description": "= 33.9 cm² (3 s.f., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "52.0 cm oe",
+          "description": "33.9 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "sector",
         "params": {
-          "angle": 271,
-          "radius_label": "11 cm",
-          "angle_label": "271°"
+          "angle": 108,
+          "radius_label": "6 cm",
+          "angle_label": "108°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_lines_F",
-      "prompt": "The diagram shows an equilateral triangle. How many lines of symmetry does it have?",
+      "topic_id": "symmetry_rotational_F",
+      "prompt": "The diagram shows an isosceles triangle. State the order of rotational symmetry.",
       "solution_steps": [
-        "An equilateral triangle has 3 lines of symmetry.",
-        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
+        "Rotating the isosceles triangle about its centre, it only looks the same once during a full 360° turn (back at the start).",
+        "So the order of rotational symmetry is 1."
       ],
-      "final_answer": "3 lines of symmetry",
+      "final_answer": "order 1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "An equilateral triangle has 3 lines of symmetry.",
+          "description": "Rotating the isosceles triangle about its centre, it only looks the same once during a full 360° turn (back at the start).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "description": "So the order of rotational symmetry is 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 lines of symmetry oe",
+          "description": "order 1 oe",
           "marks": 1
         }
       ],
@@ -826,16 +863,16 @@
         "params": {
           "vertices": [
             [
-              2.4492935982947064e-16,
-              4.0
+              0,
+              0
             ],
             [
-              -3.4641016151377544,
-              -2.0000000000000004
+              6,
+              0
             ],
             [
-              3.4641016151377535,
-              -2.0000000000000018
+              3,
+              4
             ]
           ],
           "blank": true
@@ -846,50 +883,23 @@
         "params": {
           "vertices": [
             [
-              2.4492935982947064e-16,
-              4.0
+              0,
+              0
             ],
             [
-              -3.4641016151377544,
-              -2.0000000000000004
+              6,
+              0
             ],
             [
-              3.4641016151377535,
-              -2.0000000000000018
+              3,
+              4
             ]
           ],
-          "symmetry_lines": [
-            {
-              "p1": [
-                -3.1840816777831187e-16,
-                -5.2
-              ],
-              "p2": [
-                3.1840816777831187e-16,
-                5.2
-              ]
-            },
-            {
-              "p1": [
-                4.503332099679081,
-                -2.5999999999999996
-              ],
-              "p2": [
-                -4.503332099679081,
-                2.5999999999999996
-              ]
-            },
-            {
-              "p1": [
-                4.50333209967908,
-                2.6000000000000005
-              ],
-              "p2": [
-                -4.50333209967908,
-                -2.6000000000000005
-              ]
-            }
-          ]
+          "rotation_centre": [
+            3.0,
+            1.3333333333333333
+          ],
+          "rotation_order": 1
         }
       }
     },
@@ -1126,32 +1136,42 @@
       }
     },
     {
-      "topic_id": "probability_expectation_F",
-      "prompt": "The probability that a particular bus is late is 5/6. The bus runs 120 times. On how many occasions would you expect it to be late?",
+      "topic_id": "relative_frequency_F",
+      "prompt": "A biased dice is tested 200 times, and it shows a six 154 times. Use this relative frequency to estimate how many times this would happen in 1300 trials.",
       "solution_steps": [
-        "Expected number of times = probability × number of trials = 5/6 × 120",
-        "= 100"
+        "Relative frequency = frequency ÷ number of trials = 154/200 = 77/100",
+        "Estimated number of times in 1300 trials = 77/100 × 1300 = 1001"
       ],
-      "final_answer": "100",
+      "final_answer": "1001",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 5/6 × 120",
+          "description": "Relative frequency = frequency ÷ number of trials = 154/200 = 77/100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 100",
+          "description": "Estimated number of times in 1300 trials = 77/100 × 1300 = 1001",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "100 oe",
+          "description": "1001 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            6
+          ],
+          "highlight": [
+            0
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]
