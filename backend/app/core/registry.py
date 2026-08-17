@@ -132,6 +132,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     number_theory.TOPIC_HCF_BY_LISTING,
     number_theory.TOPIC_HCF_LCM_BY_PRIME_FACTORS,
     powers_roots.TOPIC_POWERS_FOUNDATION,
+    powers_roots.TOPIC_INDICES_LAW_FOUNDATION,
     powers_roots.TOPIC_NEGATIVE_INDICES,
     powers_roots.TOPIC_POWERS_HIGHER,
     powers_roots.TOPIC_SIMPLIFYING_INDICES_CHALLENGING,

@@ -9,6 +9,7 @@ TRIALS = 200
 
 GENERATORS = [
     (powers_roots.generate_powers_foundation, Tier.FOUNDATION),
+    (powers_roots.generate_indices_law_foundation, Tier.FOUNDATION),
     (powers_roots.generate_powers_higher, Tier.HIGHER),
     (powers_roots.generate_roots_foundation, Tier.FOUNDATION),
     (powers_roots.generate_roots_higher, Tier.HIGHER),
@@ -45,16 +46,68 @@ def test_roots_higher_answer_is_in_a_root_b_form():
         assert int(radicand) > 1
 
 
+def test_powers_foundation_bases_and_exponents_match_the_four_ranges():
+    rng = random.Random(704)
+    for _ in range(500):
+        q = powers_roots.generate_powers_foundation(Tier.FOUNDATION, rng)
+        # The leading verb can be multi-word ("Work out ..."), so grab the
+        # last whitespace-separated token rather than assuming position 1.
+        base_str, exp_str = q.prompt.rsplit(None, 1)[-1].rstrip(".").split("^")
+        base, exponent = int(base_str), int(exp_str)
+        if exponent == 2:
+            assert 2 <= base <= 15
+        elif exponent == 3:
+            assert 2 <= base <= 10
+        elif exponent == 4:
+            assert 2 <= base <= 5
+        else:
+            assert base == 2 and 2 <= exponent <= 8
+
+
+def test_indices_law_foundation_never_produces_a_negative_exponent_and_mixes_bases():
+    rng = random.Random(705)
+    numeric_seen = False
+    algebraic_seen = False
+    for _ in range(300):
+        q = powers_roots.generate_indices_law_foundation(Tier.FOUNDATION, rng)
+        answer = q.final_answer
+        assert "-" not in answer  # never a negative exponent
+        base, _, exp_str = answer.partition("^")
+        exponent = int(exp_str) if exp_str else 1  # bare base (e.g. "x") means exponent 1
+        assert exponent > 0
+        if base == "x":
+            algebraic_seen = True
+        else:
+            numeric_seen = True
+            assert 2 <= int(base) <= 9
+    assert numeric_seen and algebraic_seen
+
+
 def test_dedup_keys_vary_per_generator():
     for generate, tier in GENERATORS:
+        if generate is powers_roots.generate_powers_foundation:
+            continue  # deliberately bounded state space - see dedicated test below
         rng = random.Random(702)
         keys = {generate(tier, rng).dedup_key for _ in range(100)}
         assert len(keys) > 30
 
 
+def test_powers_foundation_dedup_key_space_matches_the_31_allowed_combinations():
+    # A deliberately small, user-specified range (base<=15 squared,
+    # base<=10 cubed, base<=5 to the power 4, base 2 up to the power 8)
+    # gives exactly 31 distinct (base, exponent) pairs in total - enough to
+    # reliably build the default 20-question worksheet (confirmed via a
+    # real build_worksheet trial), but not ">> 20" like most topics, so it's
+    # excluded from the generic >30-in-100-draws check above.
+    rng = random.Random(706)
+    keys = {powers_roots.generate_powers_foundation(Tier.FOUNDATION, rng).dedup_key for _ in range(3000)}
+    assert len(keys) == 31
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         powers_roots.TOPIC_POWERS_FOUNDATION,
+        powers_roots.TOPIC_INDICES_LAW_FOUNDATION,
         powers_roots.TOPIC_POWERS_HIGHER,
         powers_roots.TOPIC_ROOTS_FOUNDATION,
         powers_roots.TOPIC_ROOTS_HIGHER,
@@ -68,7 +121,7 @@ def test_topic_definitions_have_expected_metadata():
         powers_roots.TOPIC_SURDS_RECTANGLE,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 12
+    assert len(ids) == 13
     for t in topics:
         assert t.section == "number"
         assert t.group == "Powers, Roots & Indices"
@@ -93,6 +146,7 @@ def test_rationalise_denominator_never_leaves_a_root_on_the_bottom():
 
 MODELLED_EXAMPLE_GENERATORS = [
     (powers_roots.generate_modelled_example_powers_foundation, Tier.FOUNDATION, "powers_F"),
+    (powers_roots.generate_modelled_example_indices_law_foundation, Tier.FOUNDATION, "indices_law_F"),
     (powers_roots.generate_modelled_example_powers_higher, Tier.HIGHER, "powers_H"),
     (powers_roots.generate_modelled_example_roots_foundation, Tier.FOUNDATION, "roots_F"),
     (powers_roots.generate_modelled_example_roots_higher, Tier.HIGHER, "roots_H"),
@@ -119,6 +173,7 @@ MODELLED_EXAMPLE_GENERATORS = [
 def test_topic_definitions_have_modelled_example_generator():
     topics = [
         powers_roots.TOPIC_POWERS_FOUNDATION,
+        powers_roots.TOPIC_INDICES_LAW_FOUNDATION,
         powers_roots.TOPIC_POWERS_HIGHER,
         powers_roots.TOPIC_ROOTS_FOUNDATION,
         powers_roots.TOPIC_ROOTS_HIGHER,

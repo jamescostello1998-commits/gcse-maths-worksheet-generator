@@ -51,6 +51,13 @@ HOISTED_INSTRUCTIONS: dict[str, str] = {
     "cross_multiplication_F": "Solve the following equation.",
     "cross_multiplication_H": "Solve the following equation.",
     "fractional_equations_advanced_H": "Solve the following equation, giving your answers to 2 decimal places where necessary.",
+    "linear_one_step_F": "Solve:",
+    "linear_two_step_F": "Solve:",
+    "linear_multi_step_F": "Solve:",
+    "linear_both_sides_F": "Solve:",
+    "linear_both_sides_H": "Solve:",
+    "linear_brackets_F": "Solve:",
+    "linear_brackets_H": "Solve:",
 }
 
 
@@ -147,7 +154,14 @@ HOISTED_VERB_INSTRUCTIONS: dict[str, tuple[list[str], str, str, list[str]]] = {
         EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)
     ),
     "fractions_improper_mixed_F": (_CONVERT_VERBS, "verb_only", "", _colon_titles(_CONVERT_VERBS)),
-    "powers_F": (_EVALUATE_OR_SIMPLIFY_VERBS, "verb_only", "", _colon_titles(_EVALUATE_OR_SIMPLIFY_VERBS)),
+    # powers_F is now evaluate-only (split from the old combined topic, see
+    # indices_law_F below) - every question is "{verb} {base}^{exponent}."
+    # with nothing after the bare period, so this collapses fully.
+    "powers_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    # indices_law_F's own trailing clause names the base ("...as a single
+    # power of {base}"), which varies per question (numeric or "x") - only
+    # the leading verb is safe to hoist.
+    "indices_law_F": (SIMPLIFY_VERBS, "verb_only", "", _colon_titles(SIMPLIFY_VERBS)),
     "powers_H": (EVALUATE_VERBS, "verb_only", "", _colon_titles(EVALUATE_VERBS)),
     "roots_H": (SIMPLIFY_VERBS, "verb_only", "", _colon_titles(SIMPLIFY_VERBS)),
     "negative_indices_F": (_EVALUATE_OR_SIMPLIFY_VERBS, "verb_only", "", _colon_titles(_EVALUATE_OR_SIMPLIFY_VERBS)),
@@ -191,6 +205,33 @@ HOISTED_VERB_INSTRUCTIONS: dict[str, tuple[list[str], str, str, list[str]]] = {
     "estimation_rounding_F": (
         ["Work out an estimate for"], "full", " by rounding each number to 1 significant figure.",
         ["By rounding each number to 1 significant figure, estimate:"],
+    ),
+    "fractions_simplify_F": (SIMPLIFY_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, SIMPLIFY_VERBS)),
+    # quadratic_formula_H's two branches have genuinely different trailing
+    # clauses (one says how to round, the other names the exact target
+    # surd form) - only the leading verb is safe to hoist.
+    "quadratic_formula_H": (["Solve"], "verb_only", "", ["Solve:"]),
+    # Both factorising branches always end in the identical fixed clause
+    # "= 0 by factorising." - splitting the suffix just before " by" (not
+    # before "= 0") keeps the "= 0" attached to each item, since that's part
+    # of the actual equation, not decoration, while "by factorising" moves
+    # into the title.
+    "solve_quadratic_factorising_F": (["Solve"], "full", " by factorising.", ["Solve by factorising:"]),
+    "solve_quadratic_factorising_H": (["Solve"], "full", " by factorising.", ["Solve by factorising:"]),
+    "solve_quadratic_completing_square_H": (
+        ["Solve"], "full", " by completing the square, giving your answers in exact surd form.",
+        ["Solve the following by completing the square, giving your answers in exact surd form:"],
+    ),
+    # "Write {n} as a product of its prime factors[, giving your answer in
+    # index form]." - always the same fixed wording (no verb pool), the
+    # number is the only thing that varies.
+    "prime_factors_F": (
+        ["Write"], "full", " as a product of its prime factors.",
+        ["Write the following as a product of its prime factors:"],
+    ),
+    "prime_factors_H": (
+        ["Write"], "full", " as a product of its prime factors, giving your answer in index form.",
+        ["Write the following as a product of its prime factors, giving your answer in index form:"],
     ),
 }
 

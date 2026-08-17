@@ -23,12 +23,13 @@ _DOCX_MEDIA_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessing
 
 # A fractional-power topic (native superscripts + stacked fractions), a plain
 # (non-hoisted) fraction topic, and a diagram-bearing topic.
-# NB: several other fractions.py topics are hoisted (see app/worksheet/
-# builder.py's HOISTED_VERB_INSTRUCTIONS) - deliberately not used here, since
-# this file's "plain worksheet" structural assertions assume an un-hoisted
-# Q1./Q2./... layout. fractions_simplify_F is not in that registry.
+# NB: most other fractions.py topics are hoisted (see app/worksheet/
+# builder.py's HOISTED_VERB_INSTRUCTIONS, which now also includes
+# fractions_simplify_F) - deliberately not used here, since this file's
+# "plain worksheet" structural assertions assume an un-hoisted Q1./Q2./...
+# layout. fractions_ordering_F is not in that registry.
 _FRAC_POWER_TOPIC = "algebraic_indices_H"
-_FRACTION_TOPIC = "fractions_simplify_F"
+_FRACTION_TOPIC = "fractions_ordering_F"
 _DIAGRAM_TOPIC = "area_triangle_F"
 _VECTOR_TOPIC = "vectors_arithmetic_H"
 _GEOMETRIC_VECTOR_TOPIC = "geometric_vectors_H"

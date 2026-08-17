@@ -59,7 +59,9 @@ def test_hoisted_verb_instruction_topics_set_shared_instruction_and_item_text():
 
 
 def test_non_hoisted_topic_has_no_shared_instruction():
-    ws = builder.build_worksheet("linear_one_step_F", Tier.FOUNDATION, count=6, rng=random.Random(3))
+    # linear_one_step_F is deliberately NOT used here any more - it's now in
+    # HOISTED_INSTRUCTIONS (see test_hoisted_instruction_topics_... above).
+    ws = builder.build_worksheet("area_rectangle_F", Tier.FOUNDATION, count=6, rng=random.Random(3))
     assert ws.shared_instruction is None
     assert all(q.item_text is None for q in ws.questions)
 
@@ -68,7 +70,7 @@ def test_all_topics_produce_their_full_distinct_question_count_at_their_fixed_ti
     from app.core.registry import list_topics
 
     topics = list_topics()
-    assert len(topics) == 325
+    assert len(topics) == 326
     for topic in topics:
         tier = topic.fixed_tier or Tier.FOUNDATION
         count = topic.question_count or 20

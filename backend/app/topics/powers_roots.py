@@ -31,68 +31,50 @@ def _superscript(n: int) -> str:
     return str(n).translate(_SUPERSCRIPT_DIGITS)
 
 
+# Foundation "calculating powers" ranges - a small number to a small power,
+# with the allowed base shrinking as the exponent grows so the true value
+# stays a manageable size for mental/written calculation:
+#   any base up to 15, squared; up to 10, cubed; up to 5, to the power 4;
+#   and the number 2 specifically, up to the power 8 (a genuinely bigger
+#   exponent, kept safe only because the base is pinned small).
+_POWERS_EVAL_RANGES = {
+    "sq": (2, range(2, 16)),
+    "cube": (3, range(2, 11)),
+    "quart": (4, range(2, 6)),
+    "base2": (None, range(2, 9)),  # exponent itself varies 2-8; base fixed at 2
+}
+
+
+def _random_powers_eval(rng: random.Random) -> tuple[int, int]:
+    """Pick (base, exponent) for the calculating-powers topic, matching the
+    four ranges above (equal 25% chance each)."""
+    shape = rng.choice(["sq", "cube", "quart", "base2"])
+    if shape == "base2":
+        return 2, rng.choice(list(_POWERS_EVAL_RANGES["base2"][1]))
+    exponent, base_range = _POWERS_EVAL_RANGES[shape]
+    return rng.choice(list(base_range)), exponent
+
+
 def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["evaluate", "law_multiply", "law_divide", "law_power"])
+    base, exponent = _random_powers_eval(rng)
+    result = base**exponent
 
-    if shape == "evaluate":
-        base = rng.randint(2, 12)
-        exponent = rng.choice([2, 3])
-        result = base**exponent
+    # Independent check via a manual repeated-multiplication loop - a
+    # different code path than Python's ** operator.
+    manual = 1
+    for _ in range(exponent):
+        manual *= base
+    if manual != result:
+        raise ValueError("powers_foundation verification failed")
 
-        # Independent check via a manual repeated-multiplication loop - a
-        # different code path than Python's ** operator.
-        manual = 1
-        for _ in range(exponent):
-            manual *= base
-        if manual != result:
-            raise ValueError("powers_foundation verification failed")
-
-        steps = [f"{base}^{exponent} = " + " × ".join([str(base)] * exponent) + f" = {result}"]
-        return Question(
-            topic_id="powers_F",
-            tier=Tier.FOUNDATION,
-            prompt=f"{evaluate_verb(rng)} {base}^{exponent}.",
-            solution_steps=tuple(steps),
-            final_answer=str(result),
-            dedup_key=f"pow_eval:{base}:{exponent}",
-        )
-
-    base = rng.randint(2, 9)
-    if shape == "law_multiply":
-        m, n = rng.randint(2, 5), rng.randint(2, 5)
-        result_exp = m + n
-        # Independent check: evaluate both sides numerically and confirm
-        # they match - a different method than adding the exponents.
-        if base**m * base**n != base**result_exp:
-            raise ValueError("powers_foundation verification failed")
-        prompt = f"{simplify_verb(rng)} {base}^{m} × {base}^{n}, giving your answer as a single power of {base}."
-        steps = [f"Add the powers: {m} + {n} = {result_exp}", f"{base}^{m} × {base}^{n} = {base}^{result_exp}"]
-        dedup_key = f"pow_mult:{base}:{m}:{n}"
-    elif shape == "law_divide":
-        m = rng.randint(4, 8)
-        n = rng.randint(1, m - 1)
-        result_exp = m - n
-        if base**m // base**n != base**result_exp:
-            raise ValueError("powers_foundation verification failed")
-        prompt = f"{simplify_verb(rng)} {base}^{m} ÷ {base}^{n}, giving your answer as a single power of {base}."
-        steps = [f"Subtract the powers: {m} - {n} = {result_exp}", f"{base}^{m} ÷ {base}^{n} = {base}^{result_exp}"]
-        dedup_key = f"pow_div:{base}:{m}:{n}"
-    else:
-        m, n = rng.randint(2, 4), rng.randint(2, 3)
-        result_exp = m * n
-        if (base**m) ** n != base**result_exp:
-            raise ValueError("powers_foundation verification failed")
-        prompt = f"{simplify_verb(rng)} ({base}^{m})^{n}, giving your answer as a single power of {base}."
-        steps = [f"Multiply the powers: {m} × {n} = {result_exp}", f"({base}^{m})^{n} = {base}^{result_exp}"]
-        dedup_key = f"pow_pow:{base}:{m}:{n}"
-
+    steps = [f"{base}^{exponent} = " + " × ".join([str(base)] * exponent) + f" = {result}"]
     return Question(
         topic_id="powers_F",
         tier=Tier.FOUNDATION,
-        prompt=prompt,
+        prompt=f"{evaluate_verb(rng)} {base}^{exponent}.",
         solution_steps=tuple(steps),
-        final_answer=f"{base}^{result_exp}",
-        dedup_key=dedup_key,
+        final_answer=str(result),
+        dedup_key=f"pow_eval:{base}:{exponent}",
     )
 
 
@@ -276,64 +258,162 @@ def generate_roots_higher(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["evaluate", "law_multiply", "law_divide", "law_power"])
+    base, exponent = _random_powers_eval(rng)
+    result = base**exponent
 
-    if shape == "evaluate":
-        base = rng.randint(2, 12)
-        exponent = rng.choice([2, 3])
-        result = base**exponent
+    manual = 1
+    for _ in range(exponent):
+        manual *= base
+    if manual != result:
+        raise ValueError("modelled example powers_foundation verification failed")
 
-        manual = 1
-        for _ in range(exponent):
-            manual *= base
-        if manual != result:
-            raise ValueError("modelled example powers_foundation verification failed")
+    power_word = "squared" if exponent == 2 else "cubed" if exponent == 3 else f"to the power {exponent}"
+    repeated = " × ".join([str(base)] * exponent)
+    teaching_steps = [
+        f"{base}^{exponent} means {base} multiplied by itself {exponent} times (read as "
+        f"'{base} {power_word}') - it does NOT mean {base} multiplied by {exponent}, which is a "
+        "very common mistake.",
+        f"Write it out in full as repeated multiplication: {repeated}.",
+        f"Multiply through, left to right: {repeated} = {result}.",
+        f"So {base}^{exponent} = {result}.",
+    ]
+    worked_calculation = [f"{base}^{exponent}", f"= {repeated}", f"= {result}"]
+    return ModelledExample(
+        topic_id="powers_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"{evaluate_verb(rng)} {base}^{exponent}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(result),
+    )
 
-        power_word = "squared" if exponent == 2 else "cubed"
-        repeated = " × ".join([str(base)] * exponent)
-        teaching_steps = [
-            f"{base}^{exponent} means {base} multiplied by itself {exponent} times (read as "
-            f"'{base} {power_word}') - it does NOT mean {base} multiplied by {exponent}, which is a "
-            "very common mistake.",
-            f"Write it out in full as repeated multiplication: {repeated}.",
-            f"Multiply through, left to right: {repeated} = {result}.",
-            f"So {base}^{exponent} = {result}.",
-        ]
-        worked_calculation = [f"{base}^{exponent}", f"= {repeated}", f"= {result}"]
-        return ModelledExample(
-            topic_id="powers_F",
-            tier=Tier.FOUNDATION,
-            prompt=f"{evaluate_verb(rng)} {base}^{exponent}.",
-            worked_calculation=tuple(worked_calculation),
-            teaching_steps=tuple(teaching_steps),
-            final_answer=str(result),
-        )
 
-    base = rng.randint(2, 9)
-    if shape == "law_multiply":
+# ---------------------------------------------------------------------------
+# indices_law_F - the three basic index laws (multiply/divide/power-of-a-power),
+# split out of the old combined powers_F so each half can be practised on its
+# own. Every base is bare (no coefficient), and is either a small numeric
+# value or the algebraic variable x, chosen independently per question - the
+# "mixture of a numerical base and an algebraic base" the topic was built
+# for. The divide law always keeps the numerator's exponent bigger than the
+# denominator's, so the resulting power is never negative (this app treats
+# negative indices as Higher-only content - see negative_indices_F/
+# algebraic_indices_H).
+# ---------------------------------------------------------------------------
+
+_INDICES_LAW_NUMERIC_BASES = list(range(2, 10))
+_INDICES_LAW_X = sp.symbols("x")
+
+
+def _random_indices_law_base(rng: random.Random) -> int | str:
+    return rng.choice(_INDICES_LAW_NUMERIC_BASES) if rng.random() < 0.5 else "x"
+
+
+def _fmt_pow(base: int | str, exp: int) -> str:
+    """Render base^exp as a real single power - bare base (no caret) when
+    exp is 1, which the divide law can legitimately land on (e.g.
+    x^5 / x^4 -> x, not the non-standard "x^1")."""
+    return str(base) if exp == 1 else f"{base}^{exp}"
+
+
+def _build_indices_law(rng: random.Random) -> dict:
+    """Draw one index-law instance and independently verify it, returning
+    everything both the practice generator and the modelled example need."""
+    shape = rng.choice(["multiply", "divide", "power"])
+    base = _random_indices_law_base(rng)
+    is_numeric = isinstance(base, int)
+    x = _INDICES_LAW_X
+
+    if shape == "multiply":
         m, n = rng.randint(2, 5), rng.randint(2, 5)
         result_exp = m + n
-        if base**m * base**n != base**result_exp:
-            raise ValueError("modelled example powers_foundation verification failed")
-        prompt = f"{simplify_verb(rng)} {base}^{m} × {base}^{n}, giving your answer as a single power of {base}."
+        if is_numeric:
+            if base**m * base**n != base**result_exp:
+                raise ValueError("indices_law_foundation (multiply) verification failed")
+        elif sp.expand(x**m * x**n - x**result_exp) != 0:
+            raise ValueError("indices_law_foundation (multiply) verification failed")
+        law_line = "Multiplying powers of the same base: add the exponents."
+        op_line = f"{base}^{m} × {base}^{n} = {base}^({m}+{n})"
+        dedup_tag = "mult"
+    elif shape == "divide":
+        m = rng.randint(4, 8)
+        n = rng.randint(1, m - 1)  # n < m, so the result is always a positive power
+        result_exp = m - n
+        if is_numeric:
+            if base**m // base**n != base**result_exp:
+                raise ValueError("indices_law_foundation (divide) verification failed")
+        elif sp.simplify(x**m / x**n - x**result_exp) != 0:
+            raise ValueError("indices_law_foundation (divide) verification failed")
+        law_line = "Dividing powers of the same base: subtract the exponents."
+        op_line = f"{base}^{m} ÷ {base}^{n} = {base}^({m}-{n})"
+        dedup_tag = "div"
+    else:
+        m, n = rng.randint(2, 4), rng.randint(2, 3)
+        result_exp = m * n
+        if is_numeric:
+            if (base**m) ** n != base**result_exp:
+                raise ValueError("indices_law_foundation (power) verification failed")
+        elif sp.expand((x**m) ** n - x**result_exp) != 0:
+            raise ValueError("indices_law_foundation (power) verification failed")
+        law_line = "Raising a power to another power: multiply the exponents."
+        op_line = f"({base}^{m})^{n} = {base}^({m}×{n})"
+        dedup_tag = "pow"
+
+    if shape == "multiply":
+        expr = f"{base}^{m} × {base}^{n}"
+    elif shape == "divide":
+        expr = f"{base}^{m} ÷ {base}^{n}"
+    else:
+        expr = f"({base}^{m})^{n}"
+
+    answer = _fmt_pow(base, result_exp)
+    return {
+        "shape": shape,
+        "base": base,
+        "m": m,
+        "n": n,
+        "result_exp": result_exp,
+        "law_line": law_line,
+        "op_line": op_line,
+        "expr": expr,
+        "answer": answer,
+        "dedup_key": f"ind_law_{dedup_tag}:{base}:{m}:{n}",
+    }
+
+
+def generate_indices_law_foundation(tier: Tier, rng: random.Random) -> Question:
+    inst = _build_indices_law(rng)
+    steps = [inst["law_line"], inst["op_line"], f"= {inst['answer']}"]
+    prompt = f"{simplify_verb(rng)} {inst['expr']}, giving your answer as a single power of {inst['base']}."
+    return Question(
+        topic_id="indices_law_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=inst["answer"],
+        dedup_key=inst["dedup_key"],
+    )
+
+
+def generate_modelled_example_indices_law_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    inst = _build_indices_law(rng)
+    base, m, n, result_exp, expr, answer = (
+        inst["base"], inst["m"], inst["n"], inst["result_exp"], inst["expr"], inst["answer"]
+    )
+    shape = inst["shape"]
+    prompt = f"{simplify_verb(rng)} {expr}, giving your answer as a single power of {base}."
+
+    if shape == "multiply":
         teaching_steps = [
             f"{base}^{m} means {m} copies of {base} multiplied together, and {base}^{n} means {n} more "
             f"copies. Multiplying {base}^{m} × {base}^{n} just joins all of those copies into one long "
             "multiplication of the same base.",
             f"In total that's {m} + {n} = {result_exp} copies of {base} multiplied together, which is "
-            f"exactly what {base}^{result_exp} means.",
+            f"exactly what {answer} means.",
             "This gives the general law: when multiplying powers of the SAME base, add the exponents "
-            f"together. {base}^{m} × {base}^{n} = {base}^{result_exp}.",
+            f"together. {expr} = {answer}.",
         ]
-        worked_calculation = [f"{base}^{m} × {base}^{n}", f"= {base}^({m}+{n})", f"= {base}^{result_exp}"]
-        answer = f"{base}^{result_exp}"
-    elif shape == "law_divide":
-        m = rng.randint(4, 8)
-        n = rng.randint(1, m - 1)
-        result_exp = m - n
-        if base**m // base**n != base**result_exp:
-            raise ValueError("modelled example powers_foundation verification failed")
-        prompt = f"{simplify_verb(rng)} {base}^{m} ÷ {base}^{n}, giving your answer as a single power of {base}."
+        worked_calculation = [expr, f"= {base}^({m}+{n})", f"= {answer}"]
+    elif shape == "divide":
         teaching_steps = [
             f"{base}^{m} ÷ {base}^{n} means {m} copies of {base} multiplied together on top, divided by "
             f"{n} copies of {base} on the bottom. Since dividing cancels matching factors, {n} of the "
@@ -341,29 +421,22 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
             f"That leaves {m} - {n} = {result_exp} copies of {base} still multiplied together on top, "
             "with nothing left to cancel with underneath.",
             "This gives the general law: when dividing powers of the SAME base, subtract the exponents. "
-            f"{base}^{m} ÷ {base}^{n} = {base}^{result_exp}.",
+            f"{expr} = {answer}.",
         ]
-        worked_calculation = [f"{base}^{m} ÷ {base}^{n}", f"= {base}^({m}-{n})", f"= {base}^{result_exp}"]
-        answer = f"{base}^{result_exp}"
+        worked_calculation = [expr, f"= {base}^({m}-{n})", f"= {answer}"]
     else:
-        m, n = rng.randint(2, 4), rng.randint(2, 3)
-        result_exp = m * n
-        if (base**m) ** n != base**result_exp:
-            raise ValueError("modelled example powers_foundation verification failed")
-        prompt = f"{simplify_verb(rng)} ({base}^{m})^{n}, giving your answer as a single power of {base}."
         teaching_steps = [
             f"({base}^{m})^{n} means {base}^{m} multiplied by itself {n} times over - that's {n} "
             f"separate groups, each containing {m} copies of {base}.",
             f"Altogether that's {m} × {n} = {result_exp} copies of {base} multiplied together across "
             "all the groups combined.",
             "This gives the general law: when raising a power to another power, multiply the exponents "
-            f"together. ({base}^{m})^{n} = {base}^{result_exp}.",
+            f"together. {expr} = {answer}.",
         ]
-        worked_calculation = [f"({base}^{m})^{n}", f"= {base}^({m}×{n})", f"= {base}^{result_exp}"]
-        answer = f"{base}^{result_exp}"
+        worked_calculation = [expr, f"= {base}^({m}×{n})", f"= {answer}"]
 
     return ModelledExample(
-        topic_id="powers_F",
+        topic_id="indices_law_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -2348,13 +2421,24 @@ def generate_modelled_example_surds_rectangle(tier: Tier, rng: random.Random) ->
 
 TOPIC_POWERS_FOUNDATION = TopicDefinition(
     id="powers_F",
-    display_name="Powers & Indices",
-    description="Evaluate powers and use the laws of indices with positive integer powers.",
+    display_name="Calculating Powers",
+    description="Evaluate a number raised to a small positive integer power.",
     generate=generate_powers_foundation,
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_powers_foundation,
+)
+
+TOPIC_INDICES_LAW_FOUNDATION = TopicDefinition(
+    id="indices_law_F",
+    display_name="Laws of Indices",
+    description="Simplify using the three basic laws of indices, with a numeric or algebraic base.",
+    generate=generate_indices_law_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_indices_law_foundation,
 )
 
 TOPIC_POWERS_HIGHER = TopicDefinition(

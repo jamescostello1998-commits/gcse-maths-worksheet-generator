@@ -25,18 +25,25 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **323 topics**, backend suite **1044/1044**, frontend **65/65**, all 60
+**CURRENT STATE:** **326 topics**, backend suite **1053/1053**, frontend **65/65**, all 60
 Practice Test papers exactly 100 marks (rebuilt twice during step 61 — steps 62-63 didn't need a
-rebuild: the touched topics are either diagram-free or don't appear in any frozen paper, see those
-steps for the exact reasoning). Steps 54-59 are committed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58
-in `dbda953`, step 59 across seven commits ending `91048ec`); steps 60-61 (tree diagrams/
-`frequency_tree_F` + probability/loci/construction/bearings fixes, described below) are committed
-in `8abaf98`; step 62 (a Solving Linear Equations review batch) is committed in `56e149c`; **step 63
-(a Corbett-Maths-gap audit + build batch — linear_both_sides_H reordering, multi-algebraic-term
-angles, 6 new forming_equations_H perimeter shapes, ages/money + consecutive-integer word problems)
-is NOT YET COMMITTED — a new session should commit and push this first** (full suite already
-confirmed 1044/1044 green with it included; see step 63 in the chronology for exactly what's in the
-diff). No known bugs.
+rebuild: the touched topics are either diagram-free or don't appear in any frozen paper; steps
+64-66's changes likewise never touched a diagram param schema, so no rebuild was needed there
+either — see those steps for the exact reasoning). Steps 54-59 are committed (steps 54-56 in
+`c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 across seven commits ending
+`91048ec`); steps 60-61 (tree diagrams/`frequency_tree_F` + probability/loci/construction/bearings
+fixes, described below) are committed in `8abaf98`; step 62 (a Solving Linear Equations review
+batch) is committed in `56e149c`; step 63 (a Corbett-Maths-gap audit + build batch) is committed in
+`802a3b7` — **`802a3b7` is the last pushed commit on `master` as of the start of this session.**
+Everything from step 64's "Solve" bold-title audit piece onward (step 64's other four pieces were
+already committed as `419c3b2`/`cbad37a`/`d530a45`/`12bd5c9`) through steps 65-66 (described below —
+hoisted `prime_factors_F`/`_H`, and the `powers_F`/`indices_law_F` split) is **NOT YET COMMITTED**
+as of the end of this session — a new session should commit and push this first (full suite already
+confirmed 1053/1053 green with all of it included; `git status` shows the tracked files touched by
+these three pieces combined). No known bugs. One honest gap: the `decimals_multiply_F` no-trailing-
+zero fix and `standard_form.py`'s 10^0/10^1 exclusion (both in step 64) were verified via large ad
+hoc scratch-script trial runs (thousands of trials, zero failures) but were **not** given a
+persisted pytest regression test — worth adding if either area is touched again.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -261,12 +268,10 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** commit and push step 63 FIRST (see "CURRENT STATE" above — it's the only
-thing not yet committed; the user has already reviewed the rendered output this step describes, so
-this isn't waiting on further confirmation — just verify `pytest` is still green, which it was
-at 1044/1044 when this step was written). Steps 60-62 are already committed and pushed. Then ask
-the user for the next chunk of review feedback (the review is NOT confirmed finished — recent
-batches have been per-topic
+**Next natural step:** commit and push everything through step 66 FIRST (see "CURRENT STATE"
+above — it's the only thing not yet committed; just verify `pytest` is still green, which it was
+at 1053/1053 when this step was written). Then ask the user for the next chunk of review feedback
+(the review is NOT confirmed finished — recent batches have been per-topic
 items the user sends directly, sometimes several in one message, occasionally a page range; they
 may equally have a new one-off feature in mind, as steps 45-46 and 61's bearings topics were). The
 review workflow each batch: read the named items → fix them (render
@@ -620,7 +625,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 
 | Section | Groups | Topics |
 |---|---|---|
-| Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 57 |
+| Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 60 |
 | Algebra | Expressions/Formulae/Equations/Identities (incl. Collecting Like Terms), Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs, Coordinate Geometry | 84 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
 | Geometry | Area & Perimeter, Parts of a Circle, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 92 |
@@ -5101,6 +5106,290 @@ fixes), is committed and pushed (see `git log`).
     modelled-example PDF) and reading them closely - four of this step's five real bugs were only
     caught this way, not by any test written in advance, matching this project's whole-history
     discipline. **Not yet committed as of the end of this session — see "CURRENT STATE" above.**
+
+64. New session, a long batch of direct per-topic user requests (no single unifying theme up
+    front — each item named a topic id and a specific fix, handled in the order received) that
+    ended up centring on one new piece of shared infrastructure. **325 topics (was 323), backend
+    suite 1044 → 1050.** Every change was verified by rendering real worksheet PDFs and reading
+    them closely (this project's standing discipline), not just by the unit tests, and the review
+    PDFs (`generate_review_pdfs.py`, now with the `--count` option below) were regenerated and sent
+    back to the user after most individual pieces, not batched to the end.
+
+    **New capability: `generate_review_pdfs.py --count N`.** The script (previously always 1
+    question per topic) gained a `--count` CLI arg; the default (`--count 1`, i.e. no flag) still
+    writes to the original `all_topics_review_questions.pdf`/`_answers.pdf` filenames unchanged, so
+    the ongoing paginated review process (steps 34-63) isn't disrupted — passing e.g. `--count 5`
+    writes to separate `_x5`-suffixed filenames instead. Used throughout this session to send fresh
+    "5 questions per topic" review copies after each batch of changes.
+
+    **New capability: shared bold-title "hoisting" for topics whose own leading verb varies
+    per-question.** `app/worksheet/builder.py` already had `HOISTED_INSTRUCTIONS` (topics repeating
+    one FIXED instruction string on every question, e.g. "Expand and simplify:") from earlier
+    sessions. This step added a sibling registry, `HOISTED_VERB_INSTRUCTIONS`, for topics that
+    instead vary their own leading verb per-question via `app/topics/phrasing.py`'s pools (or, for
+    several older topics, always said the same fixed verb but had never been hoisted at all) — on a
+    single-topic worksheet, ONE title is now chosen ONCE (not per question, equal chance per
+    candidate) for a shared bold header, rather than repeating a verb (varying or not) on every
+    question. Two styles: `"full"` collapses the verb AND a shared trailing clause into one title
+    (e.g. "Work out the following, giving your answer as a fraction in its simplest form."),
+    leaving a bare expression per question; `"verb_only"` hoists just the leading verb (e.g.
+    "Simplify:") when the trailing clause genuinely varies per question (e.g. "giving your answer
+    as a single power of {base}", base differing each time) and can't be safely generalised into
+    one title. Each entry is a tuple: `(verbs, style, suffix, title_choices)` — `verbs` is the
+    candidate pool used only for matching/stripping each question's own leading word (not
+    necessarily the same wording ever shown), `suffix` is only used for `"full"`, and
+    `title_choices` is a plain list of complete title strings, NOT always a template×pool product
+    (see below). `_apply_shared_verb_instruction` (mirrors the older
+    `_apply_shared_instruction`'s fail-safe design exactly): if any question's prompt doesn't start
+    with a pool verb, or (for "full") doesn't end with the expected suffix, the whole worksheet
+    silently falls back to full un-hoisted prompts — never a crash. `title_choices` is usually a
+    verb pool expanded across one `"{v} ..."` template (via new `_titles`/`_colon_titles` helpers),
+    but is a plain list specifically so a topic whose verb and preposition are paired (e.g.
+    "Write ... in standard form" vs "Convert ... to standard form" — real English doesn't let you
+    freely swap verb and preposition) can supply genuinely different complete titles rather than one
+    template forced across every verb. This decoupling — the verb pool used to STRIP a question's
+    own leading word doesn't have to be the same wording pool used to CHOOSE the displayed title —
+    is what let several topics that only ever say one fixed word (e.g. `bidmas_F` always literally
+    says "Work out") still get real title *variety* (a title randomly chosen from
+    Evaluate/Work out/Calculate), since the display choice is independent of what the underlying
+    generator happens to produce. `HOISTED_INSTRUCTIONS` was also extended for topics whose
+    prompt is a single always-identical fixed string with genuinely nothing to strip beyond a
+    leading colon (e.g. `linear_one_step_F`'s "Solve: {equation}") — the existing simpler
+    mechanism, not the new one, since there's no verb *variety* to speak of there.
+
+    Rolled out to (grouped by how they were requested, not by style):
+    - **Fraction/decimal arithmetic** (the pilot batch, "full" style, `EVALUATE_VERBS`/
+      `AMOUNT_VERBS`/`SIMPLIFY_VERBS` pools): `fractions_add_subtract_F`, `fractions_multiply_F`,
+      `fractions_divide_F`/`_H`, `fractions_mixed_number_arithmetic_H`, `fractions_of_amount_F`,
+      `fractions_simplify_F` (added in this step's final "Solve"-audit batch, see below, not the
+      pilot), `decimals_add_subtract_F`, `decimals_multiply_F`, `decimals_divide_F`,
+      `number_powers_of_ten_F`. `fractions_improper_mixed_F` needed the "verb_only" style instead
+      (mixes two genuinely different directions — improper→mixed and mixed→improper — in one
+      worksheet, so only the verb Write/Convert/Express hoists; each item keeps its own "...to a
+      mixed number."/"...as an improper fraction.", which reads naturally even though the header
+      verb and an individual item's own original preposition don't always "naturally" pair,
+      confirmed via a real render before committing to it).
+    - **Powers/roots/indices/surds** ("verb_only", since these mix several genuinely different
+      per-question trailing instructions): `powers_F`, `powers_H`, `roots_H`, `negative_indices_F`,
+      `surds_multiply_divide_H`. `simplifying_indices_challenging_H` started as "verb_only" too,
+      then was explicitly asked to become a "full" collapse instead once the user noticed all
+      three of its shapes share the identical trailing clause — reworked to a single fixed title,
+      **"Fully simplify (giving your answer as a fraction if necessary)"** (not a random pool —
+      the user gave this exact wording). `indices_common_base_equations_H` → fixed **"Solve:"**
+      (verb=["Solve"], suffix="." — its three shapes all end in a bare period, no other clause).
+    - **BIDMAS and negative numbers** ("full", `EVALUATE_VERBS`, bare-period suffix — these always
+      said a single fixed "Work out", never varying, but had never been hoisted before):
+      `bidmas_F`, `bidmas_two_three_F`, `negative_add_subtract_F`, `negative_multiply_divide_F`.
+    - **Standard form** (split into 3 genuinely different groups per direct user confirmation via
+      `AskUserQuestion`, since a single title can't describe both directions of conversion or an
+      arithmetic instruction): convert-TO (`standard_form_to_F`/`_to_small_F`) → a randomised
+      Write/Convert/Express pool, each with its own correct preposition ("Write in standard
+      form:"/"Convert to standard form:"/"Express in standard form:"); convert-FROM
+      (`standard_form_from_large_F`/`_from_small_F`) → a single fixed "Write as an ordinary
+      number:" (not pooled, per direct confirmation); arithmetic
+      (`standard_form_multiply_divide_F`/`_H`, `standard_form_add_subtract_H`) → the standard
+      `EVALUATE_VERBS`+"the following, giving your answer in standard form." full-collapse
+      pattern. `standard_form_calculator_F` was explicitly asked to be left OUT of this scope.
+    - **`estimation_rounding_F`** → a single fixed title with the clauses reordered from the
+      generator's own wording: **"By rounding each number to 1 significant figure, estimate:"**
+      (verb=["Work out an estimate for"], a whole discontinuous phrase used purely for matching/
+      stripping — the *displayed* title is unrelated wording, per the decoupling described above).
+    - **The "Solve" audit** (this step's final piece, prompted by a direct request to check "all
+      solving questions" plus `fractions_simplify_F` — **the one piece of this whole step NOT YET
+      COMMITTED**, see "CURRENT STATE" above): a full-codebase grep for every `prompt=` line
+      containing "Solve" across `app/topics/*.py` turned up `linear_equations.py`'s 7 topics
+      (`linear_one_step_F`, `_two_step_F`, `_multi_step_F`, `_both_sides_F`/`_H`,
+      `_brackets_F`/`_H`) — every one of them already said the literal fixed "Solve: {equation}"
+      with nothing after, so all 7 went straight into the simple `HOISTED_INSTRUCTIONS` dict as
+      `"Solve:"`, no new mechanism needed. `quadratic_formula_H` has two branches with genuinely
+      different trailing clauses (one says how to round, the other names an exact target surd
+      form) — "verb_only", title "Solve:", each item keeps its own instruction.
+      `solve_quadratic_factorising_F`/`_H` (`expand_factorise.py`) and
+      `solve_quadratic_completing_square_H` (`quadratic_graphs.py`) each always end in one
+      identical fixed clause — the suffix boundary was chosen so "= 0" stays attached to each
+      item (it's part of the actual equation, not decoration) while the METHOD name moves into the
+      title: **"Solve by factorising:"** (item: "x^2 + 5x + 6 = 0") and **"Solve the following by
+      completing the square, giving your answers in exact surd form:"**. `fractions_simplify_F`
+      got the same plain `SIMPLIFY_VERBS`+bare-period pattern as `bidmas_F` ("Simplify/Fully
+      simplify the following."). Picking these six/seven new entries broke two existing test
+      fixtures that had (coincidentally, from earlier in this same session) picked topics as
+      "definitely non-hoisted" examples that were now hoisted — `test_non_hoisted_topic_has_no_
+      shared_instruction` swapped `linear_one_step_F` → `area_rectangle_F`, and
+      `test_docx_render.py`'s `_FRACTION_TOPIC` swapped `fractions_simplify_F` → `fractions_
+      ordering_F` — both caught immediately by the existing generic tests failing, not missed.
+
+    **`decimals_multiply_F`: no operand may end in a trailing zero.** `_rand_decimal` gained a
+    `no_trailing_zero: bool = False` param (reroll until the fractional part's last digit isn't 0
+    — e.g. never "3.0" or "12.50") — applied only to `decimals_multiply_F`'s two operands (practice
+    + modelled example), per the user's explicit scope (NOT the shared helper's other callers, e.g.
+    `decimals_add_subtract_F`, which keeps its original behaviour). Verified via a 3000-trial
+    scratch scan (0 failures) and a real rendered worksheet — no persisted pytest test was added
+    (see the honest gap noted in "CURRENT STATE" above).
+
+    **`factors_F`/`hcf_by_listing_F`: two direct constraints.** `factors_F`'s "write down all the
+    factors of n"/"how many factors does n have?" branches (practice + modelled, `number_theory.py`)
+    now draw `n` from a precomputed `_FACTORS_CANDIDATE_RANGE` — composite-only (never prime), and
+    restricted to under 80, or exactly 81, or exactly 100 (80 and 82-99 excluded) — per an exact
+    numeric spec from the user. The third branch ("Is x a factor of y?") was deliberately left
+    untouched (not part of the request). `hcf_by_listing_F` (practice + modelled) now rerolls its
+    second number until at most one of the two is prime (previously both could be prime
+    simultaneously). Verified via a real scan of generated dedup_keys checked against
+    `_is_prime_trial_division` (0 violations across thousands of trials) and real rendered PDFs.
+
+    **`standard_form.py`: exclude 10^0/10^1 as GIVEN exponents; mix the calculator's rounding
+    wording.** Every power of 10 a question STATES (not the computed answer) previously could be
+    drawn as 0 or 1 in `standard_form_multiply_divide_H`/`_F`, `standard_form_add_subtract_H`, and
+    `standard_form_calculator_F` — a new `_rand_given_exponent(rng, lo, hi)` helper draws from
+    `[lo, hi]` excluding `{0, 1}`, applied to `multiply_divide_H`/`_F`'s n1/n2 and the calculator
+    topic's n1/n2 (practice + modelled, both); `add_subtract_H`'s own `n2 = n1 - {1 or 2}` could
+    only ever reach 1 when `n1 == 3`, so instead of a reroll its `n1` range was simply bumped from
+    `randint(3, 7)` to `randint(4, 7)`, which analytically guarantees `n2 >= 2` for every possible
+    offset. `standard_form_to_F`/`_to_small_F`/`_from_large_F`/`_from_small_F` were already always
+    ≥2 in magnitude and needed no change. Separately, `standard_form_calculator_F`'s rounding
+    instruction (previously always fixed "3 significant figures", mathematically the same as
+    rounding this topic's 1-9.99 mantissa to 2 decimal places) now randomly picks between "2
+    decimal places" (75%) and "3 significant figures" (25%) WORDING only — the underlying
+    precision/computation is completely unchanged, confirmed via a 4000-trial weighted-split scan
+    (≈75/25 observed) and real rendered PDFs showing both wordings. No persisted pytest regression
+    test for either fix (see the honest gap noted above).
+
+    **Surds audit against a real Corbett Maths worksheet.** The user linked
+    `corbettmaths.com/wp-content/uploads/2025/03/Surds-PQ.pdf` and asked to check whether this
+    app's surds wording matches real convention, specifically "remove mention of writing in the
+    form aVb where you think", and to flag any missed content — with an explicit request to ask
+    clarifying questions rather than guess. Downloaded the PDF directly (`curl`, then `fitz` page
+    rendering — its `get_text()` output comes out jumbled/column-scrambled for this PDF's layout,
+    the same lesson already documented for other Corbett PQ sheets in this file, so several pages
+    were rasterised and read visually instead) and read all 40 questions. Confirmed real Corbett
+    convention only names the target form ("in the form aVb") when it's genuinely non-obvious (a
+    SPECIFIED, non-default base, e.g. "Write √150+√24 in the form k√6") or the algebra is complex
+    (an "Expand and simplify" with two unlike surd brackets) — a plain "simplify this surd"
+    instruction just says "Simplify"/"Express ... in its simplest form", no form-naming at all.
+    Reported exactly which of this app's 5 surds-related topics over-specify, plus several
+    genuinely missing question types, via `AskUserQuestion` before touching anything.
+
+    Per the confirmed answers: removed "giving your answer in the form a√b" from `roots_H`,
+    `surds_multiply_divide_H` (its two surd-result branches only — the "as an integer" branches were
+    untouched, out of scope), and `surds_add_subtract_H` (which also switched from a fixed
+    "Simplify" to "Simplify fully", matching Corbett's own wording for this specific skill) —
+    `algebraic_surds_H` and `rationalise_denominator_H` were explicitly left alone (not selected).
+    Built two new Higher topics: **`surds_specified_form_H`** ("Write √a × √b (or √m ± √n) in the
+    form k√n, where k is an integer" — the harder, non-obvious-base variant Corbett does use — both
+    shapes reuse the EXACT SAME numeric construction as `surds_multiply_divide_H`'s
+    `_largest_square_factor`/`surds_add_subtract_H`'s "simplify_then_combine" shape respectively,
+    since the target base Corbett states is always just the natural fully-simplified one anyway,
+    confirmed by checking several real Corbett examples by hand) and **`surds_rectangle_H`**
+    (perimeter/area of a rectangle whose side lengths are both multiples of the same surd
+    √k — e.g. "4√6 cm" by "7√6 cm" — chosen so BOTH the perimeter, `2(m+n)√k`, and area, `mnk`
+    exactly an integer via `√k × √k = k`, come out clean; reuses the existing `draw_rectangle`
+    diagram kind, passing a real float approximation for scale and a pre-formatted surd label
+    string).
+
+    **Building `surds_rectangle_H`'s diagram surfaced a real, pre-existing gap**: `diagrams.py`'s
+    label engine (`_math_runs`/`_label`) had only ever handled a bare numeric fraction (drawn as a
+    true stacked vinculum) — a label containing "√6" rendered as a bare literal "√" glyph with NO
+    bar drawn over the radicand at all, since no diagram anywhere in the app had ever needed a
+    surd label before this topic. This is the diagram-label sibling of a gotcha already fixed for
+    PROSE text (`app/pdf/radical_images.py`, chronology step 35) — diagrams draw as vector shapes,
+    never rasterised, so the prose module's PIL approach doesn't apply directly. Fixed properly
+    (not just left as a plain glyph) with a new true vector hook+bar radical: `_MATH_RUN_RE`
+    generalised from a fraction-only regex to one combined pattern (fraction OR `√digits`, in one
+    pass — not two sequential passes, matching this file's/`mathtext.py`'s own documented
+    "combined pass" precedent to avoid a match re-scanning content another pass already produced),
+    a new `("radical", digits)` run type, and `_draw_radical`/`_radical_width` (three `Line`
+    primitives — a short tick, a diagonal hook, and the horizontal bar — plus the digits as a
+    `String`, geometry proportions ported directly from `radical_images.py`'s own proven PIL
+    layout constants, just redone as vector shapes instead of raster pixels). Verified via a
+    zoomed real-PDF crop (a genuine hook+bar, matching the prose-text version's quality) and a new
+    structural regression test (`test_radical_label_draws_a_true_hook_and_bar_and_stays_on_
+    canvas` — walks the real rendered `Drawing`'s elements and asserts every `Line`/`String` stays
+    within canvas bounds, the same "measure real element positions, don't just trust it renders"
+    discipline as every other diagram-bounds test in this file). The dead now-unused `_FRACTION_RE`
+    constant (superseded by `_MATH_RUN_RE`) was deleted rather than left as dead code.
+
+    Central verification for the surds/standard-form/factors pieces: full backend+frontend suites,
+    plus 5 new tests in `test_powers_roots.py` (the two new topics' generator/dedup/metadata
+    coverage, following this project's established `GENERATORS`/`MODELLED_EXAMPLE_GENERATORS`
+    list-driven pattern) and 2 in `test_diagrams.py` (the radical `_math_runs`/rendering tests).
+    No Practice Test rebuild needed anywhere in this whole step — every touched topic either had no
+    diagram, or (the 2 new surds topics) simply doesn't appear in any already-frozen paper, and no
+    existing diagram's param SCHEMA changed. Committed across 4 commits on `master`: `419c3b2`
+    (the hoisting mechanism + its first rollout batch), `cbad37a` (standard form 10^0/10^1 +
+    factors/HCF), `d530a45` (more hoisted titles — negative numbers, index equations, estimation),
+    `12bd5c9` (the surds audit), plus the "Solve" bold-title audit finishing piece (`linear_one_
+    step_F`/`_two_step_F`/`_multi_step_F`/`_both_sides_F`/`_H`/`_brackets_F`/`_H`,
+    `quadratic_formula_H`, `solve_quadratic_factorising_F`/`_H`, `solve_quadratic_completing_
+    square_H`, `fractions_simplify_F`) — all committed and pushed in step 65.
+
+65. New session, continuing the bold shared-title hoisting work from step 64 (step 64's "Solve"-
+    audit finishing piece was still sitting uncommitted from the prior session at this point — see
+    "CURRENT STATE" above). Sent a fresh 5-per-topic review PDF pair on request
+    (`generate_review_pdfs.py --count 5`), then a direct user request: `prime_factors_F`/`_H`
+    (`number_theory.py`) hoisted the same way as step 64's other topics. Both topics' prompts are a
+    single always-identical fixed string around a varying number (`"Write {n} as a product of its
+    prime factors."` / `"...giving your answer in index form."`), so a new `HOISTED_VERB_
+    INSTRUCTIONS` entry for each (`verbs=["Write"]`, `style="full"`, matching the existing
+    `"full"`-style precedent for a fixed single-verb wrap — e.g. `indices_common_base_equations_H`)
+    collapses the whole sentence into one bold title, leaving each question as a bare number.
+    Rendered and confirmed both. No topic count change. Backend suite unchanged at 1050/1050 (no new
+    tests needed — the hoisting mechanism itself is already covered generically). Regenerated and
+    sent fresh 5-per-topic review PDFs.
+
+66. Same session, a direct user request to split `powers_F` into two topics: it previously mixed
+    plain numeric evaluation (`7^2`) with the three index laws (`x^3 × x^4` style, always a numeric
+    base) under one id. Asked 3 clarifying questions up front via `AskUserQuestion` (all resolved to
+    the recommended option): keep the `powers_F` id for the narrowed "calculating powers" half
+    rather than retiring it; build the index-law half as a genuinely separate new topic despite some
+    conceptual overlap with the existing `algebraic_indices_F` (that topic is always coefficient×x^n,
+    never a bare numeric-OR-algebraic base — different enough); and the divide law must never
+    produce a negative exponent (matching how negative indices are Higher-only content elsewhere in
+    this app).
+
+    `powers_F` narrowed to evaluate-only, with the user's exact stated ranges (`_random_powers_eval`,
+    equal 25% per shape): any base up to 15 squared, up to 10 cubed, up to 5 to the power 4, and the
+    number 2 specifically up to the power 8. New `indices_law_F` (same "Powers, Roots & Indices"
+    group, registered right after `powers_F`) covers the three laws (multiply/divide/power-of-a-
+    power) with `_random_indices_law_base` picking a 50/50 mix of a small numeric base (2-9) or the
+    algebraic `x` per question, verified independently — numeric via direct arithmetic, algebraic via
+    `sp.expand`/`sp.simplify` against the unevaluated `x**m`/`x**n` powers, a genuinely different
+    route than the "add/subtract/multiply the exponents" arithmetic used to build the steps. The
+    divide law keeps `n` drawn from `range(1, m)`, so the result is always a positive power.
+
+    **A real bug was found via this session's own end-to-end render, not by any test written in
+    advance** (same story as most gotchas in this file): the divide law can legitimately land on
+    `result_exp == 1` (e.g. `x^5 ÷ x^4`), and the naive `f"{base}^{result_exp}"` formatting printed
+    the non-standard `"x^1"` instead of the correct bare `"x"` — fixed with a small `_fmt_pow`
+    helper applied everywhere the final answer is built, confirmed via a targeted rendered-PDF check
+    once a bare-base case was forced. **A second, narrower issue was caught by the test suite
+    itself, not by rendering**: `generate_powers_foundation`'s new range rules give exactly 31
+    distinct `(base, exponent)` combinations in total (comfortably enough to reliably build the
+    default 20-question worksheet — confirmed via 200 real `build_worksheet` trials, 0 failures —
+    but not `>> 20` like most topics), which failed the generic `test_dedup_keys_vary_per_generator`
+    loop's blanket `> 30` threshold; fixed by excluding it from that generic loop and giving it its
+    own dedicated exact-count test instead, matching the precedent already set by other
+    deliberately-bounded topics in this codebase (`properties_3d_shapes`, the symmetry curated
+    banks).
+
+    `powers_F`'s `HOISTED_VERB_INSTRUCTIONS` entry (builder.py) was updated from the old mixed-
+    verb `"verb_only"` style to a `"full"` collapse (every question is now just `"{verb}
+    {base}^{exponent}."`, nothing left to vary), and a new `"verb_only"` entry was added for
+    `indices_law_F` (its trailing "...as a single power of {base}" clause names a base that varies
+    per question, so only the leading verb hoists). `powers_F`'s display name changed to
+    "Calculating Powers"; `indices_law_F`'s is "Laws of Indices". **325 → 326 topics.** The 4
+    hardcoded topic-count assertions were bumped, and the Number row in the per-section table
+    (59 → 60) — confirmed the table's row sum genuinely tracks the real total (325 before this
+    step), not just a stale snapshot. `powers_F` appears in 5 frozen Practice Test papers, but its
+    dedup-key format and prompt style are otherwise unchanged for values within the old range (a
+    subset of the new one), and it carries no diagram, so **no Practice Test rebuild was needed** —
+    frozen content stays valid static text regardless of what the generator would produce fresh.
+    Backend suite grew from 1050 to 1053 (3 new tests: the four-range check, the 31-combination
+    dedup-space check, and the never-negative/mixed-base check; `indices_law_F` otherwise reuses the
+    generic `GENERATORS`/`MODELLED_EXAMPLE_GENERATORS` list-driven tests). Frontend unaffected
+    (65/65). Regenerated and sent fresh 5-per-topic review
+    PDFs. **Not yet committed as of the end of this session — a new session should commit and push
+    steps 65-66 first** (full suite reconfirmed green with both included), then resume the
+    aesthetic-review process per "Where to pick up next" above (no pending review-feedback batch is
+    currently queued; ask the user for the next chunk, or check "Ideas for a future session" below).
 
 ## Environment gotchas (Windows, this machine specifically)
 
