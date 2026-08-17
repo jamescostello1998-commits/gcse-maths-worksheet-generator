@@ -61,11 +61,21 @@ _TEXT_RUN_RE = re.compile(
 )
 
 # A bare numeric fraction like "3/4" or "-3/4" within a label is drawn as a
-# stacked numerator/line/denominator (a vinculum) instead of inline "3/4" -
-# mirrors app/pdf/renderer.py's handling of the same pattern in prose text.
-_FRACTION_RE = re.compile(r"(-?)(\d+)/(\d+)")
+# stacked numerator/line/denominator (a vinculum) instead of inline "3/4",
+# and a bare radical like "√6" is drawn as a true hook+bar sign instead of a
+# plain literal "√" glyph with no bar over its radicand - both mirror
+# app/pdf/renderer.py's (mathtext.py-driven) handling of the same patterns in
+# prose text. Combined into one regex (not two sequential passes) so each
+# character is claimed by at most one match, matching mathtext.py's own
+# documented "one combined pass" precedent.
+_MATH_RUN_RE = re.compile(r"(?P<fsign>-?)(?P<fnum>\d+)/(?P<fden>\d+)|√(?P<rad>\d+)")
 _FRACTION_SCALE = 0.72
 _FRACTION_PAD = 1.5
+_RADICAL_TICK_W = 0.28
+_RADICAL_TICK_DROP = 0.22
+_RADICAL_DIAG_W = 0.42
+_RADICAL_PAD_RIGHT = 1.5
+_RADICAL_OVERHANG = 1.0
 
 
 def _text_runs(text: str) -> list[tuple[str, str]]:
@@ -92,15 +102,18 @@ def _text_runs(text: str) -> list[tuple[str, str]]:
 
 def _math_runs(text: str) -> list[tuple]:
     """Split label text into runs: `("text", substring, font)` for ordinary
-    (x/n-italicised) text, or `("frac", sign, num, den)` for a bare numeric
-    fraction to be drawn as a stacked vinculum."""
+    (x/n-italicised) text, `("frac", sign, num, den)` for a bare numeric
+    fraction to be drawn as a stacked vinculum, or `("radical", digits)` for
+    a bare "√digits" to be drawn as a true hook+bar sign."""
     runs: list[tuple] = []
     pos = 0
-    for m in _FRACTION_RE.finditer(text):
+    for m in _MATH_RUN_RE.finditer(text):
         if m.start() > pos:
             runs.extend(("text", sub, font) for sub, font in _text_runs(text[pos : m.start()]))
-        sign, num, den = m.groups()
-        runs.append(("frac", sign, num, den))
+        if m.group("fnum") is not None:
+            runs.append(("frac", m.group("fsign"), m.group("fnum"), m.group("fden")))
+        else:
+            runs.append(("radical", m.group("rad")))
         pos = m.end()
     if pos < len(text):
         runs.extend(("text", sub, font) for sub, font in _text_runs(text[pos:]))
@@ -112,9 +125,45 @@ def _fraction_width(num: str, den: str, size: float) -> float:
     return max(stringWidth(num, _LABEL_FONT, frac_size), stringWidth(den, _LABEL_FONT, frac_size)) + 2 * _FRACTION_PAD
 
 
+def _radical_width(digits: str, size: float) -> float:
+    rad_size = size * _FRACTION_SCALE
+    rad_h = rad_size * 0.72
+    hook_w = rad_h * _RADICAL_TICK_W + rad_h * _RADICAL_DIAG_W
+    return hook_w + stringWidth(digits, _LABEL_FONT, rad_size) + _RADICAL_PAD_RIGHT + _RADICAL_OVERHANG
+
+
+def _draw_radical(group: Group, x: float, y: float, digits: str, size: float, color) -> None:
+    """Draw a true hook+bar radical sign (√digits), with the digits' own
+    baseline at (x, y) - mirrors app/pdf/radical_images.py's PIL geometry
+    (used for the same "√n" pattern in prose text), redone as vector Line/
+    String primitives since diagram labels are already drawn as vector
+    shapes, never rasterised."""
+    rad_size = size * _FRACTION_SCALE
+    rad_h = rad_size * 0.72
+    tick_w = rad_h * _RADICAL_TICK_W
+    tick_drop = rad_h * _RADICAL_TICK_DROP
+    diag_w = rad_h * _RADICAL_DIAG_W
+    hook_w = tick_w + diag_w
+
+    bar_y = y + rad_h + 1.5
+    bottom_y = y - tick_drop
+    mid_y = (bar_y + bottom_y) / 2
+    bar_w = hook_w + stringWidth(digits, _LABEL_FONT, rad_size) + _RADICAL_PAD_RIGHT + _RADICAL_OVERHANG
+
+    group.add(Line(x, mid_y, x + tick_w, bottom_y, strokeColor=color, strokeWidth=0.9))
+    group.add(Line(x + tick_w, bottom_y, x + hook_w, bar_y, strokeColor=color, strokeWidth=0.9))
+    group.add(Line(x + hook_w, bar_y, x + bar_w, bar_y, strokeColor=color, strokeWidth=0.9))
+    group.add(String(
+        x + hook_w + _RADICAL_PAD_RIGHT / 2, y, digits,
+        textAnchor="start", fontSize=rad_size, fillColor=color, fontName=_LABEL_FONT,
+    ))
+
+
 def _run_width(run: tuple, size: float) -> float:
     if run[0] == "text":
         return stringWidth(run[1], run[2], size)
+    if run[0] == "radical":
+        return _radical_width(run[1], size)
     _, sign, num, den = run
     sign_width = stringWidth("-", _LABEL_FONT, size) if sign else 0.0
     return sign_width + _fraction_width(num, den, size)
@@ -155,6 +204,9 @@ def _label(x: float, y: float, text: str, anchor: str = "middle", color=INK, siz
             _, sub, font = run
             group.add(String(cursor, y, sub, textAnchor="start", fontSize=size, fillColor=color, fontName=font))
             cursor += stringWidth(sub, font, size)
+        elif run[0] == "radical":
+            _draw_radical(group, cursor, y, run[1], size, color)
+            cursor += _run_width(run, size)
         else:
             _, sign, num, den = run
             _draw_fraction(group, cursor, y, sign, num, den, size, color)

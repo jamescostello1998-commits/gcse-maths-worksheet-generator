@@ -4,7 +4,7 @@ from fractions import Fraction
 
 import sympy as sp
 
-from app.core.models import ModelledExample, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 from app.topics.phrasing import evaluate_verb, simplify_verb
 
@@ -268,7 +268,7 @@ def generate_roots_higher(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="roots_H",
         tier=Tier.HIGHER,
-        prompt=f"{simplify_verb(rng)} √{n}, giving your answer in the form a√b.",
+        prompt=f"{simplify_verb(rng)} √{n}.",
         solution_steps=tuple(steps),
         final_answer=f"{k}√{m}",
         dedup_key=f"surd:{n}",
@@ -602,7 +602,7 @@ def generate_modelled_example_roots_higher(tier: Tier, rng: random.Random) -> Mo
     return ModelledExample(
         topic_id="roots_H",
         tier=Tier.HIGHER,
-        prompt=f"{simplify_verb(rng)} √{n}, giving your answer in the form a√b.",
+        prompt=f"{simplify_verb(rng)} √{n}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{k}√{m}",
@@ -1600,7 +1600,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="surds_multiply_divide_H",
             tier=Tier.HIGHER,
-            prompt=f"{simplify_verb(rng)} √{a} × √{b}, giving your answer in the form a√b.",
+            prompt=f"{simplify_verb(rng)} √{a} × √{b}.",
             solution_steps=tuple(steps),
             final_answer=f"{k}√{m}",
             dedup_key=f"surdmul_surd:{a}:{b}",
@@ -1657,7 +1657,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="surds_multiply_divide_H",
         tier=Tier.HIGHER,
-        prompt=f"{simplify_verb(rng)} √{a} ÷ √{b}, giving your answer in the form a√b.",
+        prompt=f"{simplify_verb(rng)} √{a} ÷ √{b}.",
         solution_steps=tuple(steps),
         final_answer=f"{k}√{m}",
         dedup_key=f"surddiv_surd:{a}:{b}",
@@ -1728,7 +1728,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
         return ModelledExample(
             topic_id="surds_multiply_divide_H",
             tier=Tier.HIGHER,
-            prompt=f"{simplify_verb(rng)} √{a} × √{b}, giving your answer in the form a√b.",
+            prompt=f"{simplify_verb(rng)} √{a} × √{b}.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=f"{k}√{m}",
@@ -1790,7 +1790,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
     return ModelledExample(
         topic_id="surds_multiply_divide_H",
         tier=Tier.HIGHER,
-        prompt=f"{simplify_verb(rng)} √{a} ÷ √{b}, giving your answer in the form a√b.",
+        prompt=f"{simplify_verb(rng)} √{a} ÷ √{b}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{k}√{m}",
@@ -2067,7 +2067,7 @@ def generate_surds_add_subtract(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="surds_add_subtract_H",
         tier=Tier.HIGHER,
-        prompt=f"Simplify {prompt}, giving your answer in the form a√b.",
+        prompt=f"Simplify fully {prompt}.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"surdadd:{dedup}",
@@ -2091,10 +2091,258 @@ def generate_modelled_example_surds_add_subtract(tier: Tier, rng: random.Random)
     return ModelledExample(
         topic_id="surds_add_subtract_H",
         tier=Tier.HIGHER,
-        prompt=f"Simplify {prompt}, giving your answer in the form a√b.",
+        prompt=f"Simplify fully {prompt}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
+    )
+
+
+def _surds_specified_form_multiply(rng: random.Random) -> tuple[str, int, int, list[str], str]:
+    """Returns (expr, k, root, steps, dedup) for √a × √b = k√root - the same
+    construction as surds_multiply_divide_H's "multiply_surd" branch, reused
+    here since the target root this topic states in the prompt is always
+    just the natural fully-simplified base anyway (confirmed against real
+    Corbett Maths questions - see chronology)."""
+    for _ in range(200):
+        a = rng.randint(2, 15)
+        b = rng.randint(2, 15)
+        if a == b or math.isqrt(a) ** 2 == a or math.isqrt(b) ** 2 == b:
+            continue
+        n = a * b
+        k, root = _largest_square_factor(n)
+        if k > 1 and root > 1:
+            break
+    else:
+        raise ValueError("surds_specified_form could not construct a multiply case")
+
+    # Independent verification: confirm root is genuinely square-free via
+    # trial division, and confirm the product numerically via sympy - both
+    # different paths than the _largest_square_factor search above.
+    for prime in range(2, int(root**0.5) + 1):
+        if root % (prime * prime) == 0:
+            raise ValueError("surds_specified_form verification failed: root is not square-free")
+    original = sp.N(sp.sqrt(a) * sp.sqrt(b), 30)
+    claimed = sp.N(k * sp.sqrt(root), 30)
+    if abs(original - claimed) > sp.Float("1e-20"):
+        raise ValueError("surds_specified_form verification failed")
+
+    expr = f"√{a} × √{b}"
+    steps = [
+        f"{expr} = √({a} × {b}) = √{n}",
+        f"Find the largest square factor of {n}: {k}^2 × {root} = {n}, so {expr} = {k}√{root}",
+    ]
+    return expr, k, root, steps, f"specform_mul:{a}:{b}"
+
+
+def _surds_specified_form_add_subtract(rng: random.Random) -> tuple[str, int, int, list[str], str]:
+    """Returns (expr, coeff, root, steps, dedup) for √m ± √n = coeff√root -
+    the same "simplify each surd first, then combine" construction as
+    surds_add_subtract_H's own hardest shape, reused for the same reason as
+    _surds_specified_form_multiply above."""
+    while True:
+        root = rng.choice(_SQUARE_FREE_FACTORS)
+        p, q = rng.randint(2, 5), rng.randint(1, 5)
+        op = rng.choice(["+", "-"])
+        m_val, n_val = p * p * root, q * q * root
+        if m_val == n_val or m_val > 300 or n_val > 300:
+            continue
+        coeff = p + q if op == "+" else p - q
+        if coeff != 0:
+            break
+
+    # Independent numeric verification: the exact answer coeff*√root must
+    # equal the original expression evaluated with floating-point square
+    # roots - a different path than the p/q coefficient arithmetic above.
+    lhs = math.sqrt(m_val) + (1 if op == "+" else -1) * math.sqrt(n_val)
+    rhs = coeff * math.sqrt(root)
+    if abs(lhs - rhs) > 1e-9:
+        raise ValueError("surds_specified_form verification failed")
+
+    expr = f"√{m_val} {op} √{n_val}"
+    steps = [
+        f"Simplify each surd first: √{m_val} = {p}√{root} and √{n_val} = {q}√{root}.",
+        f"They are now like surds, so combine the coefficients: {p} {op} {q} = {coeff}, giving {expr} = {coeff}√{root}",
+    ]
+    return expr, coeff, root, steps, f"specform_add:{m_val}:{op}:{n_val}"
+
+
+def generate_surds_specified_form(tier: Tier, rng: random.Random) -> Question:
+    if rng.choice([True, False]):
+        expr, k, root, steps, dedup = _surds_specified_form_multiply(rng)
+    else:
+        expr, k, root, steps, dedup = _surds_specified_form_add_subtract(rng)
+
+    return Question(
+        topic_id="surds_specified_form_H",
+        tier=Tier.HIGHER,
+        prompt=f"Write {expr} in the form k√{root}, where k is an integer.",
+        solution_steps=tuple(steps),
+        final_answer=str(k),
+        dedup_key=dedup,
+    )
+
+
+def generate_modelled_example_surds_specified_form(tier: Tier, rng: random.Random) -> ModelledExample:
+    if rng.choice([True, False]):
+        expr, k, root, steps, _dedup = _surds_specified_form_multiply(rng)
+        teaching_steps = [
+            f"The expression is {expr}. When two surds are multiplied together, they can be combined "
+            "under one root sign: multiply the numbers underneath the root signs together.",
+            f"{steps[0]}.",
+            "The question has already told us the target root, so all that's left is to find the "
+            f"largest square factor of that number and pull it out: {steps[1]}.",
+            f"So {expr} = {k}√{root}, which means k = {k}.",
+        ]
+    else:
+        expr, k, root, steps, _dedup = _surds_specified_form_add_subtract(rng)
+        teaching_steps = [
+            f"The expression is {expr}. Before two surds can be added or subtracted, they need to "
+            "share the same number under the root sign - so simplify each one first.",
+            f"{steps[0]}",
+            f"Now both terms are multiples of the same surd, so combine their coefficients: {steps[1]}.",
+            f"So {expr} = {k}√{root}, which means k = {k}.",
+        ]
+    worked_calculation = [expr, f"= {k}√{root}"]
+    return ModelledExample(
+        topic_id="surds_specified_form_H",
+        tier=Tier.HIGHER,
+        prompt=f"Write {expr} in the form k√{root}, where k is an integer.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(k),
+    )
+
+
+def generate_surds_rectangle(tier: Tier, rng: random.Random) -> Question:
+    k = rng.choice(_SQUARE_FREE_FACTORS)
+    m = rng.randint(2, 9)
+    n = rng.randint(2, 9)
+    while n == m:
+        n = rng.randint(2, 9)
+    width_val, height_val = m * math.sqrt(k), n * math.sqrt(k)
+    diagram = DiagramSpec(
+        kind="rectangle",
+        params={
+            "width": width_val,
+            "height": height_val,
+            "width_label": f"{m}√{k} cm",
+            "height_label": f"{n}√{k} cm",
+        },
+    )
+
+    if rng.choice([True, False]):
+        coeff = 2 * (m + n)
+        answer = _fmt_coeff_surd(coeff, k)
+        # Independent check: sum the two real (decimal) side lengths
+        # directly - a different path than the 2*(m+n) coefficient
+        # arithmetic used to build the displayed steps.
+        if abs(2 * (width_val + height_val) - coeff * math.sqrt(k)) > 1e-9:
+            raise ValueError("surds_rectangle verification failed")
+        steps = [
+            f"Perimeter = 2 × (width + height) = 2 × ({m}√{k} + {n}√{k})",
+            f"= 2 × {m + n}√{k} = {answer} cm",
+        ]
+        return Question(
+            topic_id="surds_rectangle_H",
+            tier=Tier.HIGHER,
+            prompt="Find the perimeter of the rectangle below.",
+            solution_steps=tuple(steps),
+            final_answer=f"{answer} cm",
+            dedup_key=f"surdrect_p:{m}:{n}:{k}",
+            diagram=diagram,
+        )
+
+    product = m * n * k
+    # Independent check: evaluate the two real (decimal) side lengths and
+    # multiply directly - a different path than the m*n*k integer
+    # arithmetic used to build the displayed steps.
+    if abs(width_val * height_val - product) > 1e-6:
+        raise ValueError("surds_rectangle verification failed")
+    steps = [
+        f"Area = width × height = {m}√{k} × {n}√{k}",
+        f"= {m * n} × (√{k})^2 = {m * n} × {k} = {product} cm²",
+    ]
+    return Question(
+        topic_id="surds_rectangle_H",
+        tier=Tier.HIGHER,
+        prompt="Find the area of the rectangle below.",
+        solution_steps=tuple(steps),
+        final_answer=f"{product} cm²",
+        dedup_key=f"surdrect_a:{m}:{n}:{k}",
+        diagram=diagram,
+    )
+
+
+def generate_modelled_example_surds_rectangle(tier: Tier, rng: random.Random) -> ModelledExample:
+    k = rng.choice(_SQUARE_FREE_FACTORS)
+    m = rng.randint(2, 9)
+    n = rng.randint(2, 9)
+    while n == m:
+        n = rng.randint(2, 9)
+    width_val, height_val = m * math.sqrt(k), n * math.sqrt(k)
+    diagram = DiagramSpec(
+        kind="rectangle",
+        params={
+            "width": width_val,
+            "height": height_val,
+            "width_label": f"{m}√{k} cm",
+            "height_label": f"{n}√{k} cm",
+        },
+    )
+
+    if rng.choice([True, False]):
+        coeff = 2 * (m + n)
+        answer = _fmt_coeff_surd(coeff, k)
+        if abs(2 * (width_val + height_val) - coeff * math.sqrt(k)) > 1e-9:
+            raise ValueError("modelled example surds_rectangle verification failed")
+        teaching_steps = [
+            f"The rectangle has width {m}√{k} cm and height {n}√{k} cm - both sides are multiples of "
+            f"the same surd, √{k}, which is what makes this perimeter add up cleanly.",
+            f"The perimeter of any rectangle is twice the sum of its width and height: "
+            f"2 × ({m}√{k} + {n}√{k}).",
+            f"Since both terms inside the bracket are multiples of the same surd, add the "
+            f"coefficients first: {m} + {n} = {m + n}, giving 2 × {m + n}√{k}.",
+            f"Multiply through by the 2 outside the bracket: {answer} cm.",
+        ]
+        worked_calculation = [
+            f"2 × ({m}√{k} + {n}√{k})",
+            f"= 2 × {m + n}√{k}",
+            f"= {answer} cm",
+        ]
+        return ModelledExample(
+            topic_id="surds_rectangle_H",
+            tier=Tier.HIGHER,
+            prompt="Find the perimeter of the rectangle below.",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=f"{answer} cm",
+            diagram=diagram,
+        )
+
+    product = m * n * k
+    if abs(width_val * height_val - product) > 1e-6:
+        raise ValueError("modelled example surds_rectangle verification failed")
+    teaching_steps = [
+        f"The rectangle has width {m}√{k} cm and height {n}√{k} cm.",
+        f"The area of a rectangle is width × height: {m}√{k} × {n}√{k}.",
+        f"Multiply the whole-number coefficients together ({m} × {n} = {m * n}), and multiply the "
+        f"surd parts together too: √{k} × √{k} = {k}, since squaring a square root cancels the root out.",
+        f"{m * n} × {k} = {product} cm² - a whole number, with no surd left in the answer at all.",
+    ]
+    worked_calculation = [
+        f"{m}√{k} × {n}√{k}",
+        f"= {m * n} × (√{k})^2",
+        f"= {product} cm²",
+    ]
+    return ModelledExample(
+        topic_id="surds_rectangle_H",
+        tier=Tier.HIGHER,
+        prompt="Find the area of the rectangle below.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{product} cm²",
+        diagram=diagram,
     )
 
 
@@ -2217,4 +2465,26 @@ TOPIC_SURDS_ADD_SUBTRACT = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_surds_add_subtract,
+)
+
+TOPIC_SURDS_SPECIFIED_FORM = TopicDefinition(
+    id="surds_specified_form_H",
+    display_name="Writing Surds in a Given Form",
+    description="Multiply or add/subtract surds, writing the answer in a specified form k√n.",
+    generate=generate_surds_specified_form,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_surds_specified_form,
+)
+
+TOPIC_SURDS_RECTANGLE = TopicDefinition(
+    id="surds_rectangle_H",
+    display_name="Surds in Perimeter and Area",
+    description="Find the perimeter or area of a rectangle whose side lengths are given as surds.",
+    generate=generate_surds_rectangle,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_surds_rectangle,
 )

@@ -19,6 +19,8 @@ GENERATORS = [
     (powers_roots.generate_surds_multiply_divide, Tier.HIGHER),
     (powers_roots.generate_algebraic_surds, Tier.HIGHER),
     (powers_roots.generate_surds_add_subtract, Tier.HIGHER),
+    (powers_roots.generate_surds_specified_form, Tier.HIGHER),
+    (powers_roots.generate_surds_rectangle, Tier.HIGHER),
 ]
 
 
@@ -62,9 +64,11 @@ def test_topic_definitions_have_expected_metadata():
         powers_roots.TOPIC_INDICES_COMMON_BASE_EQUATIONS,
         powers_roots.TOPIC_SURDS_MULTIPLY_DIVIDE,
         powers_roots.TOPIC_ALGEBRAIC_SURDS,
+        powers_roots.TOPIC_SURDS_SPECIFIED_FORM,
+        powers_roots.TOPIC_SURDS_RECTANGLE,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 10
+    assert len(ids) == 12
     for t in topics:
         assert t.section == "number"
         assert t.group == "Powers, Roots & Indices"
@@ -107,6 +111,8 @@ MODELLED_EXAMPLE_GENERATORS = [
     (powers_roots.generate_modelled_example_surds_multiply_divide, Tier.HIGHER, "surds_multiply_divide_H"),
     (powers_roots.generate_modelled_example_algebraic_surds, Tier.HIGHER, "algebraic_surds_H"),
     (powers_roots.generate_modelled_example_surds_add_subtract, Tier.HIGHER, "surds_add_subtract_H"),
+    (powers_roots.generate_modelled_example_surds_specified_form, Tier.HIGHER, "surds_specified_form_H"),
+    (powers_roots.generate_modelled_example_surds_rectangle, Tier.HIGHER, "surds_rectangle_H"),
 ]
 
 
@@ -122,6 +128,8 @@ def test_topic_definitions_have_modelled_example_generator():
         powers_roots.TOPIC_INDICES_COMMON_BASE_EQUATIONS,
         powers_roots.TOPIC_SURDS_MULTIPLY_DIVIDE,
         powers_roots.TOPIC_ALGEBRAIC_SURDS,
+        powers_roots.TOPIC_SURDS_SPECIFIED_FORM,
+        powers_roots.TOPIC_SURDS_RECTANGLE,
     ]
     for t in topics:
         assert t.generate_modelled_example is not None
@@ -239,3 +247,48 @@ def test_surds_add_subtract_answer_is_simplified_and_nonzero():
         assert r > 1
         for p in range(2, _math.isqrt(r) + 1):
             assert r % (p * p) != 0
+
+
+def test_roots_and_surds_topics_no_longer_name_the_form_in_the_prompt():
+    # Per direct request: only name the target form when it's genuinely
+    # non-obvious (surds_specified_form_H) - a plain "simplify this surd"
+    # instruction shouldn't redundantly spell out "in the form a√b".
+    rng = random.Random(716)
+    for _ in range(TRIALS):
+        assert "in the form" not in powers_roots.generate_roots_higher(Tier.HIGHER, rng).prompt
+        assert "in the form" not in powers_roots.generate_surds_multiply_divide(Tier.HIGHER, rng).prompt
+        q = powers_roots.generate_surds_add_subtract(Tier.HIGHER, rng)
+        assert "in the form" not in q.prompt
+        assert q.prompt.startswith("Simplify fully ")
+
+
+def test_surds_specified_form_answer_is_an_integer_matching_the_stated_root():
+    rng = random.Random(717)
+    for _ in range(TRIALS):
+        q = powers_roots.generate_surds_specified_form(Tier.HIGHER, rng)
+        assert "in the form k√" in q.prompt
+        # The root stated in the prompt must be square-free (a genuine
+        # simplest-form base, not e.g. k√12).
+        root = int(q.prompt.split("k√")[1].split(",")[0])
+        assert root > 1
+        for p in range(2, int(root**0.5) + 1):
+            assert root % (p * p) != 0
+        int(q.final_answer)  # the answer is always a bare integer k, never a surd
+
+
+def test_surds_rectangle_answer_and_diagram():
+    rng = random.Random(718)
+    perimeter_seen, area_seen = False, False
+    for _ in range(TRIALS):
+        q = powers_roots.generate_surds_rectangle(Tier.HIGHER, rng)
+        assert q.diagram is not None
+        assert q.diagram.kind == "rectangle"
+        assert "√" in q.diagram.params["width_label"]
+        assert "√" in q.diagram.params["height_label"]
+        if "perimeter" in q.prompt:
+            perimeter_seen = True
+            assert "√" in q.final_answer  # a surd multiple, never a bare integer
+        else:
+            area_seen = True
+            assert "√" not in q.final_answer  # always a clean integer number of cm²
+    assert perimeter_seen and area_seen

@@ -437,6 +437,43 @@ def test_math_runs_does_not_italicise_x_or_n_inside_a_word():
 def test_math_runs_detects_fraction_pattern():
     assert _math_runs("3/4 cm") == [("frac", "", "3", "4"), ("text", " cm", _LABEL_FONT)]
     assert _math_runs("-3/4 cm") == [("frac", "-", "3", "4"), ("text", " cm", _LABEL_FONT)]
+
+
+def test_math_runs_detects_radical_pattern():
+    assert _math_runs("7√6 cm") == [("text", "7", _LABEL_FONT), ("radical", "6"), ("text", " cm", _LABEL_FONT)]
+    assert _math_runs("√15") == [("radical", "15")]
+
+
+def test_radical_label_draws_a_true_hook_and_bar_and_stays_on_canvas():
+    # A surd side-length label (e.g. surds_rectangle_H) previously rendered
+    # "√" as a bare literal glyph with no bar over its radicand at all - the
+    # diagram label engine only ever handled fraction vinculums, never
+    # radicals, since no diagram had needed one until this topic surfaced it.
+    # Confirms a real hook (2 diagonal Lines) + bar (1 horizontal Line) are
+    # drawn per radical, and the whole label stays within the canvas.
+    from app.pdf.diagrams import DIAGRAM_HEIGHT, DIAGRAM_WIDTH, draw_rectangle
+
+    spec_params = {
+        "width": 4 * 6**0.5, "height": 7 * 6**0.5, "width_label": "4√6 cm", "height_label": "7√6 cm",
+    }
+    drawing = draw_rectangle(spec_params)
+
+    def _walk(shapes):
+        for s in shapes:
+            yield s
+            if hasattr(s, "contents"):
+                yield from _walk(s.contents)
+
+    lines = [s for s in _walk(drawing.contents) if type(s).__name__ == "Line"]
+    strings = [s for s in _walk(drawing.contents) if hasattr(s, "text")]
+    assert len(lines) >= 6  # 3 per radical (hook tick, hook diagonal, bar) x 2 labels
+    for s in strings:
+        assert 0 <= s.x <= DIAGRAM_WIDTH
+    for ln in lines:
+        assert 0 <= ln.x1 <= DIAGRAM_WIDTH
+        assert 0 <= ln.x2 <= DIAGRAM_WIDTH
+        assert 0 <= ln.y1 <= DIAGRAM_HEIGHT
+        assert 0 <= ln.y2 <= DIAGRAM_HEIGHT
     assert _math_runs("x = 3/4") == [
         ("text", "x", _LABEL_FONT_ITALIC), ("text", " = ", _LABEL_FONT), ("frac", "", "3", "4"),
     ]

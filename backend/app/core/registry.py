@@ -140,6 +140,8 @@ _TOPIC_LIST: list[TopicDefinition] = [
     powers_roots.TOPIC_ROOTS_HIGHER,
     powers_roots.TOPIC_SURDS_MULTIPLY_DIVIDE,
     powers_roots.TOPIC_SURDS_ADD_SUBTRACT,
+    powers_roots.TOPIC_SURDS_SPECIFIED_FORM,
+    powers_roots.TOPIC_SURDS_RECTANGLE,
     powers_roots.TOPIC_ALGEBRAIC_SURDS,
     powers_roots.TOPIC_RATIONALISE_DENOMINATOR,
     # Algebra
