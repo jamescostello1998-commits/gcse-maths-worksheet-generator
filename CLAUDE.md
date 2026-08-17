@@ -43,8 +43,8 @@ split; `rationalise_denominator_H`/`collect_like_terms_F`/`substitution_rearrang
 `expand_single_bracket_F`/`factorise_*`/double-bracket-signs; and `factorise_common_factor_F`/
 `quadratic_formula_H`/`algebraic_indices_F`/`_H`/`completing_the_square_H`/`turning_point_of_
 graph_H`/`algebraic_fractions_*`/`simultaneous_common_coefficient_F`/`satisfying_inequalities_F`/
-`_H`/`inequalities_number_line_H` — all described below) are all committed and pushed. No known
-bugs. One honest gap: the `decimals_multiply_F` no-trailing-zero fix and `standard_form.py`'s
+`_H`/`inequalities_number_line_H` — all described below) are all committed and pushed
+(steps 65-66 in `b75469e`, steps 67-68 in `54bb415`). No known bugs. One honest gap: the `decimals_multiply_F` no-trailing-zero fix and `standard_form.py`'s
 10^0/10^1 exclusion (both in step 64) were verified via large ad hoc scratch-script trial runs
 (thousands of trials, zero failures) but were **not** given a persisted pytest regression test —
 worth adding if either area is touched again.
