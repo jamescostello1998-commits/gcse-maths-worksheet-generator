@@ -38,6 +38,14 @@ def _fmt_factorisation(counts: Counter) -> str:
     return " × ".join(f"{p}^{e}" if e > 1 else str(p) for p, e in sorted(counts.items()))
 
 
+# n for the "write down all the factors of n" / "how many factors does n
+# have?" branches of factors_F - always composite (never prime, so there's
+# always more than the trivial 1-and-itself pair) and always either under 80,
+# exactly 81, or exactly 100 (per direct request - 80 itself and every other
+# number in 82-99 are excluded).
+_FACTORS_CANDIDATE_RANGE = [n for n in list(range(8, 80)) + [81, 100] if not _is_prime_trial_division(n)]
+
+
 def generate_prime_numbers(tier: Tier, rng: random.Random) -> Question:
     lo, hi = 2, rng.choice([50, 100])
     numbers = rng.sample(range(lo, hi + 1), 6)
@@ -206,7 +214,7 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(["list_factors", "is_factor", "count_factors"])
 
     if shape == "count_factors":
-        n = rng.randint(8, 100)
+        n = rng.choice(_FACTORS_CANDIDATE_RANGE)
         factors_brute = [i for i in range(1, n + 1) if n % i == 0]
         factor_count = len(factors_brute)
 
@@ -235,7 +243,7 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
         )
 
     if shape == "list_factors":
-        n = rng.randint(8, 100)
+        n = rng.choice(_FACTORS_CANDIDATE_RANGE)
         factors_brute = [i for i in range(1, n + 1) if n % i == 0]
 
         # Independent check: collect factors via (i, n // i) pairs up to sqrt(n)
@@ -334,7 +342,7 @@ def generate_modelled_example_factors(tier: Tier, rng: random.Random) -> Modelle
         # Retry until n has at least two factor pairs (i.e. isn't prime) so
         # the worked example always has more than one line to show.
         for _ in range(50):
-            n = rng.randint(8, 100)
+            n = rng.choice(_FACTORS_CANDIDATE_RANGE)
             pairs_in_order = [(i, n // i) for i in range(1, int(n**0.5) + 1) if n % i == 0]
             if len(pairs_in_order) >= 2:
                 break
@@ -384,7 +392,7 @@ def generate_modelled_example_factors(tier: Tier, rng: random.Random) -> Modelle
     # Retry until n has at least two factor pairs (i.e. isn't prime) so the
     # worked example always has more than one line to show.
     for _ in range(50):
-        n = rng.randint(8, 100)
+        n = rng.choice(_FACTORS_CANDIDATE_RANGE)
         pairs_in_order = [(i, n // i) for i in range(1, int(n**0.5) + 1) if n % i == 0]
         if len(pairs_in_order) >= 2:
             break
@@ -665,7 +673,10 @@ def generate_modelled_example_lcm_by_listing(tier: Tier, rng: random.Random) -> 
 def generate_hcf_by_listing(tier: Tier, rng: random.Random) -> Question:
     a = rng.randint(6, 60)
     b = rng.randint(6, 60)
-    while b == a:
+    # At most one of the two numbers may be prime (a prime number's only
+    # factors are 1 and itself, so listing factors for two primes at once
+    # makes for a trivial question).
+    while b == a or (_is_prime_trial_division(a) and _is_prime_trial_division(b)):
         b = rng.randint(6, 60)
     hcf_val = math.gcd(a, b)
 
@@ -695,7 +706,8 @@ def generate_hcf_by_listing(tier: Tier, rng: random.Random) -> Question:
 def generate_modelled_example_hcf_by_listing(tier: Tier, rng: random.Random) -> ModelledExample:
     a = rng.randint(6, 60)
     b = rng.randint(6, 60)
-    while b == a:
+    # At most one of the two numbers may be prime - see generate_hcf_by_listing.
+    while b == a or (_is_prime_trial_division(a) and _is_prime_trial_division(b)):
         b = rng.randint(6, 60)
     hcf_val = math.gcd(a, b)
 

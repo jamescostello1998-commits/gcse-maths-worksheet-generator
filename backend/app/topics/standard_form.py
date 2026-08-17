@@ -34,6 +34,27 @@ def _random_calc_mantissa(rng: random.Random) -> Decimal:
     return Decimal(f"{whole}.{tenths}")
 
 
+_CALC_ROUNDING_SHORT = {"2 decimal places": "2 d.p.", "3 significant figures": "3 s.f."}
+
+
+def _calc_rounding_phrase(rng: random.Random) -> str:
+    """The calculator topic's mantissa is always a single nonzero digit
+    followed by decimals, so "2 decimal places" and "3 significant figures"
+    describe the exact same rounding - only the WORDING varies (75% decimal
+    places, 25% significant figures, per direct request), never the
+    underlying precision."""
+    return rng.choices(["2 decimal places", "3 significant figures"], weights=[75, 25], k=1)[0]
+
+
+def _rand_given_exponent(rng: random.Random, lo: int, hi: int) -> int:
+    """A random integer power of 10 in [lo, hi], excluding 0 and 1 - a GIVEN
+    standard-form number in a question is never shown as "a × 10^0"/"a × 10^1"
+    (both degenerate: 10^0 = 1, 10^1 = 10, neither exercises the standard-form
+    skill being tested)."""
+    choices = [i for i in range(lo, hi + 1) if i not in (0, 1)]
+    return rng.choice(choices)
+
+
 def generate_to_standard_form(tier: Tier, rng: random.Random) -> Question:
     a = _random_mantissa(rng)
     n = rng.randint(2, 8)
@@ -127,8 +148,8 @@ def generate_from_standard_form_small(tier: Tier, rng: random.Random) -> Questio
 
 def generate_multiply_divide_standard_form(tier: Tier, rng: random.Random) -> Question:
     op = rng.choice(["multiply", "divide"])
-    n1 = rng.randint(-4, 6)
-    n2 = rng.randint(-4, 6)
+    n1 = _rand_given_exponent(rng, -4, 6)
+    n2 = _rand_given_exponent(rng, -4, 6)
 
     if op == "multiply":
         a1, a2 = rng.randint(1, 9), rng.randint(1, 9)
@@ -180,8 +201,8 @@ def generate_multiply_divide_standard_form(tier: Tier, rng: random.Random) -> Qu
 
 def generate_multiply_divide_standard_form_foundation(tier: Tier, rng: random.Random) -> Question:
     op = rng.choice(["multiply", "divide"])
-    n1 = rng.randint(1, 5)
-    n2 = rng.randint(1, 5)
+    n1 = _rand_given_exponent(rng, 1, 5)
+    n2 = _rand_given_exponent(rng, 1, 5)
 
     if op == "multiply":
         a1, a2 = rng.randint(1, 9), rng.randint(1, 9)
@@ -232,7 +253,7 @@ def generate_multiply_divide_standard_form_foundation(tier: Tier, rng: random.Ra
 
 
 def generate_add_subtract_standard_form(tier: Tier, rng: random.Random) -> Question:
-    n1 = rng.randint(3, 7)
+    n1 = rng.randint(4, 7)
     n2 = n1 - rng.randint(1, 2)
     a1 = rng.randint(1, 9)
     a2 = rng.randint(1, 9)
@@ -273,12 +294,13 @@ def generate_add_subtract_standard_form(tier: Tier, rng: random.Random) -> Quest
 
 
 def generate_standard_form_calculator(tier: Tier, rng: random.Random) -> Question:
+    rounding_phrase = _calc_rounding_phrase(rng)
     for _ in range(50):
         op = rng.choice(["multiply", "divide"])
         a1 = _random_calc_mantissa(rng)
         a2 = _random_calc_mantissa(rng)
-        n1 = rng.randint(-6, 8)
-        n2 = rng.randint(-6, 8)
+        n1 = _rand_given_exponent(rng, -6, 8)
+        n2 = _rand_given_exponent(rng, -6, 8)
 
         raw_mantissa = a1 * a2 if op == "multiply" else a1 / a2
         raw_exp = n1 + n2 if op == "multiply" else n1 - n2
@@ -336,9 +358,9 @@ def generate_standard_form_calculator(tier: Tier, rng: random.Random) -> Questio
         norm_display = _fmt_decimal_fixed(norm_mantissa.quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP))
         steps.append(f"Renormalise so the mantissa is between 1 and 10: {norm_display} × 10^{norm_exp}")
     if is_exact:
-        steps.append(f"The mantissa is already exact to 3 significant figures: {rounded_mantissa} × 10^{norm_exp}")
+        steps.append(f"The mantissa is already exact to {rounding_phrase}: {rounded_mantissa} × 10^{norm_exp}")
     else:
-        steps.append(f"Round the mantissa to 3 significant figures: {rounded_mantissa} × 10^{norm_exp}")
+        steps.append(f"Round the mantissa to {rounding_phrase}: {rounded_mantissa} × 10^{norm_exp}")
 
     final_answer = f"{rounded_mantissa} × 10^{norm_exp}"
     return Question(
@@ -347,7 +369,7 @@ def generate_standard_form_calculator(tier: Tier, rng: random.Random) -> Questio
         prompt=(
             f"Use a calculator to work out ({_fmt_decimal_fixed(a1)} × 10^{n1}) {symbol} "
             f"({_fmt_decimal_fixed(a2)} × 10^{n2}). Give your answer in standard form, rounded to "
-            "3 significant figures if necessary."
+            f"{rounding_phrase} if necessary."
         ),
         solution_steps=tuple(steps),
         final_answer=final_answer,
@@ -486,8 +508,8 @@ def generate_modelled_example_from_standard_form_small(tier: Tier, rng: random.R
 
 def generate_modelled_example_multiply_divide_standard_form(tier: Tier, rng: random.Random) -> ModelledExample:
     op = rng.choice(["multiply", "divide"])
-    n1 = rng.randint(-4, 6)
-    n2 = rng.randint(-4, 6)
+    n1 = _rand_given_exponent(rng, -4, 6)
+    n2 = _rand_given_exponent(rng, -4, 6)
 
     if op == "multiply":
         a1, a2 = rng.randint(1, 9), rng.randint(1, 9)
@@ -564,8 +586,8 @@ def generate_modelled_example_multiply_divide_standard_form_foundation(
     tier: Tier, rng: random.Random
 ) -> ModelledExample:
     op = rng.choice(["multiply", "divide"])
-    n1 = rng.randint(1, 5)
-    n2 = rng.randint(1, 5)
+    n1 = _rand_given_exponent(rng, 1, 5)
+    n2 = _rand_given_exponent(rng, 1, 5)
 
     if op == "multiply":
         a1, a2 = rng.randint(1, 9), rng.randint(1, 9)
@@ -639,7 +661,7 @@ def generate_modelled_example_multiply_divide_standard_form_foundation(
 
 
 def generate_modelled_example_add_subtract_standard_form(tier: Tier, rng: random.Random) -> ModelledExample:
-    n1 = rng.randint(3, 7)
+    n1 = rng.randint(4, 7)
     n2 = n1 - rng.randint(1, 2)
     a1 = rng.randint(1, 9)
     a2 = rng.randint(1, 9)
@@ -693,12 +715,13 @@ def generate_modelled_example_add_subtract_standard_form(tier: Tier, rng: random
 
 
 def generate_modelled_example_standard_form_calculator(tier: Tier, rng: random.Random) -> ModelledExample:
+    rounding_phrase = _calc_rounding_phrase(rng)
     for _ in range(50):
         op = rng.choice(["multiply", "divide"])
         a1 = _random_calc_mantissa(rng)
         a2 = _random_calc_mantissa(rng)
-        n1 = rng.randint(-6, 8)
-        n2 = rng.randint(-6, 8)
+        n1 = _rand_given_exponent(rng, -6, 8)
+        n2 = _rand_given_exponent(rng, -6, 8)
 
         raw_mantissa = a1 * a2 if op == "multiply" else a1 / a2
         raw_exp = n1 + n2 if op == "multiply" else n1 - n2
@@ -760,7 +783,7 @@ def generate_modelled_example_standard_form_calculator(tier: Tier, rng: random.R
         )
     teaching_steps.append(
         "A calculator's answer often has far more decimal places than you need. Unless the question "
-        f"says otherwise, round the mantissa to 3 significant figures: {rounded_mantissa} × 10^{norm_exp}."
+        f"says otherwise, round the mantissa to {rounding_phrase}: {rounded_mantissa} × 10^{norm_exp}."
     )
 
     worked_calculation = [
@@ -770,7 +793,7 @@ def generate_modelled_example_standard_form_calculator(tier: Tier, rng: random.R
     if norm_exp != raw_exp:
         norm_display = _fmt_decimal_fixed(norm_mantissa.quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP))
         worked_calculation.append(f"= {norm_display} × 10^{norm_exp}")
-    worked_calculation.append(f"= {rounded_mantissa} × 10^{norm_exp} (3 s.f.)")
+    worked_calculation.append(f"= {rounded_mantissa} × 10^{norm_exp} ({_CALC_ROUNDING_SHORT[rounding_phrase]})")
 
     return ModelledExample(
         topic_id="standard_form_calculator_F",
@@ -778,7 +801,7 @@ def generate_modelled_example_standard_form_calculator(tier: Tier, rng: random.R
         prompt=(
             f"Use a calculator to work out ({_fmt_decimal_fixed(a1)} × 10^{n1}) {symbol} "
             f"({_fmt_decimal_fixed(a2)} × 10^{n2}). Give your answer in standard form, rounded to "
-            "3 significant figures if necessary."
+            f"{rounding_phrase} if necessary."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -833,7 +856,10 @@ TOPIC_FROM_STANDARD_FORM_SMALL = TopicDefinition(
 TOPIC_CALCULATOR = TopicDefinition(
     id="standard_form_calculator_F",
     display_name="Standard Form with a Calculator",
-    description="Multiply or divide numbers in standard form using a calculator, rounding to 3 significant figures.",
+    description=(
+        "Multiply or divide numbers in standard form using a calculator, rounding the mantissa to "
+        "2 decimal places or 3 significant figures as instructed."
+    ),
     generate=generate_standard_form_calculator,
     section=SECTION,
     group=GROUP,
