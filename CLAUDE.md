@@ -34,16 +34,16 @@ either — see those steps for the exact reasoning). Steps 54-59 are committed (
 `91048ec`); steps 60-61 (tree diagrams/`frequency_tree_F` + probability/loci/construction/bearings
 fixes, described below) are committed in `8abaf98`; step 62 (a Solving Linear Equations review
 batch) is committed in `56e149c`; step 63 (a Corbett-Maths-gap audit + build batch) is committed in
-`802a3b7` — **`802a3b7` is the last pushed commit on `master` as of the start of this session.**
-Everything from step 64's "Solve" bold-title audit piece onward (step 64's other four pieces were
-already committed as `419c3b2`/`cbad37a`/`d530a45`/`12bd5c9`) through steps 65-66 (described below —
-hoisted `prime_factors_F`/`_H`, and the `powers_F`/`indices_law_F` split) is **NOT YET COMMITTED**
-as of the end of this session — a new session should commit and push this first (full suite already
-confirmed 1053/1053 green with all of it included; `git status` shows the tracked files touched by
-these three pieces combined). No known bugs. One honest gap: the `decimals_multiply_F` no-trailing-
-zero fix and `standard_form.py`'s 10^0/10^1 exclusion (both in step 64) were verified via large ad
-hoc scratch-script trial runs (thousands of trials, zero failures) but were **not** given a
-persisted pytest regression test — worth adding if either area is touched again.
+`802a3b7`; step 64 (the bold shared-title hoisting feature + its rollout across ~35 topics, the
+standard-form 10^0/10^1 fix, the factors/HCF prime constraints, and the Corbett-Maths surds audit —
+full breakdown below) is fully committed and pushed across five commits
+(`419c3b2`/`cbad37a`/`d530a45`/`12bd5c9`/`b75469e` — the last of which is the "Solve" bold-title
+audit finishing piece); steps 65-66 (hoisted `prime_factors_F`/`_H`, and the `powers_F`/
+`indices_law_F` split, both described below) are also committed and pushed, in that same `b75469e`
+commit. No known bugs. One honest gap: the `decimals_multiply_F` no-trailing-zero fix and
+`standard_form.py`'s 10^0/10^1 exclusion (both in step 64) were verified via large ad hoc
+scratch-script trial runs (thousands of trials, zero failures) but were **not** given a persisted
+pytest regression test — worth adding if either area is touched again.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -268,10 +268,9 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** commit and push everything through step 66 FIRST (see "CURRENT STATE"
-above — it's the only thing not yet committed; just verify `pytest` is still green, which it was
-at 1053/1053 when this step was written). Then ask the user for the next chunk of review feedback
-(the review is NOT confirmed finished — recent batches have been per-topic
+**Next natural step:** everything through step 66 is committed and pushed (`b75469e`, see "CURRENT
+STATE" above). Ask the user for the next chunk of review feedback (the review is NOT confirmed
+finished — recent batches have been per-topic
 items the user sends directly, sometimes several in one message, occasionally a page range; they
 may equally have a new one-off feature in mind, as steps 45-46 and 61's bearings topics were). The
 review workflow each batch: read the named items → fix them (render
@@ -5385,10 +5384,9 @@ fixes), is committed and pushed (see `git log`).
     Backend suite grew from 1050 to 1053 (3 new tests: the four-range check, the 31-combination
     dedup-space check, and the never-negative/mixed-base check; `indices_law_F` otherwise reuses the
     generic `GENERATORS`/`MODELLED_EXAMPLE_GENERATORS` list-driven tests). Frontend unaffected
-    (65/65). Regenerated and sent fresh 5-per-topic review
-    PDFs. **Not yet committed as of the end of this session — a new session should commit and push
-    steps 65-66 first** (full suite reconfirmed green with both included), then resume the
-    aesthetic-review process per "Where to pick up next" above (no pending review-feedback batch is
+    (65/65). Regenerated and sent fresh 5-per-topic review PDFs. Committed and pushed along with
+    step 65 and the rest of step 64 as `b75469e`. Resume the aesthetic-review process per "Where to
+    pick up next" above (no pending review-feedback batch is
     currently queued; ask the user for the next chunk, or check "Ideas for a future session" below).
 
 ## Environment gotchas (Windows, this machine specifically)
