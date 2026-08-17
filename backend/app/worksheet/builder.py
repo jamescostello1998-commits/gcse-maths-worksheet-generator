@@ -142,12 +142,20 @@ HOISTED_VERB_INSTRUCTIONS: dict[str, tuple[list[str], str, str, list[str]]] = {
     "fractions_of_amount_F": (AMOUNT_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, AMOUNT_VERBS)),
     "bidmas_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
     "bidmas_two_three_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    "negative_add_subtract_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    "negative_multiply_divide_F": (
+        EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)
+    ),
     "fractions_improper_mixed_F": (_CONVERT_VERBS, "verb_only", "", _colon_titles(_CONVERT_VERBS)),
     "powers_F": (_EVALUATE_OR_SIMPLIFY_VERBS, "verb_only", "", _colon_titles(_EVALUATE_OR_SIMPLIFY_VERBS)),
     "powers_H": (EVALUATE_VERBS, "verb_only", "", _colon_titles(EVALUATE_VERBS)),
     "roots_H": (SIMPLIFY_VERBS, "verb_only", "", _colon_titles(SIMPLIFY_VERBS)),
     "negative_indices_F": (_EVALUATE_OR_SIMPLIFY_VERBS, "verb_only", "", _colon_titles(_EVALUATE_OR_SIMPLIFY_VERBS)),
-    "simplifying_indices_challenging_H": (SIMPLIFY_VERBS, "verb_only", "", _colon_titles(SIMPLIFY_VERBS)),
+    "simplifying_indices_challenging_H": (
+        SIMPLIFY_VERBS, "full", ", giving your answer as a fraction where necessary.",
+        ["Fully simplify (giving your answer as a fraction if necessary)"],
+    ),
+    "indices_common_base_equations_H": (["Solve"], "full", ".", ["Solve:"]),
     "surds_multiply_divide_H": (_EVALUATE_OR_SIMPLIFY_VERBS, "verb_only", "", _colon_titles(_EVALUATE_OR_SIMPLIFY_VERBS)),
     # "Write {n} in standard form." - the generator always says "Write", but
     # the displayed title varies across a small Write/Convert/Express pool
@@ -176,6 +184,13 @@ HOISTED_VERB_INSTRUCTIONS: dict[str, tuple[list[str], str, str, list[str]]] = {
     ),
     "standard_form_add_subtract_H": (
         EVALUATE_VERBS, "full", _STANDARD_FORM_ANSWER_SUFFIX, _titles(_STANDARD_FORM_ANSWER_TITLE, EVALUATE_VERBS)
+    ),
+    # "Work out an estimate for (...) by rounding each number to 1
+    # significant figure." - always the same fixed wording (no verb pool),
+    # reordered into one title with the "by rounding..." clause moved first.
+    "estimation_rounding_F": (
+        ["Work out an estimate for"], "full", " by rounding each number to 1 significant figure.",
+        ["By rounding each number to 1 significant figure, estimate:"],
     ),
 }
 
