@@ -457,8 +457,8 @@ def generate_satisfying_inequalities_higher(tier: Tier, rng: random.Random) -> Q
         candidates_str = ", ".join(str(v) for v in candidates)
 
         prompt = (
-            f"x satisfies both {_fmt_ineq_lhs(p, q)} {SYM_DISPLAY[sym_1]} {t1} and "
-            f"{_fmt_ineq_lhs(r, s)} {SYM_DISPLAY[sym_2]} {t2}. List the integer values of x that satisfy both."
+            f"Solve the inequality {_fmt_ineq_lhs(p, q)} {SYM_DISPLAY[sym_1]} {t1} and "
+            f"{_fmt_ineq_lhs(r, s)} {SYM_DISPLAY[sym_2]} {t2}, then list the integer values of x that satisfy it."
         )
         steps = ["Solve the first inequality:"]
         steps.extend(first_steps)
@@ -857,8 +857,8 @@ def generate_modelled_example_satisfying_inequalities_higher(
         candidates_str = ", ".join(str(v) for v in candidates)
 
         prompt = (
-            f"x satisfies both {_fmt_ineq_lhs(p, q)} {SYM_DISPLAY[sym_1]} {t1} and "
-            f"{_fmt_ineq_lhs(r, s)} {SYM_DISPLAY[sym_2]} {t2}. List the integer values of x that satisfy both."
+            f"Solve the inequality {_fmt_ineq_lhs(p, q)} {SYM_DISPLAY[sym_1]} {t1} and "
+            f"{_fmt_ineq_lhs(r, s)} {SYM_DISPLAY[sym_2]} {t2}, then list the integer values of x that satisfy it."
         )
         worked_calculation = list(first_steps) + list(second_steps) + [combined_str, candidates_str]
 

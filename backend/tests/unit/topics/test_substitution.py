@@ -43,7 +43,8 @@ def test_rearrange_generators_produce_valid_verified_questions():
             q = generate(tier, rng)
             assert q.tier == tier
             assert q.topic_id == topic_id
-            assert "Make " in q.prompt and "the subject" in q.prompt
+            assert "the subject" not in q.prompt  # the rearranging step is left implicit, not stated
+            assert "Find the value of" in q.prompt
             assert q.solution_steps
             assert q.final_answer
 

@@ -25,6 +25,23 @@ def test_all_generators_produce_valid_verified_questions():
             assert q.final_answer
 
 
+def test_common_coefficient_rarely_has_both_right_hand_sides_negative():
+    # e.g. "x + y = -5 and 6x + y = -35" - drastically reduced (kept, not
+    # eliminated) per direct user request.
+    import re
+
+    rng = random.Random(142)
+    both_negative = 0
+    total = 1000
+    for _ in range(total):
+        q = simultaneous_equations.generate_common_coefficient(Tier.FOUNDATION, rng)
+        nums = re.findall(r"= (-?\d+)", q.prompt)
+        assert len(nums) == 2
+        if int(nums[0]) < 0 and int(nums[1]) < 0:
+            both_negative += 1
+    assert both_negative / total < 0.1
+
+
 def test_graphically_diagram_does_not_reveal_the_answer():
     rng = random.Random(141)
     for _ in range(TRIALS):

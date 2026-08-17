@@ -126,6 +126,19 @@ def test_satisfying_inequalities_answers_are_comma_separated_integers():
             assert len(set(values)) == len(values)
 
 
+def test_satisfying_inequalities_higher_both_shapes_share_the_same_prompt_wording():
+    # The "separate" shape (two independent inequalities joined by "and")
+    # was reworded to share the same "Solve the inequality ..., then list
+    # the integer values of x that satisfy it." prefix/suffix as the
+    # "negative_compound" shape, so bold-title hoisting works reliably
+    # regardless of which shape a worksheet's questions land on.
+    rng = random.Random(56)
+    for _ in range(TRIALS):
+        q = inequalities.generate_satisfying_inequalities_higher(Tier.HIGHER, rng)
+        assert q.prompt.startswith("Solve the inequality ")
+        assert q.prompt.endswith(", then list the integer values of x that satisfy it.")
+
+
 def test_quadratic_inequalities_answer_format():
     rng = random.Random(31)
     for _ in range(100):

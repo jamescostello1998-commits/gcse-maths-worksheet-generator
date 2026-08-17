@@ -1,8 +1,9 @@
 """Laws of indices applied to algebraic terms (coeff * x^exponent), rather
 than to plain numbers (see powers_roots.py for the numeric version of the
 same skill). Foundation keeps exponents positive integers only; Higher adds
-negative, zero, and fractional exponents (the last mixing indices with roots,
-assuming x > 0 so the root is unambiguous).
+negative, zero, and fractional exponents (the last mixing indices with roots
+- the root_power shape restricts its exponent to an even value so the
+simplification holds for every real x, with no positivity assumption needed).
 """
 
 import random
@@ -15,8 +16,6 @@ from app.topics.base import TopicDefinition
 
 SECTION = "algebra"
 GROUP = "Algebraic Indices"
-
-_Xpos = sp.symbols("x", positive=True)
 
 
 def _term(coeff: int, exp: int) -> str:
@@ -375,29 +374,37 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
             dedup_key=f"alg_ind_h_multfrac:{c1}:{m1}:{c2}:{m2}:{n}",
         )
 
-    # root_power: (c^2 x^2m)^(1/2) -> c x^m, assuming x > 0
+    # root_power: (c^2 x^2m)^(1/2) -> c x^m. m is restricted to even values so
+    # x^m is never negative for ANY real x (an even power), which means the
+    # simplification holds unconditionally - no "x > 0" caveat needed at all
+    # (unlike an odd m, where x^m could be negative and the true general
+    # answer would be c|x^m|, not c x^m).
     c = rng.randint(2, 6)
-    m = rng.randint(1, 4)
+    m = rng.choice([2, 4])
     base_coeff, base_exp = c**2, 2 * m
 
-    # Independent verification uses a positive-x symbol, since sqrt(x^2m) is
-    # only unambiguously x^m when x is known to be nonnegative - a genuinely
-    # different check than the "halve the exponent" arithmetic in the steps.
-    lhs = (base_coeff * _Xpos**base_exp) ** sp.Rational(1, 2)
-    rhs = c * _Xpos**m
-    if sp.simplify(lhs - rhs) != 0:
-        raise ValueError("algebraic_indices_higher (root_power) verification failed")
+    # Independent verification: evaluate both sides as real numbers at
+    # several concrete x values, INCLUDING negative ones - a genuinely
+    # different check than the "halve the exponent" arithmetic in the steps,
+    # and one that actually exercises the "holds for all real x" claim
+    # rather than just assuming it.
+    for test_x in (-3.0, -1.5, 2.0, 5.5):
+        lhs = (base_coeff * test_x**base_exp) ** 0.5
+        rhs = c * test_x**m
+        if abs(lhs - rhs) > 1e-9:
+            raise ValueError("algebraic_indices_higher (root_power) verification failed")
 
     steps = [
         "Raising to the power 1/2 means taking a square root: take the square root of the coefficient and "
-        "halve the exponent of x separately (assuming x > 0, so the root is unambiguous).",
+        "halve the exponent of x separately (the exponent of x is always even here, so x raised to it is "
+        "never negative, and the root is unambiguous for any value of x).",
         f"sqrt({base_coeff}) = {c}, and {base_exp}/2 = {m}.",
         f"({base_coeff}x^{base_exp})^(1/2) = {_term(c, m)}",
     ]
     return Question(
         topic_id="algebraic_indices_H",
         tier=Tier.HIGHER,
-        prompt=f"Simplify ({base_coeff}x^{base_exp})^(1/2), given that x > 0.",
+        prompt=f"Simplify ({base_coeff}x^{base_exp})^(1/2)",
         solution_steps=tuple(steps),
         final_answer=_term(c, m),
         dedup_key=f"alg_ind_h_rootpow:{c}:{m}",
@@ -553,13 +560,14 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
         )
 
     c = rng.randint(2, 6)
-    m = rng.randint(1, 4)
+    m = rng.choice([2, 4])
     base_coeff, base_exp = c**2, 2 * m
 
-    lhs = (base_coeff * _Xpos**base_exp) ** sp.Rational(1, 2)
-    rhs = c * _Xpos**m
-    if sp.simplify(lhs - rhs) != 0:
-        raise ValueError("modelled example algebraic_indices_higher (root_power) verification failed")
+    for test_x in (-3.0, -1.5, 2.0, 5.5):
+        lhs = (base_coeff * test_x**base_exp) ** 0.5
+        rhs = c * test_x**m
+        if abs(lhs - rhs) > 1e-9:
+            raise ValueError("modelled example algebraic_indices_higher (root_power) verification failed")
 
     teaching_steps = [
         "A power of 1/2 on the outside of a bracket means 'take the square root of the whole bracket'. "
@@ -567,8 +575,9 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
         "separately.",
         f"The square root of the coefficient {base_coeff} is {c} (since {c}×{c} = {base_coeff}), and the "
         f"square root of x^{base_exp} is x^{m} (halve the exponent: {base_exp}/2 = {m}).",
-        "This halving trick for the root of a power only gives a single unambiguous answer when x is "
-        "known to be positive, which is why the question states x > 0.",
+        "The exponent of x is always even here, so x raised to it can never be negative - that means this "
+        "halving trick gives a single unambiguous answer for any value of x, with no extra assumption "
+        "needed.",
         f"Putting both parts together gives {_term(c, m)}.",
     ]
     worked_calculation = [
@@ -579,7 +588,7 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
     return ModelledExample(
         topic_id="algebraic_indices_H",
         tier=Tier.HIGHER,
-        prompt=f"Simplify ({base_coeff}x^{base_exp})^(1/2), given that x > 0.",
+        prompt=f"Simplify ({base_coeff}x^{base_exp})^(1/2)",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_term(c, m),

@@ -25,10 +25,10 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **326 topics**, backend suite **1053/1053**, frontend **65/65**, all 60
+**CURRENT STATE:** **326 topics**, backend suite **1058/1058**, frontend **65/65**, all 60
 Practice Test papers exactly 100 marks (rebuilt twice during step 61 — steps 62-63 didn't need a
 rebuild: the touched topics are either diagram-free or don't appear in any frozen paper; steps
-64-66's changes likewise never touched a diagram param schema, so no rebuild was needed there
+64-68's changes likewise never touched a diagram param schema, so no rebuild was needed there
 either — see those steps for the exact reasoning). Steps 54-59 are committed (steps 54-56 in
 `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 across seven commits ending
 `91048ec`); steps 60-61 (tree diagrams/`frequency_tree_F` + probability/loci/construction/bearings
@@ -38,12 +38,16 @@ batch) is committed in `56e149c`; step 63 (a Corbett-Maths-gap audit + build bat
 standard-form 10^0/10^1 fix, the factors/HCF prime constraints, and the Corbett-Maths surds audit —
 full breakdown below) is fully committed and pushed across five commits
 (`419c3b2`/`cbad37a`/`d530a45`/`12bd5c9`/`b75469e` — the last of which is the "Solve" bold-title
-audit finishing piece); steps 65-66 (hoisted `prime_factors_F`/`_H`, and the `powers_F`/
-`indices_law_F` split, both described below) are also committed and pushed, in that same `b75469e`
-commit. No known bugs. One honest gap: the `decimals_multiply_F` no-trailing-zero fix and
-`standard_form.py`'s 10^0/10^1 exclusion (both in step 64) were verified via large ad hoc
-scratch-script trial runs (thousands of trials, zero failures) but were **not** given a persisted
-pytest regression test — worth adding if either area is touched again.
+audit finishing piece); steps 65-68 (hoisted `prime_factors_F`/`_H`; the `powers_F`/`indices_law_F`
+split; `rationalise_denominator_H`/`collect_like_terms_F`/`substitution_rearrange_F`/`_H`/
+`expand_single_bracket_F`/`factorise_*`/double-bracket-signs; and `factorise_common_factor_F`/
+`quadratic_formula_H`/`algebraic_indices_F`/`_H`/`completing_the_square_H`/`turning_point_of_
+graph_H`/`algebraic_fractions_*`/`simultaneous_common_coefficient_F`/`satisfying_inequalities_F`/
+`_H`/`inequalities_number_line_H` — all described below) are all committed and pushed. No known
+bugs. One honest gap: the `decimals_multiply_F` no-trailing-zero fix and `standard_form.py`'s
+10^0/10^1 exclusion (both in step 64) were verified via large ad hoc scratch-script trial runs
+(thousands of trials, zero failures) but were **not** given a persisted pytest regression test —
+worth adding if either area is touched again.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -268,9 +272,9 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** everything through step 66 is committed and pushed (`b75469e`, see "CURRENT
-STATE" above). Ask the user for the next chunk of review feedback (the review is NOT confirmed
-finished — recent batches have been per-topic
+**Next natural step:** everything through step 68 is committed and pushed (see "CURRENT STATE"
+above). Ask the user for the next chunk of review feedback (the review is NOT confirmed finished —
+recent batches have been per-topic
 items the user sends directly, sometimes several in one message, occasionally a page range; they
 may equally have a new one-off feature in mind, as steps 45-46 and 61's bearings topics were). The
 review workflow each batch: read the named items → fix them (render
@@ -5385,9 +5389,137 @@ fixes), is committed and pushed (see `git log`).
     dedup-space check, and the never-negative/mixed-base check; `indices_law_F` otherwise reuses the
     generic `GENERATORS`/`MODELLED_EXAMPLE_GENERATORS` list-driven tests). Frontend unaffected
     (65/65). Regenerated and sent fresh 5-per-topic review PDFs. Committed and pushed along with
-    step 65 and the rest of step 64 as `b75469e`. Resume the aesthetic-review process per "Where to
-    pick up next" above (no pending review-feedback batch is
-    currently queued; ask the user for the next chunk, or check "Ideas for a future session" below).
+    step 65 and the rest of step 64 as `b75469e`.
+
+67. Same session, five more direct per-topic requests, continuing the review-feedback + bold-title
+    hoisting work. **(1)** `rationalise_denominator_H` hoisted the same way as step 65's topics -
+    both branches (`_build_rationalise_simple`/`_build_rationalise_conjugate`) always say
+    `"Rationalise the denominator of {fraction}, giving your answer in its simplest form."`, so a new
+    `HOISTED_VERB_INSTRUCTIONS` entry uses the whole multi-word lead-in as the "verb"
+    (`["Rationalise the denominator of"]`, matching the existing multi-word-verb precedent already
+    set by `estimation_rounding_F`), leaving each item as the bare `\frac{}{}` marker. **(2)**
+    `collect_like_terms_F` (`simplify_expressions.py`) - per two explicit constraints: a question must
+    never open with a negative term, and each term's own sign should be drawn 2/3 positive / 1/3
+    negative (not the roughly-even split `_nonzero`'s old `randint(lo, hi)` gave). Fixed by rewriting
+    `_nonzero` to draw magnitude and a weighted sign separately, then - after the existing shuffle -
+    swapping the first positive-coefficient term into position 0 (rerolling via the existing
+    try/except-ValueError loop on the rare all-negative draw). Verified via direct sampling (0/3000
+    start negative; ~66.5% of individual term signs positive). **(3)** `substitution_rearrange_F`/`_H`
+    (`substitution.py`) - removed "Make {letter} the subject of the formula, then " from all 14
+    prompt-building call sites (7 shapes × practice + modelled), leaving just
+    `"{formula}. Find the value of {letter} when ..."` - the same phrasing its non-rearranging sibling
+    topic already uses, so the need to rearrange first is now implicit rather than stated outright.
+    ***A real bug was introduced and caught before committing***: the first attempt used a Python regex
+    backreference (`\1`) passed through `bash -c "..."` with double quotes - bash's own double-quote
+    backslash handling silently collapsed `\\1` to `\1` before Python ever saw it, and Python's string
+    literal parser then read `\1` as the octal escape `chr(1)`, corrupting every rearrange-letter into
+    a literal control character (rendered as a black square glyph in the PDF) - caught immediately by
+    rendering an actual worksheet and looking at it, not by any test (this codebase has no test that
+    inspects rendered glyphs). Reverted via `git checkout`, redone by writing the replacement as a
+    standalone `.py` script file instead of an inline `bash -c` string, sidestepping the double
+    escaping entirely - confirmed correct both by direct string inspection and a real render before
+    moving on. One stale test assertion (`test_substitution.py`, expected `"Make "` in the prompt) was
+    also updated. **(4)** `expand_single_bracket_F` (`"Expand:"`) and `factorise_common_factor_F`/
+    `factorise_quadratics_F`/`factorise_quadratics_H` (all three genuinely share the identical fixed
+    `"Factorise: {expr}"` prompt shape, confirmed by grepping every `"Factorise: "` occurrence
+    app-wide and checking each one was a real prompt, not solution-step text, before hoisting all
+    three together) added to the simple `HOISTED_INSTRUCTIONS` dict, matching the existing
+    single-fixed-verb precedent (e.g. `linear_one_step_F`). **(5)** A direct question - "is it correct
+    that `expand_double_brackets_no_coefficient_F` has no negatives?" - was investigated and confirmed
+    true by reading the code (`b, d` both drawn from `randint(1, 9)`, and its "harder" coefficient-
+    bearing sibling `expand_double_brackets_F` was the same), with an explicit prior code comment
+    confirming it was deliberate. Reported back, then - per the user's choice via `AskUserQuestion` -
+    fixed for BOTH Foundation double-bracket topics: a new `_rand_signed_const` helper (magnitude
+    1-9, negative 1/3 of the time - a much higher rate than the existing `_rand_x_coeff`'s 0.5%, which
+    guards a visually-unusual leading negative x-term rather than an ordinary constant) replaces the
+    plain `randint(1, 9)` for both constants in both topics (practice + modelled, 4 functions) - the
+    x-coefficients themselves stay strictly positive in both, unaffected. Verified via direct sampling
+    (33.3% negative over 30,000 draws) and real renders showing a genuine `(x+p)(x+q)`/`(x-p)(x+q)`/
+    `(x-p)(x-q)` mix. New regression test confirms genuine sign variety while the x-coefficient never
+    goes negative.
+
+    No topic count change (still 326 - every item in this step was a wording/content-mix fix to an
+    existing topic). No Practice Test rebuild needed (none of the five touched topics carry a diagram,
+    and none had their dedup-key/param SCHEMA change in a way frozen JSON would care about). Backend
+    suite grew from 1053 to 1054 (+1: the double-bracket sign-variety regression test - items 1/2/3
+    reused existing generic test coverage, following this project's established `GENERATORS`-list
+    pattern). Frontend unaffected (65/65). Every change was rendered and visually confirmed before
+    being considered done, per this project's standing discipline - which is exactly what caught
+    item (3)'s shell-escaping bug before it ever reached a commit.
+
+68. Same session, nine more direct per-topic requests across two more rounds, continuing the same
+    bold-title hoisting + review-feedback work. **(1)** `factorise_common_factor_F` -
+    (`expand_factorise.py`) per two explicit constraints: never open with a negative term (the
+    x-coefficient factor `a` was drawn from a signed range - fixed to always positive), and a genuine,
+    unconditional 10% of questions written constant-first instead ("12 + 5x" not "5x + 12") - a first
+    attempt gated the reorder on `full_const > 0` (only ~6% overall, since it also needed a positive
+    draw), fixed by deciding "constant-first" BEFORE drawing the constant and only then restricting it
+    positive, giving a true ~10% (confirmed via direct sampling, 9.9%/5000). **(2)** `quadratic_formula_H`
+    (`quadratic_equations.py`) - the exact-surd-answer shape was removed entirely (only the decimal
+    shape remains, so `_surd_case`/`_fmt_surd_answer` and the now-unused `_SQUARE_FREE_FACTORS` import
+    became dead code and were deleted), the prompt no longer states a rounding instruction at all (left
+    to the student), the stored answer now rounds to 4dp instead of 2dp (generous enough to check
+    against whatever reasonable precision a student picks), and the bold title reads "By using the
+    quadratic formula, solve:" - genuinely different text from the matched leading verb ("Solve"),
+    which `HOISTED_VERB_INSTRUCTIONS` already supports (the verb pool only matches/strips the prompt's
+    own leading word; `title_choices` is independent display text) - this also superseded and replaced
+    a stale duplicate `HOISTED_VERB_INSTRUCTIONS` entry for the same topic id left over from step 64.
+    **(3)** `algebraic_indices_F`/`_H` hoisted to bold "Simplify" (bare, no colon, matching the user's
+    literal wording) - but `_H`'s "root_power" shape (`(c²x^2m)^(1/2) -> c·x^m`) genuinely needed
+    "given that x > 0" to be mathematically valid (for odd m, `x^m` can be negative, so the true general
+    answer is `c|x^m|`, not `c·x^m`) - flagged this to the user before touching it; per their choice,
+    `m` is now restricted to always be even (`rng.choice([2, 4])`, was `randint(1, 4)`), which makes
+    `x^m` non-negative for every real x unconditionally, so the caveat could be dropped with no loss of
+    correctness - the verification was also strengthened from a positive-only symbolic check (`_Xpos`,
+    now unused and removed) to a genuinely more general numeric check across several real x values
+    including negative ones. **(4)** `completing_the_square_H` hoisted to "Write the following in the
+    form (x + p)^2 + q." and **(5)** `turning_point_of_graph_H` to "Find the coordinates of the turning
+    point of the curve" (both `quadratic_graphs.py`, pure `HOISTED_INSTRUCTIONS`/`HOISTED_VERB_
+    INSTRUCTIONS` additions - neither topic's own generator code needed to change, their prompts
+    already matched the required shape).
+
+    A second round: **(6)** `algebraic_fractions_add_subtract_H`/`_multiply_divide_H` hoisted to bold
+    "Simplify" (both already fixed `"Simplify {expr}, giving your answer as a single fraction/in its
+    simplest form."` prompts - pure hoisting entries, no generator changes). **(7)**
+    `simultaneous_common_coefficient_F` (`simultaneous_equations.py`) - per direct complaint about
+    "too many negatives after the = sign" (e.g. "x + y = -5 and 6x + y = -35") - refactored the
+    duplicated practice/modelled draw logic into a shared `_build_common_coefficient` helper (this
+    project's established pattern) with a reroll: whenever BOTH right-hand-side constants would land
+    negative, reroll unless a small 10% chance keeps it anyway (drastically reduced, not eliminated,
+    per the user's own wording) - confirmed via direct sampling (25%-ish base rate down to 5.3%). **(8)**
+    `satisfying_inequalities_F`/`_H` hoisted to "Solve the inequality, then list the integer values of x
+    that satisfy it." - `_H` has a SECOND question shape ("separate": two independent inequalities
+    joined by "and") whose prompt was a completely different sentence ("x satisfies both A and B. List
+    the integer values..."), which would have made hoisting silently fail on almost every real
+    worksheet (the fail-safe falls back to full prompts the moment ANY one question doesn't match the
+    expected prefix/suffix, and a 20-question worksheet is all but guaranteed to include at least one
+    "separate"-shape question) - flagged this to the user before proceeding; per their choice, the
+    "separate" shape's prompt (both practice and modelled) was reworded to share the identical "Solve
+    the inequality {...}, then list the integer values of x that satisfy it." prefix/suffix (singular
+    "inequality" even though it's technically two, matching the same imperfect-grammar-for-consistency
+    choice made in item (9)) - confirmed via a real render that both shapes now hoist together under one
+    title on the same worksheet. **(9)** `inequalities_number_line_H` - dropped the "/ies" shorthand
+    from its "draw" prompt ("Draw the inequality/ies of..." -> "Draw the inequality of..."), left as
+    grammatically imperfect for the compound case per direct instruction, rather than writing "Draw the
+    inequality(/ies)" or similar - the "read" branch's already-existing "(or pair of inequalities)"
+    wording was untouched (not asked to change).
+
+    **One test bug was found and fixed along the way, not in generator code**: the full suite's own
+    generic `test_hoisted_verb_instruction_topics_set_shared_instruction_and_item_text` (which builds a
+    real worksheet for every `HOISTED_VERB_INSTRUCTIONS` entry and checks the item text no longer ends
+    with the stripped suffix) failed on the new `quadratic_formula_H` entry - `"anything".endswith("")`
+    is always `True` in Python, so the assertion was unsatisfiable for item (2)'s genuinely empty
+    suffix (`""`, since there's no trailing clause left to strip); fixed by skipping that specific
+    check when `suffix` is empty, since there's nothing meaningful to verify in that case.
+
+    No topic count change (still 326). No Practice Test rebuild needed (none of the nine touched
+    topics carry a diagram; content/wording-only changes don't invalidate already-frozen static JSON).
+    Backend suite grew from 1054 to 1058 (+1 each for the `factorise_common_factor_F` never-negative/
+    10%-constant-first check, the `algebraic_indices_H` no-"x > 0" check, the `simultaneous_common_
+    coefficient_F` rare-both-negative check, and the `satisfying_inequalities_H` shared-wording check).
+    Frontend unaffected (65/65). Every change was rendered and visually confirmed (including the tricky
+    `satisfying_inequalities_H` two-shape case, screenshotted showing both shapes hoisting cleanly
+    under one title) before being considered done.
 
 ## Environment gotchas (Windows, this machine specifically)
 

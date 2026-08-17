@@ -1,4 +1,5 @@
 import random
+import re
 
 from app.core.models import Tier
 from app.topics import expand_factorise
@@ -29,6 +30,41 @@ def test_all_generators_produce_valid_questions():
             assert q.prompt
             assert q.solution_steps
             assert q.final_answer
+
+
+def test_foundation_double_bracket_constants_mix_signs():
+    # Both Foundation double-bracket topics used to be all-positive
+    # constants only (see the comments in expand_factorise.py) - confirm
+    # negative constants now genuinely appear, roughly a third of the time
+    # each, while the x-coefficients themselves stay positive.
+    for generate, kind in [
+        (expand_factorise.generate_expand_double_foundation, "coefficient"),
+        (expand_factorise.generate_expand_double_no_coefficient_foundation, "no_coefficient"),
+    ]:
+        rng = random.Random(20)
+        neg_seen = pos_seen = 0
+        for _ in range(500):
+            q = generate(Tier.FOUNDATION, rng)
+            assert q.prompt.count("-x") == 0  # x-coefficient itself never negative here
+            if "- " in q.prompt:
+                neg_seen += 1
+            else:
+                pos_seen += 1
+        assert neg_seen > 50, f"{kind}: expected genuine negative-constant variety, saw {neg_seen}/500"
+        assert pos_seen > 50, f"{kind}: expected genuine positive-only questions too, saw {pos_seen}/500"
+
+
+def test_factorise_common_never_starts_negative_and_is_constant_first_about_10_percent():
+    rng = random.Random(21)
+    constant_first = 0
+    total = 3000
+    for _ in range(total):
+        q = expand_factorise.generate_factorise_common(Tier.FOUNDATION, rng)
+        item = q.prompt.removeprefix("Factorise:").strip()
+        assert not item.startswith("-")
+        if re.match(r"^\d+ \+", item):
+            constant_first += 1
+    assert 0.06 < constant_first / total < 0.14
 
 
 def test_factorise_quadratic_pair_search_matches_roots():

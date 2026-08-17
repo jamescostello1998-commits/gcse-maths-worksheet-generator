@@ -43,6 +43,17 @@ def test_algebraic_indices_higher_shows_a_fractional_exponent_often():
     assert fractional_count > 200 * 0.3
 
 
+def test_algebraic_indices_higher_never_states_x_greater_than_zero():
+    # The root_power shape used to need "given that x > 0" to be
+    # mathematically valid - now its exponent is restricted to always be
+    # even, so the simplification holds for every real x and the caveat was
+    # removed entirely.
+    rng = random.Random(123)
+    for _ in range(300):
+        q = algebraic_indices.generate_algebraic_indices_higher(Tier.HIGHER, rng)
+        assert "x > 0" not in q.prompt
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         algebraic_indices.TOPIC_ALGEBRAIC_INDICES_FOUNDATION,

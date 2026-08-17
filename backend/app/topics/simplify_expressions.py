@@ -67,10 +67,13 @@ def _expr_of(terms: list[tuple[int, str]]):
 
 
 def _nonzero(rng: random.Random, lo: int, hi: int) -> int:
-    while True:
-        v = rng.randint(lo, hi)
-        if v != 0:
-            return v
+    """Draw a non-zero coefficient in the symmetric range [lo, hi] (lo ==
+    -hi), weighted 2/3 positive / 1/3 negative - per direct user request, so
+    a typical question has noticeably more + terms than - terms rather than
+    an even split."""
+    magnitude = rng.randint(1, hi)
+    sign = 1 if rng.random() < 2 / 3 else -1
+    return sign * magnitude
 
 
 def _build(rng: random.Random) -> tuple[str, str, str, str]:
@@ -95,6 +98,15 @@ def _build(rng: random.Random) -> tuple[str, str, str, str]:
             raw.append((_nonzero(rng, -9, 9), ""))
 
     rng.shuffle(raw)
+
+    # The question must never open with a negative term - bring the first
+    # positive-coefficient term (very likely to exist, given the 2/3 positive
+    # bias above) to the front instead of leaving the shuffle to chance.
+    positive_idx = next((i for i, (c, _) in enumerate(raw) if c > 0), None)
+    if positive_idx is None:
+        raise ValueError("collect_like_terms: no positive term to lead with")
+    if positive_idx != 0:
+        raw[0], raw[positive_idx] = raw[positive_idx], raw[0]
 
     # Collected answer: sum coefficients per symbol (the primary computation).
     combined: dict[str, int] = {}

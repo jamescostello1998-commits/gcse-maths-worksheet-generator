@@ -38,19 +38,20 @@ def test_topic_definitions_have_expected_metadata():
         assert t.fixed_tier == Tier.HIGHER
 
 
-def test_both_shapes_are_produced():
+def test_prompt_states_no_rounding_and_answer_is_to_4dp():
+    # The surd-answer shape was removed (decimal-only now); the prompt no
+    # longer states a rounding instruction at all (left to the student), but
+    # the stored answer is always rounded to 4dp so it stays checkable
+    # against whatever reasonable precision a student picks.
     rng = random.Random(302)
-    seen_decimal = False
-    seen_surd = False
     for _ in range(TRIALS):
         q = quadratic_equations.generate_quadratic_formula(Tier.HIGHER, rng)
-        if q.dedup_key.startswith("quad_dec:"):
-            seen_decimal = True
-            assert "decimal places" in q.prompt
-        elif q.dedup_key.startswith("quad_surd:"):
-            seen_surd = True
-            assert "√" in q.final_answer
-    assert seen_decimal and seen_surd
+        assert q.dedup_key.startswith("quad_dec:")
+        assert "decimal places" not in q.prompt
+        assert "√" not in q.prompt
+        for part in q.final_answer.split(" or "):
+            root = part.replace("x = ", "")
+            assert len(root.split(".")[1]) == 4
 
 
 MODELLED_EXAMPLE_GENERATORS = [

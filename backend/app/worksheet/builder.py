@@ -58,6 +58,13 @@ HOISTED_INSTRUCTIONS: dict[str, str] = {
     "linear_both_sides_H": "Solve:",
     "linear_brackets_F": "Solve:",
     "linear_brackets_H": "Solve:",
+    "expand_single_bracket_F": "Expand:",
+    "factorise_common_factor_F": "Factorise:",
+    "factorise_quadratics_F": "Factorise:",
+    "factorise_quadratics_H": "Factorise:",
+    "algebraic_indices_F": "Simplify",
+    "algebraic_indices_H": "Simplify",
+    "turning_point_of_graph_H": "Find the coordinates of the turning point of the curve",
 }
 
 
@@ -207,10 +214,6 @@ HOISTED_VERB_INSTRUCTIONS: dict[str, tuple[list[str], str, str, list[str]]] = {
         ["By rounding each number to 1 significant figure, estimate:"],
     ),
     "fractions_simplify_F": (SIMPLIFY_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, SIMPLIFY_VERBS)),
-    # quadratic_formula_H's two branches have genuinely different trailing
-    # clauses (one says how to round, the other names the exact target
-    # surd form) - only the leading verb is safe to hoist.
-    "quadratic_formula_H": (["Solve"], "verb_only", "", ["Solve:"]),
     # Both factorising branches always end in the identical fixed clause
     # "= 0 by factorising." - splitting the suffix just before " by" (not
     # before "= 0") keeps the "= 0" attached to each item, since that's part
@@ -232,6 +235,44 @@ HOISTED_VERB_INSTRUCTIONS: dict[str, tuple[list[str], str, str, list[str]]] = {
     "prime_factors_H": (
         ["Write"], "full", " as a product of its prime factors, giving your answer in index form.",
         ["Write the following as a product of its prime factors, giving your answer in index form:"],
+    ),
+    # "Rationalise the denominator of {fraction}, giving your answer in its
+    # simplest form." - always the same fixed wording (no verb pool); the
+    # "verb" here is the whole multi-word lead-in, exactly like
+    # estimation_rounding_F's "Work out an estimate for" below.
+    "rationalise_denominator_H": (
+        ["Rationalise the denominator of"], "full", ", giving your answer in its simplest form.",
+        ["Rationalise the denominator of the following, giving your answer in its simplest form."],
+    ),
+    # "Write {expr} in the form (x + p)^2 + q." - always the same fixed wording.
+    "completing_the_square_H": (
+        ["Write"], "full", " in the form (x + p)^2 + q.",
+        ["Write the following in the form (x + p)^2 + q."],
+    ),
+    # "Solve {equation}" - the displayed title is a completely different phrase
+    # ("By using the quadratic formula, solve:") from the matched leading verb
+    # ("Solve"), which HOISTED_VERB_INSTRUCTIONS supports directly (the verb
+    # pool is only used to find/strip the prompt's own leading word - the
+    # title_choices list is independent display text).
+    "quadratic_formula_H": (["Solve"], "full", "", ["By using the quadratic formula, solve:"]),
+    # "Simplify {fraction expr}, giving your answer as a single fraction." /
+    # "...in its simplest form." - always the same fixed wording per topic.
+    "algebraic_fractions_add_subtract_H": (["Simplify"], "full", ", giving your answer as a single fraction.", ["Simplify"]),
+    "algebraic_fractions_multiply_divide_H": (
+        ["Simplify"], "full", ", giving your answer in its simplest form.", ["Simplify"]
+    ),
+    # "Solve the inequality {...}, then list the integer values of x that
+    # satisfy it." - satisfying_inequalities_H's "separate" shape (two
+    # independent inequalities joined by "and") was reworded to share this
+    # exact prefix/suffix with its other shape so hoisting works reliably
+    # regardless of which shape a worksheet's questions land on.
+    "satisfying_inequalities_F": (
+        ["Solve the inequality"], "full", ", then list the integer values of x that satisfy it.",
+        ["Solve the inequality, then list the integer values of x that satisfy it."],
+    ),
+    "satisfying_inequalities_H": (
+        ["Solve the inequality"], "full", ", then list the integer values of x that satisfy it.",
+        ["Solve the inequality, then list the integer values of x that satisfy it."],
     ),
 }
 

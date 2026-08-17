@@ -54,7 +54,11 @@ def test_hoisted_verb_instruction_topics_set_shared_instruction_and_item_text():
                 # trailing clause) moved to the title - never repeated
                 # in the per-question item.
                 assert not any(q.item_text.startswith(v + " ") for v in verbs), topic_id
-                if style == "full":
+                if style == "full" and suffix:
+                    # An empty suffix (e.g. quadratic_formula_H, whose whole
+                    # trailing clause was removed rather than hoisted) has
+                    # nothing meaningful to check here - every string
+                    # trivially "ends with" the empty string.
                     assert not q.item_text.endswith(suffix), topic_id
 
 

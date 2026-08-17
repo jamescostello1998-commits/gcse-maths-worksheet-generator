@@ -700,7 +700,7 @@ def _shape_kinematics_rearrange_foundation(rng: random.Random) -> Question:
         topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"v = u + at. Make a the subject of the formula, then find the value of a when "
+            f"v = u + at. Find the value of a when "
             f"v = {v}, u = {u} and t = {t}."
         ),
         solution_steps=tuple(steps),
@@ -731,7 +731,7 @@ def _shape_perimeter_rearrange_foundation(rng: random.Random) -> Question:
         topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"P = 2L + 2w. Make w the subject of the formula, then find the value of w when "
+            f"P = 2L + 2w. Find the value of w when "
             f"P = {p} and L = {l}."
         ),
         solution_steps=tuple(steps),
@@ -762,7 +762,7 @@ def _shape_area_rearrange_foundation(rng: random.Random) -> Question:
         topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A = LW. Make L the subject of the formula, then find the value of L when "
+            f"A = LW. Find the value of L when "
             f"A = {area} and w = {w}."
         ),
         solution_steps=tuple(steps),
@@ -794,7 +794,7 @@ def _shape_triangle_area_rearrange_foundation(rng: random.Random) -> Question:
         topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A = (1/2)bh. Make h the subject of the formula, then find the value of h when "
+            f"A = (1/2)bh. Find the value of h when "
             f"A = {_fmt_frac(area)} and b = {b}."
         ),
         solution_steps=tuple(steps),
@@ -855,7 +855,7 @@ def _shape_speed_squared_rearrange_higher(rng: random.Random) -> Question:
         topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
-            f"v^2 = u^2 + 2as. Make s the subject of the formula, then find the value of s when "
+            f"v^2 = u^2 + 2as. Find the value of s when "
             f"v = {v}, u = {u} and a = {a}."
         ),
         solution_steps=tuple(steps),
@@ -888,7 +888,7 @@ def _shape_kinetic_energy_rearrange_higher(rng: random.Random) -> Question:
         topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
-            f"E = (1/2)mv^2. Make m the subject of the formula, then find the value of m when "
+            f"E = (1/2)mv^2. Find the value of m when "
             f"E = {_fmt_frac(energy)} and v = {v}."
         ),
         solution_steps=tuple(steps),
@@ -918,7 +918,7 @@ def _shape_acceleration_rearrange_higher(rng: random.Random) -> Question:
         topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
-            f"a = \\frac{{v - u}}{{t}}. Make u the subject of the formula, then find the value of u when "
+            f"a = \\frac{{v - u}}{{t}}. Find the value of u when "
             f"v = {v}, a = {_fmt_frac(a)} and t = {t}."
         ),
         solution_steps=tuple(steps),
@@ -973,7 +973,7 @@ def _modelled_kinematics_rearrange_foundation(rng: random.Random) -> ModelledExa
         topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"v = u + at. Make a the subject of the formula, then find the value of a when "
+            f"v = u + at. Find the value of a when "
             f"v = {v}, u = {u} and t = {t}."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -1007,7 +1007,7 @@ def _modelled_perimeter_rearrange_foundation(rng: random.Random) -> ModelledExam
         topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"P = 2L + 2w. Make w the subject of the formula, then find the value of w when "
+            f"P = 2L + 2w. Find the value of w when "
             f"P = {p} and L = {l}."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -1040,7 +1040,7 @@ def _modelled_area_rearrange_foundation(rng: random.Random) -> ModelledExample:
         topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A = LW. Make L the subject of the formula, then find the value of L when "
+            f"A = LW. Find the value of L when "
             f"A = {area} and w = {w}."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -1077,7 +1077,7 @@ def _modelled_triangle_area_rearrange_foundation(rng: random.Random) -> Modelled
         topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A = (1/2)bh. Make h the subject of the formula, then find the value of h when "
+            f"A = (1/2)bh. Find the value of h when "
             f"A = {_fmt_frac(area)} and b = {b}."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -1132,7 +1132,7 @@ def _modelled_speed_squared_rearrange_higher(rng: random.Random) -> ModelledExam
         topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
-            f"v^2 = u^2 + 2as. Make s the subject of the formula, then find the value of s when "
+            f"v^2 = u^2 + 2as. Find the value of s when "
             f"v = {v}, u = {u} and a = {a}."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -1169,7 +1169,7 @@ def _modelled_kinetic_energy_rearrange_higher(rng: random.Random) -> ModelledExa
         topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
-            f"E = (1/2)mv^2. Make m the subject of the formula, then find the value of m when "
+            f"E = (1/2)mv^2. Find the value of m when "
             f"E = {_fmt_frac(energy)} and v = {v}."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -1202,7 +1202,7 @@ def _modelled_acceleration_rearrange_higher(rng: random.Random) -> ModelledExamp
         topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
-            f"a = \\frac{{v - u}}{{t}}. Make u the subject of the formula, then find the value of u when "
+            f"a = \\frac{{v - u}}{{t}}. Find the value of u when "
             f"v = {v}, a = {_fmt_frac(a)} and t = {t}."
         ),
         worked_calculation=tuple(worked_calculation),

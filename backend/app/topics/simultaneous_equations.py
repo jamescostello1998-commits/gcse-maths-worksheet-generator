@@ -50,19 +50,34 @@ def _fmt_root_factor(r: int) -> str:
     return f"(x - {r})" if r > 0 else f"(x + {-r})"
 
 
-def generate_common_coefficient(tier: Tier, rng: random.Random) -> Question:
-    sol_x = _rand_nonzero(rng, -8, 8)
-    sol_y = _rand_nonzero(rng, -8, 8)
-    a = rng.randint(1, 6)
-    c = rng.randint(1, 6)
-    while c == a:
+def _build_common_coefficient(rng: random.Random):
+    """Draw a/b/c/d/e/f/sol_x/sol_y for simultaneous_common_coefficient_F,
+    rerolling almost all of the time whenever BOTH right-hand sides (e, f)
+    would come out negative (e.g. "x + y = -5 and 6x + y = -35") - a small
+    10% chance is kept so this genuinely negative case doesn't vanish
+    entirely, per direct user request to drastically cut how often it
+    appears, not eliminate it outright."""
+    for _ in range(50):
+        sol_x = _rand_nonzero(rng, -8, 8)
+        sol_y = _rand_nonzero(rng, -8, 8)
+        a = rng.randint(1, 6)
         c = rng.randint(1, 6)
-    k = rng.randint(1, 5)
-    same_sign = rng.choice([True, False])
-    b = k
-    d = k if same_sign else -k
-    e = a * sol_x + b * sol_y
-    f = c * sol_x + d * sol_y
+        while c == a:
+            c = rng.randint(1, 6)
+        k = rng.randint(1, 5)
+        same_sign = rng.choice([True, False])
+        b = k
+        d = k if same_sign else -k
+        e = a * sol_x + b * sol_y
+        f = c * sol_x + d * sol_y
+        if e < 0 and f < 0 and rng.random() > 0.1:
+            continue
+        return sol_x, sol_y, a, b, c, d, e, f, same_sign
+    raise ValueError("simultaneous_common_coefficient: could not construct suitable coefficients")
+
+
+def generate_common_coefficient(tier: Tier, rng: random.Random) -> Question:
+    sol_x, sol_y, a, b, c, d, e, f, same_sign = _build_common_coefficient(rng)
 
     # Independent verification via sympy's linear solver - a different code path than
     # the elimination steps constructed below.
@@ -262,18 +277,7 @@ def generate_simultaneous_graphically(tier: Tier, rng: random.Random) -> Questio
 
 
 def generate_modelled_example_common_coefficient(tier: Tier, rng: random.Random) -> ModelledExample:
-    sol_x = _rand_nonzero(rng, -8, 8)
-    sol_y = _rand_nonzero(rng, -8, 8)
-    a = rng.randint(1, 6)
-    c = rng.randint(1, 6)
-    while c == a:
-        c = rng.randint(1, 6)
-    k = rng.randint(1, 5)
-    same_sign = rng.choice([True, False])
-    b = k
-    d = k if same_sign else -k
-    e = a * sol_x + b * sol_y
-    f = c * sol_x + d * sol_y
+    sol_x, sol_y, a, b, c, d, e, f, same_sign = _build_common_coefficient(rng)
 
     solution = sp.solve([sp.Eq(a * Xs + b * Ys, e), sp.Eq(c * Xs + d * Ys, f)], [Xs, Ys])
     if solution.get(Xs) != sol_x or solution.get(Ys) != sol_y:

@@ -29,6 +29,19 @@ def _rand_x_coeff(rng: random.Random, max_val: int) -> int:
     return -magnitude if rng.random() < 0.005 else magnitude
 
 
+def _rand_signed_const(rng: random.Random, hi: int) -> int:
+    """A bracket's constant term for the Foundation double-bracket topics -
+    magnitude 1..hi, negative about a third of the time. The Foundation
+    generators originally kept every constant positive (giving only
+    (x + p)(x + q) - see the comments below), which turned out to have zero
+    sign variety at all - real Foundation double-bracket content regularly
+    mixes signs (e.g. (x - 3)(x + 5)), so this is deliberately a much higher
+    negative rate than _rand_x_coeff's 0.5% (that one guards a visually
+    unusual leading negative x-term, not an ordinary constant)."""
+    magnitude = rng.randint(1, hi)
+    return -magnitude if rng.random() < 1 / 3 else magnitude
+
+
 def _fmt_quadratic(a, b, c) -> str:
     parts: list[str] = []
     if a != 0:
@@ -155,20 +168,39 @@ def generate_modelled_example_expand_single(tier: Tier, rng: random.Random) -> M
     )
 
 
-def generate_factorise_common(tier: Tier, rng: random.Random):
+def _build_factorise_common(rng: random.Random):
+    """Draw k/a/b for factorise_common_factor_F and decide how the question
+    is displayed. The x-coefficient (a, hence full_coeff) is always positive
+    so the expression never opens with a negative term. A genuine, unconditional
+    10% of questions are written constant-first instead of x-term-first (e.g.
+    "12 + 5x" rather than "5x + 12") - decided BEFORE drawing b, so b is only
+    restricted to positive (keeping that leading constant safely non-negative
+    too) on those 10% of draws; the other 90% keep full sign variety on b."""
     k = rng.randint(2, 9)
-    a = _rand_nonzero(rng, -9, 9)
-    b = _rand_nonzero(rng, -9, 9)
-    while math.gcd(abs(a), abs(b)) != 1:
-        a = _rand_nonzero(rng, -9, 9)
-        b = _rand_nonzero(rng, -9, 9)
+    a = rng.randint(1, 9)
+    number_first = rng.random() < 0.1
+    b = rng.randint(1, 9) if number_first else _rand_nonzero(rng, -9, 9)
+    while math.gcd(a, abs(b)) != 1:
+        a = rng.randint(1, 9)
+        b = rng.randint(1, 9) if number_first else _rand_nonzero(rng, -9, 9)
 
     full_coeff, full_const = k * a, k * b
-    hcf = math.gcd(abs(full_coeff), abs(full_const))
+    hcf = math.gcd(full_coeff, abs(full_const))
     if hcf != k:
-        raise ValueError("Factorise-common verification failed: HCF mismatch")
+        raise ValueError("factorise_common verification failed: HCF mismatch")
 
-    prompt = f"Factorise: {fmt_linear(full_coeff, full_const)}"
+    if number_first:
+        prompt_expr = f"{full_const} + {fmt_linear(full_coeff, 0)}"
+    else:
+        prompt_expr = fmt_linear(full_coeff, full_const)
+
+    return k, a, b, full_coeff, full_const, prompt_expr
+
+
+def generate_factorise_common(tier: Tier, rng: random.Random):
+    k, a, b, full_coeff, full_const, prompt_expr = _build_factorise_common(rng)
+
+    prompt = f"Factorise: {prompt_expr}"
     steps = [
         f"Find the highest common factor of {full_coeff} and {full_const}: {k}",
         f"Factorise: {k}({fmt_linear(a, b)})",
@@ -184,24 +216,15 @@ def generate_factorise_common(tier: Tier, rng: random.Random):
 
 
 def generate_modelled_example_factorise_common(tier: Tier, rng: random.Random) -> ModelledExample:
-    k = rng.randint(2, 9)
-    a = _rand_nonzero(rng, -9, 9)
-    b = _rand_nonzero(rng, -9, 9)
-    while math.gcd(abs(a), abs(b)) != 1:
-        a = _rand_nonzero(rng, -9, 9)
-        b = _rand_nonzero(rng, -9, 9)
+    k, a, b, full_coeff, full_const, prompt_expr = _build_factorise_common(rng)
 
-    full_coeff, full_const = k * a, k * b
-    hcf = math.gcd(abs(full_coeff), abs(full_const))
-    if hcf != k:
-        raise ValueError("modelled example factorise_common verification failed (HCF mismatch)")
     residual = sp.expand(k * (a * X + b) - (full_coeff * X + full_const))
     if residual != 0:
         raise ValueError("modelled example factorise_common verification failed (expansion check)")
 
     teaching_steps = [
         f"Factorising is the reverse of expanding: instead of multiplying a bracket out, we're pulling "
-        f"a common number back out of {fmt_linear(full_coeff, full_const)}.",
+        f"a common number back out of {prompt_expr}.",
         f"Look for the highest common factor (HCF) of {full_coeff} and {full_const} - the largest "
         f"number that divides into both exactly. Here that's {k}.",
         f"Divide each term by {k} to see what's left inside the bracket: {full_coeff} ÷ {k} = {a}, "
@@ -211,14 +234,14 @@ def generate_modelled_example_factorise_common(tier: Tier, rng: random.Random) -
         f"{k} × {fmt_num(b)} = {fmt_num(full_const)}, which reconstructs the original expression.",
     ]
     worked_calculation = [
-        f"{fmt_linear(full_coeff, full_const)}",
+        f"{prompt_expr}",
         f"HCF({full_coeff}, {full_const}) = {k}",
         f"{k}({fmt_linear(a, b)})",
     ]
     return ModelledExample(
         topic_id="factorise_common_factor_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Factorise: {fmt_linear(full_coeff, full_const)}",
+        prompt=f"Factorise: {prompt_expr}",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{k}({fmt_linear(a, b)})",
@@ -308,13 +331,15 @@ def generate_modelled_example_expand_double(tier: Tier, rng: random.Random) -> M
 
 
 def generate_expand_double_foundation(tier: Tier, rng: random.Random):
-    # Same shape as generate_expand_double but with all-positive coefficients, so
-    # a Foundation student only ever expands (x + p)(x + q) - no negative signs to
-    # track - matching how double-bracket expansion is introduced on the real specs.
+    # Same shape as generate_expand_double, but the x-coefficients (a, c) stay
+    # positive - a Foundation student always sees a clean leading x-term, e.g.
+    # (2x + 3)(4x - 5), never (-2x + 3)(...). The constants (b, d) do mix
+    # signs (via _rand_signed_const) so the topic isn't all-positive-only -
+    # see that helper's docstring for why.
     a = rng.randint(1, 4)
-    b = rng.randint(1, 9)
+    b = _rand_signed_const(rng, 9)
     c = rng.randint(1, 4)
-    d = rng.randint(1, 9)
+    d = _rand_signed_const(rng, 9)
 
     expanded = sp.expand((a * X + b) * (c * X + d))
     poly = sp.Poly(expanded, X)
@@ -346,9 +371,9 @@ def generate_expand_double_foundation(tier: Tier, rng: random.Random):
 
 def generate_modelled_example_expand_double_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     a = rng.randint(1, 4)
-    b = rng.randint(1, 9)
+    b = _rand_signed_const(rng, 9)
     c = rng.randint(1, 4)
-    d = rng.randint(1, 9)
+    d = _rand_signed_const(rng, 9)
 
     expanded = sp.expand((a * X + b) * (c * X + d))
     poly = sp.Poly(expanded, X)
@@ -397,8 +422,10 @@ def generate_expand_double_no_coefficient_foundation(tier: Tier, rng: random.Ran
     # allows an x-coefficient up to 4 despite its own name/comment implying
     # (x+p)(x+q) - this topic pins both x-coefficients to exactly 1, giving
     # the true (x + p)(x + q) shape with no coefficient of x at all to track.
-    b = rng.randint(1, 9)
-    d = rng.randint(1, 9)
+    # The constants (b, d) still mix signs (via _rand_signed_const), e.g.
+    # (x - 3)(x + 5), so "no coefficient" only means the x-coefficient.
+    b = _rand_signed_const(rng, 9)
+    d = _rand_signed_const(rng, 9)
 
     expanded = sp.expand((X + b) * (X + d))
     poly = sp.Poly(expanded, X)
@@ -431,8 +458,8 @@ def generate_expand_double_no_coefficient_foundation(tier: Tier, rng: random.Ran
 def generate_modelled_example_expand_double_no_coefficient_foundation(
     tier: Tier, rng: random.Random
 ) -> ModelledExample:
-    b = rng.randint(1, 9)
-    d = rng.randint(1, 9)
+    b = _rand_signed_const(rng, 9)
+    d = _rand_signed_const(rng, 9)
 
     expanded = sp.expand((X + b) * (X + d))
     poly = sp.Poly(expanded, X)

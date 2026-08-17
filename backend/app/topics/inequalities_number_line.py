@@ -181,7 +181,7 @@ def generate_inequalities_number_line_higher(tier: Tier, rng: random.Random) -> 
     lo_word = "filled" if closed_lo else "open"
     hi_word = "filled" if closed_hi else "open"
     if shape == "draw":
-        prompt = f"Draw the inequality/ies of {inequality_str} on a number line."
+        prompt = f"Draw the inequality of {inequality_str} on a number line."
         if kind == "between":
             steps = [
                 f"Draw {_article(lo_word)} {lo_word} circle at {lo_val} and {_article(hi_word)} {hi_word} circle at {hi_val}.",
