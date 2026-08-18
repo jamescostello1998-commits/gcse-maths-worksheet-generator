@@ -65,6 +65,10 @@ HOISTED_INSTRUCTIONS: dict[str, str] = {
     "algebraic_indices_F": "Simplify",
     "algebraic_indices_H": "Simplify",
     "turning_point_of_graph_H": "Find the coordinates of the turning point of the curve",
+    "sequences_missing_term_F": "Find the missing value(s) in the sequence:",
+    "midpoint_of_segment_F": "Find the midpoint between points:",
+    "percentage_of_amount_F": "Find",
+    "find_percentage_change_F": "Find the percentage change:",
 }
 
 
@@ -273,6 +277,33 @@ HOISTED_VERB_INSTRUCTIONS: dict[str, tuple[list[str], str, str, list[str]]] = {
     "satisfying_inequalities_H": (
         ["Solve the inequality"], "full", ", then list the integer values of x that satisfy it.",
         ["Solve the inequality, then list the integer values of x that satisfy it."],
+    ),
+    # "Here are the first four terms of a sequence: {terms}, ... Describe the
+    # term-to-term rule, and find the next term." - always the same fixed
+    # wording (no verb pool).
+    "sequences_term_to_term_rule_F": (
+        ["Here are the first four terms of a sequence:"], "full",
+        " Describe the term-to-term rule, and find the next term.",
+        ["Here are the first four terms of a sequence. Describe the term-to-term rule, and find the next term."],
+    ),
+    # "Find the nth term of the following [quadratic] sequence: {terms}, ..."
+    # - same title for both tiers (the topic itself is all-quadratic or
+    # all-linear, so no need to distinguish in the shared header).
+    "sequences_nth_term_F": (
+        ["Find the nth term of the following sequence:"], "full", "",
+        ["Find the nth term of the following sequences."],
+    ),
+    "sequences_quadratic_nth_term_H": (
+        ["Find the nth term of the following quadratic sequence:"], "full", "",
+        ["Find the nth term of the following sequences."],
+    ),
+    # "Find the length of a line connecting points: A(...) and B(...), correct
+    # to {phrase}." - the rounding phrase varies per question (1 d.p./2 d.p./
+    # 3 s.f., see rounding.py), so only the fixed leading clause hoists;
+    # each item keeps its own "correct to ..." clause.
+    "distance_between_points_H": (
+        ["Find the length of a line connecting points:"], "verb_only", "",
+        ["Find the length of a line connecting points:"],
     ),
 }
 

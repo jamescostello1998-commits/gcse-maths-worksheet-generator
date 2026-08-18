@@ -2594,7 +2594,10 @@ def _draw_scaled_axes(
     _, by1 = to_px(axis_x0, y_max)
     d.add(Line(bx0, by0, bx0, by1, strokeColor=INK, strokeWidth=1.1))
 
-    # Numbers at the major (heavier) gridlines only.
+    # Numbers at the major (heavier) gridlines only. The origin itself gets a
+    # single shared "0" label (not one per axis, which would print it twice
+    # on top of itself) placed just below-left of the origin, clear of both
+    # axis lines.
     xt = math.ceil(x_min / major_x) * major_x
     while xt <= x_max + 1e-9:
         if abs(xt) > 1e-9:
@@ -2607,6 +2610,8 @@ def _draw_scaled_axes(
             px, py = to_px(axis_x0, yt)
             d.add(_label(px - 6, py - 2, str(int(yt)), anchor="end", size=6.5))
         yt += major_y
+    ox, oy = to_px(0, 0)
+    d.add(_label(ox - 6, oy - 9, "0", anchor="end", size=6.5))
 
     if long_x:
         d.add(_label((ax0 + ax1) / 2, 3, x_axis_label, anchor="middle", size=8))

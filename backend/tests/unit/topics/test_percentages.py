@@ -206,6 +206,16 @@ def test_find_percentage_change_answer_states_direction():
         assert ("increase" in q.final_answer) or ("decrease" in q.final_answer)
 
 
+def test_find_percentage_change_prompt_does_not_reveal_direction():
+    """The prompt states 'from X to Y' only - the student must work out for
+    themselves whether that is an increase or a decrease, not be told."""
+    rng = random.Random(2013)
+    for _ in range(TRIALS):
+        q = percentages.generate_find_percentage_change(Tier.FOUNDATION, rng)
+        assert q.prompt.startswith("Find the percentage change: from £")
+        assert "increase" not in q.prompt and "decrease" not in q.prompt
+
+
 def test_percentage_increase_decrease_calculator_rounds_to_two_dp():
     rng = random.Random(214)
     for _ in range(TRIALS):

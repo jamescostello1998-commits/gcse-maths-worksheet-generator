@@ -1,5 +1,6 @@
 import math
 import random
+import re
 
 from app.core.models import Tier
 from app.topics import coordinate_geometry
@@ -43,22 +44,16 @@ def test_midpoint_answer_is_the_average_of_coordinates():
         assert float(my) == (y1 + y2) / 2
 
 
-def test_distance_answer_is_a_simplified_surd_matching_the_true_length():
+def test_distance_answer_is_a_rounded_decimal_matching_the_true_length():
     rng = random.Random(523)
+    point_re = re.compile(r"A\((-?\d+), (-?\d+)\) and B\((-?\d+), (-?\d+)\)")
     for _ in range(TRIALS):
         q = coordinate_geometry.generate_distance_between_points(Tier.HIGHER, rng)
-        nums = q.prompt.replace("(", " ").replace(")", " ").replace(",", " ").split()
-        coords = [int(t) for t in nums if t.lstrip("-").isdigit()]
-        x1, y1, x2, y2 = coords
-        answer = q.final_answer
-        assert "√" in answer  # always a genuine surd (perfect squares are rejected)
-        coeff_str, radicand = answer.split("√")
-        coeff = 1 if coeff_str == "" else int(coeff_str)
-        r = int(radicand)
-        # value matches the true distance, and radicand is square-free
-        assert abs(coeff * math.sqrt(r) - math.hypot(x2 - x1, y2 - y1)) < 1e-9
-        for p in range(2, math.isqrt(r) + 1):
-            assert r % (p * p) != 0
+        assert "√" not in q.final_answer  # no longer a surd - a rounded decimal
+        x1, y1, x2, y2 = (int(g) for g in point_re.search(q.prompt).groups())
+        true_distance = math.hypot(x2 - x1, y2 - y1)
+        assert abs(float(q.final_answer) - true_distance) < 0.6  # loose - any of the 3 roundings
+        assert "correct to" in q.prompt
 
 
 def test_modelled_examples_are_verified():

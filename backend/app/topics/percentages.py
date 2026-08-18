@@ -675,6 +675,8 @@ def generate_find_percentage_change(tier: Tier, rng: random.Random) -> Question:
         raise ValueError("find_percentage_change verification failed")
 
     steps = [
+        f"£{fmt_money(new_value)} is {'more' if increase else 'less'} than £{original}, so this "
+        f"is a percentage {verb}.",
         f"Find the difference between the two values: £{fmt_money(new_value)} and £{original} "
         f"differ by £{fmt_money(diff)}",
         f"Divide by the ORIGINAL value and convert to a percentage: £{fmt_money(diff)} ÷ £{original} "
@@ -683,7 +685,7 @@ def generate_find_percentage_change(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="find_percentage_change_F",
         tier=Tier.FOUNDATION,
-        prompt=f"The price of an item changes from £{original} to £{fmt_money(new_value)}. Find the percentage {verb}.",
+        prompt=f"Find the percentage change: from £{original} to £{fmt_money(new_value)}.",
         solution_steps=tuple(steps),
         final_answer=f"{fmt_money(computed_percent)}% {verb}",
         dedup_key=f"fpc:{percent}:{original}:{increase}",
@@ -729,7 +731,7 @@ def generate_modelled_example_find_percentage_change(tier: Tier, rng: random.Ran
     return ModelledExample(
         topic_id="find_percentage_change_F",
         tier=Tier.FOUNDATION,
-        prompt=f"The price of an item changes from £{original} to £{fmt_money(new_value)}. Find the percentage {verb}.",
+        prompt=f"Find the percentage change: from £{original} to £{fmt_money(new_value)}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{fmt_money(computed_percent)}% {verb}",
@@ -786,10 +788,7 @@ def generate_percentage_increase_decrease_calculator(tier: Tier, rng: random.Ran
     return Question(
         topic_id="percentage_increase_decrease_calculator_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"Using a calculator, {verb.lower()} £{amount_str} by {percent_str}%. "
-            "Give your answer to 2 decimal places."
-        ),
+        prompt=f"{verb} £{amount_str} by {percent_str}%.",
         solution_steps=tuple(steps),
         final_answer=f"£{rounded_primary}",
         dedup_key=f"pidc:{percent_str}:{pounds}:{pence}:{increase}",
@@ -854,10 +853,7 @@ def generate_modelled_example_percentage_increase_decrease_calculator(
     return ModelledExample(
         topic_id="percentage_increase_decrease_calculator_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"Using a calculator, {verb.lower()} £{amount_str} by {percent_str}%. "
-            "Give your answer to 2 decimal places."
-        ),
+        prompt=f"{verb} £{amount_str} by {percent_str}%.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"£{rounded_primary}",

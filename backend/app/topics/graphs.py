@@ -25,6 +25,15 @@ def _rand_nonzero(rng: random.Random, lo: int, hi: int) -> int:
             return v
 
 
+def _rand_gradient(rng: random.Random, lo: int, hi: int, positive_weight: float = 0.7) -> int:
+    """Draw a nonzero gradient for a plotted/graphed straight line, weighted
+    toward positive (a rising line is the more familiar, easier-to-read case,
+    especially at Foundation) - `lo`/`hi` are expected symmetric about 0."""
+    if rng.random() < positive_weight:
+        return rng.randint(1, hi)
+    return rng.randint(lo, -1)
+
+
 def _fmt_quadratic(a: int, b: int, c: int) -> str:
     lead = "x^2" if a == 1 else ("-x^2" if a == -1 else f"{a}x^2")
     parts = [lead]
@@ -50,7 +59,7 @@ def _fmt_reciprocal(a: int) -> str:
 
 
 def generate_plot_straight_line(tier: Tier, rng: random.Random) -> Question:
-    m = _rand_nonzero(rng, -4, 4)
+    m = _rand_gradient(rng, -4, 4)
     c = rng.randint(-6, 6)
     xs = list(range(-3, 4))
     ys = [m * x + c for x in xs]
@@ -492,7 +501,7 @@ def generate_plot_distance_time(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_line_equation_from_graph(tier: Tier, rng: random.Random) -> Question:
-    m = _rand_nonzero(rng, -4, 4)
+    m = _rand_gradient(rng, -4, 4)
     c = rng.randint(-6, 6)
     x1 = rng.randint(-4, -1)
     x2 = rng.randint(1, 4)
@@ -854,7 +863,7 @@ def generate_graph_transformations(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_plot_straight_line(tier: Tier, rng: random.Random) -> ModelledExample:
-    m = _rand_nonzero(rng, -4, 4)
+    m = _rand_gradient(rng, -4, 4)
     c = rng.randint(-6, 6)
     xs = list(range(-3, 4))
     ys = [m * x + c for x in xs]
@@ -1193,7 +1202,7 @@ def generate_modelled_example_plot_distance_time(tier: Tier, rng: random.Random)
 
 
 def generate_modelled_example_line_equation_from_graph(tier: Tier, rng: random.Random) -> ModelledExample:
-    m = _rand_nonzero(rng, -4, 4)
+    m = _rand_gradient(rng, -4, 4)
     c = rng.randint(-6, 6)
     x1 = rng.randint(-4, -1)
     x2 = rng.randint(1, 4)
