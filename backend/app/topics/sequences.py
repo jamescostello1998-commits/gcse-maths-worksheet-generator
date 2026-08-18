@@ -46,6 +46,17 @@ def _fmt_quadratic_n(a: int, b: int, c: int) -> str:
     return " ".join(parts)
 
 
+def _fmt_linear_substitution(d: int, intercept: int, n: int, value: int) -> str:
+    """Render the working for substituting n into dn + c, e.g. '2x1 - 6 = -4'
+    - NOT a blind str.replace("n", ...) on the formula string, which would
+    corrupt a coefficient like '2n' into '21' instead of showing '2x1'."""
+    if intercept > 0:
+        return f"{d}×{n} + {intercept} = {value}"
+    if intercept < 0:
+        return f"{d}×{n} - {abs(intercept)} = {value}"
+    return f"{d}×{n} = {value}"
+
+
 def generate_next_term(tier: Tier, rng: random.Random) -> Question:
     a1 = rng.randint(-10, 20)
     d = _rand_nonzero(rng, -6, 6)
@@ -98,7 +109,7 @@ def generate_term_to_term_rule(tier: Tier, rng: random.Random) -> Question:
         topic_id="sequences_term_to_term_rule_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}. "
+            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}, ... "
             "Describe the term-to-term rule, and find the next term."
         ),
         solution_steps=tuple(steps),
@@ -126,10 +137,7 @@ def generate_nth_term(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="sequences_nth_term_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}.\n"
-            "Find an expression for the nth term."
-        ),
+        prompt=f"Find the nth term of the following sequence: {', '.join(map(str, terms))}, ...",
         solution_steps=tuple(steps),
         final_answer=formula,
         dedup_key=f"seq_nth:{d}:{intercept}",
@@ -171,10 +179,7 @@ def generate_quadratic_nth_term(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="sequences_quadratic_nth_term_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"Here are the first four terms of a quadratic sequence: {', '.join(map(str, terms))}.\n"
-            "Find an expression for the nth term."
-        ),
+        prompt=f"Find the nth term of the following quadratic sequence: {', '.join(map(str, terms))}, ...",
         solution_steps=tuple(steps),
         final_answer=formula,
         dedup_key=f"seq_quad_nth:{a}:{b}:{c}",
@@ -314,7 +319,7 @@ def generate_special_sequences_foundation(tier: Tier, rng: random.Random) -> Que
             f"Next term = {terms[-1]} {'+' if d > 0 else '-'} {abs(d)} = {next_term}",
         ]
         prompt = (
-            f"Here are the first {n_given} terms of a sequence: {', '.join(map(str, terms))}. "
+            f"Here are the first {n_given} terms of a sequence: {', '.join(map(str, terms))}, ... "
             "Find the next term."
         )
         answer = str(next_term)
@@ -348,7 +353,7 @@ def generate_special_sequences_foundation(tier: Tier, rng: random.Random) -> Que
             f"These are the {name}: the nth term is given by {formula}.",
             _special_step_text(kind, target_n, target_term),
         ]
-        prompt = f"The first {num_shown} {name} are: {', '.join(map(str, terms))}. " + ask
+        prompt = f"The first {num_shown} {name} are: {', '.join(map(str, terms))}, ... " + ask
         answer = str(target_term)
         dedup_key = f"seq_special_found:{kind}:{num_shown}:{offset}"
 
@@ -396,7 +401,7 @@ def generate_special_sequences_higher(tier: Tier, rng: random.Random) -> Questio
             steps.append(f"{shown[-1]} + {targets[0]} = {targets[1]}")
 
         prompt = (
-            f"The first {num_shown} terms of a Fibonacci-type sequence are: {', '.join(map(str, shown))}. "
+            f"The first {num_shown} terms of a Fibonacci-type sequence are: {', '.join(map(str, shown))}, ... "
             f"{rule[0].upper()}{rule[1:]}. " + ask
         )
         dedup_key = f"seq_special_high:fibonacci:{a1}:{a2}:{num_shown}:{ask_count}"
@@ -424,7 +429,7 @@ def generate_special_sequences_higher(tier: Tier, rng: random.Random) -> Questio
             f"Term {target_n} = {_fmt_fraction(target_direct)}",
         ]
         prompt = (
-            f"The first {num_shown} terms of a geometric sequence are: {shown_str}. "
+            f"The first {num_shown} terms of a geometric sequence are: {shown_str}, ... "
             f"Find the {_ordinal(target_n)} term of the sequence."
         )
         answer = _fmt_fraction(target_direct)
@@ -518,7 +523,7 @@ def generate_modelled_example_term_to_term_rule(tier: Tier, rng: random.Random) 
         ]
 
     worked_calculation = [
-        f"{', '.join(map(str, terms))}",
+        f"{', '.join(map(str, terms))}, ...",
         f"Rule: {rule}",
         f"Next term = {next_term}",
     ]
@@ -526,7 +531,7 @@ def generate_modelled_example_term_to_term_rule(tier: Tier, rng: random.Random) 
         topic_id="sequences_term_to_term_rule_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}. "
+            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}, ... "
             "Describe the term-to-term rule, and find the next term."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -558,7 +563,7 @@ def generate_modelled_example_nth_term(tier: Tier, rng: random.Random) -> Modell
         "second term given.",
     ]
     worked_calculation = [
-        f"{', '.join(map(str, terms))}",
+        f"{', '.join(map(str, terms))}, ...",
         f"Common difference = {d}",
         f"c = {a1} - {d} = {intercept}",
         f"nth term = {formula}",
@@ -566,10 +571,7 @@ def generate_modelled_example_nth_term(tier: Tier, rng: random.Random) -> Modell
     return ModelledExample(
         topic_id="sequences_nth_term_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}.\n"
-            "Find an expression for the nth term."
-        ),
+        prompt=f"Find the nth term of the following sequence: {', '.join(map(str, terms))}, ...",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=formula,
@@ -612,7 +614,7 @@ def generate_modelled_example_quadratic_nth_term(tier: Tier, rng: random.Random)
         f"nth term = {formula}. Check against the 4th term: substituting n = 4 gives {terms[3]}, which matches.",
     ]
     worked_calculation = [
-        f"{', '.join(map(str, terms))}",
+        f"{', '.join(map(str, terms))}, ...",
         f"1st differences: {', '.join(str(v) for v in first_diffs)}",
         f"2nd difference = {2 * a}, so A = {a}",
         f"nth term = {formula}",
@@ -620,10 +622,7 @@ def generate_modelled_example_quadratic_nth_term(tier: Tier, rng: random.Random)
     return ModelledExample(
         topic_id="sequences_quadratic_nth_term_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"Here are the first four terms of a quadratic sequence: {', '.join(map(str, terms))}.\n"
-            "Find an expression for the nth term."
-        ),
+        prompt=f"Find the nth term of the following quadratic sequence: {', '.join(map(str, terms))}, ...",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=formula,
@@ -660,7 +659,7 @@ def generate_modelled_example_special_sequences_foundation(tier: Tier, rng: rand
             f"Next term = {terms[-1]} {'+' if d > 0 else '-'} {abs(d)} = {next_term}",
         ]
         prompt = (
-            f"Here are the first {n_given} terms of a sequence: {', '.join(map(str, terms))}. "
+            f"Here are the first {n_given} terms of a sequence: {', '.join(map(str, terms))}, ... "
             "Find the next term."
         )
         answer = str(next_term)
@@ -696,11 +695,11 @@ def generate_modelled_example_special_sequences_foundation(tier: Tier, rng: rand
             f"{_special_step_text(kind, target_n, target_term)}.",
         ]
         worked_calculation = [
-            f"{', '.join(map(str, terms))}",
+            f"{', '.join(map(str, terms))}, ...",
             f"nth term = {formula}",
             _special_step_text(kind, target_n, target_term),
         ]
-        prompt = f"The first {num_shown} {name} are: {', '.join(map(str, terms))}. " + ask
+        prompt = f"The first {num_shown} {name} are: {', '.join(map(str, terms))}, ... " + ask
         answer = str(target_term)
 
     return ModelledExample(
@@ -740,7 +739,7 @@ def generate_modelled_example_special_sequences_higher(tier: Tier, rng: random.R
             answer = f"{targets[0]}, {targets[1]}"
 
         prompt = (
-            f"The first {num_shown} terms of a Fibonacci-type sequence are: {', '.join(map(str, shown))}. "
+            f"The first {num_shown} terms of a Fibonacci-type sequence are: {', '.join(map(str, shown))}, ... "
             f"{rule[0].upper()}{rule[1:]}. " + ask
         )
         teaching_steps = [
@@ -777,7 +776,7 @@ def generate_modelled_example_special_sequences_higher(tier: Tier, rng: random.R
         r_str = _fmt_fraction(r)
         shown_str = ", ".join(_fmt_fraction(t) for t in shown_terms)
         prompt = (
-            f"The first {num_shown} terms of a geometric sequence are: {shown_str}. "
+            f"The first {num_shown} terms of a geometric sequence are: {shown_str}, ... "
             f"Find the {_ordinal(target_n)} term of the sequence."
         )
         teaching_steps = [
@@ -799,6 +798,508 @@ def generate_modelled_example_special_sequences_higher(tier: Tier, rng: random.R
         topic_id="special_sequences_H",
         tier=Tier.HIGHER,
         prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
+def generate_missing_term(tier: Tier, rng: random.Random) -> Question:
+    a1 = rng.randint(-10, 15)
+    d = _rand_nonzero(rng, -6, 6)
+    n_terms = rng.choice([5, 6])
+    terms = [a1 + i * d for i in range(n_terms)]
+    n_missing = rng.choice([1, 2])
+    hidden_positions = sorted(rng.sample(range(1, n_terms - 1), n_missing))
+
+    # Independent verification: derive the common difference purely from the
+    # two VISIBLE endpoint terms (a genuinely different route than the
+    # direct a1 + i*d construction used to build the sequence), and confirm
+    # this reproduces every hidden value exactly.
+    d_check = sp.Rational(terms[-1] - terms[0], n_terms - 1)
+    for i in hidden_positions:
+        if terms[0] + d_check * i != terms[i]:
+            raise ValueError("sequences_missing_term verification failed")
+
+    display = ", ".join("?" if i in hidden_positions else str(t) for i, t in enumerate(terms))
+    answer = ", ".join(str(terms[i]) for i in hidden_positions)
+
+    steps = [f"Common difference = ({terms[-1]} - {terms[0]}) ÷ {n_terms - 1} = {d}"]
+    for i in hidden_positions:
+        steps.append(f"Term {i + 1} (?) = {terms[0]} + {i} × {d} = {terms[i]}")
+
+    return Question(
+        topic_id="sequences_missing_term_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the missing value(s) in the sequence: {display}, ...",
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"seq_missing:{a1}:{d}:{n_terms}:{'_'.join(map(str, hidden_positions))}",
+    )
+
+
+def generate_modelled_example_missing_term(tier: Tier, rng: random.Random) -> ModelledExample:
+    a1 = rng.randint(-10, 15)
+    d = _rand_nonzero(rng, -6, 6)
+    n_terms = rng.choice([5, 6])
+    terms = [a1 + i * d for i in range(n_terms)]
+    n_missing = rng.choice([1, 2])
+    hidden_positions = sorted(rng.sample(range(1, n_terms - 1), n_missing))
+
+    d_check = sp.Rational(terms[-1] - terms[0], n_terms - 1)
+    for i in hidden_positions:
+        if terms[0] + d_check * i != terms[i]:
+            raise ValueError("modelled example sequences_missing_term verification failed")
+
+    display = ", ".join("?" if i in hidden_positions else str(t) for i, t in enumerate(terms))
+    answer = ", ".join(str(terms[i]) for i in hidden_positions)
+
+    teaching_steps = [
+        "Even with some terms hidden, an arithmetic sequence still goes up (or down) by the same amount "
+        "each time - so the first job is to work out that common difference from whichever terms ARE "
+        "visible, using the two terms furthest apart.",
+        f"The first and last terms shown, {terms[0]} and {terms[-1]}, are {n_terms - 1} steps apart, so "
+        f"the common difference = ({terms[-1]} - {terms[0]}) ÷ {n_terms - 1} = {d}.",
+        "Once the common difference is known, count forward from the nearest visible term to work out "
+        "each missing value: "
+        + "; ".join(f"term {i + 1} = {terms[0]} + {i} × {d} = {terms[i]}" for i in hidden_positions)
+        + ".",
+    ]
+    worked_calculation = [
+        f"{display}, ...",
+        f"Common difference = {d}",
+        f"Missing value(s): {answer}",
+    ]
+    return ModelledExample(
+        topic_id="sequences_missing_term_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the missing value(s) in the sequence: {display}, ...",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
+def generate_is_a_term(tier: Tier, rng: random.Random) -> Question:
+    d = rng.choice([v for v in range(-8, 9) if abs(v) >= 2])
+    a1 = rng.randint(-10, 20)
+    intercept = a1 - d
+    terms = [a1 + i * d for i in range(4)]
+
+    is_term = rng.choice([True, False])
+    if is_term:
+        n_target = rng.randint(5, 30)
+        target = d * n_target + intercept
+    else:
+        n_approx = rng.randint(5, 30)
+        offset = rng.randint(1, abs(d) - 1)
+        target = d * n_approx + intercept + offset
+
+    formula = _fmt_linear_n(d, intercept)
+    n_solution = sp.Rational(target - intercept, d)
+    algebraic_says_term = n_solution.q == 1 and n_solution > 0
+
+    # Independent verification: a bounded brute-force scan over a wide range
+    # of term numbers - a genuinely different method than solving the linear
+    # equation directly.
+    brute_found = any(d * n + intercept == target for n in range(1, 500))
+    if brute_found != algebraic_says_term or algebraic_says_term != is_term:
+        raise ValueError("sequences_is_a_term verification failed")
+
+    if is_term:
+        n_int = int(n_solution)
+        steps = [
+            f"nth term = {formula}",
+            f"Solve {formula} = {target} for n: n = {n_solution}",
+            f"n = {n_int} is a positive whole number, so {target} IS a term of the sequence "
+            f"(the {_ordinal(n_int)} term).",
+        ]
+        answer = f"Yes, the {_ordinal(n_int)} term"
+    else:
+        steps = [
+            f"nth term = {formula}",
+            f"Solve {formula} = {target} for n: n = {n_solution}",
+            f"n = {n_solution} is not a positive whole number, so {target} is NOT a term of the sequence.",
+        ]
+        answer = "No"
+
+    return Question(
+        topic_id="sequences_is_a_term_F",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}, ... "
+            f"Is {target} a term of this sequence?"
+        ),
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"seq_isterm:{d}:{intercept}:{target}",
+    )
+
+
+def generate_modelled_example_is_a_term(tier: Tier, rng: random.Random) -> ModelledExample:
+    d = rng.choice([v for v in range(-8, 9) if abs(v) >= 2])
+    a1 = rng.randint(-10, 20)
+    intercept = a1 - d
+    terms = [a1 + i * d for i in range(4)]
+
+    is_term = rng.choice([True, False])
+    if is_term:
+        n_target = rng.randint(5, 30)
+        target = d * n_target + intercept
+    else:
+        n_approx = rng.randint(5, 30)
+        offset = rng.randint(1, abs(d) - 1)
+        target = d * n_approx + intercept + offset
+
+    formula = _fmt_linear_n(d, intercept)
+    n_solution = sp.Rational(target - intercept, d)
+    algebraic_says_term = n_solution.q == 1 and n_solution > 0
+    brute_found = any(d * n + intercept == target for n in range(1, 500))
+    if brute_found != algebraic_says_term or algebraic_says_term != is_term:
+        raise ValueError("modelled example sequences_is_a_term verification failed")
+
+    prompt = (
+        f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}, ... "
+        f"Is {target} a term of this sequence?"
+    )
+    if is_term:
+        n_int = int(n_solution)
+        answer = f"Yes, the {_ordinal(n_int)} term"
+        teaching_steps = [
+            f"Every term of this sequence fits the formula {formula} for some whole number n - so to "
+            f"check whether {target} is a term, set {formula} equal to {target} and solve for n.",
+            f"{formula} = {target}  =>  n = {n_solution}.",
+            f"Since n = {n_int} is a positive whole number, {target} genuinely is a term of the "
+            f"sequence - specifically, the {_ordinal(n_int)} term.",
+        ]
+        worked_calculation = [formula + f" = {target}", f"n = {n_solution}", answer]
+    else:
+        answer = "No"
+        teaching_steps = [
+            f"Every term of this sequence fits the formula {formula} for some whole number n - so to "
+            f"check whether {target} is a term, set {formula} equal to {target} and solve for n.",
+            f"{formula} = {target}  =>  n = {n_solution}.",
+            f"Since n = {n_solution} is NOT a positive whole number, {target} is not a term of the "
+            "sequence - a real term number can never come out as a fraction.",
+        ]
+        worked_calculation = [formula + f" = {target}", f"n = {n_solution}", answer]
+
+    return ModelledExample(
+        topic_id="sequences_is_a_term_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
+def generate_first_term_exceeding(tier: Tier, rng: random.Random) -> Question:
+    d = rng.randint(2, 8)
+    a1 = rng.randint(-10, 15)
+    intercept = a1 - d
+    terms = [a1 + i * d for i in range(4)]
+    threshold = terms[-1] + rng.randint(10, 80)
+    formula = _fmt_linear_n(d, intercept)
+
+    n_boundary = sp.Rational(threshold - intercept, d)
+    n_min = int(sp.floor(n_boundary)) + 1
+    value_at_n_min = d * n_min + intercept
+    value_before = d * (n_min - 1) + intercept
+
+    # Independent verification: a direct boundary check either side of the
+    # claimed answer - a genuinely different method than solving the
+    # inequality algebraically.
+    if not (value_at_n_min > threshold and value_before <= threshold):
+        raise ValueError("sequences_first_term_exceeding verification failed")
+
+    steps = [
+        f"nth term = {formula}",
+        f"Solve {formula} > {threshold}: n > {n_boundary}",
+        f"The smallest whole number satisfying this is n = {n_min}",
+        f"Check: term {n_min} = {value_at_n_min} (greater than {threshold}); "
+        f"term {n_min - 1} = {value_before} (not greater than {threshold})",
+    ]
+    answer = f"{_ordinal(n_min)} term ({value_at_n_min})"
+
+    return Question(
+        topic_id="sequences_first_term_exceeding_F",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}, ... "
+            f"Which term is the first to be greater than {threshold}?"
+        ),
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"seq_exceed:{d}:{intercept}:{threshold}",
+    )
+
+
+def generate_modelled_example_first_term_exceeding(tier: Tier, rng: random.Random) -> ModelledExample:
+    d = rng.randint(2, 8)
+    a1 = rng.randint(-10, 15)
+    intercept = a1 - d
+    terms = [a1 + i * d for i in range(4)]
+    threshold = terms[-1] + rng.randint(10, 80)
+    formula = _fmt_linear_n(d, intercept)
+
+    n_boundary = sp.Rational(threshold - intercept, d)
+    n_min = int(sp.floor(n_boundary)) + 1
+    value_at_n_min = d * n_min + intercept
+    value_before = d * (n_min - 1) + intercept
+    if not (value_at_n_min > threshold and value_before <= threshold):
+        raise ValueError("modelled example sequences_first_term_exceeding verification failed")
+
+    teaching_steps = [
+        f"The nth term of this sequence is {formula}. To find the first term greater than {threshold}, "
+        f"set up the inequality {formula} > {threshold} and solve it just like an equation.",
+        f"{formula} > {threshold}  =>  n > {n_boundary}.",
+        f"n must be a whole number, so the smallest whole number bigger than {n_boundary} is n = {n_min}.",
+        f"Check either side to be sure: term {n_min - 1} = {value_before} (not yet greater than "
+        f"{threshold}), but term {n_min} = {value_at_n_min}, which is - confirming n = {n_min} is "
+        "genuinely the first term that qualifies.",
+    ]
+    worked_calculation = [
+        f"{formula} > {threshold}",
+        f"n > {n_boundary}",
+        f"n = {n_min} (term = {value_at_n_min})",
+    ]
+    answer = f"{_ordinal(n_min)} term ({value_at_n_min})"
+    return ModelledExample(
+        topic_id="sequences_first_term_exceeding_F",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}, ... "
+            f"Which term is the first to be greater than {threshold}?"
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
+def generate_terms_from_nth_term(tier: Tier, rng: random.Random) -> Question:
+    d = _rand_nonzero(rng, -8, 8)
+    intercept = rng.randint(-10, 10)
+    k = rng.choice([4, 5])
+    terms = [d * n + intercept for n in range(1, k + 1)]
+
+    # Independent verification: recompute every term via direct substitution
+    # into a sympy expression - a different code path than the list
+    # comprehension above.
+    N = sp.symbols("N")
+    expr = d * N + intercept
+    for n, t in zip(range(1, k + 1), terms):
+        if expr.subs(N, n) != t:
+            raise ValueError("sequences_terms_from_nth_term verification failed")
+
+    formula = _fmt_linear_n(d, intercept)
+    steps = [
+        f"n = {n}: {_fmt_linear_substitution(d, intercept, n, t)}" for n, t in zip(range(1, k + 1), terms)
+    ]
+    answer = f"{', '.join(map(str, terms))}, ..."
+
+    return Question(
+        topic_id="sequences_terms_from_nth_term_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"The nth term of a sequence is {formula}. Find the first {k} terms.",
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"seq_from_nth:{d}:{intercept}:{k}",
+    )
+
+
+def generate_modelled_example_terms_from_nth_term(tier: Tier, rng: random.Random) -> ModelledExample:
+    d = _rand_nonzero(rng, -8, 8)
+    intercept = rng.randint(-10, 10)
+    k = rng.choice([4, 5])
+    terms = [d * n + intercept for n in range(1, k + 1)]
+
+    N = sp.symbols("N")
+    expr = d * N + intercept
+    for n, t in zip(range(1, k + 1), terms):
+        if expr.subs(N, n) != t:
+            raise ValueError("modelled example sequences_terms_from_nth_term verification failed")
+
+    formula = _fmt_linear_n(d, intercept)
+    answer = f"{', '.join(map(str, terms))}, ..."
+    teaching_steps = [
+        f"An nth-term formula like {formula} works like a machine: put in a term number n, and it gives "
+        "back the value of that term - so finding the first few terms just means substituting n = 1, "
+        "2, 3, ... in turn.",
+        "Substituting each term number in turn: "
+        + "; ".join(
+            f"n = {n}: {_fmt_linear_substitution(d, intercept, n, t)}"
+            for n, t in zip(range(1, k + 1), terms)
+        )
+        + ".",
+        f"Listing the results in order gives the sequence: {answer}",
+    ]
+    worked_calculation = [formula] + [
+        f"n = {n}: {t}" for n, t in zip(range(1, k + 1), terms)
+    ] + [answer]
+    return ModelledExample(
+        topic_id="sequences_terms_from_nth_term_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"The nth term of a sequence is {formula}. Find the first {k} terms.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
+def generate_terms_from_quadratic_nth_term(tier: Tier, rng: random.Random) -> Question:
+    a = _rand_nonzero(rng, -3, 3)
+    b = rng.randint(-6, 6)
+    c = rng.randint(-10, 10)
+    k = rng.choice([4, 5])
+    terms = [a * n * n + b * n + c for n in range(1, k + 1)]
+
+    N = sp.symbols("N")
+    expr = a * N**2 + b * N + c
+    for n, t in zip(range(1, k + 1), terms):
+        if expr.subs(N, n) != t:
+            raise ValueError("sequences_terms_from_quadratic_nth_term verification failed")
+
+    formula = _fmt_quadratic_n(a, b, c)
+    steps = [f"n = {n}: substitute into {formula} = {t}" for n, t in zip(range(1, k + 1), terms)]
+    answer = f"{', '.join(map(str, terms))}, ..."
+
+    return Question(
+        topic_id="sequences_terms_from_nth_term_H",
+        tier=Tier.HIGHER,
+        prompt=f"The nth term of a sequence is {formula}. Find the first {k} terms.",
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"seq_from_quad_nth:{a}:{b}:{c}:{k}",
+    )
+
+
+def generate_modelled_example_terms_from_quadratic_nth_term(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = _rand_nonzero(rng, -3, 3)
+    b = rng.randint(-6, 6)
+    c = rng.randint(-10, 10)
+    k = rng.choice([4, 5])
+    terms = [a * n * n + b * n + c for n in range(1, k + 1)]
+
+    N = sp.symbols("N")
+    expr = a * N**2 + b * N + c
+    for n, t in zip(range(1, k + 1), terms):
+        if expr.subs(N, n) != t:
+            raise ValueError("modelled example sequences_terms_from_quadratic_nth_term verification failed")
+
+    formula = _fmt_quadratic_n(a, b, c)
+    answer = f"{', '.join(map(str, terms))}, ..."
+    teaching_steps = [
+        f"An nth-term formula like {formula} works like a machine: put in a term number n, and it gives "
+        "back the value of that term - so finding the first few terms just means substituting n = 1, "
+        "2, 3, ... in turn, remembering n^2 means n × n, not 2 × n.",
+        "Substituting each term number in turn: "
+        + "; ".join(f"n = {n}: {t}" for n, t in zip(range(1, k + 1), terms))
+        + ".",
+        f"Listing the results in order gives the sequence: {answer}",
+    ]
+    worked_calculation = [formula] + [
+        f"n = {n}: {t}" for n, t in zip(range(1, k + 1), terms)
+    ] + [answer]
+    return ModelledExample(
+        topic_id="sequences_terms_from_nth_term_H",
+        tier=Tier.HIGHER,
+        prompt=f"The nth term of a sequence is {formula}. Find the first {k} terms.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
+def generate_term_difference(tier: Tier, rng: random.Random) -> Question:
+    d = _rand_nonzero(rng, -8, 8)
+    a1 = rng.randint(-10, 15)
+    intercept = a1 - d
+    terms = [a1 + i * d for i in range(4)]
+
+    m = rng.randint(5, 20)
+    n = m + rng.randint(5, 40)
+    term_m = d * m + intercept
+    term_n = d * n + intercept
+    formula = _fmt_linear_n(d, intercept)
+
+    op = rng.choice(["difference", "sum"])
+    if op == "difference":
+        shortcut = (n - m) * d
+        # Independent verification: compute via the full term values (direct
+        # substitution) and confirm it matches the arithmetic shortcut
+        # (n - m) x d - a genuinely different route.
+        if term_n - term_m != shortcut:
+            raise ValueError("sequences_term_difference verification failed")
+        answer = str(abs(term_n - term_m))
+        ask = f"Find the difference between the {_ordinal(m)} and {_ordinal(n)} terms."
+        steps = [
+            f"nth term = {formula}",
+            f"Term {m} = {term_m}, Term {n} = {term_n}",
+            f"Difference = {abs(term_n - term_m)}",
+        ]
+    else:
+        answer = str(term_m + term_n)
+        ask = f"Find the sum of the {_ordinal(m)} and {_ordinal(n)} terms."
+        steps = [
+            f"nth term = {formula}",
+            f"Term {m} = {term_m}, Term {n} = {term_n}",
+            f"Sum = {term_m} + {term_n} = {term_m + term_n}",
+        ]
+
+    return Question(
+        topic_id="sequences_term_difference_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}, ... " + ask,
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"seq_diff:{d}:{intercept}:{m}:{n}:{op}",
+    )
+
+
+def generate_modelled_example_term_difference(tier: Tier, rng: random.Random) -> ModelledExample:
+    d = _rand_nonzero(rng, -8, 8)
+    a1 = rng.randint(-10, 15)
+    intercept = a1 - d
+    terms = [a1 + i * d for i in range(4)]
+
+    m = rng.randint(5, 20)
+    n = m + rng.randint(5, 40)
+    term_m = d * m + intercept
+    term_n = d * n + intercept
+    formula = _fmt_linear_n(d, intercept)
+
+    op = rng.choice(["difference", "sum"])
+    if op == "difference":
+        shortcut = (n - m) * d
+        if term_n - term_m != shortcut:
+            raise ValueError("modelled example sequences_term_difference verification failed")
+        answer = str(abs(term_n - term_m))
+        ask = f"Find the difference between the {_ordinal(m)} and {_ordinal(n)} terms."
+        teaching_steps = [
+            f"The nth term of this sequence is {formula} - substituting a term number gives that term's "
+            "value directly, without needing to list every term up to it.",
+            f"Substitute n = {m} and n = {n}: term {m} = {term_m}, term {n} = {term_n}.",
+            f"The difference between them is {term_n} - {term_m} = {abs(term_n - term_m)}. (This also "
+            f"equals ({n} - {m}) × {d}, the common difference multiplied by how many steps apart the "
+            "two term numbers are - a useful shortcut once the pattern is spotted.)",
+        ]
+    else:
+        answer = str(term_m + term_n)
+        ask = f"Find the sum of the {_ordinal(m)} and {_ordinal(n)} terms."
+        teaching_steps = [
+            f"The nth term of this sequence is {formula} - substituting a term number gives that term's "
+            "value directly, without needing to list every term up to it.",
+            f"Substitute n = {m} and n = {n}: term {m} = {term_m}, term {n} = {term_n}.",
+            f"The sum of the two terms is {term_m} + {term_n} = {term_m + term_n}.",
+        ]
+
+    worked_calculation = [formula, f"Term {m} = {term_m}", f"Term {n} = {term_n}", answer]
+    return ModelledExample(
+        topic_id="sequences_term_difference_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}, ... " + ask,
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -871,4 +1372,70 @@ TOPIC_SPECIAL_SEQUENCES_HIGHER = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_special_sequences_higher,
+)
+
+TOPIC_MISSING_TERM = TopicDefinition(
+    id="sequences_missing_term_F",
+    display_name="Missing Terms",
+    description="Find one or two missing interior terms of an arithmetic sequence.",
+    generate=generate_missing_term,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_missing_term,
+)
+
+TOPIC_IS_A_TERM = TopicDefinition(
+    id="sequences_is_a_term_F",
+    display_name="Is It a Term of the Sequence?",
+    description="Decide whether a given number is a term of an arithmetic sequence.",
+    generate=generate_is_a_term,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_is_a_term,
+)
+
+TOPIC_FIRST_TERM_EXCEEDING = TopicDefinition(
+    id="sequences_first_term_exceeding_F",
+    display_name="First Term to Exceed a Value",
+    description="Find the first term of an arithmetic sequence to exceed a given value.",
+    generate=generate_first_term_exceeding,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_first_term_exceeding,
+)
+
+TOPIC_TERMS_FROM_NTH_TERM_FOUNDATION = TopicDefinition(
+    id="sequences_terms_from_nth_term_F",
+    display_name="Terms from the nth Term (Linear)",
+    description="Given the nth term of a linear sequence, find its first few terms.",
+    generate=generate_terms_from_nth_term,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_terms_from_nth_term,
+)
+
+TOPIC_TERMS_FROM_NTH_TERM_HIGHER = TopicDefinition(
+    id="sequences_terms_from_nth_term_H",
+    display_name="Terms from the nth Term (Quadratic)",
+    description="Given the nth term of a quadratic sequence, find its first few terms.",
+    generate=generate_terms_from_quadratic_nth_term,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_terms_from_quadratic_nth_term,
+)
+
+TOPIC_TERM_DIFFERENCE = TopicDefinition(
+    id="sequences_term_difference_F",
+    display_name="Difference or Sum of Two Terms",
+    description="Find the difference or sum of two specific terms of an arithmetic sequence.",
+    generate=generate_term_difference,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_term_difference,
 )

@@ -25,29 +25,45 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **326 topics**, backend suite **1058/1058**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks (rebuilt twice during step 61 — steps 62-63 didn't need a
-rebuild: the touched topics are either diagram-free or don't appear in any frozen paper; steps
-64-68's changes likewise never touched a diagram param schema, so no rebuild was needed there
-either — see those steps for the exact reasoning). Steps 54-59 are committed (steps 54-56 in
-`c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 across seven commits ending
-`91048ec`); steps 60-61 (tree diagrams/`frequency_tree_F` + probability/loci/construction/bearings
-fixes, described below) are committed in `8abaf98`; step 62 (a Solving Linear Equations review
-batch) is committed in `56e149c`; step 63 (a Corbett-Maths-gap audit + build batch) is committed in
-`802a3b7`; step 64 (the bold shared-title hoisting feature + its rollout across ~35 topics, the
-standard-form 10^0/10^1 fix, the factors/HCF prime constraints, and the Corbett-Maths surds audit —
-full breakdown below) is fully committed and pushed across five commits
-(`419c3b2`/`cbad37a`/`d530a45`/`12bd5c9`/`b75469e` — the last of which is the "Solve" bold-title
-audit finishing piece); steps 65-68 (hoisted `prime_factors_F`/`_H`; the `powers_F`/`indices_law_F`
-split; `rationalise_denominator_H`/`collect_like_terms_F`/`substitution_rearrange_F`/`_H`/
-`expand_single_bracket_F`/`factorise_*`/double-bracket-signs; and `factorise_common_factor_F`/
-`quadratic_formula_H`/`algebraic_indices_F`/`_H`/`completing_the_square_H`/`turning_point_of_
-graph_H`/`algebraic_fractions_*`/`simultaneous_common_coefficient_F`/`satisfying_inequalities_F`/
-`_H`/`inequalities_number_line_H` — all described below) are all committed and pushed
-(steps 65-66 in `b75469e`, steps 67-68 in `54bb415`). No known bugs. One honest gap: the `decimals_multiply_F` no-trailing-zero fix and `standard_form.py`'s
-10^0/10^1 exclusion (both in step 64) were verified via large ad hoc scratch-script trial runs
-(thousands of trials, zero failures) but were **not** given a persisted pytest regression test —
-worth adding if either area is touched again.
+**CURRENT STATE:** **332 topics** in the working tree (326 on `master`), all 60 Practice Test
+papers exactly 100 marks (no rebuild needed this step or steps 62-68 — see those steps for the
+exact reasoning). Steps 54-59 are committed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step
+58 in `dbda953`, step 59 across seven commits ending `91048ec`); steps 60-61 (tree diagrams/
+`frequency_tree_F` + probability/loci/construction/bearings fixes, described below) are committed
+in `8abaf98`; step 62 (a Solving Linear Equations review batch) is committed in `56e149c`; step 63
+(a Corbett-Maths-gap audit + build batch) is committed in `802a3b7`; step 64 (the bold shared-title
+hoisting feature + its rollout across ~35 topics, the standard-form 10^0/10^1 fix, the factors/HCF
+prime constraints, and the Corbett-Maths surds audit — full breakdown below) is fully committed and
+pushed across five commits (`419c3b2`/`cbad37a`/`d530a45`/`12bd5c9`/`b75469e` — the last of which is
+the "Solve" bold-title audit finishing piece); steps 65-68 (hoisted `prime_factors_F`/`_H`; the
+`powers_F`/`indices_law_F` split; `rationalise_denominator_H`/`collect_like_terms_F`/
+`substitution_rearrange_F`/`_H`/`expand_single_bracket_F`/`factorise_*`/double-bracket-signs; and
+`factorise_common_factor_F`/`quadratic_formula_H`/`algebraic_indices_F`/`_H`/`completing_the_
+square_H`/`turning_point_of_graph_H`/`algebraic_fractions_*`/`simultaneous_common_coefficient_F`/
+`satisfying_inequalities_F`/`_H`/`inequalities_number_line_H` — all described below) are all
+committed and pushed (steps 65-66 in `b75469e`, steps 67-68 in `54bb415`). **Step 69 (described
+below — three more sequences bold-titles, the "..." convention across every sequence display, and
+6 brand-new Sequences topics from a Corbett-Maths coverage audit, 326 → 332) is NOT YET COMMITTED
+— see "Where to pick up next" immediately below for exactly what to do first.** No known bugs. One
+honest gap: the `decimals_multiply_F` no-trailing-zero fix and `standard_form.py`'s 10^0/10^1
+exclusion (both in step 64) were verified via large ad hoc scratch-script trial runs (thousands of
+trials, zero failures) but were **not** given a persisted pytest regression test — worth adding if
+either area is touched again.
+
+**⚠️ Start the next session here.** Step 69's work (see below) is complete, individually verified,
+and now also confirmed via a full clean-suite run: **1062/1062 passed** (`cd backend &&
+.venv/Scripts/python.exe -m pytest -q`, confirmed at the very end of the session that wrote this).
+Nothing further needs diagnosing — go straight to committing:
+1. `git status` should show exactly 8 modified files (`CLAUDE.md`, `backend/app/core/registry.py`,
+   `backend/app/topics/sequences.py`, `backend/app/worksheet/builder.py`,
+   `backend/tests/api/test_routes.py`, `backend/tests/unit/test_modelled_example_renderer.py`,
+   `backend/tests/unit/test_worksheet_builder.py`, `backend/tests/unit/topics/test_sequences.py`)
+   plus 2 untracked review PDFs (`backend/all_topics_review_*_x5.pdf` — leave untracked, per
+   convention). Commit and push all 8 tracked files together.
+2. Regenerate and send fresh review PDFs (`python -m scripts.generate_review_pdfs --count 5` from
+   `backend/`, then send both files) — the ones currently sitting in `backend/` predate step 69's
+   changes.
+3. Then resume the normal review workflow (see "Next natural step" further below).
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -272,9 +288,11 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** everything through step 68 is committed and pushed (see "CURRENT STATE"
-above). Ask the user for the next chunk of review feedback (the review is NOT confirmed finished —
-recent batches have been per-topic
+**Next natural step:** step 69 needs the full-suite-confirm → commit → push → resend-review-PDFs
+sequence described in the "⚠️ Start the next session here" box above FIRST — do that before
+anything else below. Once that's done (everything through step 69 committed and pushed), ask the
+user for the next chunk of review feedback (the review is NOT confirmed finished — recent batches
+have been per-topic
 items the user sends directly, sometimes several in one message, occasionally a page range; they
 may equally have a new one-off feature in mind, as steps 45-46 and 61's bearings topics were). The
 review workflow each batch: read the named items → fix them (render
@@ -629,7 +647,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Section | Groups | Topics |
 |---|---|---|
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 60 |
-| Algebra | Expressions/Formulae/Equations/Identities (incl. Collecting Like Terms), Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs, Coordinate Geometry | 84 |
+| Algebra | Expressions/Formulae/Equations/Identities (incl. Collecting Like Terms), Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs, Coordinate Geometry | 90 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
 | Geometry | Area & Perimeter, Parts of a Circle, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 92 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 24 |
@@ -5520,6 +5538,88 @@ fixes), is committed and pushed (see `git log`).
     Frontend unaffected (65/65). Every change was rendered and visually confirmed (including the tricky
     `satisfying_inequalities_H` two-shape case, screenshotted showing both shapes hoisting cleanly
     under one title) before being considered done.
+
+69. Same session, a Sequences-focused batch: three more bold-title requests, a formatting rule
+    ("always end a displayed sequence with `...`"), and — per explicit instruction — a check of
+    three Corbett Maths sheets (`Sequences.pdf`, `Fibonacci-Worksheet.pdf`, `nth-term-Exercise-
+    288-289.pdf`, all downloaded via `curl` and read with `fitz` page-text extraction, jumbled
+    column order worked around by reading the raw text linearly rather than trying to preserve
+    layout — the same technique already established for Corbett PDFs in this file) **before** any
+    changes, to find genuine coverage gaps. Confirmed via `AskUserQuestion` (split across two
+    rounds, since the option cap is 4 per question) which of 5 found gaps to build — all 5 were
+    approved.
+
+    **Bold titles + `...` convention** (`app/topics/sequences.py`): `sequences_term_to_term_rule_F`
+    hoisted to "Here are the first four terms of a sequence. Describe the term-to-term rule, and
+    find the next term." (`HOISTED_VERB_INSTRUCTIONS`, multi-word verb + suffix collapsing to one
+    title, the same "full" pattern as `rationalise_denominator_H` from step 67).
+    `sequences_nth_term_F`/`sequences_quadratic_nth_term_H` both hoisted to "Find the nth term of
+    the following sequences." — this needed the underlying prompts fully **rewritten** (from "Here
+    are the first four terms of a sequence: {terms}.\nFind an expression for the nth term." to
+    "Find the nth term of the following [quadratic] sequence: {terms}, ..."), since the desired
+    title shares no substring with the old lead-in — matches the precedent already set by
+    `quadratic_formula_H` in step 68 (title text is independent of the matched verb). Every
+    generator across the whole file that displays a finite list of sequence terms — 9 distinct
+    call sites across 4 topics × practice/modelled, all previously ending in a bare "." — now ends
+    "..." instead, confirmed via a new blanket regression test
+    (`test_every_displayed_sequence_ends_with_an_ellipsis`).
+
+    **Corbett Maths audit → 5 confirmed gaps → 6 new topics** (326 → 332; `sequences_terms_from_
+    nth_term_F`/`_H` is a genuine Foundation+Higher pair, everything else is Foundation-only,
+    matching what the source material actually showed): `sequences_missing_term_F` (1-2 interior
+    terms of an arithmetic sequence hidden behind a placeholder, e.g. "4, ?, ?, 13, 16, 19, ..." —
+    independent verification re-derives the common difference purely from the two *visible*
+    endpoint terms, a genuinely different route than the direct construction); `sequences_is_a_
+    term_F` (given 4 terms and a target number, decide Yes/No whether it's a term - verified via
+    both solving the linear equation AND a bounded brute-force scan; the "not a term" construction
+    deliberately excludes common differences of ±1, since every integer target is reachable when
+    |d|=1, making a genuine "No" impossible to construct); `sequences_first_term_exceeding_F`
+    (which term first exceeds a threshold — always an increasing sequence, since "exceed" is
+    meaningless for a decreasing one; verified via a direct boundary check either side of the
+    claimed answer); `sequences_terms_from_nth_term_F`/`_H` (the reverse of the existing `sequences_
+    nth_term_F`/`_H` — given a formula, list the first few terms; Foundation linear, Higher
+    quadratic, mirroring the forward-direction pair's own tier split); `sequences_term_difference_F`
+    (difference or sum of two specific, often-far-apart terms, e.g. the 10th and 50th — verified by
+    computing both terms directly and cross-checking the difference against the `(n-m)×d` shortcut,
+    a genuinely different route). The five gaps that were **not** built (a 6th, "always/sometimes/
+    never a multiple of N" reasoning, and several visual/puzzle/proof items from the source sheets
+    judged out of procedural-generator scope) were reported but not actioned - see the source
+    sheets if revisiting this area.
+
+    **Two real bugs were found and fixed via this session's own checks, not by any test written in
+    advance** — the same story as most gotchas in this file: (1) `sequences_terms_from_nth_term_F`'s
+    first working version built its substitution-step text via `formula.replace('n', str(n))` — a
+    blind string replace that corrupts a coefficient like `"2n"` into `"21"` (losing the
+    multiplication entirely) instead of showing `"2×1"`, caught immediately by printing real
+    generator output and reading it (not by rendering — a plain `print()` of the raw prompt/steps
+    strings was enough here). Fixed with a proper `_fmt_linear_substitution` helper that formats
+    the coefficient, `×`, `n`, and the constant as separate pieces, never string-replacing inside an
+    already-formatted expression. (2) `sequences_missing_term_F`'s first version used a literal "□"
+    (U+25A1, WHITE SQUARE) as the missing-term placeholder — rendered as a **solid black square**
+    in the actual PDF, not the intended empty box, because this app's default PDF font (Helvetica)
+    has no real glyph for it and silently substitutes a missing-glyph box — confirmed via a
+    `font.getmask` bbox spike (same diagnostic technique already established in this file's own
+    Gotchas list for `⁻¹`/`∕`/subscript characters) that showed a genuinely different, and therefore
+    real, glyph shape for a KNOWN-good TTF font (Arial) — meaning the bug is specific to the PDF's
+    plain Helvetica text path, not a universal Unicode-support gap. Fixed by switching to a plain
+    ASCII `"?"` placeholder (confirmed safe, and already an established "missing value" convention
+    used elsewhere in this app), with a new regression test
+    (`test_missing_term_uses_a_safe_ascii_placeholder`) guarding against the box character
+    specifically, not just checking *some* placeholder is present.
+
+    Every new topic and every changed prompt was rendered as a real worksheet PDF (plus one
+    modelled-example PDF) and read closely before being considered done, catching both bugs above
+    directly from that discipline. Dedup-key variety confirmed for all 6 new generators (170-200
+    distinct keys per 200 draws, comfortably above the default 20-question worksheet size).
+    Registry wiring (6 new imports' worth of `TopicDefinition`s, one new `HOISTED_INSTRUCTIONS`
+    entry for `sequences_missing_term_F`, the 4 hardcoded `326`-topic-count assertions updated to
+    `332`, the Algebra row of the per-section table 84 → 90) is done. No Practice Test rebuild
+    needed (none of the changed/new topics carry a diagram or appear in any frozen paper).
+    `test_sequences.py` was substantially extended (GENERATORS/MODELLED_EXAMPLE_GENERATORS/
+    ALL_TOPICS lists grew to cover all 12 topics, plus the 3 dedicated regression tests above) and
+    confirmed green in isolation (9/9), then reconfirmed via a full clean-suite run at the very end
+    of the session: **1062/1062 passed**. **Not yet committed as of the end of this session — see
+    the "Start the next session here" box above for the exact next steps.**
 
 ## Environment gotchas (Windows, this machine specifically)
 
