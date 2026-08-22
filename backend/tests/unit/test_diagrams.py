@@ -849,3 +849,47 @@ def test_two_way_table_corner_label_renders_when_given_but_stays_blank_otherwise
     })
     assert "Number of pets" in texts(with_label)
     assert "Number of pets" not in texts(without_label)
+
+
+def test_place_value_table_stays_within_the_usable_page_width_even_at_12_columns():
+    from app.pdf.diagrams import draw_place_value_table
+
+    columns = ["HM", "TM", "M", "HTh", "TTh", "Th", "H", "T", "O", "t", "h", "th"]
+    digits = [str(d) for d in range(10)] + ["1", "2"]
+    d = draw_place_value_table(params={"columns": columns, "digits": digits, "decimal_after": 8})
+    # Usable page width is A4 minus 2x22mm margins (~470pt) - stay comfortably
+    # under that even for the widest possible table (9 integer + 3 decimal
+    # columns, the full advertised "max 999,999,999.999" range).
+    assert d.width < 440
+
+
+def test_place_value_table_blank_digits_render_no_text_but_headers_still_show():
+    from app.pdf.diagrams import draw_place_value_table
+
+    def texts(d):
+        return [s.text for s in d.contents if hasattr(s, "contents") for s in s.contents if hasattr(s, "text")]
+
+    columns = ["Th", "H", "T", "O"]
+    blank = draw_place_value_table(params={"columns": columns, "digits": ["", "", "", ""], "decimal_after": None})
+    filled = draw_place_value_table(params={"columns": columns, "digits": ["4", "2", "0", "6"], "decimal_after": None})
+    blank_texts = texts(blank)
+    filled_texts = texts(filled)
+    for col in columns:
+        assert col in blank_texts and col in filled_texts
+    for digit in ["4", "2", "0", "6"]:
+        assert digit in filled_texts
+    assert "4" not in blank_texts and "6" not in blank_texts
+
+
+def test_place_value_table_decimal_divider_only_drawn_when_requested():
+    from app.pdf.diagrams import draw_place_value_table
+
+    def line_widths(d):
+        return [s.strokeWidth for s in d.contents if hasattr(s, "strokeWidth")]
+
+    columns = ["H", "T", "O", "t", "h"]
+    digits = ["1", "2", "3", "4", "5"]
+    with_point = draw_place_value_table(params={"columns": columns, "digits": digits, "decimal_after": 2})
+    without_point = draw_place_value_table(params={"columns": columns[:3], "digits": digits[:3], "decimal_after": None})
+    assert 2.2 in line_widths(with_point)
+    assert 2.2 not in line_widths(without_point)

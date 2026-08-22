@@ -3412,6 +3412,45 @@ def draw_two_way_table(params: dict) -> Drawing:
     return d
 
 
+def draw_place_value_table(params: dict) -> Drawing:
+    """A single-row place-value table: params['columns'] is an ordered list
+    of short column headers (e.g. ["HTh", "TTh", "Th", "H", "T", "O", "t",
+    "h", "th"]), params['digits'] is a same-length list of single-digit
+    strings ("" for a blank/unfilled cell - the question-page version).
+    params['decimal_after'] (optional) is the column index after which the
+    decimal point sits, drawn as a thicker divider between those two cells
+    rather than its own column - matching how a real place-value table marks
+    the point. Cell width shrinks (never grows past a fixed cap) as the
+    column count rises, so even the widest possible table (12 columns, for
+    a 9-digit integer part plus 3 decimal places) stays comfortably within
+    the page's usable width."""
+    columns: list[str] = params["columns"]
+    digits: list[str] = params["digits"]
+    decimal_after = params.get("decimal_after")
+
+    n = len(columns)
+    cell_w = min(36.0, 420.0 / n)
+    header_h, cell_h = 22.0, 26.0
+    width = cell_w * n
+    height = header_h + cell_h
+    d = Drawing(width, height)
+
+    top_y = height - header_h
+    for i, (col, dig) in enumerate(zip(columns, digits)):
+        x0 = i * cell_w
+        d.add(Rect(x0, top_y, cell_w, header_h, strokeColor=INK, fillColor=GRID, strokeWidth=0.8))
+        d.add(_label(x0 + cell_w / 2, top_y + header_h / 2 - 3, col, size=6.5))
+        d.add(Rect(x0, 0, cell_w, cell_h, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+        if dig:
+            d.add(_label(x0 + cell_w / 2, cell_h / 2 - 4, dig, size=10))
+
+    if decimal_after is not None:
+        x = (decimal_after + 1) * cell_w
+        d.add(Line(x, 0, x, height, strokeColor=INK, strokeWidth=2.2))
+
+    return d
+
+
 def draw_sample_space_diagram(params: dict) -> Drawing:
     """A grid of row_values x col_values (e.g. two dice), filled with
     params['cells'] outcome text; params['highlight'] is an optional list of
@@ -5408,6 +5447,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "tree_diagram": draw_tree_diagram,
     "frequency_tree": draw_frequency_tree,
     "two_way_table": draw_two_way_table,
+    "place_value_table": draw_place_value_table,
     "sample_space_diagram": draw_sample_space_diagram,
     "cumulative_frequency_question": draw_cumulative_frequency_question,
     "histogram_question": draw_histogram_question,

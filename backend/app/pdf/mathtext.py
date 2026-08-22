@@ -149,8 +149,16 @@ confirmed via a real rendered-PDF spike comparing it against full-size rows
 first, which sat roughly two line-heights tall and visibly collided with
 the line below wherever it appeared inline.
 
+**A fifth sentinel, `\underline{X}`, underlines a short span of plain text**
+(e.g. one digit of a place-value number, `place_value.py`'s
+"In the number 4,502,6\underline{1}3.078, ..."-style prompts) via a real
+ReportLab `<u>` tag - the content is opaque (like `\plain{}`), never
+italicised/math-processed, since it's always a bare digit with nothing to
+typeset further.
+
 **Marker content is protected from the italics/vector passes via an early
-extraction step.** `\frac{}{}`/`\recur{}{}`/`\plain{}`/`\colvec{}{}` spans
+extraction step.** `\frac{}{}`/`\recur{}{}`/`\plain{}`/`\colvec{}{}`/
+`\underline{}` spans
 are pulled out and replaced with an opaque placeholder *before*
 `_VARIABLE_RE`/`_VECTOR_RE` run, then the real markup (rendered `<img>` for
 the image-producing ones, the bare literal content for `\plain{}`) is
@@ -282,14 +290,16 @@ _VARIABLE_RE = re.compile(r"(?<![A-Za-z^])[xn](?![A-Za-z])")
 # matched by a blanket letter pattern, since "a" collides constantly with
 # the English indefinite article and can't be disambiguated by regex alone.
 _VECTOR_RE = re.compile(r"\\vec\{([ab])\}")
-# The four explicit sentinel markers - see the module docstring's "Two
-# explicit ASCII sentinel markers", "A third sentinel, \plain{X}", and
-# "A fourth sentinel, \colvec{TOP}{BOTTOM}" sections.
+# The five explicit sentinel markers - see the module docstring's "Two
+# explicit ASCII sentinel markers", "A third sentinel, \plain{X}",
+# "A fourth sentinel, \colvec{TOP}{BOTTOM}", and "A fifth sentinel,
+# \underline{X}" sections.
 _MARKER_RE = re.compile(
     r"\\frac\{(?P<mnum>[^{}]*)\}\{(?P<mden>[^{}]*)\}"
     r"|\\recur\{(?P<mprefix>[^{}]*)\}\{(?P<mblock>[^{}]*)\}"
     r"|\\plain\{(?P<mplain>[^{}]*)\}"
     r"|\\colvec\{(?P<mvectop>[^{}]*)\}\{(?P<mvecbot>[^{}]*)\}"
+    r"|\\underline\{(?P<munderline>[^{}]*)\}"
 )
 # A literal "." immediately after a decimal number, at the very end of the
 # string - see the module docstring's final paragraph.
@@ -316,6 +326,9 @@ def _extract_markers(text: str, font_size: float, color: Color, bold: bool) -> t
     def repl(m: re.Match) -> str:
         if m.group("mplain") is not None:
             placeholders.append(m.group("mplain"))
+            return chr(_PLACEHOLDER_BASE + len(placeholders) - 1)
+        if m.group("munderline") is not None:
+            placeholders.append(f"<u>{m.group('munderline')}</u>")
             return chr(_PLACEHOLDER_BASE + len(placeholders) - 1)
         if m.group("mnum") is not None:
             img = get_fraction_image(m.group("mnum"), m.group("mden"), font_size, bold, color)

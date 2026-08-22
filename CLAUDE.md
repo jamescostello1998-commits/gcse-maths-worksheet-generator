@@ -25,45 +25,37 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **332 topics** in the working tree (326 on `master`), all 60 Practice Test
-papers exactly 100 marks (no rebuild needed this step or steps 62-68 — see those steps for the
-exact reasoning). Steps 54-59 are committed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step
-58 in `dbda953`, step 59 across seven commits ending `91048ec`); steps 60-61 (tree diagrams/
-`frequency_tree_F` + probability/loci/construction/bearings fixes, described below) are committed
-in `8abaf98`; step 62 (a Solving Linear Equations review batch) is committed in `56e149c`; step 63
-(a Corbett-Maths-gap audit + build batch) is committed in `802a3b7`; step 64 (the bold shared-title
-hoisting feature + its rollout across ~35 topics, the standard-form 10^0/10^1 fix, the factors/HCF
-prime constraints, and the Corbett-Maths surds audit — full breakdown below) is fully committed and
-pushed across five commits (`419c3b2`/`cbad37a`/`d530a45`/`12bd5c9`/`b75469e` — the last of which is
-the "Solve" bold-title audit finishing piece); steps 65-68 (hoisted `prime_factors_F`/`_H`; the
-`powers_F`/`indices_law_F` split; `rationalise_denominator_H`/`collect_like_terms_F`/
-`substitution_rearrange_F`/`_H`/`expand_single_bracket_F`/`factorise_*`/double-bracket-signs; and
-`factorise_common_factor_F`/`quadratic_formula_H`/`algebraic_indices_F`/`_H`/`completing_the_
-square_H`/`turning_point_of_graph_H`/`algebraic_fractions_*`/`simultaneous_common_coefficient_F`/
-`satisfying_inequalities_F`/`_H`/`inequalities_number_line_H` — all described below) are all
-committed and pushed (steps 65-66 in `b75469e`, steps 67-68 in `54bb415`). **Step 69 (described
-below — three more sequences bold-titles, the "..." convention across every sequence display, and
-6 brand-new Sequences topics from a Corbett-Maths coverage audit, 326 → 332) is NOT YET COMMITTED
-— see "Where to pick up next" immediately below for exactly what to do first.** No known bugs. One
-honest gap: the `decimals_multiply_F` no-trailing-zero fix and `standard_form.py`'s 10^0/10^1
-exclusion (both in step 64) were verified via large ad hoc scratch-script trial runs (thousands of
-trials, zero failures) but were **not** given a persisted pytest regression test — worth adding if
-either area is touched again.
+**CURRENT STATE:** **336 topics**, all committed and pushed to `master`, all 60 Practice Test
+papers exactly 100 marks (no rebuild needed since step 61 — see steps 62-70 for why each one was
+skipped). Steps 54-59 are committed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in
+`dbda953`, step 59 across seven commits ending `91048ec`); steps 60-61 (tree diagrams/
+`frequency_tree_F` + probability/loci/construction/bearings fixes) are committed in `8abaf98`; step
+62 (a Solving Linear Equations review batch) is committed in `56e149c`; step 63 (a Corbett-Maths-gap
+audit + build batch) is committed in `802a3b7`; step 64 (the bold shared-title hoisting feature +
+its rollout across ~35 topics, the standard-form 10^0/10^1 fix, the factors/HCF prime constraints,
+and the Corbett-Maths surds audit) is committed across five commits (`419c3b2`/`cbad37a`/`d530a45`/
+`12bd5c9`/`b75469e`); steps 65-68 (hoisted `prime_factors_F`/`_H`; the `powers_F`/`indices_law_F`
+split; `rationalise_denominator_H`/`collect_like_terms_F`/`substitution_rearrange_F`/`_H`/
+`expand_single_bracket_F`/`factorise_*`/double-bracket-signs; and `factorise_common_factor_F`/
+`quadratic_formula_H`/`algebraic_indices_F`/`_H`/`completing_the_square_H`/`turning_point_of_
+graph_H`/`algebraic_fractions_*`/`simultaneous_common_coefficient_F`/`satisfying_inequalities_F`/
+`_H`/`inequalities_number_line_H`) are committed (steps 65-66 in `b75469e`, steps 67-68 in
+`54bb415`); **step 69** (three more sequences bold-titles, the "..." convention across every
+sequence display, and 6 brand-new Sequences topics from a Corbett-Maths coverage audit, 326 → 332)
+is committed in `af1132b`; a **review-feedback batch** (gradient bias, axis 0-labelling, midpoint/
+distance/percentage rewordings — see below) is committed in `21f8fa9`; **step 70** (a direct user
+request: `multiply_divide_by_half_F` + 3 new "Place Value" topics, 332 → 336 — full breakdown
+below) is committed in the commit immediately following this note (see `git log`). Full backend
+suite: **1082/1082 passed**. No known bugs. One honest gap: the `decimals_multiply_F`
+no-trailing-zero fix and `standard_form.py`'s 10^0/10^1 exclusion (both in step 64) were verified
+via large ad hoc scratch-script trial runs (thousands of trials, zero failures) but were **not**
+given a persisted pytest regression test — worth adding if either area is touched again.
 
-**⚠️ Start the next session here.** Step 69's work (see below) is complete, individually verified,
-and now also confirmed via a full clean-suite run: **1062/1062 passed** (`cd backend &&
-.venv/Scripts/python.exe -m pytest -q`, confirmed at the very end of the session that wrote this).
-Nothing further needs diagnosing — go straight to committing:
-1. `git status` should show exactly 8 modified files (`CLAUDE.md`, `backend/app/core/registry.py`,
-   `backend/app/topics/sequences.py`, `backend/app/worksheet/builder.py`,
-   `backend/tests/api/test_routes.py`, `backend/tests/unit/test_modelled_example_renderer.py`,
-   `backend/tests/unit/test_worksheet_builder.py`, `backend/tests/unit/topics/test_sequences.py`)
-   plus 2 untracked review PDFs (`backend/all_topics_review_*_x5.pdf` — leave untracked, per
-   convention). Commit and push all 8 tracked files together.
-2. Regenerate and send fresh review PDFs (`python -m scripts.generate_review_pdfs --count 5` from
-   `backend/`, then send both files) — the ones currently sitting in `backend/` predate step 69's
-   changes.
-3. Then resume the normal review workflow (see "Next natural step" further below).
+**⚠️ Start the next session here.** Everything through step 70 is committed and pushed — there is
+no pending uncommitted work. Resume the normal review workflow (see "Next natural step" further
+below), or pick up a fresh direct request the same way step 70 was handled: research existing
+conventions first (dedup-key/verification/diagram patterns), build, verify by rendering real PDFs,
+write tests, then commit.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -288,9 +280,8 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** step 69 needs the full-suite-confirm → commit → push → resend-review-PDFs
-sequence described in the "⚠️ Start the next session here" box above FIRST — do that before
-anything else below. Once that's done (everything through step 69 committed and pushed), ask the
+**Next natural step:** everything through step 70 is committed and pushed (see the "⚠️ Start the
+next session here" box above) — ask the
 user for the next chunk of review feedback (the review is NOT confirmed finished — recent batches
 have been per-topic
 items the user sends directly, sometimes several in one message, occasionally a page range; they
@@ -325,7 +316,7 @@ pending review feedback.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**323 topics across 6 sections**, all procedurally generated with independent
+**336 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -646,7 +637,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 
 | Section | Groups | Topics |
 |---|---|---|
-| Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 60 |
+| Number | Place Value, Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 64 |
 | Algebra | Expressions/Formulae/Equations/Identities (incl. Collecting Like Terms), Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs, Coordinate Geometry | 90 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
 | Geometry | Area & Perimeter, Parts of a Circle, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 92 |
@@ -5618,8 +5609,90 @@ fixes), is committed and pushed (see `git log`).
     `test_sequences.py` was substantially extended (GENERATORS/MODELLED_EXAMPLE_GENERATORS/
     ALL_TOPICS lists grew to cover all 12 topics, plus the 3 dedicated regression tests above) and
     confirmed green in isolation (9/9), then reconfirmed via a full clean-suite run at the very end
-    of the session: **1062/1062 passed**. **Not yet committed as of the end of this session — see
-    the "Start the next session here" box above for the exact next steps.**
+    of the session: **1062/1062 passed**. Committed and pushed as `af1132b` in a later session.
+
+70. New session, a direct user request for 4 new Number-section topics (not a review-feedback
+    batch): a "mixed multiplying and dividing integers by 0.5" topic, plus 3 Place Value topics
+    sharing one explicit range - "max number 999,999,999.999, min number 0, decimals up to 3
+    places (thousandths)" - a place-value table, the value of an underlined digit, and converting
+    numbers to/from words (this last one "similar to the previous parameters but very rare
+    decimals"). This session also finished committing a small review-feedback batch left over from
+    the prior turn (see `21f8fa9` below) before starting the new-topic work.
+
+    **Review-feedback batch** (committed as `21f8fa9`, alongside finishing the already-uncommitted
+    step 69 as `af1132b`): `line_equation_from_graph_F`/`plot_straight_line_F` gradients reworked
+    via a new `_rand_gradient` helper (70% positive / 30% negative, instead of an even split - "more
+    positive than negative...especially foundation"); `_draw_scaled_axes` now always labels the
+    origin "0" (previously skipped on both axes to avoid a double-label, fixed by drawing one shared
+    label just below-left of the origin instead of omitting it entirely); `midpoint_of_segment_F`/
+    `percentage_of_amount_F`/`find_percentage_change_F` bold-title-hoisted via `HOISTED_
+    INSTRUCTIONS`; `distance_between_points_H` bold-title-hoisted AND reworked from a required-surd
+    answer to a decimal rounded via the shared `rounding.py` engine ("don't ask for a surd");
+    `find_percentage_change_F` reworded to "Find the percentage change: from £x to £y." with the
+    increase/decrease direction no longer stated in the prompt (the student states it themselves in
+    the answer); `percentage_increase_decrease_calculator_H` stripped to just "{Increase/Decrease}
+    £x by y%." - the topic's own display name already says "(Calculator)" and 2 d.p. is a fixed
+    topic convention, so neither needed restating per question.
+
+    **`multiply_divide_by_half_F`** (`decimals.py`, existing "Decimals" group): a random integer
+    2-100 either multiplied or divided by 0.5, solved via the halving/doubling shortcut
+    (`n × 0.5 = n ÷ 2`, `n ÷ 0.5 = n × 2`) and independently verified against raw `Decimal`
+    arithmetic directly against 0.5 - a genuinely different computation path from the shortcut used
+    to build the displayed steps.
+
+    **Three new "Place Value" topics** (new `app/topics/place_value.py`, new Number group) share two
+    digit-drawing helpers built around the user's exact stated range: `_rand_digits` (1-9 integer
+    digits, no leading zero unless the whole number is 0, 0-3 decimal digits weighted toward more -
+    covers "min 0, max 999,999,999.999") and `_rand_digits_rare_decimal` (same integer range, but
+    decimals weighted heavily toward 0, per the words topic's own "very rare decimals" request).
+    `place_value_table_F` shows a blank place-value table on the question page (column headers only,
+    e.g. `HTh, TTh, Th, H, T, O, t, h, th`) and the same table filled in on the solution page - the
+    blank/filled split matches this app's established "construct" topic convention (bar charts, pie
+    charts, etc). `place_value_underlined_digit_F` underlines one digit within the plain formatted
+    number (e.g. "In the number 4,502,6\underline{1}3.078...") and asks for its value (digit x place
+    value, e.g. "10"), including the genuine "value of a 0 digit is 0" edge case. `place_value_
+    words_F` converts a number to words or words to a number (50/50 direction), via a from-scratch
+    number-to-words converter (`_three_digit_words`/`_integer_to_words`/`_decimal_part_to_words`)
+    that reads decimals digit-by-digit after "point" (real UK convention) and separates each
+    million/thousand group with a comma (e.g. "four hundred and two thousand, five hundred and
+    six") - independently verified via round-trip parsing (`_parse_three_digit_words` inverts the
+    three-digit case; the decimal-word list is re-split and re-indexed back into digits), a
+    genuinely different direction (words -> number) than the construction being checked
+    (number -> words).
+
+    **Two new pieces of shared engine infrastructure**, both built and spiked in isolation before
+    being wired into any topic (this project's established "verify the riskiest piece first"
+    precedent): (1) a fifth `mathtext.py` sentinel marker, `\underline{X}` - renders a real
+    ReportLab `<u>` tag, content left opaque (un-italicised, like `\plain{}`) since it's always a
+    bare digit with nothing further to typeset - confirmed via a real rendered-PDF spike
+    (`4,502,6\underline{1}3.078` rendering a clean single-character underline) before use. (2) a new
+    `draw_place_value_table` diagram kind (`diagrams.py`) - a single-row table whose cell width
+    shrinks (capped, never grows) as the column count rises (`min(36, 420/n)`), so even the widest
+    possible table (12 columns: 9 integer + 3 decimal, the full advertised range) stays at 420pt,
+    comfortably under the ~470pt usable page width - confirmed by rendering the actual 12-column
+    case (`draw_two_way_table`'s existing widest real usage, a 9-column scatter table, already sits
+    close to that limit at 462pt, so a fixed cell width would have overflowed). The decimal point is
+    drawn as a thicker vertical divider between two cells, not its own column, matching a real
+    place-value table's convention.
+
+    Every generator was checked with a 500-trial verification-failure scan (zero failures across all
+    8 practice/modelled functions) before writing any tests, and every new/changed topic was
+    rendered as a real worksheet PDF, worked-solutions page, and modelled-example page and read
+    closely - catching nothing wrong this time (a clean run, unlike most sessions in this file),
+    though the discipline is what gives confidence rather than an accident of an easy topic. Central
+    integration: registry wiring (`place_value` module import + 3 topics inserted at the top of the
+    Number block; `TOPIC_MULTIPLY_DIVIDE_BY_HALF` inserted into the existing Decimals block), the 4
+    hardcoded `332`-topic-count assertions updated to `336`, the Number-section-groups-count
+    assertion updated 9 → 10, the per-section table's Number row 60 → 64. New test files/additions:
+    `test_place_value.py` (12 tests, incl. a full 0-999 round-trip sweep of `_three_digit_words`/
+    `_parse_three_digit_words` and known-value checks against real numbers up to 999,999,999),
+    `test_decimals.py` (+1), `test_mathtext.py` (+3 for `\underline{}`), `test_diagrams.py` (+3 for
+    `draw_place_value_table`, incl. a width-safety regression test). No Practice Test rebuild needed
+    (none of the 4 new/changed topics carry a diagram that appears in any frozen paper - `multiply_
+    divide_by_half_F` and the 3 Place Value topics are entirely new, so couldn't appear yet; `distance_
+    between_points_H` has no diagram either). Full backend suite: 1063 → 1082. Frontend unaffected
+    (no frontend files touched - new groups/topics render generically through the existing section/
+    topic-card UI, confirmed via the sections API returning the new "Place Value" group correctly).
 
 ## Environment gotchas (Windows, this machine specifically)
 

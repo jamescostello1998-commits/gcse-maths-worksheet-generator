@@ -375,6 +375,26 @@ def test_plain_marker_content_is_not_re_scanned_by_other_passes():
 
 
 # ---------------------------------------------------------------------------
+# \underline{X} marker.
+# ---------------------------------------------------------------------------
+
+
+def test_underline_marker_renders_a_real_u_tag():
+    assert _markup(r"4,502,6\underline{1}3.078") == "4,502,6<u>1</u>3.078"
+
+
+def test_underline_marker_content_is_not_re_scanned_by_other_passes():
+    # A bare "n" inside \underline{} must not be italicised - the content is
+    # opaque, matching \plain{}'s own protection.
+    assert _markup(r"\underline{n}") == "<u>n</u>"
+
+
+def test_underline_marker_coexists_with_surrounding_commas_and_decimals():
+    markup = _markup(r"In the number 68,\underline{0}73.21, what is the value?")
+    assert markup == "In the number 68,<u>0</u>73.21, what is the value?"
+
+
+# ---------------------------------------------------------------------------
 # Trailing full stop directly after a decimal number.
 # ---------------------------------------------------------------------------
 

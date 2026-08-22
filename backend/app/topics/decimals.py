@@ -949,6 +949,85 @@ def generate_modelled_example_dividing_decimals(tier: Tier, rng: random.Random) 
     )
 
 
+def generate_multiply_divide_by_half(tier: Tier, rng: random.Random) -> Question:
+    n = rng.randint(2, 100)
+    op = rng.choice(["multiply", "divide"])
+    if op == "multiply":
+        # Trick: multiplying by 0.5 is the same as halving.
+        result = Fraction(n, 2)
+        symbol = "×"
+        trick = "Multiplying by 0.5 is the same as dividing by 2."
+        trick_calc = f"{n} ÷ 2 = {_fmt_half_result(result)}"
+    else:
+        # Trick: dividing by 0.5 is the same as doubling.
+        result = Fraction(n * 2, 1)
+        symbol = "÷"
+        trick = "Dividing by 0.5 is the same as multiplying by 2."
+        trick_calc = f"{n} × 2 = {_fmt_half_result(result)}"
+
+    # Independent verification: raw Decimal arithmetic directly against 0.5
+    # (not the halving/doubling shortcut used to build the steps above).
+    check = Decimal(n) * Decimal("0.5") if op == "multiply" else Decimal(n) / Decimal("0.5")
+    if Fraction(str(check)) != result:
+        raise ValueError("multiply_divide_by_half verification failed")
+
+    answer = _fmt_half_result(result)
+    return Question(
+        topic_id="multiply_divide_by_half_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"{evaluate_verb(rng)} {n} {symbol} 0.5.",
+        solution_steps=(trick, trick_calc),
+        final_answer=answer,
+        dedup_key=f"mdh:{n}:{op}",
+    )
+
+
+def _fmt_half_result(frac: Fraction) -> str:
+    return _fmt_decimal_fixed(Decimal(frac.numerator) / Decimal(frac.denominator))
+
+
+def generate_modelled_example_multiply_divide_by_half(tier: Tier, rng: random.Random) -> ModelledExample:
+    n = rng.randint(2, 100)
+    op = rng.choice(["multiply", "divide"])
+    if op == "multiply":
+        result = Fraction(n, 2)
+        symbol = "×"
+        teaching_steps = [
+            "Multiplying by 0.5 always gives the same result as dividing by 2 - both mean 'find "
+            "half of the number' - so it's usually quicker to spot this and halve directly, rather "
+            "than multiplying by the decimal 0.5 the long way.",
+            f"Half of {n} is {n} ÷ 2 = {_fmt_half_result(result)}.",
+            f"So {n} × 0.5 = {_fmt_half_result(result)}.",
+        ]
+        worked_calculation = [f"{n} × 0.5", f"= {n} ÷ 2", f"= {_fmt_half_result(result)}"]
+    else:
+        result = Fraction(n * 2, 1)
+        symbol = "÷"
+        teaching_steps = [
+            "Dividing by 0.5 always gives the same result as multiplying by 2 - both mean 'how many "
+            "halves fit into the number', and every whole number is made of twice as many halves - "
+            "so it's usually quicker to double directly, rather than dividing by the decimal 0.5 the "
+            "long way.",
+            f"Double {n} is {n} × 2 = {_fmt_half_result(result)}.",
+            f"So {n} ÷ 0.5 = {_fmt_half_result(result)}.",
+        ]
+        worked_calculation = [f"{n} ÷ 0.5", f"= {n} × 2", f"= {_fmt_half_result(result)}"]
+
+    check = Decimal(n) * Decimal("0.5") if op == "multiply" else Decimal(n) / Decimal("0.5")
+    if Fraction(str(check)) != result:
+        raise ValueError("modelled example multiply_divide_by_half verification failed")
+
+    answer = _fmt_half_result(result)
+    return ModelledExample(
+        topic_id="multiply_divide_by_half_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"{evaluate_verb(rng)} {n} {symbol} 0.5.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
 def generate_modelled_example_powers_of_ten(tier: Tier, rng: random.Random) -> ModelledExample:
     power = rng.choice([10, 100, 1000])
     shift = _POWER_OF_TEN_SHIFT[power]
@@ -1099,6 +1178,17 @@ TOPIC_RECURRING_SINGLE_DIGIT = TopicDefinition(
     fixed_tier=Tier.FOUNDATION,
     question_count=6,
     generate_modelled_example=generate_modelled_example_recurring_decimal_single_digit,
+)
+
+TOPIC_MULTIPLY_DIVIDE_BY_HALF = TopicDefinition(
+    id="multiply_divide_by_half_F",
+    display_name="Multiplying and Dividing by 0.5",
+    description="Multiply or divide an integer by 0.5, using the halving/doubling shortcut.",
+    generate=generate_multiply_divide_by_half,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_multiply_divide_by_half,
 )
 
 TOPIC_RECURRING_TWO_DIGIT = TopicDefinition(

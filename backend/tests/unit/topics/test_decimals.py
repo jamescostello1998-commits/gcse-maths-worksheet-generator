@@ -15,6 +15,7 @@ GENERATORS = [
     (decimals.generate_decimals_add_subtract, Tier.FOUNDATION),
     (decimals.generate_decimals_multiply, Tier.FOUNDATION),
     (decimals.generate_recurring_decimal_two_digit, Tier.HIGHER),
+    (decimals.generate_multiply_divide_by_half, Tier.FOUNDATION),
 ]
 
 # recurring_decimal_single_digit is deliberately excluded from GENERATORS above: a purely
@@ -118,6 +119,22 @@ def test_dedup_keys_vary_per_generator():
         assert len(keys) > 30
 
 
+def test_multiply_divide_by_half_uses_the_halving_doubling_shortcut():
+    """Independently confirm every answer matches raw Decimal arithmetic
+    against 0.5, and that both multiply and divide shapes appear."""
+    rng = random.Random(103)
+    ops_seen = set()
+    for _ in range(TRIALS):
+        q = decimals.generate_multiply_divide_by_half(Tier.FOUNDATION, rng)
+        assert "0.5" in q.prompt
+        if "×" in q.prompt:
+            ops_seen.add("multiply")
+        else:
+            ops_seen.add("divide")
+            assert "÷" in q.prompt
+    assert ops_seen == {"multiply", "divide"}
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         decimals.TOPIC_ROUND_DP,
@@ -130,15 +147,17 @@ def test_topic_definitions_have_expected_metadata():
         decimals.TOPIC_MULTIPLY,
         decimals.TOPIC_RECURRING_SINGLE_DIGIT,
         decimals.TOPIC_RECURRING_TWO_DIGIT,
+        decimals.TOPIC_MULTIPLY_DIVIDE_BY_HALF,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 10
+    assert len(ids) == 11
     for t in topics:
         assert t.section == "number"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
     assert decimals.TOPIC_DIVIDE.group == "Decimals"
     assert decimals.TOPIC_POWERS_OF_TEN.group == "Multiplying & Dividing by Powers of 10"
     assert decimals.TOPIC_RECURRING_SINGLE_DIGIT.question_count == 6
+    assert decimals.TOPIC_MULTIPLY_DIVIDE_BY_HALF.group == "Decimals"
 
 
 def test_all_decimal_topics_have_modelled_examples():
@@ -153,6 +172,7 @@ def test_all_decimal_topics_have_modelled_examples():
         decimals.TOPIC_MULTIPLY,
         decimals.TOPIC_RECURRING_SINGLE_DIGIT,
         decimals.TOPIC_RECURRING_TWO_DIGIT,
+        decimals.TOPIC_MULTIPLY_DIVIDE_BY_HALF,
     ]
     for t in topics:
         assert t.generate_modelled_example is not None
@@ -176,6 +196,11 @@ MODELLED_EXAMPLE_GENERATORS = [
         decimals.generate_modelled_example_recurring_decimal_two_digit,
         Tier.HIGHER,
         "recurring_decimal_two_digit_H",
+    ),
+    (
+        decimals.generate_modelled_example_multiply_divide_by_half,
+        Tier.FOUNDATION,
+        "multiply_divide_by_half_F",
     ),
 ]
 

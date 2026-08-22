@@ -44,6 +44,7 @@ from app.topics import (
     number_theory,
     order_of_operations,
     percentages,
+    place_value,
     plans_elevations,
     powers_roots,
     probability,
@@ -85,6 +86,9 @@ SECTIONS: list[tuple[str, str]] = [
 
 _TOPIC_LIST: list[TopicDefinition] = [
     # Number
+    place_value.TOPIC_PLACE_VALUE_TABLE,
+    place_value.TOPIC_PLACE_VALUE_UNDERLINED_DIGIT,
+    place_value.TOPIC_PLACE_VALUE_WORDS,
     fractions.TOPIC_SIMPLIFY,
     fractions.TOPIC_EQUIVALENT,
     fractions.TOPIC_EQUIVALENT_DIAGRAM,
@@ -102,6 +106,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     decimals.TOPIC_ADD_SUBTRACT,
     decimals.TOPIC_MULTIPLY,
     decimals.TOPIC_DIVIDE,
+    decimals.TOPIC_MULTIPLY_DIVIDE_BY_HALF,
     decimals.TOPIC_RECURRING_SINGLE_DIGIT,
     decimals.TOPIC_RECURRING_TWO_DIGIT,
     decimals.TOPIC_RECURRING_TO_FRACTION,
