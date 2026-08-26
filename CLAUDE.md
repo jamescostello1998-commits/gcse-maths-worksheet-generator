@@ -45,17 +45,39 @@ sequence display, and 6 brand-new Sequences topics from a Corbett-Maths coverage
 is committed in `af1132b`; a **review-feedback batch** (gradient bias, axis 0-labelling, midpoint/
 distance/percentage rewordings — see below) is committed in `21f8fa9`; **step 70** (a direct user
 request: `multiply_divide_by_half_F` + 3 new "Place Value" topics, 332 → 336 — full breakdown
-below) is committed in the commit immediately following this note (see `git log`). Full backend
-suite: **1082/1082 passed**. No known bugs. One honest gap: the `decimals_multiply_F`
-no-trailing-zero fix and `standard_form.py`'s 10^0/10^1 exclusion (both in step 64) were verified
-via large ad hoc scratch-script trial runs (thousands of trials, zero failures) but were **not**
-given a persisted pytest regression test — worth adding if either area is touched again.
+below) is committed in `3977912`. **Step 71** (a direct user request: restructuring the Bell Tasks
+menu from KS3/KS4 into Year 11/Year 10/Years 7-9, with a brand-new 8-box template for Year 11 —
+full breakdown below) is **NOT YET COMMITTED** as of the end of this session — see "Start the next
+session here" immediately below. Full backend suite: **1107/1107 passed**; frontend: **68/68**. No
+known bugs, except one flagged-but-not-fixed pre-existing gap found while verifying step 71 (see
+below): a topic using the `\colvec{}{}` vector marker renders literal `\colvec{...}` text instead
+of a real column vector in a Bell Tasks deck (affects both Year 10 and Year 11 identically — the
+tokenizer/OMML pipeline was built before that marker existed). A second, older honest gap: the
+`decimals_multiply_F` no-trailing-zero fix and `standard_form.py`'s 10^0/10^1 exclusion (both in
+step 64) were verified via large ad hoc scratch-script trial runs (thousands of trials, zero
+failures) but were **not** given a persisted pytest regression test — worth adding if either area
+is touched again.
 
-**⚠️ Start the next session here.** Everything through step 70 is committed and pushed — there is
-no pending uncommitted work. Resume the normal review workflow (see "Next natural step" further
-below), or pick up a fresh direct request the same way step 70 was handled: research existing
-conventions first (dedup-key/verification/diagram patterns), build, verify by rendering real PDFs,
-write tests, then commit.
+**⚠️ Start the next session here.** Step 71's work (see below) is complete, individually verified
+(including a real generated Year 11 `.pptx` opened via COM-automated PowerPoint, and the full flow
+re-verified live through the actual running app), and confirmed via full clean-suite runs: backend
+**1107/1107**, frontend **68/68**. Nothing further needs diagnosing — go straight to committing:
+1. `git status` should show 11 modified files (`backend/app/api/routes.py`, `backend/app/api/
+   schemas.py`, `backend/app/bell_tasks/generator.py`, `backend/app/bell_tasks/layout.py`,
+   `backend/tests/api/test_routes.py`, `backend/tests/unit/bell_tasks/test_layout.py`,
+   `frontend/src/App.tsx`, `frontend/src/api/client.ts`, `frontend/src/components/
+   BellTasksView.test.tsx`, `frontend/src/components/BellTasksView.tsx`, `frontend/src/hooks/
+   useGenerateBellTasks.ts`, plus `CLAUDE.md` itself) and 2 new files (`backend/app/bell_tasks/
+   assets/bell_task_template_year11.pptx`, `backend/tests/unit/bell_tasks/test_generator_
+   year11.py`) plus 2 untracked review PDFs (`backend/all_topics_review_*_x5.pdf` — leave
+   untracked, per convention, unrelated to this step). Commit and push everything together.
+2. Report the flagged `\colvec{}{}` Bell Tasks gap to the user (already done once, in the session
+   that built step 71 — if a NEW session is picking this up cold, mention it again) and ask
+   whether they want it fixed now or left for later.
+3. Then resume the normal review workflow (see "Next natural step" further below), or pick up a
+   fresh direct request the same way steps 70-71 were handled: research existing conventions
+   first (dedup-key/verification/diagram patterns for a topic; template geometry/box-numbering
+   for a Bell Tasks change), build, verify by rendering real PDFs, write tests, then commit.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -455,12 +477,17 @@ Fixed by reformatting through fixed-point notation (`Decimal(format(quantized, "
 inside `_round_to_1sf` itself, so every caller (both the normal generator and the
 modelled example) is fixed by the one change.
 
-**Bell Tasks (chronology step 33)**: a third homepage feature, `backend/app/bell_tasks/`,
+**Bell Tasks (chronology step 33; menu restructured in a later step — see the chronology
+entry after step 70 for the Year 11/Year 10/Years 7-9 rework)**: a third homepage feature,
+`backend/app/bell_tasks/`,
 sitting alongside the 6-section grid and Practice Tests exactly like Practice Tests sits
 alongside the grid (its own sibling `<section>` in `App.tsx`, not folded into either). A
-teacher picks a KS3/KS4 sub-menu (KS3 is a disabled dead link, "for later", per direct
-request — only KS4 is built) then, for KS4, exactly 6 topics from the full flattened list
-of all 296 existing topics (no curation - every topic is eligible, including diagram-heavy
+teacher picks a **Year 11 / Year 10 / Years 7-9** sub-menu (Years 7-9 is a disabled dead
+link, "for later", per direct request — only Year 10 and Year 11 are built; this was
+originally a KS3/KS4 picker with only KS4 built — the same underlying template/pipeline,
+just relabelled and, for Year 11, given a second 8-box template — see the later chronology
+entry) then, for Year 10, exactly 6 topics from the full flattened list
+of all 336 existing topics (no curation - every topic is eligible, including diagram-heavy
 ones) via 6 searchable topic pickers (`BellTasksView.tsx`, one per box — a plain `<select>`
 was tried first but a 296-option native dropdown is unusable, so each box is a
 `SearchableTopicSelect.tsx` combobox instead: a text input that shows the full topic list
@@ -5693,6 +5720,110 @@ fixes), is committed and pushed (see `git log`).
     between_points_H` has no diagram either). Full backend suite: 1063 → 1082. Frontend unaffected
     (no frontend files touched - new groups/topics render generically through the existing section/
     topic-card UI, confirmed via the sections API returning the new "Place Value" group correctly).
+
+71. New session, a direct user request to restructure the Bell Tasks menu from KS3/KS4 into
+    **Year 11 / Year 10 / Years 7-9**, with a brand-new 8-box template supplied for Year 11
+    (the existing 6-box template keeps its exact behaviour, just relabelled "Year 10").
+    Asked clarifying questions before touching anything, per the user's explicit request -
+    the biggest blocker being that no template file had actually reached the conversation;
+    found it themselves in the user's Downloads folder (`Year 11 bell tasks.pptx`, timestamped
+    minutes earlier) once the user confirmed the choices below. Two design questions were
+    resolved via `AskUserQuestion` (both recommended options): Years 7-9 stays a disabled
+    placeholder for now (mirroring how KS3 was deferred at launch), and Year 10 is a pure
+    rename with no other behaviour change. A third, more consequential ambiguity only became
+    clear after reading the actual template file - its 8-cell grid ships **completely blank**
+    (no pre-printed "1."-"8." the way the original 3x2 grid has "1./3./5."/"2./4./6." baked
+    into its cells) - resolved via a second `AskUserQuestion` round: add a visible "N." label
+    to each box (matching the original's own convention) in **row-major** order (1-4 left to
+    right on the top row, 5-8 on the bottom row - the natural reading order for a 4-wide grid,
+    rather than the original's column-major numbering, which only made sense there because it
+    matched that template's own pre-printed layout).
+
+    Read the new template directly (unzipped XML + python-pptx, the same approach used for
+    the original template) rather than guessing - confirmed its header banner, bell/clock
+    icons, and "Northern Education Trust" logo (a different brand from the original's Sparx/
+    "Need to Know" logos) all live on the slide **master**, not per-slide, so they're inherited
+    automatically with zero porting work; found the actual question grid ("Google Shape;146;p3"
+    - the same shape name as the original template, confirmed not a coincidence to rely on
+    blindly) is a genuine 2-row x 4-column table (`left=331768, top=2722277, width=11548784,
+    height=3926614`, 4 equal columns of `2887196`, 2 rows of `1963307`); and found a separate,
+    unrelated 1x3 "Bell Task: N" table (N = 1-5, one per weekday slide) that's just a static
+    per-slide day-counter already baked into the file, not something the generator needs to
+    produce.
+
+    **`app/bell_tasks/layout.py`** reworked from bare module-level geometry constants into a
+    `GridGeometry` NamedTuple (table_left/top, column_widths, row_height, num_rows/cols,
+    box_to_row_col) - the original bare constants (`TABLE_LEFT`, `COLUMN_WIDTHS`, `BOX_TO_
+    ROW_COL`, etc.) are kept exactly as they were (now aliased into `GEOMETRY_YEAR_10`) so
+    every existing call site keeps working with no changes at all; `cell_bounds`/`box_bounds`
+    gained an optional `geometry` parameter defaulting to `GEOMETRY_YEAR_10`. A new
+    `GEOMETRY_YEAR_11` holds the new template's real measured geometry with the confirmed
+    row-major `box_to_row_col`. `diagram_rect`/`estimate_text_line_count` needed **no changes
+    at all** - they already operate on a plain `bounds` tuple, not module globals, so they're
+    naturally geometry-agnostic. **`app/bell_tasks/generator.py`** gained a `_BellTasksTemplate`
+    NamedTuple (filename, num_boxes, geometry) and a `_TEMPLATES = {YEAR_10: (...), YEAR_11:
+    (...)}` registry - `BOX_COUNTS` (derived from it) is the one shared source of truth for
+    "how many topic ids does this year need", imported by the API schema's validator so the
+    two can never drift apart. `generate_bell_tasks_pptx` gained a `year: str = YEAR_10`
+    parameter (default keeps every existing caller's behaviour identical); `NUM_BOXES` is kept
+    as a backward-compat alias (`= _TEMPLATES[YEAR_10].num_boxes`) for existing test code.
+    **`app/api/schemas.py`**'s `GenerateBellTasksRequest` gained a `year: BellTasksYearEnum =
+    year_10` field (omitting it from a request body still means the original 6-box template)
+    and its validator became a `model_validator` (needs both `year` and `topic_ids` together,
+    unlike the old single-field `field_validator`). **Frontend**: `BellTasksView.tsx`'s
+    `keyStage: 'ks3' | 'ks4'` state became `year: 'year_10' | 'year_11'`, box count/labels
+    keyed by year (`NUM_BOXES`/`YEAR_LABELS` records) rather than a single hardcoded constant,
+    and the topic-id array is resized (`Array(NUM_BOXES[year]).fill('')`) when the year is
+    chosen. `useGenerateBellTasks`/`generateBellTasks` (api/client.ts) both thread a `year`
+    parameter through to the POST body alongside `topic_ids`.
+
+    **A real, pre-existing bug was found via this session's own visual QA (rendering a real
+    generated Year 11 deck through actual PowerPoint via COM automation, the same discipline
+    documented for the original Bell Tasks build) - reported to the user, not fixed, since it's
+    unrelated to the menu restructuring and predates this session**: a topic using the
+    `\colvec{}{}` vector marker (e.g. `vectors_arithmetic_H`) renders as literal `\colvec{...}`
+    text in a Bell Tasks deck instead of a real stacked column vector - `app/bell_tasks/
+    math_tokenizer.py`/`omml.py` were built before `\colvec{}{}` existed (it was added later,
+    for the DOCX renderer's own `docx_omml.py`) and were never extended to recognise it. This
+    affects the *original* Year 10 template identically, not something this session
+    introduced - confirmed by checking the marker is a plain string-substitution convention
+    with no template-specific logic. Left as a flagged follow-up, not fixed, to avoid scope
+    creep into a non-trivial OMML addition (a `<m:d>`/`<m:m>` delimiter-wrapped matrix, PPTX's
+    own `mc:AlternateContent` wrapper requirements differ from Word's) the user didn't ask for
+    this session.
+
+    Verified end-to-end, matching this project's own established discipline for this feature:
+    a real Year 11 `.pptx` (8 distinct topics, a deliberate mix of diagram-bearing/fraction/
+    exponent-bearing/no-verify topics) generated directly and opened via COM-automated real
+    PowerPoint, confirming correct row-major numbering, inherited master decorations, diagrams
+    staying within their own cells, and 5 genuinely distinct questions per box across the week;
+    then the full flow re-verified live through the actual running app (`preview_start` for
+    both servers, backend restarted to pick up the schema/route changes) - the Year 11 tile
+    generates real question boxes 1-8, all 8 topics pickable via the existing `SearchableTopic
+    Select` search-as-you-type UI (confirmed the new Place Value topics from this file's
+    immediately preceding chronology entry are already searchable here too), Generate returns a
+    real 200 OK and downloads a `.pptx`, and Year 10 still shows exactly 6 boxes with its
+    original wording, unaffected. A stale, hardcoded "KS3 & KS4 · pick 6 topics" / "pick 6
+    topics" teaser string on the **homepage card itself** (`App.tsx`, separate from
+    `BellTasksView.tsx`'s own internal copy) was caught only by browsing the real homepage
+    during this verification pass, not by any test - the same class of gotcha already
+    documented for Practice Tests' own homepage teaser copy in chronology step 30 - fixed
+    alongside everything else.
+
+    New/extended tests: `test_layout.py` gained `GEOMETRY_YEAR_10`/`GEOMETRY_YEAR_11` coverage
+    (cell/box bounds, row-major numbering, confirms `box_bounds(n)` still means Year 10 when no
+    geometry is passed); a new `test_generator_year11.py` mirrors every existing Year 10
+    generator test (5 slides x 8 distinct boxes, 5 distinct questions per box across the week,
+    Calibri/Cambria Math fonts, pictures staying within their own cell, rejecting a wrong topic
+    count/duplicates/an unknown topic id/an unknown year, and rejecting Year 10's own 6 topic
+    ids under `year=YEAR_11`) - deliberately avoiding any `\colvec{}{}`-using topic in its own
+    fixture, per the bug noted above; `test_routes.py` gained Year 11 request/validation
+    coverage plus an explicit "omitted year still means year_10" test.
+    `BellTasksView.test.tsx` gained parallel Year 11 coverage for every existing Year 10 test
+    (picker options, box count, Generate-button gating, the posted request body) - the two
+    tests that fill all 8 boxes via simulated typing run close to vitest's default 5s
+    per-test timeout under load, so both were given an explicit 15s timeout instead of leaving
+    them flaky. Backend suite grew from 1082 to 1107; frontend grew from 65 to 68.
 
 ## Environment gotchas (Windows, this machine specifically)
 

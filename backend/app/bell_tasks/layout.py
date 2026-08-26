@@ -1,19 +1,43 @@
-"""EMU geometry for the Bell Tasks template's 3x2 question grid.
+"""EMU geometry for the Bell Tasks templates' question grids.
 
-All numbers below are read directly from `assets/bell_task_template.pptx`'s own
-table graphic frame (confirmed via python-pptx: `left=331769, top=2722277,
-width=11548782, height=3937202`; 3 columns of widths `3442393, 4053195,
-4053194`; 2 rows, each height `1968601`) - not guessed, transcribed from the
-real template so a picture placed via these helpers lines up with the actual
-cell boundaries PowerPoint will render.
+Two templates, two grids - each `GridGeometry` below is transcribed directly
+from that template's own table graphic frame (via python-pptx), never
+guessed, so a picture placed via `cell_bounds`/`box_bounds` lines up with the
+actual cell boundaries PowerPoint will render.
 
-Box numbering is column-major, matching the template's own existing "1."/"3."/
-"5." (row 0) / "2."/"4."/"6." (row 1) cell content: box 1 is (row 0, col 0),
-box 2 is (row 1, col 0), box 3 is (row 0, col 1), and so on.
+`GEOMETRY_YEAR_10` (`assets/bell_task_template.pptx`, a 3x2 grid: `left=331769,
+top=2722277, width=11548782, height=3937202`; 3 columns of widths `3442393,
+4053195, 4053194`; 2 rows, each height `1968601`) numbers its 6 boxes
+column-major, matching the template's own existing "1."/"3."/"5." (row 0) /
+"2."/"4."/"6." (row 1) cell content: box 1 is (row 0, col 0), box 2 is
+(row 1, col 0), box 3 is (row 0, col 1), and so on.
+
+`GEOMETRY_YEAR_11` (`assets/bell_task_template_year11.pptx`, a 4x2 grid:
+`left=331768, top=2722277, width=11548784, height=3926614`; 4 equal columns
+of width `2887196`; 2 rows, each height `1963307`) numbers its 8 boxes
+row-major instead (1-4 left-to-right on the top row, 5-8 on the bottom row) -
+per direct user confirmation, since this template's own cells ship blank
+(no pre-printed numbers to match, unlike Year 10's grid).
 """
 
 import math
+from typing import NamedTuple
 
+
+class GridGeometry(NamedTuple):
+    table_left: int
+    table_top: int
+    column_widths: tuple[int, ...]
+    row_height: int
+    num_rows: int
+    num_cols: int
+    box_to_row_col: dict[int, tuple[int, int]]
+
+
+# Kept as bare module-level constants too (not just inside GEOMETRY_YEAR_10)
+# since every existing call site/test predates the multi-template rework and
+# relies on `cell_bounds`/`box_bounds` defaulting to these values with no
+# `geometry` argument at all.
 TABLE_LEFT = 331769
 TABLE_TOP = 2722277
 COLUMN_WIDTHS = (3442393, 4053195, 4053194)
@@ -29,6 +53,27 @@ BOX_TO_ROW_COL = {
     5: (0, 2),
     6: (1, 2),
 }
+
+GEOMETRY_YEAR_10 = GridGeometry(TABLE_LEFT, TABLE_TOP, COLUMN_WIDTHS, ROW_HEIGHT, NUM_ROWS, NUM_COLS, BOX_TO_ROW_COL)
+
+GEOMETRY_YEAR_11 = GridGeometry(
+    table_left=331768,
+    table_top=2722277,
+    column_widths=(2887196, 2887196, 2887196, 2887196),
+    row_height=1963307,
+    num_rows=2,
+    num_cols=4,
+    box_to_row_col={
+        1: (0, 0),
+        2: (0, 1),
+        3: (0, 2),
+        4: (0, 3),
+        5: (1, 0),
+        6: (1, 1),
+        7: (1, 2),
+        8: (1, 3),
+    },
+)
 
 # How much of a cell's height/width to reserve for an embedded diagram picture,
 # and the margin kept clear around it so it never touches the cell's own grid
@@ -52,18 +97,18 @@ _LINE_HEIGHT_EMU = int(FONT_SIZE_PT * 1.2 * EMU_PER_PT)
 MIN_DIAGRAM_HEIGHT_EMU = int(0.3 * EMU_PER_INCH)
 
 
-def _column_left(col: int) -> int:
-    return TABLE_LEFT + sum(COLUMN_WIDTHS[:col])
+def _column_left(col: int, geometry: GridGeometry) -> int:
+    return geometry.table_left + sum(geometry.column_widths[:col])
 
 
-def cell_bounds(row: int, col: int) -> tuple[int, int, int, int]:
+def cell_bounds(row: int, col: int, geometry: GridGeometry = GEOMETRY_YEAR_10) -> tuple[int, int, int, int]:
     """Returns (left, top, width, height) in EMU for a given (row, col) cell."""
-    if row not in range(NUM_ROWS) or col not in range(NUM_COLS):
-        raise ValueError(f"cell ({row}, {col}) is out of range for a {NUM_ROWS}x{NUM_COLS} grid")
-    left = _column_left(col)
-    top = TABLE_TOP + row * ROW_HEIGHT
-    width = COLUMN_WIDTHS[col]
-    return left, top, width, ROW_HEIGHT
+    if row not in range(geometry.num_rows) or col not in range(geometry.num_cols):
+        raise ValueError(f"cell ({row}, {col}) is out of range for a {geometry.num_rows}x{geometry.num_cols} grid")
+    left = _column_left(col, geometry)
+    top = geometry.table_top + row * geometry.row_height
+    width = geometry.column_widths[col]
+    return left, top, width, geometry.row_height
 
 
 def estimate_text_line_count(prompt: str, cell_width: int) -> int:
@@ -138,9 +183,9 @@ def diagram_rect(
     return left, top, width, height
 
 
-def box_bounds(box: int) -> tuple[int, int, int, int]:
-    """Convenience wrapper: cell_bounds for a 1-based box number (1-6)."""
-    if box not in BOX_TO_ROW_COL:
-        raise ValueError(f"box must be 1-6, got {box}")
-    row, col = BOX_TO_ROW_COL[box]
-    return cell_bounds(row, col)
+def box_bounds(box: int, geometry: GridGeometry = GEOMETRY_YEAR_10) -> tuple[int, int, int, int]:
+    """Convenience wrapper: cell_bounds for a 1-based box number."""
+    if box not in geometry.box_to_row_col:
+        raise ValueError(f"box must be one of {sorted(geometry.box_to_row_col)}, got {box}")
+    row, col = geometry.box_to_row_col[box]
+    return cell_bounds(row, col, geometry)

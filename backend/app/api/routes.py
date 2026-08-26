@@ -124,7 +124,7 @@ def create_modelled_example(payload: GenerateWorksheetRequest) -> Response:
 
 @router.post("/bell-tasks")
 def create_bell_tasks(payload: GenerateBellTasksRequest) -> Response:
-    pptx_bytes = generate_bell_tasks_pptx(payload.topic_ids)
+    pptx_bytes = generate_bell_tasks_pptx(payload.topic_ids, year=payload.year.value)
     filename = f"bell-tasks-{date.today().isoformat()}.pptx"
     return Response(
         content=pptx_bytes,

@@ -71,8 +71,8 @@ function App() {
           <section className="practice-tests-section">
             <h2 className="practice-tests-section__heading">Bell Tasks</h2>
             <p className="practice-tests-section__subtitle">
-              A 5-day starter-activity PowerPoint - pick 6 topics and get a week's worth of quick
-              questions, one topic per box, every day.
+              A 5-day starter-activity PowerPoint - pick topics per box (6 for Year 10, 8 for Year 11)
+              and get a week's worth of quick questions, one topic per box, every day.
             </p>
             <button
               type="button"
@@ -80,7 +80,7 @@ function App() {
               onClick={() => setBellTasksOpen(true)}
             >
               <h2 className="section-card__name">Bell Tasks</h2>
-              <p className="section-card__count">KS3 &amp; KS4 · pick 6 topics</p>
+              <p className="section-card__count">Year 11, Year 10 &amp; Years 7-9</p>
             </button>
           </section>
         </>

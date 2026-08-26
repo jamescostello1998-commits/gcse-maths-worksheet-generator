@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { BellTasksYear } from '../api/client'
 import type { Section, Topic } from '../api/types'
 import { useGenerateBellTasks } from '../hooks/useGenerateBellTasks'
 import { SearchableTopicSelect, type SearchableTopicOption } from './SearchableTopicSelect'
@@ -13,7 +14,13 @@ interface FlatTopic {
   breadcrumb: string
 }
 
-const NUM_BOXES = 6
+// Box count and display label per year group - Year 10 keeps the original
+// 6-box template unchanged; Year 11 uses a new 8-box template (see
+// backend/app/bell_tasks/generator.py's _TEMPLATES). "Years 7-9" is a
+// deliberately disabled placeholder for now, matching how "KS3" was
+// deferred previously - not wired to a template at all yet.
+const NUM_BOXES: Record<BellTasksYear, number> = { year_10: 6, year_11: 8 }
+const YEAR_LABELS: Record<BellTasksYear, string> = { year_10: 'Year 10', year_11: 'Year 11' }
 const TIER_LABELS: Record<'foundation' | 'higher', string> = { foundation: 'Foundation', higher: 'Higher' }
 
 function flattenTopics(sections: Section[]): FlatTopic[] {
@@ -48,13 +55,18 @@ function toSearchableOptions(flat: FlatTopic[]): SearchableTopicOption[] {
 }
 
 export function BellTasksView({ sections, onBack }: BellTasksViewProps) {
-  const [keyStage, setKeyStage] = useState<'ks3' | 'ks4' | null>(null)
-  const [selectedTopicIds, setSelectedTopicIds] = useState<string[]>(Array(NUM_BOXES).fill(''))
+  const [year, setYear] = useState<BellTasksYear | null>(null)
+  const [selectedTopicIds, setSelectedTopicIds] = useState<string[]>([])
   const { status, error, generate } = useGenerateBellTasks()
 
   const options = useMemo(() => toSearchableOptions(flattenTopics(sections)), [sections])
 
-  if (!keyStage) {
+  function selectYear(nextYear: BellTasksYear) {
+    setYear(nextYear)
+    setSelectedTopicIds(Array(NUM_BOXES[nextYear]).fill(''))
+  }
+
+  if (!year) {
     return (
       <div className="section-view">
         <button type="button" className="section-view__back" onClick={onBack}>
@@ -62,12 +74,16 @@ export function BellTasksView({ sections, onBack }: BellTasksViewProps) {
         </button>
         <h2 className="section-view__title">Bell Tasks</h2>
         <div className="tier-picker">
-          <button type="button" className="tier-picker__option" onClick={() => setKeyStage('ks4')}>
-            <span className="tier-picker__name">KS4</span>
+          <button type="button" className="tier-picker__option" onClick={() => selectYear('year_11')}>
+            <span className="tier-picker__name">Year 11</span>
+            <span className="tier-picker__count">Generate an 8-topic bell task PowerPoint</span>
+          </button>
+          <button type="button" className="tier-picker__option" onClick={() => selectYear('year_10')}>
+            <span className="tier-picker__name">Year 10</span>
             <span className="tier-picker__count">Generate a 6-topic bell task PowerPoint</span>
           </button>
           <button type="button" className="tier-picker__option tier-picker__option--empty" disabled>
-            <span className="tier-picker__name">KS3</span>
+            <span className="tier-picker__name">Years 7-9</span>
             <span className="tier-picker__count">Coming soon</span>
           </button>
         </div>
@@ -75,9 +91,10 @@ export function BellTasksView({ sections, onBack }: BellTasksViewProps) {
     )
   }
 
+  const numBoxes = NUM_BOXES[year]
   const filledCount = selectedTopicIds.filter((id) => id !== '').length
   const distinctCount = new Set(selectedTopicIds.filter((id) => id !== '')).size
-  const canGenerate = filledCount === NUM_BOXES && distinctCount === NUM_BOXES
+  const canGenerate = filledCount === numBoxes && distinctCount === numBoxes
 
   function handleSelect(boxIndex: number, topicId: string) {
     setSelectedTopicIds((prev) => {
@@ -89,15 +106,15 @@ export function BellTasksView({ sections, onBack }: BellTasksViewProps) {
 
   return (
     <div className="section-view">
-      <button type="button" className="section-view__back" onClick={() => setKeyStage(null)}>
+      <button type="button" className="section-view__back" onClick={() => setYear(null)}>
         ← Back
       </button>
       <h2 className="section-view__title">
-        Bell Tasks <span className="section-view__tier">· KS4</span>
+        Bell Tasks <span className="section-view__tier">· {YEAR_LABELS[year]}</span>
       </h2>
       <p className="page__subtitle">
-        Choose 6 topics, one per box. Each box keeps the same topic all week, with a new question in it
-        each day (5 questions per topic, 30 in total).
+        Choose {numBoxes} topics, one per box. Each box keeps the same topic all week, with a new question
+        in it each day (5 questions per topic, {numBoxes * 5} in total).
       </p>
 
       <div className="bell-tasks-picker">
@@ -122,7 +139,7 @@ export function BellTasksView({ sections, onBack }: BellTasksViewProps) {
         type="button"
         className="topic-card__generate bell-tasks-picker__generate"
         disabled={!canGenerate || status === 'loading'}
-        onClick={() => generate(selectedTopicIds)}
+        onClick={() => generate(selectedTopicIds, year)}
       >
         {status === 'loading' ? 'Generating…' : 'Generate Bell Tasks'}
       </button>

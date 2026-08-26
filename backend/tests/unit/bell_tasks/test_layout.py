@@ -4,6 +4,8 @@ from app.bell_tasks.layout import (
     BOX_TO_ROW_COL,
     COLUMN_WIDTHS,
     EMU_PER_PT,
+    GEOMETRY_YEAR_10,
+    GEOMETRY_YEAR_11,
     ROW_HEIGHT,
     TABLE_LEFT,
     TABLE_TOP,
@@ -177,3 +179,74 @@ def test_estimate_text_line_count_grows_with_prompt_length():
     assert estimate_text_line_count(SHORT_PROMPT, cell_width) < estimate_text_line_count(
         LONG_PROMPT, cell_width
     )
+
+
+# ---------------------------------------------------------------------------
+# GEOMETRY_YEAR_11 (the 4x2, 8-box grid) - cell_bounds/box_bounds accept a
+# geometry explicitly rather than relying on the Year 10 default.
+# ---------------------------------------------------------------------------
+
+
+def test_geometry_year_10_matches_the_original_bare_module_constants():
+    # The bare TABLE_LEFT/TABLE_TOP/etc constants (kept for backward
+    # compatibility - see the module docstring) must stay in sync with
+    # GEOMETRY_YEAR_10, which every existing call site's default resolves to.
+    assert GEOMETRY_YEAR_10.table_left == TABLE_LEFT
+    assert GEOMETRY_YEAR_10.column_widths == COLUMN_WIDTHS
+    assert GEOMETRY_YEAR_10.row_height == ROW_HEIGHT
+    assert GEOMETRY_YEAR_10.box_to_row_col == BOX_TO_ROW_COL
+
+
+def test_geometry_year_11_is_a_4_column_2_row_grid():
+    assert GEOMETRY_YEAR_11.num_rows == 2
+    assert GEOMETRY_YEAR_11.num_cols == 4
+    assert len(GEOMETRY_YEAR_11.column_widths) == 4
+
+
+def test_geometry_year_11_cell_bounds_col0_row0_matches_table_origin():
+    left, top, width, height = cell_bounds(0, 0, GEOMETRY_YEAR_11)
+    assert (left, top) == (GEOMETRY_YEAR_11.table_left, GEOMETRY_YEAR_11.table_top)
+    assert width == GEOMETRY_YEAR_11.column_widths[0]
+    assert height == GEOMETRY_YEAR_11.row_height
+
+
+def test_geometry_year_11_cell_bounds_columns_are_contiguous_left_to_right():
+    lefts = [cell_bounds(0, c, GEOMETRY_YEAR_11)[0] for c in range(4)]
+    widths = [cell_bounds(0, c, GEOMETRY_YEAR_11)[2] for c in range(4)]
+    for i in range(3):
+        assert lefts[i + 1] == lefts[i] + widths[i]
+
+
+def test_geometry_year_11_cell_bounds_last_cell_reaches_table_right_and_bottom_edge():
+    left, top, width, height = cell_bounds(1, 3, GEOMETRY_YEAR_11)
+    table_right = GEOMETRY_YEAR_11.table_left + sum(GEOMETRY_YEAR_11.column_widths)
+    table_bottom = GEOMETRY_YEAR_11.table_top + 2 * GEOMETRY_YEAR_11.row_height
+    assert left + width == table_right
+    assert top + height == table_bottom
+
+
+@pytest.mark.parametrize("row,col", [(-1, 0), (2, 0), (0, -1), (0, 4)])
+def test_geometry_year_11_cell_bounds_rejects_out_of_range(row, col):
+    with pytest.raises(ValueError):
+        cell_bounds(row, col, GEOMETRY_YEAR_11)
+
+
+def test_geometry_year_11_box_bounds_matches_row_major_numbering():
+    for box, (row, col) in GEOMETRY_YEAR_11.box_to_row_col.items():
+        assert box_bounds(box, GEOMETRY_YEAR_11) == cell_bounds(row, col, GEOMETRY_YEAR_11)
+
+
+def test_geometry_year_11_box_bounds_rejects_invalid_box_number():
+    for bad_box in (0, 9, -1):
+        with pytest.raises(ValueError):
+            box_bounds(bad_box, GEOMETRY_YEAR_11)
+
+
+def test_geometry_year_11_box_bounds_defaults_to_year_10_geometry_when_omitted():
+    # box_bounds(1) with no geometry arg must still mean Year 10's box 1 -
+    # existing callers/tests never pass a geometry at all - and the two
+    # templates' geometries are genuinely different (confirmed distinct row
+    # heights), so this is a real behavioural check, not a coincidence.
+    assert GEOMETRY_YEAR_10.row_height != GEOMETRY_YEAR_11.row_height
+    assert box_bounds(1) == box_bounds(1, GEOMETRY_YEAR_10)
+    assert box_bounds(1) != box_bounds(1, GEOMETRY_YEAR_11)

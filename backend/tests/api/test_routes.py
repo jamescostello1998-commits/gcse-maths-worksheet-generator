@@ -261,3 +261,32 @@ def test_bell_tasks_unknown_topic_returns_404():
     response = client.post("/api/bell-tasks", json={"topic_ids": bad})
     assert response.status_code == 404
     assert "detail" in response.json()
+
+
+BELL_TASKS_YEAR_11_TOPIC_IDS = BELL_TASKS_TOPIC_IDS + ["algebraic_indices_H", "circle_parts_F"]
+
+
+def test_bell_tasks_year_11_valid_request_returns_pptx():
+    response = client.post(
+        "/api/bell-tasks", json={"topic_ids": BELL_TASKS_YEAR_11_TOPIC_IDS, "year": "year_11"}
+    )
+    assert response.status_code == 200
+    assert response.headers["content-type"] == (
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    )
+    assert response.content[:2] == b"PK"
+
+
+def test_bell_tasks_year_11_wrong_topic_count_returns_422():
+    # 6 topic ids is correct for year_10 (the default) but not year_11 (8).
+    response = client.post(
+        "/api/bell-tasks", json={"topic_ids": BELL_TASKS_TOPIC_IDS, "year": "year_11"}
+    )
+    assert response.status_code == 422
+
+
+def test_bell_tasks_default_year_is_year_10():
+    # An omitted "year" (an existing, pre-year-field request body) must still
+    # mean the original 6-box template - never a breaking change for it.
+    response = client.post("/api/bell-tasks", json={"topic_ids": BELL_TASKS_TOPIC_IDS})
+    assert response.status_code == 200

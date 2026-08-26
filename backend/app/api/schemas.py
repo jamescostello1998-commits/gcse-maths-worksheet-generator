@@ -1,9 +1,9 @@
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, model_validator
 
-from app.bell_tasks.generator import NUM_BOXES
+from app.bell_tasks.generator import BOX_COUNTS, YEAR_10
 from app.worksheet.builder import MAX_COUNT, MIN_COUNT
 
 
@@ -46,17 +46,25 @@ class GenerateWorksheetRequest(BaseModel):
     format: FormatEnum = FormatEnum.pdf
 
 
+class BellTasksYearEnum(str, Enum):
+    year_10 = "year_10"
+    year_11 = "year_11"
+
+
 class GenerateBellTasksRequest(BaseModel):
     topic_ids: list[str]
+    # Default "year_10" so an existing request body (which omits it) keeps
+    # meaning the original 6-box template.
+    year: BellTasksYearEnum = BellTasksYearEnum(YEAR_10)
 
-    @field_validator("topic_ids")
-    @classmethod
-    def _exactly_six_distinct_topics(cls, value: list[str]) -> list[str]:
-        if len(value) != NUM_BOXES:
-            raise ValueError(f"Bell Tasks needs exactly {NUM_BOXES} topic ids, got {len(value)}")
-        if len(set(value)) != NUM_BOXES:
+    @model_validator(mode="after")
+    def _exactly_n_distinct_topics(self) -> "GenerateBellTasksRequest":
+        expected = BOX_COUNTS[self.year.value]
+        if len(self.topic_ids) != expected:
+            raise ValueError(f"Bell Tasks for {self.year.value} needs exactly {expected} topic ids, got {len(self.topic_ids)}")
+        if len(set(self.topic_ids)) != expected:
             raise ValueError("Bell Tasks topic ids must all be distinct")
-        return value
+        return self
 
 
 class PracticeTestSummary(BaseModel):

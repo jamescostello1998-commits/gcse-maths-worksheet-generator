@@ -37,7 +37,11 @@ const sections: Section[] = [
       },
       {
         name: 'Area & Perimeter',
-        topics: [makeTopic('area_rectangle', 'Area of a Rectangle')],
+        topics: [
+          makeTopic('area_rectangle', 'Area of a Rectangle'),
+          makeTopic('circle_parts', 'Parts of a Circle'),
+          makeTopic('area_triangle', 'Area of a Triangle'),
+        ],
       },
     ],
   },
@@ -52,6 +56,8 @@ const LABELS = [
   'Area of a Rectangle (Foundation)',
 ]
 
+const EIGHT_LABELS = [...LABELS, 'Parts of a Circle (Foundation)', 'Area of a Triangle (Foundation)']
+
 async function selectTopicInBox(user: ReturnType<typeof userEvent.setup>, boxIndex: number, label: string) {
   const inputs = screen.getAllByRole('combobox')
   await user.click(inputs[boxIndex])
@@ -59,9 +65,9 @@ async function selectTopicInBox(user: ReturnType<typeof userEvent.setup>, boxInd
   await user.click(await screen.findByText(label))
 }
 
-async function selectAllSixTopics(user: ReturnType<typeof userEvent.setup>) {
-  for (let i = 0; i < LABELS.length; i++) {
-    await selectTopicInBox(user, i, LABELS[i])
+async function selectTopics(user: ReturnType<typeof userEvent.setup>, labels: string[]) {
+  for (let i = 0; i < labels.length; i++) {
+    await selectTopicInBox(user, i, labels[i])
   }
 }
 
@@ -72,19 +78,21 @@ describe('BellTasksView', () => {
     URL.revokeObjectURL = vi.fn()
   })
 
-  it('shows a KS3/KS4 picker first, with KS3 disabled', () => {
+  it('shows a Year 11 / Year 10 / Years 7-9 picker first, with Years 7-9 disabled', () => {
     render(<BellTasksView sections={sections} onBack={() => {}} />)
     expect(screen.getByText('Bell Tasks')).toBeInTheDocument()
-    const ks3Button = screen.getByText('KS3').closest('button')
-    const ks4Button = screen.getByText('KS4').closest('button')
-    expect(ks3Button).toBeDisabled()
-    expect(ks4Button).not.toBeDisabled()
+    const year11Button = screen.getByText('Year 11').closest('button')
+    const year10Button = screen.getByText('Year 10').closest('button')
+    const years79Button = screen.getByText('Years 7-9').closest('button')
+    expect(year11Button).not.toBeDisabled()
+    expect(year10Button).not.toBeDisabled()
+    expect(years79Button).toBeDisabled()
   })
 
-  it('shows 6 searchable topic boxes after choosing KS4, with tier labels on options', async () => {
+  it('shows 6 searchable topic boxes after choosing Year 10, with tier labels on options', async () => {
     const user = userEvent.setup()
     render(<BellTasksView sections={sections} onBack={() => {}} />)
-    await user.click(screen.getByText('KS4'))
+    await user.click(screen.getByText('Year 10'))
 
     const inputs = screen.getAllByRole('combobox')
     expect(inputs).toHaveLength(6)
@@ -94,10 +102,19 @@ describe('BellTasksView', () => {
     expect(screen.getByText('Area of a Rectangle (Foundation)')).toBeInTheDocument()
   })
 
+  it('shows 8 searchable topic boxes after choosing Year 11', async () => {
+    const user = userEvent.setup()
+    render(<BellTasksView sections={sections} onBack={() => {}} />)
+    await user.click(screen.getByText('Year 11'))
+
+    const inputs = screen.getAllByRole('combobox')
+    expect(inputs).toHaveLength(8)
+  })
+
   it('filters the option list as the user types', async () => {
     const user = userEvent.setup()
     render(<BellTasksView sections={sections} onBack={() => {}} />)
-    await user.click(screen.getByText('KS4'))
+    await user.click(screen.getByText('Year 10'))
 
     const inputs = screen.getAllByRole('combobox')
     await user.click(inputs[0])
@@ -119,7 +136,7 @@ describe('BellTasksView', () => {
     ]
     const user = userEvent.setup()
     render(<BellTasksView sections={sectionsWithSelfSuffixedName} onBack={() => {}} />)
-    await user.click(screen.getByText('KS4'))
+    await user.click(screen.getByText('Year 10'))
 
     const inputs = screen.getAllByRole('combobox')
     await user.click(inputs[0])
@@ -128,22 +145,34 @@ describe('BellTasksView', () => {
     expect(screen.queryByText('Dividing Fractions (Foundation) (Foundation)')).not.toBeInTheDocument()
   })
 
-  it('disables Generate until all 6 boxes have a distinct topic chosen', async () => {
+  it('disables Generate until all 6 boxes have a distinct topic chosen (Year 10)', async () => {
     const user = userEvent.setup()
     render(<BellTasksView sections={sections} onBack={() => {}} />)
-    await user.click(screen.getByText('KS4'))
+    await user.click(screen.getByText('Year 10'))
 
     const generateButton = screen.getByText('Generate Bell Tasks')
     expect(generateButton).toBeDisabled()
 
-    await selectAllSixTopics(user)
+    await selectTopics(user, LABELS)
     expect(generateButton).not.toBeDisabled()
   })
+
+  it('disables Generate until all 8 boxes have a distinct topic chosen (Year 11)', async () => {
+    const user = userEvent.setup()
+    render(<BellTasksView sections={sections} onBack={() => {}} />)
+    await user.click(screen.getByText('Year 11'))
+
+    const generateButton = screen.getByText('Generate Bell Tasks')
+    expect(generateButton).toBeDisabled()
+
+    await selectTopics(user, EIGHT_LABELS)
+    expect(generateButton).not.toBeDisabled()
+  }, 15000)
 
   it('shows the chosen topic label in the box once selected', async () => {
     const user = userEvent.setup()
     render(<BellTasksView sections={sections} onBack={() => {}} />)
-    await user.click(screen.getByText('KS4'))
+    await user.click(screen.getByText('Year 10'))
 
     await selectTopicInBox(user, 0, LABELS[0])
     const inputs = screen.getAllByRole('combobox')
@@ -153,7 +182,7 @@ describe('BellTasksView', () => {
   it('prevents choosing the same topic twice by excluding already-picked topics from other boxes', async () => {
     const user = userEvent.setup()
     render(<BellTasksView sections={sections} onBack={() => {}} />)
-    await user.click(screen.getByText('KS4'))
+    await user.click(screen.getByText('Year 10'))
 
     await selectTopicInBox(user, 0, LABELS[0])
 
@@ -163,7 +192,7 @@ describe('BellTasksView', () => {
     expect(screen.queryByText(LABELS[0])).not.toBeInTheDocument()
   })
 
-  it('posts the 6 chosen topic ids and downloads a .pptx on Generate', async () => {
+  it('posts the 6 chosen topic ids and year_10 and downloads a .pptx on Generate', async () => {
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
       blob: async () =>
@@ -175,8 +204,8 @@ describe('BellTasksView', () => {
 
     const user = userEvent.setup()
     render(<BellTasksView sections={sections} onBack={() => {}} />)
-    await user.click(screen.getByText('KS4'))
-    await selectAllSixTopics(user)
+    await user.click(screen.getByText('Year 10'))
+    await selectTopics(user, LABELS)
     await user.click(screen.getByText('Generate Bell Tasks'))
 
     expect(fetchMock).toHaveBeenCalledWith(
@@ -192,10 +221,48 @@ describe('BellTasksView', () => {
             'angles_triangle',
             'area_rectangle',
           ],
+          year: 'year_10',
         }),
       }),
     )
   })
+
+  it('posts the 8 chosen topic ids and year_11 and downloads a .pptx on Generate', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      blob: async () =>
+        new Blob(['PK'], {
+          type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        }),
+    })
+    vi.stubGlobal('fetch', fetchMock)
+
+    const user = userEvent.setup()
+    render(<BellTasksView sections={sections} onBack={() => {}} />)
+    await user.click(screen.getByText('Year 11'))
+    await selectTopics(user, EIGHT_LABELS)
+    await user.click(screen.getByText('Generate Bell Tasks'))
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('/api/bell-tasks'),
+      expect.objectContaining({
+        method: 'POST',
+        body: JSON.stringify({
+          topic_ids: [
+            'fractions_add_subtract',
+            'decimals_multiply',
+            'linear_two_step',
+            'linear_one_step',
+            'angles_triangle',
+            'area_rectangle',
+            'circle_parts',
+            'area_triangle',
+          ],
+          year: 'year_11',
+        }),
+      }),
+    )
+  }, 15000)
 
   it('calls onBack when the back button is clicked', async () => {
     const onBack = vi.fn()

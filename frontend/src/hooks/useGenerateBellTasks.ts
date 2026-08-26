@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'react'
-import { generateBellTasks } from '../api/client'
+import { generateBellTasks, type BellTasksYear } from '../api/client'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
 interface UseGenerateBellTasksResult {
   status: Status
   error: string | null
-  generate: (topicIds: string[]) => Promise<void>
+  generate: (topicIds: string[], year: BellTasksYear) => Promise<void>
 }
 
 function triggerDownload(blob: Blob, filename: string): void {
@@ -24,11 +24,11 @@ export function useGenerateBellTasks(): UseGenerateBellTasksResult {
   const [status, setStatus] = useState<Status>('idle')
   const [error, setError] = useState<string | null>(null)
 
-  const generate = useCallback(async (topicIds: string[]) => {
+  const generate = useCallback(async (topicIds: string[], year: BellTasksYear) => {
     setStatus('loading')
     setError(null)
     try {
-      const blob = await generateBellTasks(topicIds)
+      const blob = await generateBellTasks(topicIds, year)
       triggerDownload(blob, 'bell-tasks.pptx')
       setStatus('success')
     } catch (err) {

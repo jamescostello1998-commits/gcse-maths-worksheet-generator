@@ -193,13 +193,15 @@ export async function downloadPracticeTestMarkScheme(paperId: string): Promise<B
   return getBlob(`/api/practice-tests/${paperId}/mark-scheme`, 'downloading practice test mark scheme')
 }
 
-export async function generateBellTasks(topicIds: string[]): Promise<Blob> {
+export type BellTasksYear = 'year_10' | 'year_11'
+
+export async function generateBellTasks(topicIds: string[], year: BellTasksYear): Promise<Blob> {
   let response: Response
   try {
     response = await fetch(`${API_BASE_URL}/api/bell-tasks`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic_ids: topicIds }),
+      body: JSON.stringify({ topic_ids: topicIds, year }),
     })
   } catch (err) {
     console.error('Network error generating bell tasks:', err)
