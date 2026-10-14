@@ -61,7 +61,21 @@ step 64) were verified via large ad hoc scratch-script trial runs (thousands of 
 failures) but were **not** given a persisted pytest regression test — worth adding if either area
 is touched again.
 
-**⚠️ Start the next session here.** Everything through step 71 is committed and pushed — there is
+**⚠️ Most recent session (step 72, 2026-09-27 → 2026-10-14) — read this first.** It did NOT
+touch the app: it was an analysis of 33 real OCR Higher past papers plus two printable topic packs
+(full detail in chronology step 72). Deliverables, all in `C:\Users\James\Downloads\`:
+`OCR_Higher_Topic_Analysis_Detailed.xlsx` (master data — the "Topic tags" sheet is the source of
+truth), `OCR_Higher_Recurring_Decimals.pdf`, `OCR_Higher_Algebraic_Proportion.pdf`, plus a private
+web page https://claude.ai/artifact/KgMXFzqLuJwp7EHs415bT9 (topics/sub-types, question styles, app
+coverage gaps). The pack scripts were copied to `analysis/ocr_higher_papers/` (untracked — ask
+before committing; its README explains it). The only repo changes are that folder + this CLAUDE.md
+edit, both uncommitted. **Open offers the user hasn't answered yet:** (1) more topic packs in the same
+format (suggested next: interpreting exponential formulas, circle theorems, histograms), and (2)
+building app generators for the biggest OCR-examined gaps the analysis found (see step 72's gap
+list — top: interpret y = abˣ formulas, fraction problems in context, choose the proportion graph,
+ratio ↔ fraction/percentage). Ask which, if any, they want.
+
+**⚠️ App work handoff (unchanged since step 71).** Everything through step 71 is committed and pushed — there is
 no pending uncommitted work and no half-finished change (the last session's commits, newest
 first: `5117a0e` Bell Tasks Year 11/10/7-9, `3977912` multiply/divide by 0.5 + Place Value,
 `21f8fa9` review-feedback batch, `af1132b` Sequences). There is no separate plan file for this
@@ -92,7 +106,7 @@ arc — this section IS the work plan. Suggested order:
    clarifying questions where genuinely ambiguous, build, verify by rendering real PDFs/decks,
    write tests, run the full backend (`cd backend && .venv/Scripts/python.exe -m pytest -q`, ~3-4
    minutes — it backgrounds past the 2-minute tool timeout, wait for the notification) and frontend
-   (`npx vitest run` with NodePortable on PATH) suites, then commit + push **only when the user
+   (`npx vitest run` with `C:\Program Files\nodejs` on PATH) suites, then commit + push **only when the user
    asks**.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
@@ -5849,6 +5863,68 @@ fixes), is committed and pushed (see `git log`).
     them flaky. Backend suite grew from 1082 to 1107; frontend grew from 65 to 68. Committed and
     pushed as `5117a0e`.
 
+72. New session (2026-09-27 → 2026-10-14), **no app code changed** — a research/analysis
+    request on real exam papers, then two printable packs. The user supplied all 33 OCR J560
+    Higher question papers (Papers 4/5/6 for 11 sittings: Jun 2017, Jun 2018, Nov 2018, Jun 2019,
+    Nov 2020, Nov 2021, Jun 2022, Nov 2022, Jun 2023, Jun 2024, Jun 2025) from Downloads (several
+    files are named only by OCR ids, e.g. `OMA257.pdf` = Jun 2025 P4, `OMA259` = P5, `OMA2511` = P6;
+    the full file→sitting map is the `FILES` dict in `analysis/ocr_higher_papers/prox_locate.py`).
+    Every scope choice was asked up front via `AskUserQuestion`, per the user's standing "ask any
+    clarifying questions".
+
+    **(a) Topic frequency.** Every paper was read in full (fitz text extraction; the maths in the
+    text layer is often garbled, so ambiguous parts were rendered as page images and read
+    visually). All 1,150 question parts were tagged with 99 mid-level topics (a part can carry
+    several), each part's marks recorded. **Completeness check: every paper's tagged parts sum to
+    exactly 100 marks.** Delivered as an interactive artifact (private,
+    https://claude.ai/artifact/KgMXFzqLuJwp7EHs415bT9) and an Excel workbook. Top topics by parts:
+    Ratio 54, Percentages 52, Growth & decay 48, Scatter graphs 44, Direct & inverse proportion
+    38, Compound measures 35; 26 subject topics appeared in all 11 sittings; OCR's cross-cutting
+    "state an assumption / spot the error / judge reliability" habit appears 32 times.
+
+    **(b) Deep pass** (user: "dig as deep as possible"). Every part re-tagged with a sub-type per
+    topic (521 distinct, e.g. Ratio → share / 1:n / combine / ratio↔fraction / algebraic / ratio
+    change), question style (Routine 52%, Problem 20%, Show/prove 10%, Explain 10%, Worded 5%,
+    Error-spotting 3%), estimated AO (came out AO1 45 / AO2 17 / AO3 38 — OCR's official Higher
+    split is 40/30/30, so AO2 is under-counted; treat as relative only), given/unknown structure
+    where meaningful, and position in paper (early/middle/late third). Each (topic, sub-type) was
+    mapped to this app's generator ids as direct / topic-only / none (927 / 264 / 362 tags). Top
+    maths gaps with **no generator**: interpret a growth formula like V = 16500×0.82ⁿ (15 parts),
+    fraction problems in context (7), recognise the proportion graph (7), ratio ↔ fraction/
+    percentage (7), predict vs a threshold with a growth model (6), tangent to a curve (5),
+    polygons meeting at a point (5), LCM in context (5). The artifact gained Topics/Styles/Gaps
+    tabs and the workbook was rebuilt with formula-driven sheets (Topic frequency, Sub-type
+    frequency, Question styles, App gaps, Section summary, Papers, Question parts, Topic tags) —
+    recalculated in real Excel via COM (LibreOffice isn't installed, so the xlsx skill's
+    `recalc.py` can't run here), 0 formula errors. Saved as
+    `Downloads\OCR_Higher_Topic_Analysis_Detailed.xlsx` (the older first-pass
+    `OCR_Higher_Topic_Frequency.xlsx` is still there, superseded).
+
+    **(c) Topic packs** — PDFs of every past-paper question of one type, each question **cropped
+    as vector content straight from the user's own PDFs** (fitz `show_pdf_page` with a clip; never
+    retyped — copyright note in each footer, personal classroom use only), labelled with sitting/
+    paper/Q/marks, grouped by type, with my own worked answers (no mark schemes available) typeset
+    via the app's `mathtext.to_markup` (`\frac{}{}`, `\recur{0.4}{16}` — note `\recur`'s PREFIX
+    includes the "0.") and **every answer asserted with exact Fraction arithmetic** in the build
+    script. `OCR_Higher_Recurring_Decimals.pdf` (18 parts, 4 sections, 16 pages) and
+    `OCR_Higher_Algebraic_Proportion.pdf` (22 parts — the scope question said 23, a recount gave
+    16 formula + 4 %-change + 1 chained + 1 error-spotting; 19 pages; June 2017 P4 Q15(d) includes
+    the speed-time graph from its stem as a second crop region).
+
+    **Gotchas hit this session:** (1) the session temp scratchpad was **wiped between days**,
+    losing `tags.txt`/`deep_*.txt`/`deep.json` and half of a `--target`-installed openpyxl —
+    recovered by reading the workbook's "Topic tags" sheet; the surviving pack scripts are now in
+    `analysis/ocr_higher_papers/` (untracked, README explains). Persist anything precious outside
+    the scratchpad. (2) `>` was the field separator in the deep tags, so a label "(a > 1)" was
+    silently truncated — caught by listing sub-types, renamed "(a ≠ 1)". (3) Writing Python via
+    bash heredocs/inline patches mangled backslashes (`\f` became a form feed, `\p` a bad escape)
+    — write code with the Write tool, or build backslashes with `chr(92)`. (4) Base-14 fitz fonts
+    (`helv`/`hebo`) have no "→" glyph; it rendered as a dot. (5) `mathtext` italicises bare x but
+    not the x in `kx²`, so mixed-style answers look inconsistent — wrapped bare x/n in `\plain{}`.
+    (6) `cp` over an xlsx open in Excel fails ("Device or resource busy") — I sent the stale file
+    once before noticing; save under a new name instead. (7) **NodePortable is gone**; real Node is
+    at `C:\Program Files\nodejs\node.exe` (`launch.json`'s frontend config already uses it).
+
 ## Environment gotchas (Windows, this machine specifically)
 
 Python, Node, and GitHub CLI were **not** installed on this machine when this project
@@ -5858,14 +5934,14 @@ started. They were installed mid-session:
   `C:\Users\James\AppData\Local\Programs\Python\Python312`. A Windows Store alias
   shadows `python` on PATH, so the backend venv is the reliable way to get a working
   interpreter (see below).
-- **Node.js**: winget's installer needed admin elevation that couldn't be granted
-  non-interactively, so a **portable** Node zip is used instead, extracted to
-  `C:\Users\James\AppData\Local\NodePortable\node-v22.14.0-win-x64\`. `npm`/`npx`
-  work from there; `node`/`npm` are **not** on PATH by default in a fresh shell —
-  prepend that dir to `$env:Path` first, e.g.:
+- **Node.js**: **as of step 72 the old portable Node (`...\AppData\Local\NodePortable\`) no
+  longer exists** — a real install lives at `C:\Program Files\nodejs\` (`node.exe`, `npm`,
+  `npx`; `.claude/launch.json`'s frontend config already points there). It may not be on PATH
+  in a fresh tool shell — prepend it first if `node` isn't found, e.g.:
   ```powershell
-  $env:Path = "C:\Users\James\AppData\Local\NodePortable\node-v22.14.0-win-x64;" + $env:Path
+  $env:Path = "C:\Program Files\nodejs;" + $env:Path
   ```
+  (Wherever older text below still says "NodePortable", read it as this directory.)
 - **GitHub CLI**: installed via winget (`winget install --id GitHub.cli`), but **not
   on PATH** in a fresh Bash/PowerShell tool session — `gh` alone gives "not
   recognized"/"command not found" even right after a successful install, and
@@ -5895,8 +5971,8 @@ Neither server has `--reload`, so **restart the backend server** (`preview_stop`
 # Backend (from repo root)
 backend\.venv\Scripts\python.exe -m uvicorn --app-dir backend app.main:app --port 8000
 
-# Frontend (from repo root, after prepending NodePortable to PATH as above)
-node "C:\Users\James\AppData\Local\NodePortable\node-v22.14.0-win-x64\node.exe" `
+# Frontend (from repo root, after prepending C:\Program Files\nodejs to PATH as above)
+& "C:\Program Files\nodejs\node.exe" `
      frontend\node_modules\vite\bin\vite.js frontend --port 5173
 ```
 Backend: http://localhost:8000 (docs at `/docs`, topics at `/api/topics`, sections at
@@ -5939,7 +6015,7 @@ are deliberately left untracked (deliverables, not source).
 # Backend — from backend/, with the venv
 .\.venv\Scripts\python.exe -m pytest -v
 
-# Frontend — from frontend/, with NodePortable on PATH
+# Frontend — from frontend/, with C:\Program Files\nodejs on PATH
 npx vitest run
 ```
 
