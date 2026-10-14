@@ -47,37 +47,53 @@ distance/percentage rewordings — see below) is committed in `21f8fa9`; **step 
 request: `multiply_divide_by_half_F` + 3 new "Place Value" topics, 332 → 336 — full breakdown
 below) is committed in `3977912`. **Step 71** (a direct user request: restructuring the Bell Tasks
 menu from KS3/KS4 into Year 11/Year 10/Years 7-9, with a brand-new 8-box template for Year 11 —
-full breakdown below) is **NOT YET COMMITTED** as of the end of this session — see "Start the next
-session here" immediately below. Full backend suite: **1107/1107 passed**; frontend: **68/68**. No
-known bugs, except one flagged-but-not-fixed pre-existing gap found while verifying step 71 (see
-below): a topic using the `\colvec{}{}` vector marker renders literal `\colvec{...}` text instead
-of a real column vector in a Bell Tasks deck (affects both Year 10 and Year 11 identically — the
-tokenizer/OMML pipeline was built before that marker existed). A second, older honest gap: the
+full breakdown below) is committed and pushed in `5117a0e`. Full backend suite: **1107/1107
+passed**; frontend: **68/68**. `master` is clean (only the two untracked
+`backend/all_topics_review_*_x5.pdf` files, left untracked by convention). No known bugs, except
+one flagged-but-not-fixed pre-existing gap found while verifying step 71 (see below): a topic
+using the `\colvec{}{}` vector marker renders literal `\colvec{...}` text instead of a real
+column vector in a Bell Tasks deck (affects both Year 10 and Year 11 identically — the
+tokenizer/OMML pipeline was built before that marker existed). A second, small honest gap from
+step 71: the live-browser Year 11 fill-all-8-boxes + Generate click-through was never completed
+(see step 71's verification paragraph). A third, older honest gap: the
 `decimals_multiply_F` no-trailing-zero fix and `standard_form.py`'s 10^0/10^1 exclusion (both in
 step 64) were verified via large ad hoc scratch-script trial runs (thousands of trials, zero
 failures) but were **not** given a persisted pytest regression test — worth adding if either area
 is touched again.
 
-**⚠️ Start the next session here.** Step 71's work (see below) is complete, individually verified
-(including a real generated Year 11 `.pptx` opened via COM-automated PowerPoint, and the full flow
-re-verified live through the actual running app), and confirmed via full clean-suite runs: backend
-**1107/1107**, frontend **68/68**. Nothing further needs diagnosing — go straight to committing:
-1. `git status` should show 11 modified files (`backend/app/api/routes.py`, `backend/app/api/
-   schemas.py`, `backend/app/bell_tasks/generator.py`, `backend/app/bell_tasks/layout.py`,
-   `backend/tests/api/test_routes.py`, `backend/tests/unit/bell_tasks/test_layout.py`,
-   `frontend/src/App.tsx`, `frontend/src/api/client.ts`, `frontend/src/components/
-   BellTasksView.test.tsx`, `frontend/src/components/BellTasksView.tsx`, `frontend/src/hooks/
-   useGenerateBellTasks.ts`, plus `CLAUDE.md` itself) and 2 new files (`backend/app/bell_tasks/
-   assets/bell_task_template_year11.pptx`, `backend/tests/unit/bell_tasks/test_generator_
-   year11.py`) plus 2 untracked review PDFs (`backend/all_topics_review_*_x5.pdf` — leave
-   untracked, per convention, unrelated to this step). Commit and push everything together.
-2. Report the flagged `\colvec{}{}` Bell Tasks gap to the user (already done once, in the session
-   that built step 71 — if a NEW session is picking this up cold, mention it again) and ask
-   whether they want it fixed now or left for later.
-3. Then resume the normal review workflow (see "Next natural step" further below), or pick up a
-   fresh direct request the same way steps 70-71 were handled: research existing conventions
-   first (dedup-key/verification/diagram patterns for a topic; template geometry/box-numbering
-   for a Bell Tasks change), build, verify by rendering real PDFs, write tests, then commit.
+**⚠️ Start the next session here.** Everything through step 71 is committed and pushed — there is
+no pending uncommitted work and no half-finished change (the last session's commits, newest
+first: `5117a0e` Bell Tasks Year 11/10/7-9, `3977912` multiply/divide by 0.5 + Place Value,
+`21f8fa9` review-feedback batch, `af1132b` Sequences). There is no separate plan file for this
+arc — this section IS the work plan. Suggested order:
+1. **Ask the user what's next** — they work through per-topic review feedback and one-off feature
+   requests (steps 70-71 were both direct requests, not review batches). Don't start anything
+   unprompted.
+2. **Two open questions to put to the user first**, both small leftovers from step 71:
+   (a) the **`\colvec{}{}` Bell Tasks gap** — vector topics (`vectors_arithmetic_H`, etc.) print
+   literal `\colvec{...}` in a Bell Tasks deck instead of a stacked column vector, for BOTH Year 10
+   and Year 11 (already reported to the user once, no decision yet). The fix is a new
+   `ColVecSpan` token in `app/bell_tasks/math_tokenizer.py` plus an `add_column_vector` builder in
+   `app/bell_tasks/omml.py` (an `<m:d>` delimiter around a 2-row `<m:m>` matrix, wrapped in PPTX's
+   `mc:AlternateContent`/`a14:m` extension — NOT Word's bare `<m:oMath>`; model it on
+   `app/docx/docx_omml.py`'s existing Word version and `omml.py`'s `add_fraction`; remember the
+   `_insert_before_end_para_rpr` ordering trap). Verify in real PowerPoint via COM (see
+   "Bell Tasks" below), and add `vectors_arithmetic_H` to the Year 10/11 test fixtures once fixed.
+   (b) **Years 7-9** is still a disabled placeholder tile — ask whether/when they want a third
+   template (they'd need to supply the `.pptx`; read its real geometry first, per step 71).
+3. **One unfinished verification from step 71**: do the real browser click-through for Year 11
+   (fill all 8 boxes, Generate, confirm a 200 + download) — only the picker/box-count/copy were
+   verified live; Generate is covered by API + mocked-fetch tests only. Note the earlier attempt
+   failed to find a topic via search ("Angles in a Triangle" → "No topics match"); check the real
+   topic display names via `/api/topics` first.
+4. Then resume the normal review workflow (see "Next natural step" below), or handle a fresh direct
+   request the way steps 70-71 were: research existing conventions first (dedup-key/verification/
+   diagram patterns for a topic; template geometry/box-numbering for a Bell Tasks change), ask
+   clarifying questions where genuinely ambiguous, build, verify by rendering real PDFs/decks,
+   write tests, run the full backend (`cd backend && .venv/Scripts/python.exe -m pytest -q`, ~3-4
+   minutes — it backgrounds past the 2-minute tool timeout, wait for the notification) and frontend
+   (`npx vitest run` with NodePortable on PATH) suites, then commit + push **only when the user
+   asks**.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -302,7 +318,7 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** everything through step 70 is committed and pushed (see the "⚠️ Start the
+**Next natural step:** everything through step 71 is committed and pushed (see the "⚠️ Start the
 next session here" box above) — ask the
 user for the next chunk of review feedback (the review is NOT confirmed finished — recent batches
 have been per-topic
@@ -330,7 +346,8 @@ arrives, check "Ideas for a future session" (bottom of this file) for candidate
 follow-ups (the remaining medium-confidence OCR-spec gaps from step 32's audit, the
 remaining medium/low-confidence AQA-spec gaps from step 31's audit, stem-and-leaf
 diagrams, standard deviation, a handful of lower-confidence curriculum-audit candidates,
-saved worksheet history, deployment, a KS3 Bell Tasks tier, the full language-variety
+saved worksheet history, deployment, a Years 7-9 Bell Tasks template (needs a user-supplied
+`.pptx`), the Bell Tasks `\colvec{}{}` fix, the full language-variety
 rollout beyond the 4 files step 35 piloted it on, etc.) if there's ever a gap with no
 pending review feedback.
 
@@ -486,16 +503,17 @@ teacher picks a **Year 11 / Year 10 / Years 7-9** sub-menu (Years 7-9 is a disab
 link, "for later", per direct request — only Year 10 and Year 11 are built; this was
 originally a KS3/KS4 picker with only KS4 built — the same underlying template/pipeline,
 just relabelled and, for Year 11, given a second 8-box template — see the later chronology
-entry) then, for Year 10, exactly 6 topics from the full flattened list
+entry) then exactly 6 topics (Year 10) or 8 topics (Year 11) from the full flattened list
 of all 336 existing topics (no curation - every topic is eligible, including diagram-heavy
-ones) via 6 searchable topic pickers (`BellTasksView.tsx`, one per box — a plain `<select>`
+ones) via that many searchable topic pickers (`BellTasksView.tsx`, one per box — a plain `<select>`
 was tried first but a 296-option native dropdown is unusable, so each box is a
 `SearchableTopicSelect.tsx` combobox instead: a text input that shows the full topic list
 on focus and filters it live by substring as the teacher types, reusing `TopicSearch.tsx`'s
 established filter-as-you-type convention rather than inventing a new one), each excluding
-topics already chosen in another box so the 6 stay distinct without a separate validation
-error state. `POST /api/bell-tasks` (`GenerateBellTasksRequest.topic_ids`, a Pydantic
-`field_validator` enforcing exactly 6 distinct ids) returns a **fresh, freshly-random
+topics already chosen in another box so the topics stay distinct without a separate validation
+error state. `POST /api/bell-tasks` (`GenerateBellTasksRequest`: `topic_ids` plus a `year` of
+`year_10`/`year_11`, default `year_10`; a Pydantic `model_validator` enforces exactly
+`BOX_COUNTS[year]` — 6 or 8 — distinct ids) returns a **fresh, freshly-random
 `.pptx` every single call** — no persistence anywhere, matching the plain Worksheet
 Generator's behaviour, not Practice Tests' frozen/static one. `generate_bell_tasks_pptx`
 (`app/bell_tasks/generator.py`) calls `build_worksheet(topic_id, topic.fixed_tier, count=5,
@@ -5797,13 +5815,18 @@ fixes), is committed and pushed (see `git log`).
     exponent-bearing/no-verify topics) generated directly and opened via COM-automated real
     PowerPoint, confirming correct row-major numbering, inherited master decorations, diagrams
     staying within their own cells, and 5 genuinely distinct questions per box across the week;
-    then the full flow re-verified live through the actual running app (`preview_start` for
-    both servers, backend restarted to pick up the schema/route changes) - the Year 11 tile
-    generates real question boxes 1-8, all 8 topics pickable via the existing `SearchableTopic
-    Select` search-as-you-type UI (confirmed the new Place Value topics from this file's
-    immediately preceding chronology entry are already searchable here too), Generate returns a
-    real 200 OK and downloads a `.pptx`, and Year 10 still shows exactly 6 boxes with its
-    original wording, unaffected. A stale, hardcoded "KS3 & KS4 · pick 6 topics" / "pick 6
+    then a live browser check of the actual running app (`preview_start` for both servers,
+    backend restarted to pick up the schema/route changes) - the homepage card, the three-tile
+    Year 11 / Year 10 / Years 7-9 picker (Years 7-9 disabled) and Year 11's 8 numbered
+    topic-picker boxes ("Choose 8 topics ... 40 in total") all rendered correctly. **Honest
+    gap: the live browser click-through was NOT completed past that point** - while filling
+    Box 1 a search for "Angles in a Triangle" returned "No topics match" (the real display name
+    probably differs; never investigated), so filling all 8 boxes and clicking Generate in the
+    browser never happened. The Generate path is instead covered by the API route tests
+    (`/api/bell-tasks` with `year: "year_11"` returns 200 + `PK` zip magic bytes through
+    `TestClient`) and by `BellTasksView.test.tsx` (mocked `fetch`, asserts the exact posted body
+    incl. `year`). A next session should do the real 8-box fill + Generate click-through once.
+    A stale, hardcoded "KS3 & KS4 · pick 6 topics" / "pick 6
     topics" teaser string on the **homepage card itself** (`App.tsx`, separate from
     `BellTasksView.tsx`'s own internal copy) was caught only by browsing the real homepage
     during this verification pass, not by any test - the same class of gotcha already
@@ -5823,7 +5846,8 @@ fixes), is committed and pushed (see `git log`).
     (picker options, box count, Generate-button gating, the posted request body) - the two
     tests that fill all 8 boxes via simulated typing run close to vitest's default 5s
     per-test timeout under load, so both were given an explicit 15s timeout instead of leaving
-    them flaky. Backend suite grew from 1082 to 1107; frontend grew from 65 to 68.
+    them flaky. Backend suite grew from 1082 to 1107; frontend grew from 65 to 68. Committed and
+    pushed as `5117a0e`.
 
 ## Environment gotchas (Windows, this machine specifically)
 
